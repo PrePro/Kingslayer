@@ -5,9 +5,12 @@
 //======================================================================================================
 using UnityEngine;
 using System.Collections;
+using System;
 
 public abstract class EnemyBase : MonoBehaviour
 {
+  
+
     //======================================================================================================
     // Datatype Declaration
     //======================================================================================================
@@ -15,7 +18,8 @@ public abstract class EnemyBase : MonoBehaviour
     {
         Idle,
         Patrolling,
-        Attacking
+        Attacking,
+        Searching
     }
 
     enum AnimationState
@@ -25,14 +29,32 @@ public abstract class EnemyBase : MonoBehaviour
         Blocking,
         Attacking
     }
+
+    enum Behavior
+    {
+        Aggressive,
+        Defencive,
+        Guard
+    }
     //======================================================================================================
     // Member Variables
     //======================================================================================================
     #region MemberVariables
     [Header("AI States")]
+    [SerializeField]
     State currentState;
+    [SerializeField]
     AnimationState currentAnimation;
+    [SerializeField]
+    Behavior dominantBehavior;
+    NavMeshAgent agent;
 
+    [SerializeField]
+    Transform currentTarget;
+
+    [Header("Perception")]
+    [SerializeField]
+    float viewRadius;
     #endregion
 
     //======================================================================================================
@@ -51,20 +73,18 @@ public abstract class EnemyBase : MonoBehaviour
     // GameObject Functions
     //======================================================================================================
     #region GameObject Functions
-    void Start ()
+    void Start()
     {
-	
-	}
-    void Update ()
-    {
-	
-	}
+        agent = GetComponent<NavMeshAgent>();
+        agent.SetDestination(currentTarget.position);
+    }
+
     #endregion
     //======================================================================================================
     // Abstract Member Functions
     //======================================================================================================
     #region Abstract Member Functions
-   
+
     public abstract void RunBehavior();
     public abstract void UpdateAnimation();
     public abstract void AttackEnemy();
@@ -79,4 +99,38 @@ public abstract class EnemyBase : MonoBehaviour
 
 
     #endregion
+
+
+    //======================================================================================================
+    // Editor Rendering 
+    //======================================================================================================
+
+    public void OnDrawGizmos()
+    {
+        DrawPerceptionGizmo();
+        DrawBehaviorGizmo();
+    }
+
+    //Gives information what is going on in the ai
+    private void DrawBehaviorGizmo()
+    {
+        if (agent.isOnNavMesh)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.yellow;
+        }
+        Gizmos.DrawSphere(transform.position + Vector3.up * 4, 0.50f);
+    }
+    
+    //shows perspective radius
+    void DrawPerceptionGizmo()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, viewRadius);
+      
+    }
+    
 }

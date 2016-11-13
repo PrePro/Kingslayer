@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Movement : MonoBehaviour
 {
-
+    public PlayerDamage Pdamage;
     public Transform target;
     public float speed;
     public float runningSpeed;
@@ -11,7 +11,6 @@ public class Movement : MonoBehaviour
     public GameObject GameCamera;
     public Transform objectForward;
     bool isRuning = false;
-    private float fadeTime = 0.5f;
     private float relativePosx;
     private float relativePosz;
 
@@ -60,11 +59,13 @@ public class Movement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         // Look at the target objects postion if its 0.5 away 
-
-        if (x >= 0.5f || x <= -0.5f || z >= 0.5f || z <= 0.5f)
+        if (Pdamage.isDashing == false)
         {
-            Quaternion rotation = Quaternion.LookRotation(new Vector3(relativePosx, 0, relativePosz));
-            transform.rotation = rotation;
+            if (x >= 0.5f || x <= -0.5f || z >= 0.5f || z <= -0.5f)
+            {
+                Quaternion rotation = Quaternion.LookRotation(new Vector3(relativePosx, 0, relativePosz));
+                transform.rotation = rotation;
+            }
         }
 
 
@@ -90,79 +91,82 @@ public class Movement : MonoBehaviour
         {
             isRuning = false;
         }
-
-        //Player wants to move make them move 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        if (Pdamage.isDashing == false)
         {
-            transform.Translate((Vector3.forward * Time.deltaTime * currentSpeed));
+            //Player wants to move make them move 
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            {
+                transform.Translate((Vector3.forward * Time.deltaTime * currentSpeed));
+            }
         }
-
         //Target rotates around camera
         target.transform.rotation = GameCamera.transform.rotation;
         target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y, 0);
 
         // Moves the targets 
-        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        if (Pdamage.isDashing == false)
         {
-
-            if (isRuning == false)
+            if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
             {
-                currentSpeed = speed;
-            }
-            else
-            {
-                currentSpeed = runningSpeed;
+
+                if (isRuning == false)
+                {
+                    currentSpeed = speed;
+                }
+                else
+                {
+                    currentSpeed = runningSpeed;
+                }
+
+                target.Translate(Vector3.forward * Time.deltaTime * currentSpeed);
             }
 
-            target.Translate(Vector3.forward * Time.deltaTime * currentSpeed);
+            // Moves the targets 
+            if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+            {
+
+                if (isRuning == false)
+                {
+                    currentSpeed = speed;
+                }
+                else
+                {
+                    currentSpeed = runningSpeed;
+                }
+                target.Translate(Vector3.right * Time.deltaTime * currentSpeed);
+
+            }
+
+            // Moves the targets 
+            if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
+            {
+
+                if (isRuning == false)
+                {
+                    currentSpeed = speed;
+                }
+                else
+                {
+                    currentSpeed = runningSpeed;
+                }
+                target.Translate(Vector3.back * Time.deltaTime * currentSpeed);
+            }
+
+            // Moves the targets 
+            if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+            {
+
+                if (isRuning == false)
+                {
+                    currentSpeed = speed;
+                }
+                else
+                {
+                    currentSpeed = runningSpeed;
+                }
+                target.Translate(Vector3.left * Time.deltaTime * currentSpeed);
+            }
         }
-
-        // Moves the targets 
-        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
-        {
-
-            if (isRuning == false)
-            {
-                currentSpeed = speed;
-            }
-            else
-            {
-                currentSpeed = runningSpeed;
-            }
-            target.Translate(Vector3.right * Time.deltaTime * currentSpeed);
-
-        }
-
-        // Moves the targets 
-        if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
-        {
-
-            if (isRuning == false)
-            {
-                currentSpeed = speed;
-            }
-            else
-            {
-                currentSpeed = runningSpeed;
-            }
-            target.Translate(Vector3.back * Time.deltaTime * currentSpeed);
-        }
-
-        // Moves the targets 
-        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
-        {
-
-            if (isRuning == false)
-            {
-                currentSpeed = speed;
-            }
-            else
-            {
-                currentSpeed = runningSpeed;
-            }
-            target.Translate(Vector3.left * Time.deltaTime * currentSpeed);
-        }
-
 
         // Reset
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
@@ -181,4 +185,5 @@ public class Movement : MonoBehaviour
         }
 
     }
+    
 }

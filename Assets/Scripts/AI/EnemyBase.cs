@@ -114,6 +114,10 @@ public abstract class EnemyBase : MonoBehaviour
     //Gives information what is going on in the ai
     private void DrawBehaviorGizmo()
     {
+        if(!agent)
+        {
+            return;
+        }
         if (agent.isOnNavMesh)
         {
             Gizmos.color = Color.green;

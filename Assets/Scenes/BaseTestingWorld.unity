@@ -159,7 +159,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &38432194
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,49 +234,7 @@ Transform:
   m_LocalScale: {x: 25, y: 1, z: 25}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
---- !u!1001 &87952498
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 483764, guid: eab69c0bdda16e0468827d235a819d59, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.91101444
-      objectReference: {fileID: 0}
-    - target: {fileID: 483764, guid: eab69c0bdda16e0468827d235a819d59, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 483764, guid: eab69c0bdda16e0468827d235a819d59, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.5835175
-      objectReference: {fileID: 0}
-    - target: {fileID: 483764, guid: eab69c0bdda16e0468827d235a819d59, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: 483764, guid: eab69c0bdda16e0468827d235a819d59, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.00000023040464
-      objectReference: {fileID: 0}
-    - target: {fileID: 483764, guid: eab69c0bdda16e0468827d235a819d59, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.00000023040464
-      objectReference: {fileID: 0}
-    - target: {fileID: 483764, guid: eab69c0bdda16e0468827d235a819d59, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 483764, guid: eab69c0bdda16e0468827d235a819d59, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: eab69c0bdda16e0468827d235a819d59, type: 2}
-  m_IsPrefabParent: 0
+  m_RootOrder: 3
 --- !u!1 &214221138
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,12 +420,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 587182291}
-  m_LocalRotation: {x: 0.42261833, y: 0, z: 0, w: 0.9063078}
-  m_LocalPosition: {x: -0.382, y: 0.225, z: 0.646}
-  m_LocalScale: {x: 0.3, y: 0.8266984, z: 0.3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.039779883, y: 0.651624, z: 0.12773405}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1646229792}
-  m_RootOrder: 1
+  m_Father: {fileID: 1908360477}
+  m_RootOrder: 0
 --- !u!23 &587182293
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -542,7 +500,7 @@ Transform:
   - {fileID: 1646229792}
   - {fileID: 214221139}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1001 &1401035315
 Prefab:
   m_ObjectHideFlags: 0
@@ -586,6 +544,14 @@ Prefab:
       propertyPath: currentTarget
       value: 
       objectReference: {fileID: 1892059}
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: viewRadius
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: dominantBehavior
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
   m_IsPrefabParent: 0
@@ -744,7 +710,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1460832066}
-  - {fileID: 587182292}
+  - {fileID: 1908360477}
   m_Father: {fileID: 1088212892}
   m_RootOrder: 0
 --- !u!114 &1646229793
@@ -775,21 +741,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8010e9007aad9c74886a256e5c2c2d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sword: {fileID: 587182291}
+  Sword: {fileID: 1908360476}
   Bullet: {fileID: 185558, guid: eab69c0bdda16e0468827d235a819d59, type: 2}
   BulletTarget: {fileID: 1460832065}
   isDashing: 0
-  swing: 0
   dashSpeed: 5
+  dashTime: 1.5
   bulletSpeed: 500
   swingSpeed: 1
+  swingTime: 0.5
   skills:
-  - cooldown: 3
+  - name: Dash
+    cooldown: 3
     currentcooldown: 0
-  - cooldown: 5
+  - name: Projectile
+    cooldown: 5
     currentcooldown: 0
-  - cooldown: 1
+  - name: Sword Swing
+    cooldown: 1
     currentcooldown: 0
+  CurrentState: 0
+--- !u!1 &1908360476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1908360477}
+  m_Layer: 0
+  m_Name: SwordSwingArm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1908360477
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1908360476}
+  m_LocalRotation: {x: 0.5296337, y: -0.01010294, z: 0.0063089095, w: 0.8481428}
+  m_LocalPosition: {x: -0.354, y: -0.064, z: 0.312}
+  m_LocalScale: {x: 0.3, y: 0.8266985, z: 0.29999998}
+  m_Children:
+  - {fileID: 587182292}
+  m_Father: {fileID: 1646229792}
+  m_RootOrder: 1
 --- !u!1 &1936610629
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +863,7 @@ Transform:
   m_LocalScale: {x: 1, y: 9.008816, z: 15.789256}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1 &2103278945
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,4 +924,4 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2

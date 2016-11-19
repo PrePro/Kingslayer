@@ -7,7 +7,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-public class BasicEnemy : EnemyBase
+public class NPC : NPCBase
 {
 
     // Use this for initialization
@@ -22,7 +22,7 @@ public class BasicEnemy : EnemyBase
     //
     //======================================================================================================
 
-    public override void AttackEnemy()
+    public override void AttackTarget()
     {
     }
 
@@ -30,7 +30,7 @@ public class BasicEnemy : EnemyBase
     {
     }
 
-    public override void SearchForEnemy()
+    public override void Patrol()
     {
     }
 
@@ -38,4 +38,12 @@ public class BasicEnemy : EnemyBase
     {
     }
 
+    public override void OnTargetFound(GameObject foundObject)
+    {
+        if(dominantBehavior != Behavior.Passive)
+        {
+            currentTarget = foundObject.transform;
+            agent.destination = currentTarget.position;
+        }
+    }
 }

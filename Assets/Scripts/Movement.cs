@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Movement : MonoBehaviour
 {
@@ -24,7 +25,8 @@ public class Movement : MonoBehaviour
     void Update()
     {
         PlayerMove();
-        RayCast();
+        //Deprecated
+        //RayCast();
     }
 
     void RayCast()
@@ -41,10 +43,14 @@ public class Movement : MonoBehaviour
         {
             if (hit.collider.gameObject.tag != "Player")
             {
-                //Color tempColor = hit.collider.GetComponent<Renderer>().material.color;
-                //hit.collider.GetComponent<Renderer>().material.color = new Color(tempColor.r, tempColor.g, tempColor.b, 50f);
+                //var obstacle = hit.collider.gameObject.GetComponent<Obstacle>();
+                ////Means object hit is obstacle
+                //if(obstacle != null)
+                //{
+                //    obstacles.Add(obstacle);
+                //}
                 //Debug.Log("Alpha Channel " + tempColor.a);
-                Destroy(hit.collider.gameObject);
+               // Destroy(hit.collider.gameObject);
             }
         }
     }

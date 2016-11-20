@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DestoryBullet : MonoBehaviour {
+public class DestroyBullet : MonoBehaviour {
 
     public float time;
    

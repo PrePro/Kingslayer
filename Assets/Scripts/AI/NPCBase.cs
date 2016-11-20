@@ -73,7 +73,7 @@ public abstract class NPCBase : MonoBehaviour
     protected List<Transform> patrolRoute;
     [Header("Perception")]
     [SerializeField]
-    float viewRadius;
+    protected bool isTargetSeen;
     #endregion
 
     //======================================================================================================
@@ -94,8 +94,8 @@ public abstract class NPCBase : MonoBehaviour
     #region GameObject Functions
     void Start()
     {
+        isTargetSeen = false;
         agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(currentTarget.position);
     }
 
     #endregion
@@ -109,6 +109,7 @@ public abstract class NPCBase : MonoBehaviour
     public abstract void AttackTarget();
     public abstract void Patrol();
     public abstract void OnTargetFound(GameObject foundObject);
+    public abstract void OnTargetLost();
     #endregion
     //======================================================================================================
     // Private Member Functions 
@@ -138,13 +139,13 @@ public abstract class NPCBase : MonoBehaviour
         {
             return;
         }
-        if (agent.isOnNavMesh)
+        if (isTargetSeen)
         {
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.red;
         }
         else
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = Color.green;
         }
         Gizmos.DrawSphere(transform.position + Vector3.up * 4, 0.50f);
     }
@@ -152,8 +153,6 @@ public abstract class NPCBase : MonoBehaviour
     //shows perspective radius
     void DrawPerceptionGizmo()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, viewRadius);
 
     }
 

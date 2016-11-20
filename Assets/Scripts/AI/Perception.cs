@@ -29,9 +29,20 @@ public class Perception : MonoBehaviour
             }
             else
             {
-                Debug.Log("Not Found");
+                npc.OnTargetLost();
             }
+        }
+        else
+        {
+            npc.OnTargetLost();
         }
     }
 
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            npc.OnTargetLost();
+        }
+    }
 }

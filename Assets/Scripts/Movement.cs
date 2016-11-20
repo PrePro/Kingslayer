@@ -59,7 +59,7 @@ public class Movement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         // Look at the target objects postion if its 0.5 away 
-        if (Pdamage.isDashing == false)
+        if (Pdamage.isDashing == false && Pdamage.doubleTapLeft == false)
         {
             if (x >= 0.5f || x <= -0.5f || z >= 0.5f || z <= -0.5f)
             {
@@ -91,7 +91,7 @@ public class Movement : MonoBehaviour
         {
             isRuning = false;
         }
-        if (Pdamage.isDashing == false)
+        if (Pdamage.isDashing == false && Pdamage.doubleTapLeft == false)
         {
             //Player wants to move make them move 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
@@ -104,7 +104,7 @@ public class Movement : MonoBehaviour
         target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y, 0);
 
         // Moves the targets 
-        if (Pdamage.isDashing == false)
+        if (Pdamage.isDashing == false && Pdamage.doubleTapLeft == false)
         {
             if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
             {

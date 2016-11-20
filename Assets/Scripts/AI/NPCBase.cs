@@ -65,12 +65,18 @@ public abstract class NPCBase : MonoBehaviour
     [Tooltip("For debugging purposes only, should not be edited unless for testing purposes")]
     protected AnimationState currentAnimation;
 
+    [Header("Pathing")]
     [SerializeField]
     protected Transform currentTarget;
-
     [SerializeField]
     [Tooltip("If you want to create a patrolling guard, set up an array of transforms for the unit to move back and forth")]
     protected List<Transform> patrolRoute;
+    [SerializeField]
+    protected int patrolIndex;
+    [SerializeField]
+    [Tooltip("Distance the NPC needs to be to the current patrol point before moving to the next")]
+    protected float patrolDistanceThreshold;
+
     [Header("Perception")]
     [SerializeField]
     protected bool isTargetSeen;
@@ -96,6 +102,29 @@ public abstract class NPCBase : MonoBehaviour
     {
         isTargetSeen = false;
         agent = GetComponent<NavMeshAgent>();
+        switch (dominantBehavior)
+        {
+            case Behavior.Aggressive:
+                {
+                    SetState(State.Idle);
+                }
+                break;
+            case Behavior.IdleDefencive:
+                {
+                    SetState(State.Idle);
+                }
+                break;
+            case Behavior.PatrolDefencive:
+                {
+                    SetState(State.Patrolling);
+                }
+                break;
+            case Behavior.Passive:
+                {
+                    SetState(State.Idle);
+                }
+                break;
+        }
     }
 
     #endregion
@@ -105,9 +134,11 @@ public abstract class NPCBase : MonoBehaviour
     #region Abstract Member Functions
 
     public abstract void RunBehavior();
+    public abstract void SetState(State newState);
     public abstract void UpdateAnimation();
     public abstract void AttackTarget();
     public abstract void Patrol();
+    public abstract void Search();
     public abstract void OnTargetFound(GameObject foundObject);
     public abstract void OnTargetLost();
     #endregion

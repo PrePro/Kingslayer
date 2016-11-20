@@ -738,10 +738,18 @@ MonoBehaviour:
   BulletTarget: {fileID: 1460832065}
   isDashing: 0
   dashSpeed: 5
+  dashSpeedLeft: 5
+  dashSpeedRight: 0
   dashTime: 1.5
+  dashTimeLeft: 1.5
+  dashTimeRight: 0
   bulletSpeed: 500
   swingSpeed: 1
   swingTime: 0.5
+  LastTap: 0
+  doubleTapTimimg: 0.5
+  doubleTapLeft: 0
+  doubleTapRight: 0
   skills:
   - name: Dash
     cooldown: 3
@@ -750,6 +758,12 @@ MonoBehaviour:
     cooldown: 5
     currentcooldown: 0
   - name: Sword Swing
+    cooldown: 1
+    currentcooldown: 0
+  - name: Dash Left
+    cooldown: 3
+    currentcooldown: 0
+  - name: Dash Right
     cooldown: 1
     currentcooldown: 0
   CurrentState: 0

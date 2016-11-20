@@ -11,13 +11,21 @@ public class PlayerDamage : MonoBehaviour
     public GameObject BulletTarget;
 
     public bool isDashing = false;
-
+    
     public float dashSpeed;
+    public float dashSpeedLeft;
+    public float dashSpeedRight;
     public float dashTime;
+    public float dashTimeLeft;
+    public float dashTimeRight;
     public float bulletSpeed;
     public float swingSpeed;
     public float swingTime;
 
+    public float LastTap = 0;
+    public float doubleTapTimimg;
+    public bool doubleTapLeft = false;
+    public bool doubleTapRight = false;
     private bool swing = false;
     public List<Skills> skills;
 
@@ -66,9 +74,34 @@ public class PlayerDamage : MonoBehaviour
             transform.Translate((Vector3.forward * Time.deltaTime * dashSpeed));
         }
 
+        if (doubleTapLeft)
+        {
+            transform.Translate((Vector3.left * Time.deltaTime * dashSpeedLeft));
+        }
+
         if (swing)
         {
             StartCoroutine("SwordSwingmove", swingTime);
+        }
+
+        if (Input.GetKey(KeyCode.A)) // Dashing left 
+        {
+            if (skills[3].currentcooldown >= skills[3].cooldown)
+            {
+                Debug.Log(LastTap);
+                Debug.Log(Time.time - LastTap);
+                if ((Time.time - LastTap) > doubleTapTimimg)
+                {
+                    Debug.Log("Single");
+                }
+                else
+                {
+                    StartCoroutine("DashtimeLeft", dashTimeLeft);
+                }
+                LastTap = Time.time;
+                skills[3].currentcooldown = 0;
+            }
+
         }
     }
 
@@ -101,6 +134,8 @@ public class PlayerDamage : MonoBehaviour
                 }
             }
         }
+
+      
     }
 
     IEnumerator Dashtime(float waitTime)
@@ -109,9 +144,22 @@ public class PlayerDamage : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         isDashing = false;
     }
+
+    IEnumerator DashtimeLeft(float waitTime)
+    {
+        doubleTapLeft = true;
+        yield return new WaitForSeconds(waitTime);
+        doubleTapLeft = false;
+    }
+
+    IEnumerator DashtimeRight(float waitTime)
+    {
+        doubleTapRight = true;
+        yield return new WaitForSeconds(waitTime);
+        doubleTapRight = false;
+    }
     IEnumerator SwordSwing(float waitTime)
     {
-        Debug.Log("Swing");
         swing = true;
         yield return new WaitForSeconds(waitTime);
         swing = false;

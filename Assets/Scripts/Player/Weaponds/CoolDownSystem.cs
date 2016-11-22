@@ -1,15 +1,14 @@
-﻿using UnityEngine;
+﻿//======================================================================================================
+// CoolDownSystem.cs
+// Description: Abilities and cooldown system 
+// Author: Casey Stewart
+//======================================================================================================
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class CoolDownSystem : MonoBehaviour
 {
-    [Header("Weapons")]
-    [Tooltip("The weapon")]
-    public GameObject Sword;
-    public GameObject Bullet;
-    public GameObject BulletTarget;
-
     public enum DashState
     {
         NotDashing,
@@ -18,40 +17,66 @@ public class CoolDownSystem : MonoBehaviour
         RightDash
     }
 
-    public float dashTime;
-    public float dashTimeLeft;
-    public float dashTimeRight;
-
-    public float bulletSpeed;
-    public float swingSpeed;
-    public float swingTime;
-
-    private bool swing = false;
-    public List<Skills> skills;
-
-    public bool rightIsPressed = false;
-    public bool leftIsPressed = false;
-    public float CooldownDoubleTap;
-    [SerializeField]
-    public DashState CurrentDashState;
-
-    [SerializeField]
-    private ProjectState CurrentState;
     private enum ProjectState
     {
         CanShoot,
         IsDone
     }
+    //======================================================================================================
+    // Variables
+    //======================================================================================================
+    #region Variables
+    [Header("Weapons")]
+    [Tooltip("Game Objects to be used as Weaponds")]
+    [SerializeField]
+    private GameObject Sword;
+    [SerializeField]
+    private GameObject Bullet;
+    [SerializeField]
+    private GameObject BulletTarget;
+
+    [Header("Dash Times")]
+    [Tooltip("The amount of time the player will dash & doubleTapTimer is how long the player has to hit the double tap")]
+    public float dashTimeForward;
+    public float dashTimeLeft;
+    public float dashTimeRight;
+    [SerializeField]
+    private float doubleTapTimer;
+
+    [Header("Sword & Projectile")]
+    [Tooltip("Variables for bullets and swords")]
+    public float bulletSpeed;
+    public float swingSpeed;
+    public float swingTime;
+
+    private bool swing = false;
+    private bool rightIsPressed = false;
+    private bool leftIsPressed = false;
+
+    [HideInInspector]
+    public DashState currentDashState;
+    private ProjectState currentState;
 
 
+    [Header("Player Abilities")]
+    [Tooltip("These are the players abilities and cooldowns")]
+    public List<Skills> skills;
+
+    #endregion
+
+    //======================================================================================================
+    // GameObject Functions
+    //======================================================================================================
+    #region GameObject Functions
     void Start()
     {
         foreach (Skills x in skills)
         {
             x.currentcooldown = x.cooldown;
         }
-        CurrentState = ProjectState.IsDone;
+        currentState = ProjectState.IsDone;
     }
+
     void Update()
     {
         //Update current cool down for each skill
@@ -65,13 +90,13 @@ public class CoolDownSystem : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Alpha2))
         {
-            if (CurrentState == ProjectState.CanShoot)
+            if (currentState == ProjectState.CanShoot)
             {
-                CurrentState = ProjectState.IsDone;
+                currentState = ProjectState.IsDone;
             }
             else
             {
-                CurrentState = ProjectState.CanShoot;
+                currentState = ProjectState.CanShoot;
             }
         }
 
@@ -89,15 +114,15 @@ public class CoolDownSystem : MonoBehaviour
         {
             if (skills[0].currentcooldown >= skills[0].cooldown)
             {
-                if (CurrentDashState == DashState.NotDashing)
+                if (currentDashState == DashState.NotDashing)
                 {
-                    StartCoroutine("Dashtime", dashTime);
+                    StartCoroutine("Dashtime", dashTimeForward);
                     skills[0].currentcooldown = 0;
                 }
             }
         }
 
-        if (Input.GetButton("Fire1") && CurrentDashState != DashState.ForwardDash) // Sword [2]
+        if (Input.GetButton("Fire1") && currentDashState == DashState.NotDashing) // Sword [2]
         {
             if (skills[2].currentcooldown >= skills[2].cooldown)
             {
@@ -105,13 +130,13 @@ public class CoolDownSystem : MonoBehaviour
                 StartCoroutine("SwordSwing", 0.5f);
                 skills[2].currentcooldown = 0;
             }
-            if (CurrentState == ProjectState.CanShoot)
+            if (currentState == ProjectState.CanShoot)
             {
                 if (skills[1].currentcooldown >= skills[1].cooldown) // Projectile [1]
                 {
                     Shoot();
                     skills[1].currentcooldown = 0;
-                    CurrentState = ProjectState.IsDone;
+                    currentState = ProjectState.IsDone;
                 }
             }
         }
@@ -128,7 +153,7 @@ public class CoolDownSystem : MonoBehaviour
                 }
                 else
                 {
-                    StartCoroutine("SetKeyPressLeft", CooldownDoubleTap);
+                    StartCoroutine("SetKeyPressLeft", doubleTapTimer);
 
                 }
             }
@@ -146,25 +171,30 @@ public class CoolDownSystem : MonoBehaviour
                 }
                 else
                 {
-                    StartCoroutine("SetKeyPressRight", CooldownDoubleTap);
-                    
+                    StartCoroutine("SetKeyPressRight", doubleTapTimer);
+
                 }
             }
         }
     }
+    #endregion
 
+    //======================================================================================================
+    // IEnumerator Functions
+    //======================================================================================================
+    #region IEnumerator Functions
     IEnumerator Dashtime(float waitTime)
     {
-        CurrentDashState = DashState.ForwardDash;
+        currentDashState = DashState.ForwardDash;
         yield return new WaitForSeconds(waitTime);
-        CurrentDashState = DashState.NotDashing;
+        currentDashState = DashState.NotDashing;
     }
 
     IEnumerator DashtimeLeft(float waitTime)
     {
-        CurrentDashState = DashState.LeftDash;
+        currentDashState = DashState.LeftDash;
         yield return new WaitForSeconds(waitTime);
-        CurrentDashState = DashState.NotDashing;
+        currentDashState = DashState.NotDashing;
     }
     IEnumerator SetKeyPressRight(float waitTime)
     {
@@ -181,9 +211,9 @@ public class CoolDownSystem : MonoBehaviour
 
     IEnumerator DashtimeRight(float waitTime)
     {
-        CurrentDashState = DashState.RightDash;
+        currentDashState = DashState.RightDash;
         yield return new WaitForSeconds(waitTime);
-        CurrentDashState = DashState.NotDashing;
+        currentDashState = DashState.NotDashing;
     }
     IEnumerator SwordSwing(float waitTime)
     {
@@ -198,8 +228,13 @@ public class CoolDownSystem : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         Sword.transform.Rotate(Vector3.forward * swingSpeed);
     }
+    #endregion
 
-    void Shoot()
+    //======================================================================================================
+    // Private Member Functions 
+    //======================================================================================================
+    #region Private Member Functions
+    private void Shoot()
     {
         Vector3 firePosition = BulletTarget.transform.position;
         GameObject bullet = GameObject.Instantiate(Bullet, firePosition, BulletTarget.transform.rotation) as GameObject;
@@ -211,9 +246,14 @@ public class CoolDownSystem : MonoBehaviour
             rigidbody.AddForce(force);
         }
     }
+    #endregion
+
 }
 
-//Holder for cooldowns
+//======================================================================================================
+// Skills Class
+//======================================================================================================
+#region Skills Class
 [System.Serializable]
 public class Skills
 {
@@ -223,3 +263,5 @@ public class Skills
     [HideInInspector]
     public float currentcooldown;
 }
+
+#endregion

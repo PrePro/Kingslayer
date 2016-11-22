@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿//======================================================================================================
+// DestroysBulllet.cs
+// Description: How projectiles will be destroyed
+// Author: Casey Stewart
+//======================================================================================================
+using UnityEngine;
 using System.Collections;
 
 public class DestroyBullet : MonoBehaviour {

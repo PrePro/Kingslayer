@@ -1,67 +1,96 @@
-﻿using UnityEngine;
+﻿//======================================================================================================
+// Movement.cs
+// Description: Players Movement
+// Author: Casey Stewart
+//======================================================================================================
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class Movement : MonoBehaviour
 {
-    public CoolDownSystem coolDownSystem;
+    //======================================================================================================
+    // Variables
+    //======================================================================================================
+    #region Variables
+    [Header("Game Objects")]
+    [Tooltip("Game Objects to be used")]
     public Transform target;
+    public CoolDownSystem coolDownSystem;
+    public Transform objectForward;
+    public GameObject GameCamera;
+
+    [Header("Player Speeds")]
+    [Tooltip("Speeds")]
     public float speed;
     public float runningSpeed;
-    float currentSpeed;
-    public GameObject GameCamera;
-    public Transform objectForward;
-    bool isRuning = false;
+    private float currentSpeed;
+
+    private bool isRuning = false;
     private float relativePosx;
     private float relativePosz;
 
+    [Header("Player Dash Speeds")]
+    [Tooltip("How fast the player will dash")]
     public float dashSpeedForward;
     public float dashSpeedLeft;
     public float dashSpeedRight;
 
+    [Header("Disable Movement")]
+    [Tooltip("Disable movement and time it will stop")]
+    public bool stopMovement = false;
+    [SerializeField]
+    private float StopTimer;
+    #endregion
 
-    RaycastHit hit;
+    //======================================================================================================
+    // GameObject Functions
+    //======================================================================================================
+    #region GameObject Functions
     void Start()
     {
+        StartCoroutine("StopMovement", StopTimer);
         currentSpeed = speed;
         target.position = transform.position;
     }
 
-
     void Update()
     {
-        Dashes();
-        PlayerMove();
+        if (stopMovement == false)
+        {
+            Dashes();
+            PlayerMove();
+        }
     }
+    #endregion
 
-    void Dashes()
+    //======================================================================================================
+    // Private Member Functions 
+    //======================================================================================================
+    #region Private Member Functions
+    private void Dashes()
     {
-        if (coolDownSystem.CurrentDashState == CoolDownSystem.DashState.LeftDash)
+        if (coolDownSystem.currentDashState == CoolDownSystem.DashState.LeftDash)
         {
             transform.Translate((Vector3.left * Time.deltaTime * dashSpeedLeft));
             target.transform.position = objectForward.transform.position;
         }
 
-        if (coolDownSystem.CurrentDashState == CoolDownSystem.DashState.RightDash)
+        if (coolDownSystem.currentDashState == CoolDownSystem.DashState.RightDash)
         {
             transform.Translate((Vector3.right * Time.deltaTime * dashSpeedRight));
             target.transform.position = objectForward.transform.position;
         }
 
-        if (coolDownSystem.CurrentDashState == CoolDownSystem.DashState.ForwardDash)
+        if (coolDownSystem.currentDashState == CoolDownSystem.DashState.ForwardDash)
         {
-            Debug.DrawRay(transform.position, Vector3.forward, Color.red);
-            if (Physics.Raycast(transform.position, Vector3.forward, out hit))
-            {
-                Debug.Log(hit.collider.name);
-            }
             transform.Translate((Vector3.forward * Time.deltaTime * dashSpeedForward));
             target.transform.position = objectForward.transform.position;
         }
     }
+  
 
-
-    void PlayerMove()
+    private void PlayerMove()
     {
         // Math
         relativePosx = target.position.x - transform.position.x;
@@ -72,9 +101,9 @@ public class Movement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         // Look at the target objects postion if its 0.5 away 
-        if (coolDownSystem.CurrentDashState == CoolDownSystem.DashState.NotDashing)
+        if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {
-            if (x >= 0.5f || x <= -0.5f || z >= 0.5f || z <= -0.5f)
+            if (x >= 0.4f || x <= -0.4f || z >= 0.4f || z <= -0.4f)
             {
                 Quaternion rotation = Quaternion.LookRotation(new Vector3(relativePosx, 0, relativePosz));
                 transform.rotation = rotation;
@@ -104,7 +133,7 @@ public class Movement : MonoBehaviour
         {
             isRuning = false;
         }
-        if (coolDownSystem.CurrentDashState == CoolDownSystem.DashState.NotDashing)
+        if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {
             //Player wants to move make them move 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
@@ -117,7 +146,7 @@ public class Movement : MonoBehaviour
         target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y, 0);
 
         // Moves the targets 
-        if (coolDownSystem.CurrentDashState == CoolDownSystem.DashState.NotDashing)
+        if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {
             if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
             {
@@ -197,5 +226,13 @@ public class Movement : MonoBehaviour
         }
 
     }
+
+    IEnumerator StopMovement(float waitTime)
+    {
+        stopMovement = true;
+        yield return new WaitForSeconds(waitTime);
+        stopMovement = false;
+    }
+    #endregion
 
 }

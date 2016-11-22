@@ -57,7 +57,8 @@ public class CoolDownSystem : MonoBehaviour
     public DashState currentDashState;
     private ProjectState currentState;
 
-
+    [SerializeField]
+    private bool canSmallDash;
     [Header("Player Abilities")]
     [Tooltip("These are the players abilities and cooldowns")]
     public List<Skills> skills;
@@ -140,42 +141,45 @@ public class CoolDownSystem : MonoBehaviour
                 }
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.A)) // Dashing left [3]
+        if(canSmallDash)
         {
-
-            if (skills[3].currentcooldown >= skills[3].cooldown)
+            if (Input.GetKeyDown(KeyCode.A)) // Dashing left [3]
             {
-                if (leftIsPressed)
-                {
-                    StartCoroutine("DashtimeLeft", dashTimeLeft);
-                    skills[3].currentcooldown = 0;
-                }
-                else
-                {
-                    StartCoroutine("SetKeyPressLeft", doubleTapTimer);
 
+                if (skills[3].currentcooldown >= skills[3].cooldown)
+                {
+                    if (leftIsPressed)
+                    {
+                        StartCoroutine("DashtimeLeft", dashTimeLeft);
+                        skills[3].currentcooldown = 0;
+                    }
+                    else
+                    {
+                        StartCoroutine("SetKeyPressLeft", doubleTapTimer);
+
+                    }
                 }
+
             }
 
-        }
-
-        if (Input.GetKeyDown(KeyCode.D)) // Dashing Right [4]
-        {
-            if (skills[4].currentcooldown >= skills[4].cooldown)
+            if (Input.GetKeyDown(KeyCode.D)) // Dashing Right [4]
             {
-                if (rightIsPressed)
+                if (skills[4].currentcooldown >= skills[4].cooldown)
                 {
-                    StartCoroutine("DashtimeRight", dashTimeRight);
-                    skills[4].currentcooldown = 0;
-                }
-                else
-                {
-                    StartCoroutine("SetKeyPressRight", doubleTapTimer);
+                    if (rightIsPressed)
+                    {
+                        StartCoroutine("DashtimeRight", dashTimeRight);
+                        skills[4].currentcooldown = 0;
+                    }
+                    else
+                    {
+                        StartCoroutine("SetKeyPressRight", doubleTapTimer);
 
+                    }
                 }
             }
         }
+      
     }
     #endregion
 

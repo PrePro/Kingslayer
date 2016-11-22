@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerDamage : MonoBehaviour
+public class CoolDownSystem : MonoBehaviour
 {
     [Header("Weapons")]
     [Tooltip("The weapon")]
@@ -10,24 +10,30 @@ public class PlayerDamage : MonoBehaviour
     public GameObject Bullet;
     public GameObject BulletTarget;
 
-    public bool isDashing = false;
-    
-    public float dashSpeed;
-    public float dashSpeedLeft;
-    public float dashSpeedRight;
+    public enum DashState
+    {
+        NotDashing,
+        ForwardDash,
+        LeftDash,
+        RightDash
+    }
+
     public float dashTime;
     public float dashTimeLeft;
     public float dashTimeRight;
+
     public float bulletSpeed;
     public float swingSpeed;
     public float swingTime;
 
-    public float LastTap = 0;
-    public float doubleTapTimimg;
-    public bool doubleTapLeft = false;
-    public bool doubleTapRight = false;
     private bool swing = false;
     public List<Skills> skills;
+
+    public bool rightIsPressed = false;
+    public bool leftIsPressed = false;
+    public float CooldownDoubleTap;
+    [SerializeField]
+    public DashState CurrentDashState;
 
     [SerializeField]
     private ProjectState CurrentState;
@@ -69,54 +75,29 @@ public class PlayerDamage : MonoBehaviour
             }
         }
 
-        if (isDashing)
-        {
-            transform.Translate((Vector3.forward * Time.deltaTime * dashSpeed));
-        }
-
-        if (doubleTapLeft)
-        {
-            transform.Translate((Vector3.left * Time.deltaTime * dashSpeedLeft));
-        }
-
         if (swing)
         {
             StartCoroutine("SwordSwingmove", swingTime);
         }
 
-        if (Input.GetKey(KeyCode.A)) // Dashing left 
-        {
-            if (skills[3].currentcooldown >= skills[3].cooldown)
-            {
-                Debug.Log(LastTap);
-                Debug.Log(Time.time - LastTap);
-                if ((Time.time - LastTap) > doubleTapTimimg)
-                {
-                    Debug.Log("Single");
-                }
-                else
-                {
-                    StartCoroutine("DashtimeLeft", dashTimeLeft);
-                }
-                LastTap = Time.time;
-                skills[3].currentcooldown = 0;
-            }
 
-        }
     }
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space)) // Dash
+        if (Input.GetKey(KeyCode.Space)) // Dash [0]
         {
             if (skills[0].currentcooldown >= skills[0].cooldown)
             {
-                StartCoroutine("Dashtime", dashTime);
-                skills[0].currentcooldown = 0;
+                if (CurrentDashState == DashState.NotDashing)
+                {
+                    StartCoroutine("Dashtime", dashTime);
+                    skills[0].currentcooldown = 0;
+                }
             }
         }
 
-        if (Input.GetButton("Fire1") && !isDashing) // Sword
+        if (Input.GetButton("Fire1") && CurrentDashState != DashState.ForwardDash) // Sword [2]
         {
             if (skills[2].currentcooldown >= skills[2].cooldown)
             {
@@ -126,7 +107,7 @@ public class PlayerDamage : MonoBehaviour
             }
             if (CurrentState == ProjectState.CanShoot)
             {
-                if (skills[1].currentcooldown >= skills[1].cooldown)
+                if (skills[1].currentcooldown >= skills[1].cooldown) // Projectile [1]
                 {
                     Shoot();
                     skills[1].currentcooldown = 0;
@@ -135,28 +116,74 @@ public class PlayerDamage : MonoBehaviour
             }
         }
 
-      
+        if (Input.GetKeyDown(KeyCode.A)) // Dashing left [3]
+        {
+
+            if (skills[3].currentcooldown >= skills[3].cooldown)
+            {
+                if (leftIsPressed)
+                {
+                    StartCoroutine("DashtimeLeft", dashTimeLeft);
+                    skills[3].currentcooldown = 0;
+                }
+                else
+                {
+                    StartCoroutine("SetKeyPressLeft", CooldownDoubleTap);
+
+                }
+            }
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.D)) // Dashing Right [4]
+        {
+            if (skills[4].currentcooldown >= skills[4].cooldown)
+            {
+                if (rightIsPressed)
+                {
+                    StartCoroutine("DashtimeRight", dashTimeRight);
+                    skills[4].currentcooldown = 0;
+                }
+                else
+                {
+                    StartCoroutine("SetKeyPressRight", CooldownDoubleTap);
+                    
+                }
+            }
+        }
     }
 
     IEnumerator Dashtime(float waitTime)
     {
-        isDashing = true;
+        CurrentDashState = DashState.ForwardDash;
         yield return new WaitForSeconds(waitTime);
-        isDashing = false;
+        CurrentDashState = DashState.NotDashing;
     }
 
     IEnumerator DashtimeLeft(float waitTime)
     {
-        doubleTapLeft = true;
+        CurrentDashState = DashState.LeftDash;
         yield return new WaitForSeconds(waitTime);
-        doubleTapLeft = false;
+        CurrentDashState = DashState.NotDashing;
+    }
+    IEnumerator SetKeyPressRight(float waitTime)
+    {
+        rightIsPressed = true;
+        yield return new WaitForSeconds(waitTime);
+        rightIsPressed = false;
+    }
+    IEnumerator SetKeyPressLeft(float waitTime)
+    {
+        leftIsPressed = true;
+        yield return new WaitForSeconds(waitTime);
+        leftIsPressed = false;
     }
 
     IEnumerator DashtimeRight(float waitTime)
     {
-        doubleTapRight = true;
+        CurrentDashState = DashState.RightDash;
         yield return new WaitForSeconds(waitTime);
-        doubleTapRight = false;
+        CurrentDashState = DashState.NotDashing;
     }
     IEnumerator SwordSwing(float waitTime)
     {

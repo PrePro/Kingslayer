@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Movement : MonoBehaviour
 {
-    public PlayerDamage Pdamage;
+    public CoolDownSystem coolDownSystem;
     public Transform target;
     public float speed;
     public float runningSpeed;
@@ -15,6 +15,12 @@ public class Movement : MonoBehaviour
     private float relativePosx;
     private float relativePosz;
 
+    public float dashSpeedForward;
+    public float dashSpeedLeft;
+    public float dashSpeedRight;
+
+
+    RaycastHit hit;
     void Start()
     {
         currentSpeed = speed;
@@ -24,36 +30,37 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        Dashes();
         PlayerMove();
-        //Deprecated
-        //RayCast();
     }
 
-    void RayCast()
+    void Dashes()
     {
-        Vector3 direction = (GameCamera.transform.position - transform.position).normalized;
-
-        Ray ray = new Ray(transform.position, direction);
-        RaycastHit hit;
-
-        Debug.DrawRay(transform.position, direction,
-           Color.red);
-
-        if (Physics.Raycast(ray, out hit))
+        if (coolDownSystem.CurrentDashState == CoolDownSystem.DashState.LeftDash)
         {
-            if (hit.collider.gameObject.tag != "Player")
+            transform.Translate((Vector3.left * Time.deltaTime * dashSpeedLeft));
+            target.transform.position = objectForward.transform.position;
+        }
+
+        if (coolDownSystem.CurrentDashState == CoolDownSystem.DashState.RightDash)
+        {
+            transform.Translate((Vector3.right * Time.deltaTime * dashSpeedRight));
+            target.transform.position = objectForward.transform.position;
+        }
+
+        if (coolDownSystem.CurrentDashState == CoolDownSystem.DashState.ForwardDash)
+        {
+            Debug.DrawRay(transform.position, Vector3.forward, Color.red);
+            if (Physics.Raycast(transform.position, Vector3.forward, out hit))
             {
-                //var obstacle = hit.collider.gameObject.GetComponent<Obstacle>();
-                ////Means object hit is obstacle
-                //if(obstacle != null)
-                //{
-                //    obstacles.Add(obstacle);
-                //}
-                //Debug.Log("Alpha Channel " + tempColor.a);
-               // Destroy(hit.collider.gameObject);
+                Debug.Log(hit.collider.name);
             }
+            transform.Translate((Vector3.forward * Time.deltaTime * dashSpeedForward));
+            target.transform.position = objectForward.transform.position;
         }
     }
+
+
     void PlayerMove()
     {
         // Math
@@ -65,7 +72,7 @@ public class Movement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         // Look at the target objects postion if its 0.5 away 
-        if (Pdamage.isDashing == false && Pdamage.doubleTapLeft == false)
+        if (coolDownSystem.CurrentDashState == CoolDownSystem.DashState.NotDashing)
         {
             if (x >= 0.5f || x <= -0.5f || z >= 0.5f || z <= -0.5f)
             {
@@ -97,7 +104,7 @@ public class Movement : MonoBehaviour
         {
             isRuning = false;
         }
-        if (Pdamage.isDashing == false && Pdamage.doubleTapLeft == false)
+        if (coolDownSystem.CurrentDashState == CoolDownSystem.DashState.NotDashing)
         {
             //Player wants to move make them move 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
@@ -110,7 +117,7 @@ public class Movement : MonoBehaviour
         target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y, 0);
 
         // Moves the targets 
-        if (Pdamage.isDashing == false && Pdamage.doubleTapLeft == false)
+        if (coolDownSystem.CurrentDashState == CoolDownSystem.DashState.NotDashing)
         {
             if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
             {
@@ -130,7 +137,6 @@ public class Movement : MonoBehaviour
             // Moves the targets 
             if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
             {
-
                 if (isRuning == false)
                 {
                     currentSpeed = speed;
@@ -191,5 +197,5 @@ public class Movement : MonoBehaviour
         }
 
     }
-    
+
 }

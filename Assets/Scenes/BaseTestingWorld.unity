@@ -195,7 +195,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 214221138}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
@@ -756,7 +756,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1460832065}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
@@ -891,12 +891,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7635c953b12a443b4f39166a17e5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pdamage: {fileID: 1646229794}
+  coolDownSystem: {fileID: 1646229794}
   target: {fileID: 214221139}
   speed: 3
   runningSpeed: 5
   GameCamera: {fileID: 482389414}
   objectForward: {fileID: 1460832066}
+  dashSpeedForward: 10
+  dashSpeedLeft: 5
+  dashSpeedRight: 5
 --- !u!114 &1646229794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,20 +914,12 @@ MonoBehaviour:
   Sword: {fileID: 1908360476}
   Bullet: {fileID: 185558, guid: eab69c0bdda16e0468827d235a819d59, type: 2}
   BulletTarget: {fileID: 1460832065}
-  isDashing: 0
-  dashSpeed: 5
-  dashSpeedLeft: 5
-  dashSpeedRight: 0
   dashTime: 1.5
-  dashTimeLeft: 1.5
-  dashTimeRight: 0
+  dashTimeLeft: 0.5
+  dashTimeRight: 0.5
   bulletSpeed: 500
   swingSpeed: 1
   swingTime: 0.5
-  LastTap: 0
-  doubleTapTimimg: 0.5
-  doubleTapLeft: 0
-  doubleTapRight: 0
   skills:
   - name: Dash
     cooldown: 3
@@ -939,8 +934,12 @@ MonoBehaviour:
     cooldown: 3
     currentcooldown: 0
   - name: Dash Right
-    cooldown: 1
+    cooldown: 5
     currentcooldown: 0
+  rightIsPressed: 0
+  leftIsPressed: 0
+  CooldownDoubleTap: 1
+  CurrentDashState: 0
   CurrentState: 0
 --- !u!114 &1646229795
 MonoBehaviour:

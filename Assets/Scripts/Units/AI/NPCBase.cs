@@ -25,6 +25,7 @@ public abstract class NPCBase : MonoBehaviour
     {
         Idle,
         Patrolling,
+        Chasing,
         Attacking,
         Searching
     }
@@ -44,6 +45,13 @@ public abstract class NPCBase : MonoBehaviour
         IdleDefencive,
         PatrolDefencive
     }
+    public enum UnitClass
+    {
+        Knight,
+        Archer,
+        Mage,
+        Healer
+    }
     //======================================================================================================
     // Member Variables
     //======================================================================================================
@@ -56,6 +64,8 @@ public abstract class NPCBase : MonoBehaviour
     [Tooltip("Set the faction of the NPC to determine whether the unit is allied, neutral, or and enemy")]
     protected Faction faction;
     protected NavMeshAgent agent;
+    [SerializeField]
+    protected UnitClass unitClass;
 
     //Debugging
     [SerializeField]
@@ -80,8 +90,12 @@ public abstract class NPCBase : MonoBehaviour
     [Header("Perception")]
     [SerializeField]
     protected bool isTargetSeen;
-    #endregion
 
+    [SerializeField]
+    protected float attackRange;
+    [SerializeField]
+    protected int attackDamage;
+    #endregion
     //======================================================================================================
     // Properties
     //======================================================================================================
@@ -136,6 +150,7 @@ public abstract class NPCBase : MonoBehaviour
     public abstract void RunBehavior();
     public abstract void SetState(State newState);
     public abstract void UpdateAnimation();
+    public abstract void ChaseTarget();
     public abstract void AttackTarget();
     public abstract void Patrol();
     public abstract void Search();

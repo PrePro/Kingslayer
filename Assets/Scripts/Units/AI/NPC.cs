@@ -11,14 +11,19 @@ public class NPC : NPCBase
 {
 
     // Use this for initialization
-
+    [Header("Faux Animation")]
+    [SerializeField]
+    GameObject leftArm;
+    [SerializeField]
+    GameObject rightArm;
     // Update is called once per frame
     void FixedUpdate()
     {
         RunBehavior();
     }
-
-
+    
+    bool isAttacking = false;
+    float attackSpeed = 20.0f;
     //======================================================================================================
     // Function to run specific behavior on state change 
     //======================================================================================================
@@ -156,8 +161,31 @@ public class NPC : NPCBase
         {
             SetState(State.Chasing);
         }
+
+        if(!isAttacking)
+        {
+            StartCoroutine(FakeArmRotatingAttack());
+        }
     }
 
+    IEnumerator FakeArmRotatingAttack()
+    {
+        Quaternion rotateTo = leftArm.transform.rotation * Quaternion.AngleAxis(-45, Vector3.right);
+        Quaternion rotateFrom = leftArm.transform.rotation;
+
+        isAttacking = true;
+        while(leftArm.transform.rotation != rotateTo)
+        {
+            leftArm.transform.rotation = Quaternion.Slerp(leftArm.transform.rotation, rotateTo, attackSpeed * Time.deltaTime);
+            yield return null;
+        }
+        while (leftArm.transform.rotation != rotateFrom)
+        {
+            leftArm.transform.rotation = Quaternion.Slerp(leftArm.transform.rotation, rotateFrom, attackSpeed * Time.deltaTime);
+            yield return null;
+        }
+        isAttacking = false;
+    }
     //======================================================================================================
     // Iterate throught array of patrol paths 
     //======================================================================================================

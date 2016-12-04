@@ -127,7 +127,7 @@ public class CoolDownSystem : MonoBehaviour
         {
             if (skills[2].currentcooldown >= skills[2].cooldown)
             {
-                //do something
+                //do something YASH HERE BITCH
                 StartCoroutine("SwordSwing", 0.5f);
                 skills[2].currentcooldown = 0;
             }

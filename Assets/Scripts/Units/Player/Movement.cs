@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
     public Transform target;
     public CoolDownSystem coolDownSystem;
     public Transform objectForward;
-    public GameObject GameCamera;
+    public GameObject gameCamera;
 
     [Header("Player Speeds")]
     [Tooltip("Speeds")]
@@ -155,7 +155,7 @@ public class Movement : MonoBehaviour
             }
         }
         //Target rotates around camera
-        target.transform.rotation = GameCamera.transform.rotation;
+        target.transform.rotation = gameCamera.transform.rotation;
         target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y, 0);
 
         // Moves the targets 

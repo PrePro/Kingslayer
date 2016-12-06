@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    public Canvas pauseScreen;
     public void LoadCity()
     {
         SceneManager.LoadScene("City");
@@ -15,6 +17,16 @@ public class Menu : MonoBehaviour
     public void LoadTestWorld()
     {
         SceneManager.LoadScene("BaseTestingWorld");
+    }
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void UnPause()
+    {
+        pauseScreen.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
 }

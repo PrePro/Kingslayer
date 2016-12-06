@@ -9,6 +9,11 @@ using System.Collections.Generic;
 
 public class CoolDownSystem : MonoBehaviour
 {
+    [Header("Animation")]
+    [Tooltip("...")]
+    [SerializeField]
+    private Animator myAnimator;
+    
     public enum DashState
     {
         NotDashing,
@@ -127,7 +132,7 @@ public class CoolDownSystem : MonoBehaviour
         {
             if (skills[2].currentcooldown >= skills[2].cooldown)
             {
-                //do something
+                myAnimator.SetTrigger("privoSlash");
                 StartCoroutine("SwordSwing", 0.5f);
                 skills[2].currentcooldown = 0;
             }

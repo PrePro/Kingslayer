@@ -41,6 +41,11 @@ public class Movement : MonoBehaviour
     public bool stopMovement = false;
     [SerializeField]
     private float StopTimer;
+    [Header("Animation")]
+    [Tooltip("...")]
+    [SerializeField]
+    private Animator myAnimator;
+    public bool isWalking;
     #endregion
 
     //======================================================================================================
@@ -49,6 +54,7 @@ public class Movement : MonoBehaviour
     #region GameObject Functions
     void Start()
     {
+        isWalking = false;
         StartCoroutine("StopMovement", StopTimer);
         currentSpeed = speed;
         target.position = transform.position;
@@ -139,6 +145,13 @@ public class Movement : MonoBehaviour
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
                 transform.Translate((Vector3.forward * Time.deltaTime * currentSpeed));
+                isWalking = true;
+                myAnimator.SetBool("privoWalk", isWalking);
+            }
+            else
+            {
+                isWalking = false;
+                myAnimator.SetBool("privoWalk", isWalking);
             }
         }
         //Target rotates around camera

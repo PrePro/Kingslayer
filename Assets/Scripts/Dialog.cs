@@ -4,13 +4,12 @@ using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour
 {
-    public Text dialog;
+    public Canvas dialog;
 
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("Apples");
             dialog.gameObject.SetActive(true);
         }
     }

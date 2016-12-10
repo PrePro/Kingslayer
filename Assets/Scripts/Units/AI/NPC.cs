@@ -16,6 +16,15 @@ public class NPC : NPCBase
     GameObject leftArm;
     [SerializeField]
     GameObject rightArm;
+    
+    /*// For prototype animation
+    [Header("Animation")]
+    [Tooltip("...")]
+    [SerializeField]
+    private Animator myAnimator;
+    public bool isFollow;
+    public bool isAttack;
+    */
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -106,8 +115,7 @@ public class NPC : NPCBase
         {
             case State.Idle:
                 {
-
-                }
+                                    }
                 break;
             case State.Searching:
                 {
@@ -117,11 +125,13 @@ public class NPC : NPCBase
             case State.Patrolling:
                 {
                     Patrol();
+                    
                 }
                 break;
             case State.Attacking:
                 {
                     AttackTarget();
+                    
                 }
                 break;
             case State.Chasing:

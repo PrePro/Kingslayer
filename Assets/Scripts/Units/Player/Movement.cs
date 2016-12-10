@@ -46,6 +46,7 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private Animator myAnimator;
     public bool isWalking;
+    public bool isRunning;
     #endregion
 
     //======================================================================================================
@@ -132,12 +133,14 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             isRuning = true;
+            myAnimator.SetBool("privoRun", isRuning);//Added for sprint animation. 
         }
 
         //Player stops running
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             isRuning = false;
+            myAnimator.SetBool("privoRun", isRuning);//Added for sprint animation. 
         }
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {

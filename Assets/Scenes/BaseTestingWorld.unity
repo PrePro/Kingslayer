@@ -467,10 +467,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: patrolRoute.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.x
       value: 29.12
@@ -504,10 +500,6 @@ Prefab:
       value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: isTargetSeen
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: patrolRoute.Array.data[0]
       value: 
       objectReference: {fileID: 319215236}
@@ -515,25 +507,9 @@ Prefab:
       propertyPath: patrolRoute.Array.data[1]
       value: 
       objectReference: {fileID: 826190066}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: patrolRoute.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: patrolDistanceThreshold
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: dominantBehavior
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_Name
       value: EnemyMockup (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: attackRange
-      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
@@ -1091,13 +1067,9 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: patrolRoute.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -21.5
+      value: -2.71
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1128,10 +1100,6 @@ Prefab:
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: isTargetSeen
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: patrolRoute.Array.data[0]
       value: 
       objectReference: {fileID: 892893432}
@@ -1139,25 +1107,9 @@ Prefab:
       propertyPath: patrolRoute.Array.data[1]
       value: 
       objectReference: {fileID: 1398626983}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: patrolRoute.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: patrolDistanceThreshold
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: dominantBehavior
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_Name
       value: EnemyMockup (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: attackRange
-      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
@@ -1551,7 +1503,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 278, y: -209}
+  m_AnchoredPosition: {x: 340, y: -114}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1256699890
@@ -1937,6 +1889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 1892535097}
+  player: {fileID: 1646229789}
 --- !u!1 &1398626982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1995,7 +1948,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 325, y: -217}
+  m_AnchoredPosition: {x: 387, y: -122}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1439356203
@@ -2170,6 +2123,38 @@ Prefab:
       propertyPath: gameCamera
       value: 
       objectReference: {fileID: 482389414}
+    - target: {fileID: 6561694, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493090, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+      propertyPath: skills.Array.data[2].cooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561694, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+      propertyPath: m_Size.x
+      value: 0.3457561
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561694, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+      propertyPath: m_Size.y
+      value: 0.28027377
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561694, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+      propertyPath: m_Size.z
+      value: 0.82200754
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561694, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+      propertyPath: m_Center.x
+      value: 0.08089032
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561694, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+      propertyPath: m_Center.y
+      value: -0.050086427
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561694, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+      propertyPath: m_Center.z
+      value: 0.4695132
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
   m_IsPrefabParent: 0
@@ -2392,7 +2377,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 81, y: -255}
+  m_AnchoredPosition: {x: 143, y: -160}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1604105950
@@ -2636,6 +2621,18 @@ CanvasRenderer:
 GameObject:
   m_PrefabParentObject: {fileID: 163600, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
   m_PrefabInternal: {fileID: 1508375305}
+--- !u!114 &1646229789 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11419794, guid: ba95798575ac0fd4a8d1e0568b2ee07e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1508375305}
+  m_Script: {fileID: 11500000, guid: 4c4ef9bdba636774aa1b2023a527527e, type: 3}
+--- !u!114 &1646229792 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11493090, guid: ba95798575ac0fd4a8d1e0568b2ee07e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1508375305}
+  m_Script: {fileID: 11500000, guid: 8010e9007aad9c74886a256e5c2c2d4e, type: 3}
 --- !u!1 &1652448409
 GameObject:
   m_ObjectHideFlags: 0
@@ -2859,6 +2856,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1698786847}
+--- !u!1 &1747766935 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 181314, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+  m_PrefabInternal: {fileID: 1508375305}
+--- !u!114 &1747766938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1747766935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d814415628dcb7243a8c99c651ec7fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  cdsystem: {fileID: 1646229792}
 --- !u!1 &1892535095
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,9 +13,10 @@ GameObject:
   - 23: {fileID: 2320444}
   - 114: {fileID: 11415726}
   - 195: {fileID: 19538034}
+  - 114: {fileID: 11454416}
   m_Layer: 0
   m_Name: EnemyMockup
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,6 +67,7 @@ GameObject:
   - 33: {fileID: 3379390}
   - 135: {fileID: 13503510}
   - 23: {fileID: 2300692}
+  - 114: {fileID: 11453930}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -99,6 +101,7 @@ GameObject:
   - 33: {fileID: 3305920}
   - 135: {fileID: 13556314}
   - 23: {fileID: 2334284}
+  - 114: {fileID: 11452216}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -178,7 +181,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48.26, y: 1, z: 0.65}
+  m_LocalPosition: {x: -2.71, y: 1, z: 16.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 461322}
@@ -366,10 +369,48 @@ MonoBehaviour:
   patrolIndex: 0
   patrolDistanceThreshold: 1
   isTargetSeen: 0
-  attackRange: 3
+  attackRange: 2.5
   attackDamage: 0
   leftArm: {fileID: 156640}
   rightArm: {fileID: 194612}
+--- !u!114 &11452216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f02925e550a25449a4471a667ee4621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+--- !u!114 &11453930
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f02925e550a25449a4471a667ee4621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+--- !u!114 &11454416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92aa0b374c3d2b84b8eef78196c234c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  currentHealth: 20
+  armor: 0
 --- !u!114 &11458398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -415,7 +456,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150280}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -427,7 +468,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181528}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

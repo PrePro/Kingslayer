@@ -9,7 +9,13 @@ using System;
 
 public class NPStats : UnitStats
 {
-
+    void Update()
+    {
+        if(currentHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     public override void ReceiveDamage(int damage)
     {

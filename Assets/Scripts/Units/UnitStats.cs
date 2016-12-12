@@ -11,10 +11,10 @@ public abstract class UnitStats : MonoBehaviour
     [Header("Stats")]
     [SerializeField]
     [Tooltip("The max health the character can possibly have")]
-    protected int maxHealth;
+    protected float maxHealth;
     [SerializeField]
     [Tooltip("The character's current health")]
-    protected int currentHealth;
+    protected float currentHealth;
     [SerializeField]
     protected int armor;
     

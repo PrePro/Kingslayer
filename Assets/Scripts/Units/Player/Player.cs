@@ -31,13 +31,4 @@ public class Player : MonoBehaviour
     {
         get { return Instance.transform.position; }
     }
-
-    public static float Health
-    {
-        get { return Instance.GetComponent<PlayerStats>().health; }
-    }
-    public static float MaxHealth
-    {
-        get { return Instance.GetComponent<PlayerStats>().maxhealth; }
-    }
 }

@@ -54,7 +54,7 @@ public class CoolDownSystem : MonoBehaviour
     public float swingSpeed;
     public float swingTime;
 
-    private bool swing = false;
+    public bool swing = false;
     private bool rightIsPressed = false;
     private bool leftIsPressed = false;
 
@@ -232,7 +232,7 @@ public class CoolDownSystem : MonoBehaviour
     }
     IEnumerator SwordSwingmove(float waitTime)
     {
-        Debug.Log("Swing");
+        //Debug.Log("Swing");
         Sword.transform.Rotate(Vector3.back * swingSpeed);
         yield return new WaitForSeconds(waitTime);
         Sword.transform.Rotate(Vector3.forward * swingSpeed);

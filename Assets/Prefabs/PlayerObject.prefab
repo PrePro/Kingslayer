@@ -1005,6 +1005,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 406802}
   - 65: {fileID: 6561694}
+  - 114: {fileID: 11446112}
   m_Layer: 0
   m_Name: Sword_joint
   m_TagString: Untagged
@@ -1239,7 +1240,7 @@ Transform:
   m_GameObject: {fileID: 181314}
   m_LocalRotation: {x: 0.5093617, y: 0.580286, z: -0.44569764, w: -0.45295975}
   m_LocalPosition: {x: -0.004802826, y: 0.077469856, z: 0.03455929}
-  m_LocalScale: {x: 0.99999917, y: 1.0000007, z: 1.0000007}
+  m_LocalScale: {x: 0.99999917, y: 1.0000007, z: 1.5}
   m_Children: []
   m_Father: {fileID: 426554}
   m_RootOrder: 5
@@ -1929,7 +1930,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 98.79871, y: 0, z: 126.57362}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 436820}
@@ -2359,11 +2360,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181314}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.22911425, y: 0.1900602, z: 0.77328414}
-  m_Center: {x: 0.09871812, y: -0.004988909, z: 0.44513386}
+  m_Size: {x: 0.3457561, y: 0.28027377, z: 0.82200754}
+  m_Center: {x: 0.08089032, y: -0.050086427, z: 0.4695132}
 --- !u!95 &9559886
 Animator:
   serializedVersion: 3
@@ -2437,6 +2438,19 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 100
   armor: 0
+--- !u!114 &11446112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d814415628dcb7243a8c99c651ec7fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  cdsystem: {fileID: 11493090}
 --- !u!114 &11457412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2470,6 +2484,7 @@ MonoBehaviour:
   bulletSpeed: 500
   swingSpeed: 1
   swingTime: 0.3
+  swing: 0
   currentDashState: 0
   canSmallDash: 0
   skills:
@@ -2480,7 +2495,7 @@ MonoBehaviour:
     cooldown: 5
     currentcooldown: 0
   - name: Sword Swing
-    cooldown: 1
+    cooldown: 2
     currentcooldown: 0
   - name: Dash Left
     cooldown: 3

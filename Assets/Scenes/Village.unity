@@ -1823,7 +1823,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 430928, guid: ecbb9e080d78bb44fb643351e451b889, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.561
       objectReference: {fileID: 0}
     - target: {fileID: 430928, guid: ecbb9e080d78bb44fb643351e451b889, type: 2}
       propertyPath: m_LocalPosition.z
@@ -9821,7 +9821,7 @@ Transform:
   m_PrefabInternal: {fileID: 113021523}
   m_GameObject: {fileID: 598883093}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 97.95, y: 0, z: 132.65}
+  m_LocalPosition: {x: 97.95, y: 0.561, z: 132.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -16653,6 +16653,7 @@ GameObject:
   - 33: {fileID: 954055137}
   - 65: {fileID: 954055136}
   - 23: {fileID: 954055135}
+  - 114: {fileID: 954055138}
   m_Layer: 1
   m_Name: Roof
   m_TagString: Untagged
@@ -16717,6 +16718,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 954055133}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &954055138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 954055133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b8dbb33ac1fb514190bf2e91baba06a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alphaTransparency: 0.3
+  opaqueValue: 1
+  fadeSpeed: 0.95
 --- !u!1001 &957275281
 Prefab:
   m_ObjectHideFlags: 0

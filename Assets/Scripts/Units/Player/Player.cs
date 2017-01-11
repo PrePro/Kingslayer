@@ -25,8 +25,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
-
 	public static Vector3 Position
     {
         get { return Instance.transform.position; }

@@ -28,6 +28,14 @@ public class CoolDownSystem : MonoBehaviour
         CanShoot,
         IsDone
     }
+
+    public enum AoeMorality
+    {
+        Stun,
+        KnockBack,
+        Steal,
+        Nothin
+    }
     //======================================================================================================
     // Variables
     //======================================================================================================
@@ -69,12 +77,14 @@ public class CoolDownSystem : MonoBehaviour
     [HideInInspector]
     public DashState currentDashState;
     private ProjectState currentState;
+    public AoeMorality AoeState;
 
     [SerializeField]
     private bool canSmallDash;
     [Header("Player Abilities")]
     [Tooltip("These are the players abilities and cooldowns")]
     public List<Skills> skills;
+    private PlayerStats stats;
 
     #endregion
 
@@ -86,10 +96,12 @@ public class CoolDownSystem : MonoBehaviour
     {
         foreach (Skills x in skills)
         {
-            x.currentcooldown = x.cooldown;
+            x.currentcooldown = x.cooldown; // Setting current cooldown to cooldown
         }
-        AoeScale = AoeSphere.transform.localScale;
+
+        AoeScale = AoeSphere.transform.localScale; // Getting Scale of the Aoe to reset state later
         currentState = ProjectState.IsDone;
+        stats = gameObject.GetComponent<PlayerStats>();
     }
 
     void Update()
@@ -99,7 +111,7 @@ public class CoolDownSystem : MonoBehaviour
         {
             if (x.currentcooldown < x.cooldown)
             {
-                x.currentcooldown += Time.deltaTime;
+                x.currentcooldown += Time.deltaTime; // Applying cooldown 
                 if (x.CDImage != null)
                 {
                     x.CDImage.fillAmount = x.currentcooldown / x.cooldown;
@@ -126,7 +138,7 @@ public class CoolDownSystem : MonoBehaviour
 
         if(AoeExpand)
         {
-            AoeSphere.transform.localScale += new Vector3 (0.5f, 0.5f, 0.5f);
+            AoeSphere.transform.localScale += new Vector3 (0.5f, 0.5f, 0.5f); //Expand the Aoe Ability
         }
     }
 
@@ -149,7 +161,7 @@ public class CoolDownSystem : MonoBehaviour
             if (skills[2].currentcooldown >= skills[2].cooldown)
             {
                 myAnimator.SetTrigger("privoSlash");
-                StartCoroutine("SwordSwing", 0.5f);
+                //StartCoroutine("SwordSwing", 0.5f); // Dont need this with animation
                 skills[2].currentcooldown = 0;
             }
             if (currentState == ProjectState.CanShoot)
@@ -162,6 +174,7 @@ public class CoolDownSystem : MonoBehaviour
                 }
             }
         }
+        #region Dash Left/Right
         if (canSmallDash)
         {
             if (Input.GetKeyDown(KeyCode.A)) // Dashing left [3]
@@ -200,14 +213,35 @@ public class CoolDownSystem : MonoBehaviour
                 }
             }
         }
+        #endregion
 
         if (skills[5].currentcooldown >= skills[5].cooldown) //Push Back AOE
         {
             if (Input.GetKey(KeyCode.Alpha3)) // AOE [5]
             {
-                AoeSphere.SetActive(true);
-                StartCoroutine("AoeTime", 0.5f);
-                skills[5].currentcooldown = 0;
+                AoeState = AoeMorality.Nothin;
+                if (stats.moralityAoe == 0) //Stun
+                {
+                    // Added stun enemy here
+                    AoeSphere.SetActive(true);
+                    AoeState = AoeMorality.Stun;
+                    StartCoroutine("AoeTime", 0.5f);
+                    skills[5].currentcooldown = 0;
+                }
+                else if(stats.moralityAoe == 50) //Knock Back + Damage
+                {
+                    AoeSphere.SetActive(true);
+                    AoeState = AoeMorality.KnockBack;
+                    StartCoroutine("AoeTime", 0.5f);
+                    skills[5].currentcooldown = 0;
+                }
+                if(stats .moralityAoe == 100) // Heal Steal
+                {
+                    AoeSphere.SetActive(true);
+                    AoeState = AoeMorality.Steal;
+                    StartCoroutine("AoeTime", 0.5f);
+                    skills[5].currentcooldown = 0;
+                }
             }
         }
     }
@@ -289,6 +323,7 @@ public class CoolDownSystem : MonoBehaviour
             rigidbody.AddForce(force);
         }
     }
+   
     #endregion
 
 }
@@ -307,5 +342,4 @@ public class Skills
     public float currentcooldown;
     public Image CDImage;
 }
-
 #endregion

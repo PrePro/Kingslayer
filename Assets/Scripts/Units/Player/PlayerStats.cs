@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class PlayerStats : UnitStats
-{ 
+{
+    public int moralityAoe; // 0 is bad / 100 is good
+    public int moralityPorj;
 
     void Update()
     {

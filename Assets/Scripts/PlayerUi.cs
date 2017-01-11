@@ -11,7 +11,7 @@ public class PlayerUi : MonoBehaviour
     void Update()
     {
         HandleHealthBar();
-        if(player.GetHealth() <= 0)
+        if (player.GetHealth() <= 0)
         {
             SceneManager.LoadScene("MainMenu");
         }
@@ -20,7 +20,7 @@ public class PlayerUi : MonoBehaviour
     void HandleHealthBar()
     {
         //float healthBarMap = player.currentHealth / Player.MaxHealth;
-        
+
         float healthBarMap = player.GetHealth() / player.GetMaxHealth();
         HealthBar.fillAmount = healthBarMap;
     }

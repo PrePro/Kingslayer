@@ -5,6 +5,7 @@ using UnityEngine;
 public class AoeAbility : MonoBehaviour
 {
     public int Push;
+
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Enemy")

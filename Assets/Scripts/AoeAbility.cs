@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class AoeAbility : MonoBehaviour
 {
-
+    public int Push;
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Enemy")
         {
-            
-            col.transform.position -= new Vector3 (2 , 2, 2);
+            Vector3 dir = (transform.position - col.transform.position).normalized;
+            col.transform.position -= dir * Push;
+
         }
     }
 }

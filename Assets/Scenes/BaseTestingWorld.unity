@@ -789,8 +789,9 @@ GameObject:
   - component: {fileID: 544259102}
   - component: {fileID: 544259101}
   - component: {fileID: 544259100}
-  m_Layer: 0
-  m_Name: Sphere
+  - component: {fileID: 544259104}
+  m_Layer: 4
+  m_Name: AOE Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -802,7 +803,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 544259099}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -834,7 +835,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 544259099}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -859,6 +860,17 @@ Transform:
   m_Father: {fileID: 1646229797}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &544259104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 544259099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d5e03200edfeb44b79a6f01911a270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &601406746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,10 +1299,6 @@ Prefab:
     - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_Name
       value: EnemyMockup (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: dominantBehavior
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
@@ -1948,11 +1956,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2393706, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2314514, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11493090, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
       propertyPath: AOESphere
@@ -1962,6 +1970,14 @@ Prefab:
       propertyPath: AoeSphere
       value: 
       objectReference: {fileID: 544259099}
+    - target: {fileID: 436820, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 416028, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
   m_IsPrefabParent: 0

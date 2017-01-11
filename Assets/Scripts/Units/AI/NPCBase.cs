@@ -63,7 +63,7 @@ public abstract class NPCBase : MonoBehaviour
     [SerializeField]
     [Tooltip("Set the faction of the NPC to determine whether the unit is allied, neutral, or and enemy")]
     protected Faction faction;
-    protected NavMeshAgent agent;
+    protected UnityEngine.AI.NavMeshAgent agent;
     [SerializeField]
     protected UnitClass unitClass;
 
@@ -115,7 +115,7 @@ public abstract class NPCBase : MonoBehaviour
     void Start()
     {
         isTargetSeen = false;
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         switch (dominantBehavior)
         {
             case Behavior.Aggressive:

@@ -107,7 +107,7 @@ public class Movement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        // Look at the target objects postion if its 0.5 away 
+        // Look at the target objects postion if its 0.4 away 
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {
             if (x >= 0.4f || x <= -0.4f || z >= 0.4f || z <= -0.4f)

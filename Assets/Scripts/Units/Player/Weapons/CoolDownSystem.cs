@@ -13,7 +13,7 @@ public class CoolDownSystem : MonoBehaviour
     [Tooltip("...")]
     [SerializeField]
     private Animator myAnimator;
-    
+
     public enum DashState
     {
         NotDashing,
@@ -58,6 +58,13 @@ public class CoolDownSystem : MonoBehaviour
     private bool rightIsPressed = false;
     private bool leftIsPressed = false;
 
+    [Header("AOE")]
+    [Tooltip("Variables & GameObject for AOE")]
+    public GameObject AoeSphere;
+    private Vector3 AoeScale;
+    private bool AoeExpand = false;
+    public float ScaleRate = 0.5f;
+
     [HideInInspector]
     public DashState currentDashState;
     private ProjectState currentState;
@@ -80,6 +87,7 @@ public class CoolDownSystem : MonoBehaviour
         {
             x.currentcooldown = x.cooldown;
         }
+        AoeScale = AoeSphere.transform.localScale;
         currentState = ProjectState.IsDone;
     }
 
@@ -111,7 +119,10 @@ public class CoolDownSystem : MonoBehaviour
             StartCoroutine("SwordSwingmove", swingTime);
         }
 
-
+        if(AoeExpand)
+        {
+            AoeSphere.transform.localScale += new Vector3 (0.5f, 0.5f, 0.5f);
+        }
     }
 
     void FixedUpdate()
@@ -146,7 +157,7 @@ public class CoolDownSystem : MonoBehaviour
                 }
             }
         }
-        if(canSmallDash)
+        if (canSmallDash)
         {
             if (Input.GetKeyDown(KeyCode.A)) // Dashing left [3]
             {
@@ -184,7 +195,16 @@ public class CoolDownSystem : MonoBehaviour
                 }
             }
         }
-      
+
+        if (skills[5].currentcooldown >= skills[5].cooldown) //Push Back AOE
+        {
+            if (Input.GetKey(KeyCode.Alpha3)) // AOE [5]
+            {
+                AoeSphere.SetActive(true);
+                StartCoroutine("AoeTime", 0.5f);
+                skills[5].currentcooldown = 0;
+            }
+        }
     }
     #endregion
 
@@ -197,6 +217,15 @@ public class CoolDownSystem : MonoBehaviour
         currentDashState = DashState.ForwardDash;
         yield return new WaitForSeconds(waitTime);
         currentDashState = DashState.NotDashing;
+    }
+
+    IEnumerator AoeTime(float waitTime)
+    {
+        AoeExpand = true;
+        yield return new WaitForSeconds(waitTime);
+        AoeSphere.transform.localScale = AoeScale;
+        AoeSphere.SetActive(false);
+        AoeExpand = false;
     }
 
     IEnumerator DashtimeLeft(float waitTime)

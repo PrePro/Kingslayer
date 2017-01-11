@@ -6,6 +6,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class CoolDownSystem : MonoBehaviour
 {
@@ -99,6 +100,10 @@ public class CoolDownSystem : MonoBehaviour
             if (x.currentcooldown < x.cooldown)
             {
                 x.currentcooldown += Time.deltaTime;
+                if (x.CDImage != null)
+                {
+                    x.CDImage.fillAmount = x.currentcooldown / x.cooldown;
+                }
             }
         }
 
@@ -300,6 +305,7 @@ public class Skills
     public float cooldown;
     [HideInInspector]
     public float currentcooldown;
+    public Image CDImage;
 }
 
 #endregion

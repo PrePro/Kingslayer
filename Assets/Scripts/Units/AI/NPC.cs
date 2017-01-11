@@ -11,12 +11,7 @@ public class NPC : NPCBase
 {
 
     // Use this for initialization
-    [Header("Faux Animation")]
-    [SerializeField]
-    GameObject leftArm;
-    [SerializeField]
-    GameObject rightArm;
-    
+
     /*// For prototype animation
     [Header("Animation")]
     [Tooltip("...")]
@@ -30,7 +25,7 @@ public class NPC : NPCBase
     {
         RunBehavior();
     }
-    
+
     bool isAttacking = false;
     float attackSpeed = 20.0f;
     //======================================================================================================
@@ -46,29 +41,27 @@ public class NPC : NPCBase
         {
             case State.Idle:
                 {
-
+                    agent.Stop();
+                    SetAnimation(AnimationState.Idle);
                 }
                 break;
             case State.Attacking:
                 {
+                    Debug.Log("Attack Case");
                     agent.Stop();
                 }
                 break;
             case State.Chasing:
                 {
-                    if (currentState == State.Attacking)
-                    {
-                        agent.Resume();
-                        agent.destination = currentTarget.position;
-                    }
+                    SetAnimation(AnimationState.Walking);
+                    agent.Resume();
+                    agent.destination = currentTarget.position;
                 }
                 break;
             case State.Patrolling:
                 {
-                    if (currentState == State.Attacking)
-                    {
-                        agent.Resume();
-                    }
+                    SetAnimation(AnimationState.Walking);
+                    agent.Resume();
                     if (patrolRoute == null)
                     {
                         Debug.Log("Cannot patrol an empty patrol route");
@@ -93,11 +86,9 @@ public class NPC : NPCBase
                 break;
             case State.Searching:
                 {
-                    if (currentState == State.Attacking)
-                    {
-                        agent.Resume();
-                        agent.destination = currentTarget.position;
-                    }
+                    SetAnimation(AnimationState.Walking);
+                    agent.Resume();
+                    agent.destination = currentTarget.position;
                 }
                 break;
         }
@@ -115,7 +106,7 @@ public class NPC : NPCBase
         {
             case State.Idle:
                 {
-                                    }
+                }
                 break;
             case State.Searching:
                 {
@@ -125,13 +116,12 @@ public class NPC : NPCBase
             case State.Patrolling:
                 {
                     Patrol();
-                    
+
                 }
                 break;
             case State.Attacking:
                 {
                     AttackTarget();
-                    
                 }
                 break;
             case State.Chasing:
@@ -162,6 +152,7 @@ public class NPC : NPCBase
 
     public override void AttackTarget()
     {
+        Debug.Log("Attack Target Function Called");
         if (!isTargetSeen)
         {
             SetState(State.Searching);
@@ -169,33 +160,17 @@ public class NPC : NPCBase
 
         if (Vector3.Distance(transform.position, currentTarget.position) > attackRange)
         {
+            isAttacking = false;
             SetState(State.Chasing);
         }
 
-        if(!isAttacking)
+        if (!isAttacking)
         {
-            StartCoroutine(FakeArmRotatingAttack());
+            isAttacking = true;
+            SetAnimation(AnimationState.Attacking);
         }
     }
 
-    IEnumerator FakeArmRotatingAttack()
-    {
-        Quaternion rotateTo = leftArm.transform.rotation * Quaternion.AngleAxis(-45, Vector3.right);
-        Quaternion rotateFrom = leftArm.transform.rotation;
-
-        isAttacking = true;
-        while(leftArm.transform.rotation != rotateTo)
-        {
-            leftArm.transform.rotation = Quaternion.Slerp(leftArm.transform.rotation, rotateTo, attackSpeed * Time.deltaTime);
-            yield return null;
-        }
-        while (leftArm.transform.rotation != rotateFrom)
-        {
-            leftArm.transform.rotation = Quaternion.Slerp(leftArm.transform.rotation, rotateFrom, attackSpeed * Time.deltaTime);
-            yield return null;
-        }
-        isAttacking = false;
-    }
     //======================================================================================================
     // Iterate throught array of patrol paths 
     //======================================================================================================
@@ -214,18 +189,18 @@ public class NPC : NPCBase
 
     public override void Search()
     {
-        if (Vector3.Distance(transform.position, agent.destination) <= 1.0f)
+        if (Vector3.Distance(transform.position, agent.destination) <= 2.0f)
         {
             switch (dominantBehavior)
             {
                 case Behavior.Aggressive:
                     {
-
+                        SetState(State.Idle);
                     }
                     break;
                 case Behavior.IdleDefencive:
                     {
-
+                        SetState(State.Idle);
                     }
                     break;
                 case Behavior.PatrolDefencive:
@@ -246,9 +221,22 @@ public class NPC : NPCBase
     //======================================================================================================
     public override void UpdateAnimation()
     {
+        AnimationState currAnim = (AnimationState)animator.GetInteger("AnimationState");
+        if (currentAnimation != currAnim)
+        {
+            animator.SetInteger("AnimationState", (int)currentAnimation);
+        }
     }
 
-
+    public override void SetAnimation(AnimationState animState)
+    {
+        if(currentAnimation == animState)
+        {
+            return;
+        }
+        currentAnimation = animState;
+        UpdateAnimation();
+    }
 
 
     #region Perception Updates

@@ -20,21 +20,28 @@ public class Perception : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
+        //if (other.gameObject.tag == "Player")
+        //{
+        //    var direction = (other.gameObject.transform.position - transform.position).normalized;
+        //    Ray ray = new Ray(transform.position + direction, direction);
+        //    if (!Physics.Raycast(ray, 15.0f, ~targetLayer))
+        //    {
+        //        npc.OnTargetFound(other.gameObject);
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("Raycast Failed");
+        //        npc.OnTargetLost();
+        //    }
+        //}
+        //else
+        //{
+        //    npc.OnTargetLost();
+        //}
+
         if (other.gameObject.tag == "Player")
         {
-            Ray ray = new Ray(transform.position, (other.gameObject.transform.position - transform.position).normalized);
-            if (!Physics.Raycast(ray, 15.0f, ~targetLayer))
-            {
-                npc.OnTargetFound(other.gameObject);
-            }
-            else
-            {
-                npc.OnTargetLost();
-            }
-        }
-        else
-        {
-            npc.OnTargetLost();
+            npc.OnTargetFound(other.gameObject);
         }
     }
 

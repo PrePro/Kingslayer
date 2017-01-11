@@ -30,12 +30,13 @@ public abstract class NPCBase : MonoBehaviour
         Searching
     }
 
-    protected enum AnimationState
+    public enum AnimationState
     {
         Idle,
         Walking,
-        Blocking,
-        Attacking
+        Attacking,
+        Running,
+        Blocking
     }
 
     protected enum Behavior
@@ -95,6 +96,9 @@ public abstract class NPCBase : MonoBehaviour
     protected float attackRange;
     [SerializeField]
     protected int attackDamage;
+
+    protected Animator animator;
+
     #endregion
     //======================================================================================================
     // Properties
@@ -114,6 +118,7 @@ public abstract class NPCBase : MonoBehaviour
     #region GameObject Functions
     void Start()
     {
+        animator = GetComponent<Animator>();
         isTargetSeen = false;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         switch (dominantBehavior)
@@ -121,11 +126,13 @@ public abstract class NPCBase : MonoBehaviour
             case Behavior.Aggressive:
                 {
                     SetState(State.Idle);
+                    animator.SetInteger("AnimationState", (int)AnimationState.Idle);
                 }
                 break;
             case Behavior.IdleDefencive:
                 {
                     SetState(State.Idle);
+                    animator.SetInteger("AnimationState", (int)AnimationState.Idle);
                 }
                 break;
             case Behavior.PatrolDefencive:
@@ -136,6 +143,7 @@ public abstract class NPCBase : MonoBehaviour
             case Behavior.Passive:
                 {
                     SetState(State.Idle);
+                    animator.SetInteger("AnimationState", (int)AnimationState.Idle);
                 }
                 break;
         }
@@ -149,6 +157,7 @@ public abstract class NPCBase : MonoBehaviour
 
     public abstract void RunBehavior();
     public abstract void SetState(State newState);
+    public abstract void SetAnimation(AnimationState animState);
     public abstract void UpdateAnimation();
     public abstract void ChaseTarget();
     public abstract void AttackTarget();

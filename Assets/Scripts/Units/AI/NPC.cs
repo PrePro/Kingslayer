@@ -27,7 +27,9 @@ public class NPC : NPCBase
     }
 
     bool isAttacking = false;
-    float attackSpeed = 20.0f;
+    bool isFacing = false;
+    bool isInRange = false;
+    float attackSpeed = 10.0f;
     //======================================================================================================
     // Function to run specific behavior on state change 
     //======================================================================================================
@@ -92,6 +94,7 @@ public class NPC : NPCBase
                 }
                 break;
         }
+        previousState = currentState;
         currentState = newState;
     }
 
@@ -116,7 +119,6 @@ public class NPC : NPCBase
             case State.Patrolling:
                 {
                     Patrol();
-
                 }
                 break;
             case State.Attacking:
@@ -152,19 +154,44 @@ public class NPC : NPCBase
 
     public override void AttackTarget()
     {
-        Debug.Log("Attack Target Function Called");
-        if (!isTargetSeen)
+        if(!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
         {
-            SetState(State.Searching);
+            isAttacking = false;
+            isFacing = false;
+            Vector3 target = currentTarget.position;
+            target.y = transform.position.y;
+            target = target - transform.position;
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, target, agent.angularSpeed * Time.deltaTime, 0.0f);
+            transform.rotation = Quaternion.LookRotation(newDir);
+        }
+        else if(isInRange)
+        {
+            isFacing = true;
+        }
+        else
+        {
+            isFacing = false;
         }
 
         if (Vector3.Distance(transform.position, currentTarget.position) > attackRange)
         {
             isAttacking = false;
-            SetState(State.Chasing);
+            isInRange = false;
+            if (!isTargetSeen)
+            {
+                SetState(State.Searching);
+            }
+            else
+            {
+                SetState(State.Chasing);
+            }
+        }
+        else
+        {
+            isInRange = true;
         }
 
-        if (!isAttacking)
+        if (!isAttacking && isFacing && isInRange)
         {
             isAttacking = true;
             SetAnimation(AnimationState.Attacking);

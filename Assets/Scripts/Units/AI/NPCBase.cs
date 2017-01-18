@@ -19,6 +19,7 @@ public abstract class NPCBase : MonoBehaviour
     {
         Allied,
         Enemy,
+        Peasants,
         Neutral
     }
     public enum State
@@ -27,7 +28,9 @@ public abstract class NPCBase : MonoBehaviour
         Patrolling,
         Chasing,
         Attacking,
-        Searching
+        Searching,
+        Stunned,
+        Rooted
     }
 
     public enum AnimationState
@@ -36,7 +39,9 @@ public abstract class NPCBase : MonoBehaviour
         Walking,
         Attacking,
         Running,
-        Blocking
+        Blocking,
+        Stunned,
+        Rooted
     }
 
     protected enum Behavior
@@ -49,9 +54,7 @@ public abstract class NPCBase : MonoBehaviour
     public enum UnitClass
     {
         Knight,
-        Archer,
-        Mage,
-        Healer
+        Archer
     }
     //======================================================================================================
     // Member Variables
@@ -72,6 +75,7 @@ public abstract class NPCBase : MonoBehaviour
     [SerializeField]
     [Tooltip("For debugging purposes only, should not be edited unless for testing purposes")]
     protected State currentState;
+    protected State previousState;
     [SerializeField]
     [Tooltip("For debugging purposes only, should not be edited unless for testing purposes")]
     protected AnimationState currentAnimation;

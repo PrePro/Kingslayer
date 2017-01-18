@@ -63,7 +63,7 @@ public class CoolDownSystem : MonoBehaviour
     public float swingSpeed;
     public float swingTime;
 
-    public bool swing = false;
+    //public bool swing = false;
     private bool rightIsPressed = false;
     private bool leftIsPressed = false;
 
@@ -131,10 +131,10 @@ public class CoolDownSystem : MonoBehaviour
             }
         }
 
-        if (swing)
-        {
-            StartCoroutine("SwordSwingmove", swingTime);
-        }
+        //if (swing)
+        //{
+        //    StartCoroutine("SwordSwingmove", swingTime);
+        //}
 
         if(AoeExpand)
         {
@@ -292,12 +292,12 @@ public class CoolDownSystem : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         currentDashState = DashState.NotDashing;
     }
-    IEnumerator SwordSwing(float waitTime)
-    {
-        swing = true;
-        yield return new WaitForSeconds(waitTime);
-        swing = false;
-    }
+    //IEnumerator SwordSwing(float waitTime)
+    //{
+    //    swing = true;
+    //    yield return new WaitForSeconds(waitTime);
+    //    swing = false;
+    //}
     IEnumerator SwordSwingmove(float waitTime)
     {
         //Debug.Log("Swing");

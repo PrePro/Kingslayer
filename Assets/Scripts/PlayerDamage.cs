@@ -5,15 +5,16 @@ public class PlayerDamage : MonoBehaviour
 {
     public int damage;
     public CoolDownSystem cdsystem;
+
     void OnTriggerEnter(Collider col)
     {
-        if(col.tag == "Enemy")
+        if (col.tag == "Enemy")
         {
-            if(cdsystem.swing == true)
-            {
+            //if(cdsystem.swing == true)
+           // {
                 Debug.Log("Damage");
                 col.GetComponent<NPStats>().ReceiveDamage(damage);
-            }
+           //}
         }
     }
 

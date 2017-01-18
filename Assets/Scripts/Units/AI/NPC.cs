@@ -23,7 +23,14 @@ public class NPC : NPCBase
     // Update is called once per frame
     void FixedUpdate()
     {
-        RunBehavior();
+        if(debuffState == Debuff.None)
+        {
+            RunBehavior();
+        }
+        else
+        {
+            HandleDebuff();
+        }
     }
 
     bool isAttacking = false;
@@ -103,11 +110,52 @@ public class NPC : NPCBase
         currentState = newState;
     }
 
+    public IEnumerator RootAI(float time)
+    {
+        debuffState = Debuff.Rooted;
+        yield return new WaitForSeconds(time);
+
+        if(debuffState == Debuff.Rooted)
+        {
+            debuffState = Debuff.Disabled;
+        }
+        yield return null;
+    }
+
+    public IEnumerator StunAI(float time)
+    {
+        debuffState = Debuff.Stunned;
+        yield return new WaitForSeconds(time);
+
+        if (debuffState == Debuff.Stunned)
+        {
+            debuffState = Debuff.Disabled;
+        }
+        yield return null;
+    }
 
     //======================================================================================================
     // State machine set up to run behaviors based on AI's current behavior state
     //======================================================================================================
     #region Behaviors
+    public override void HandleDebuff()
+    {
+        switch (debuffState)
+        {
+            case Debuff.Stunned:
+                break;
+            case Debuff.Rooted:
+                
+                if(GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange) && isTargetSeen && dominantBehavior != Behavior.Passive)
+                {
+                    AttackTarget();
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     public override void RunBehavior()
     {
         switch (currentState)

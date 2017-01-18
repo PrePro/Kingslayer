@@ -30,10 +30,17 @@ public abstract class NPCBase : MonoBehaviour
         Chasing,
         Attacking,
         Searching,
+        Disabled
+    }
+
+    public enum Debuff
+    {
+        None,
         Disabled,
         Stunned,
         Rooted
     }
+
 
     public enum AnimationState
     {
@@ -79,6 +86,7 @@ public abstract class NPCBase : MonoBehaviour
     [Tooltip("For debugging purposes only, should not be edited unless for testing purposes")]
     protected State currentState;
     protected State previousState;
+    protected Debuff debuffState;
     [SerializeField]
     [Tooltip("For debugging purposes only, should not be edited unless for testing purposes")]
     protected AnimationState currentAnimation;
@@ -170,6 +178,7 @@ public abstract class NPCBase : MonoBehaviour
     public abstract void AttackTarget();
     public abstract void Patrol();
     public abstract void Search();
+    public abstract void HandleDebuff();
     public abstract void OnTargetFound(GameObject foundObject);
     public abstract void OnTargetLost();
     #endregion

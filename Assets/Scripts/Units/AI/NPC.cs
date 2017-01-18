@@ -23,11 +23,20 @@ public class NPC : NPCBase
     // Update is called once per frame
     void FixedUpdate()
     {
-        RunBehavior();
+        if(debuffState == Debuff.None)
+        {
+            RunBehavior();
+        }
+        else
+        {
+            HandleDebuff();
+        }
     }
 
     bool isAttacking = false;
-    float attackSpeed = 20.0f;
+    bool isFacing = false;
+    bool isInRange = false;
+    float attackSpeed = 10.0f;
     //======================================================================================================
     // Function to run specific behavior on state change 
     //======================================================================================================
@@ -42,6 +51,8 @@ public class NPC : NPCBase
             case State.Idle:
                 {
                     agent.Stop();
+                    //agent.destination = transform.position;
+
                     SetAnimation(AnimationState.Idle);
                 }
                 break;
@@ -49,6 +60,7 @@ public class NPC : NPCBase
                 {
                     Debug.Log("Attack Case");
                     agent.Stop();
+                   // agent.destination = transform.position;
                 }
                 break;
             case State.Chasing:
@@ -62,6 +74,7 @@ public class NPC : NPCBase
                 {
                     SetAnimation(AnimationState.Walking);
                     agent.Resume();
+
                     if (patrolRoute == null)
                     {
                         Debug.Log("Cannot patrol an empty patrol route");
@@ -88,18 +101,61 @@ public class NPC : NPCBase
                 {
                     SetAnimation(AnimationState.Walking);
                     agent.Resume();
+
                     agent.destination = currentTarget.position;
                 }
                 break;
         }
+        previousState = currentState;
         currentState = newState;
     }
 
+    public IEnumerator RootAI(float time)
+    {
+        debuffState = Debuff.Rooted;
+        yield return new WaitForSeconds(time);
+
+        if(debuffState == Debuff.Rooted)
+        {
+            debuffState = Debuff.Disabled;
+        }
+        yield return null;
+    }
+
+    public IEnumerator StunAI(float time)
+    {
+        debuffState = Debuff.Stunned;
+        yield return new WaitForSeconds(time);
+
+        if (debuffState == Debuff.Stunned)
+        {
+            debuffState = Debuff.Disabled;
+        }
+        yield return null;
+    }
 
     //======================================================================================================
     // State machine set up to run behaviors based on AI's current behavior state
     //======================================================================================================
     #region Behaviors
+    public override void HandleDebuff()
+    {
+        switch (debuffState)
+        {
+            case Debuff.Stunned:
+                break;
+            case Debuff.Rooted:
+                
+                if(GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange) && isTargetSeen && dominantBehavior != Behavior.Passive)
+                {
+                    AttackTarget();
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
     public override void RunBehavior()
     {
         switch (currentState)
@@ -116,7 +172,6 @@ public class NPC : NPCBase
             case State.Patrolling:
                 {
                     Patrol();
-
                 }
                 break;
             case State.Attacking:
@@ -143,28 +198,54 @@ public class NPC : NPCBase
         {
             agent.destination = currentTarget.position;
         }
-
-        if (Vector3.Distance(transform.position, currentTarget.position) <= attackRange)
+        
+        if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange, 1.0f))
         {
+            Debug.Log("Within range");
             SetState(State.Attacking);
         }
     }
 
     public override void AttackTarget()
     {
-        Debug.Log("Attack Target Function Called");
-        if (!isTargetSeen)
-        {
-            SetState(State.Searching);
-        }
-
-        if (Vector3.Distance(transform.position, currentTarget.position) > attackRange)
+        if(!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
         {
             isAttacking = false;
-            SetState(State.Chasing);
+            isFacing = false;
+            Vector3 target = currentTarget.position;
+            target.y = transform.position.y;
+            target = target - transform.position;
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, target, agent.angularSpeed * Time.deltaTime, 0.0f);
+            transform.rotation = Quaternion.LookRotation(newDir);
+        }
+        else if(isInRange)
+        {
+            isFacing = true;
+        }
+        else
+        {
+            isFacing = false;
         }
 
-        if (!isAttacking)
+        if (!GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange))
+        {
+            isAttacking = false;
+            isInRange = false;
+            if (!isTargetSeen)
+            {
+                SetState(State.Searching);
+            }
+            else
+            {
+                SetState(State.Chasing);
+            }
+        }
+        else
+        {
+            isInRange = true;
+        }
+
+        if (!isAttacking && isFacing && isInRange)
         {
             isAttacking = true;
             SetAnimation(AnimationState.Attacking);

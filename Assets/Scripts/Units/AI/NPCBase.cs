@@ -19,16 +19,28 @@ public abstract class NPCBase : MonoBehaviour
     {
         Allied,
         Enemy,
+        Peasants,
         Neutral
     }
     public enum State
     {
         Idle,
         Patrolling,
+        FollowingPath,
         Chasing,
         Attacking,
-        Searching
+        Searching,
+        Disabled
     }
+
+    public enum Debuff
+    {
+        None,
+        Disabled,
+        Stunned,
+        Rooted
+    }
+
 
     public enum AnimationState
     {
@@ -36,7 +48,10 @@ public abstract class NPCBase : MonoBehaviour
         Walking,
         Attacking,
         Running,
-        Blocking
+        Blocking,
+        Disabled,
+        Stunned,
+        Rooted
     }
 
     protected enum Behavior
@@ -49,9 +64,7 @@ public abstract class NPCBase : MonoBehaviour
     public enum UnitClass
     {
         Knight,
-        Archer,
-        Mage,
-        Healer
+        Archer
     }
     //======================================================================================================
     // Member Variables
@@ -72,6 +85,8 @@ public abstract class NPCBase : MonoBehaviour
     [SerializeField]
     [Tooltip("For debugging purposes only, should not be edited unless for testing purposes")]
     protected State currentState;
+    protected State previousState;
+    protected Debuff debuffState;
     [SerializeField]
     [Tooltip("For debugging purposes only, should not be edited unless for testing purposes")]
     protected AnimationState currentAnimation;
@@ -163,6 +178,7 @@ public abstract class NPCBase : MonoBehaviour
     public abstract void AttackTarget();
     public abstract void Patrol();
     public abstract void Search();
+    public abstract void HandleDebuff();
     public abstract void OnTargetFound(GameObject foundObject);
     public abstract void OnTargetLost();
     #endregion
@@ -194,14 +210,29 @@ public abstract class NPCBase : MonoBehaviour
         {
             return;
         }
-        if (isTargetSeen)
+
+        switch (currentState)
         {
-            Gizmos.color = Color.red;
+            case State.Chasing:
+                Gizmos.color = new Color(1.0f, 132.0f / 255.0f, 0.0f);
+                break;
+            case State.Searching:
+                Gizmos.color = Color.yellow;
+                break;
+            case State.Attacking:
+                Gizmos.color = Color.red;
+                break;
+            case State.Patrolling:
+                Gizmos.color = Color.magenta;
+                break;
+            case State.Idle:
+                Gizmos.color = Color.green;
+                break;
+            default:
+                Gizmos.color = Color.green;
+                break;
         }
-        else
-        {
-            Gizmos.color = Color.green;
-        }
+
         Gizmos.DrawSphere(transform.position + Vector3.up * 4, 0.50f);
     }
 

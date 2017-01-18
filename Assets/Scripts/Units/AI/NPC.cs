@@ -44,6 +44,8 @@ public class NPC : NPCBase
             case State.Idle:
                 {
                     agent.Stop();
+                    //agent.destination = transform.position;
+
                     SetAnimation(AnimationState.Idle);
                 }
                 break;
@@ -51,6 +53,7 @@ public class NPC : NPCBase
                 {
                     Debug.Log("Attack Case");
                     agent.Stop();
+                   // agent.destination = transform.position;
                 }
                 break;
             case State.Chasing:
@@ -64,6 +67,7 @@ public class NPC : NPCBase
                 {
                     SetAnimation(AnimationState.Walking);
                     agent.Resume();
+
                     if (patrolRoute == null)
                     {
                         Debug.Log("Cannot patrol an empty patrol route");
@@ -90,6 +94,7 @@ public class NPC : NPCBase
                 {
                     SetAnimation(AnimationState.Walking);
                     agent.Resume();
+
                     agent.destination = currentTarget.position;
                 }
                 break;
@@ -145,9 +150,10 @@ public class NPC : NPCBase
         {
             agent.destination = currentTarget.position;
         }
-
-        if (Vector3.Distance(transform.position, currentTarget.position) <= attackRange)
+        
+        if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange, 1.0f))
         {
+            Debug.Log("Within range");
             SetState(State.Attacking);
         }
     }
@@ -173,7 +179,7 @@ public class NPC : NPCBase
             isFacing = false;
         }
 
-        if (Vector3.Distance(transform.position, currentTarget.position) > attackRange)
+        if (!GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange))
         {
             isAttacking = false;
             isInRange = false;

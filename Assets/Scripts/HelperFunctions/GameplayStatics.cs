@@ -25,4 +25,10 @@ public static class GameplayStatics
             return false;
         }
     }
+
+    public static bool IsWithinRange2D(Transform transform, Vector3 other, float range, float buffer = 0.0f)
+    {
+        other.y = transform.position.y;
+        return Vector3.Distance(transform.position, other) < (range - buffer);
+    }
 }

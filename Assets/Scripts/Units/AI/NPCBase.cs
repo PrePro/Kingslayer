@@ -26,9 +26,11 @@ public abstract class NPCBase : MonoBehaviour
     {
         Idle,
         Patrolling,
+        FollowingPath,
         Chasing,
         Attacking,
         Searching,
+        Disabled,
         Stunned,
         Rooted
     }
@@ -40,6 +42,7 @@ public abstract class NPCBase : MonoBehaviour
         Attacking,
         Running,
         Blocking,
+        Disabled,
         Stunned,
         Rooted
     }
@@ -198,14 +201,29 @@ public abstract class NPCBase : MonoBehaviour
         {
             return;
         }
-        if (isTargetSeen)
+
+        switch (currentState)
         {
-            Gizmos.color = Color.red;
+            case State.Chasing:
+                Gizmos.color = new Color(1.0f, 132.0f / 255.0f, 0.0f);
+                break;
+            case State.Searching:
+                Gizmos.color = Color.yellow;
+                break;
+            case State.Attacking:
+                Gizmos.color = Color.red;
+                break;
+            case State.Patrolling:
+                Gizmos.color = Color.magenta;
+                break;
+            case State.Idle:
+                Gizmos.color = Color.green;
+                break;
+            default:
+                Gizmos.color = Color.green;
+                break;
         }
-        else
-        {
-            Gizmos.color = Color.green;
-        }
+
         Gizmos.DrawSphere(transform.position + Vector3.up * 4, 0.50f);
     }
 

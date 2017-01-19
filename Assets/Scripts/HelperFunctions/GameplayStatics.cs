@@ -9,14 +9,15 @@ using UnityEngine;
 
 public static class GameplayStatics
 {
-    public static bool IsFacing(Transform transform, Vector3 other, float accuracy = 0.95f)
+    public static bool IsFacing(Transform transform, Vector3 other, float accuracy = 0.90f)
     {
         if (accuracy > 1.0f)
         {
             accuracy = 1.0f;
         }
         Vector3 dirToOther = Vector3.Normalize(other - transform.position);
-        if(Vector2.Dot(transform.forward, dirToOther) > accuracy)
+        dirToOther.y = 0.0f;
+        if(Vector3.Dot(transform.forward, dirToOther) > accuracy)
         {
             return true;
         }

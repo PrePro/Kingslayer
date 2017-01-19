@@ -9,16 +9,21 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-
-    private Player() { }
+    private Player()
+    { }
     PlayerStats playerStats;
+
+    public void OnEnable()
+    {
+        playerStats = GetComponent<PlayerStats>();
+    }
 
     static Player instance;
     static public Player Instance
     {
         get
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = FindObjectOfType<Player>();
             }
@@ -26,7 +31,7 @@ public class Player : MonoBehaviour
         }
     }
 
-	public static Vector3 Position
+    public static Vector3 Position
     {
         get { return Instance.transform.position; }
     }

@@ -60,8 +60,6 @@ public class CoolDownSystem : MonoBehaviour
     [Header("Sword & Projectile")]
     [Tooltip("Variables for bullets and swords")]
     public float bulletSpeed;
-    public float swingSpeed;
-    public float swingTime;
 
     //public bool swing = false;
     private bool rightIsPressed = false;
@@ -161,7 +159,6 @@ public class CoolDownSystem : MonoBehaviour
             if (skills[2].currentcooldown >= skills[2].cooldown)
             {
                 myAnimator.SetTrigger("privoSlash");
-                //StartCoroutine("SwordSwing", 0.5f); // Dont need this with animation
                 skills[2].currentcooldown = 0;
             }
             if (currentState == ProjectState.CanShoot)
@@ -298,13 +295,6 @@ public class CoolDownSystem : MonoBehaviour
     //    yield return new WaitForSeconds(waitTime);
     //    swing = false;
     //}
-    IEnumerator SwordSwingmove(float waitTime)
-    {
-        //Debug.Log("Swing");
-        Sword.transform.Rotate(Vector3.back * swingSpeed);
-        yield return new WaitForSeconds(waitTime);
-        Sword.transform.Rotate(Vector3.forward * swingSpeed);
-    }
     #endregion
 
     //======================================================================================================

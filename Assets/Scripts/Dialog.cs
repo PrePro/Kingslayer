@@ -1,59 +1,54 @@
 ﻿using UnityEngine;
 using System.Collections;
+//using System.Linq;
 using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour
 {
     public Canvas dialog;
     public Text[] text;
-    public int dialogueoption;
 
+    public int holder = 0;
 
     void OnTriggerStay(Collider col)
     {
         if (col.gameObject.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.E) == true)
-            {
-              
-                dialog.gameObject.SetActive(true);
-               
-                {
-                    switch (dialogueoption)
-                    {
-                        case 5:
-                            text[4].gameObject.SetActive(false);
-                            text[5].gameObject.SetActive(true);
-                            dialogueoption++;
-                            break;
-                        case 4:
-                            text[3].gameObject.SetActive(false);
-                            text[4].gameObject.SetActive(true);
-                            dialogueoption++;
-                            break;
-                        case 3:
-                            text[2].gameObject.SetActive(false);
-                            text[3].gameObject.SetActive(true);
-                            dialogueoption++;
-                            break;
-                        case 2:
-                            text[1].gameObject.SetActive(false);
-                            text[2].gameObject.SetActive(true);
-                            dialogueoption++;
-                            break;
-                        case 1:
-                            text[0].gameObject.SetActive(false);
-                            text[1].gameObject.SetActive(true);
-                            dialogueoption++;
-                            break;
-                        default:
-                            text[5].gameObject.SetActive(false);
-                            text[0].gameObject.SetActive(true);
-                            dialogueoption++;
-                            break;
+            TextUpdater();
 
-                    }
-                }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Debug.Log("Q pressed");
+                text[holder - 1].gameObject.SetActive(false);
+                holder = 0;
+            }
+        }
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        dialog.gameObject.SetActive(true);
+    }
+
+    void Update()
+    {
+        if (holder == text.Length)
+        {
+            text[text.Length - 1].gameObject.SetActive(true);
+        }
+    }
+
+    void TextUpdater()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("TextUpdater");
+            if (holder != text.Length)
+            {
+                if (holder - 1 != -1)
+                text[holder - 1].gameObject.SetActive(false);
+                text[holder].gameObject.SetActive(true);
+                holder++;
             }
         }
     }
@@ -62,10 +57,11 @@ public class Dialog : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            holder = 0;
             dialog.gameObject.SetActive(false);
         }
     }
 }
-        
-    
+
+
 

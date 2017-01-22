@@ -1,21 +1,54 @@
 ﻿using UnityEngine;
 using System.Collections;
+//using System.Linq;
 using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour
 {
     public Canvas dialog;
     public Text[] text;
-    public int dialogueoption;
 
+    public int holder = 0;
 
     void OnTriggerStay(Collider col)
     {
         if (col.gameObject.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.E) == true)
+            TextUpdater();
+
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                dialog. gameObject.SetActive(true); 
+                Debug.Log("Q pressed");
+                text[holder - 1].gameObject.SetActive(false);
+                holder = 0;
+            }
+        }
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        dialog.gameObject.SetActive(true);
+    }
+
+    void Update()
+    {
+        if (holder == text.Length)
+        {
+            text[text.Length - 1].gameObject.SetActive(true);
+        }
+    }
+
+    void TextUpdater()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("TextUpdater");
+            if (holder != text.Length)
+            {
+                if (holder - 1 != -1)
+                text[holder - 1].gameObject.SetActive(false);
+                text[holder].gameObject.SetActive(true);
+                holder++;
             }
         }
     }
@@ -24,10 +57,11 @@ public class Dialog : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            holder = 0;
             dialog.gameObject.SetActive(false);
         }
     }
 }
-        
-    
+
+
 

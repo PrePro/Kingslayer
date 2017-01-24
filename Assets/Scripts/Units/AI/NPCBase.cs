@@ -107,19 +107,11 @@ public abstract class NPCBase : MonoBehaviour
     [SerializeField]
     protected bool isTargetSeen;
 
-    [Header("Stats")]
     [SerializeField]
     protected float attackRange;
     [SerializeField]
     protected int attackDamage;
-    [SerializeField]
-    protected float attackSpeed = 10.0f;
-    [SerializeField]
-    protected float WalkSpeed;
-    [SerializeField]
-    protected float RunSpeed;
 
-    //  [SerializeField]
     protected Animator animator;
 
     #endregion

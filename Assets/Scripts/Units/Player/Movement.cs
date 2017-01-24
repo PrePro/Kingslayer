@@ -140,7 +140,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             isRuning = false;
-           myAnimator.SetBool("privoRun", isRuning);//Added for sprint animation. 
+            myAnimator.SetBool("privoRun", isRuning);//Added for sprint animation. 
         }
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {
@@ -149,7 +149,7 @@ public class Movement : MonoBehaviour
             {
                 transform.Translate((Vector3.forward * Time.deltaTime * currentSpeed));
                 isWalking = true;
-               myAnimator.SetBool("privoWalk", isWalking);
+                myAnimator.SetBool("privoWalk", isWalking);
             }
             else
             {

@@ -36,6 +36,14 @@ public class CoolDownSystem : MonoBehaviour
         Steal,
         Nothin
     }
+
+    public enum ProjectileMorality
+    {
+        Stun,
+        Debuff,
+        Blast,
+        Nothin
+    }
     //======================================================================================================
     // Variables
     //======================================================================================================
@@ -84,7 +92,7 @@ public class CoolDownSystem : MonoBehaviour
     [HideInInspector]
     public DashState currentDashState;
     private ProjectState currentState;
-
+    public ProjectileMorality currentProjState;
     [SerializeField]
     private bool canSmallDash;
     [Header("Player Abilities")]
@@ -180,6 +188,21 @@ public class CoolDownSystem : MonoBehaviour
             {
                 if (skills[1].currentcooldown >= skills[1].cooldown) // Projectile [1]
                 {
+                    if(stats.moralityPorj == 0)  //Stun
+                    {
+                        currentProjState = ProjectileMorality.Stun;
+                    }
+
+                    if (stats.moralityPorj == 50) //Debuff
+                    {
+                        currentProjState = ProjectileMorality.Debuff;
+                    }
+
+                    if (stats.moralityPorj == 100) //Damage & Damage
+                    {
+                        currentProjState = ProjectileMorality.Blast;
+                    }
+
                     Shoot();
                     skills[1].currentcooldown = 0;
                     currentState = ProjectState.IsDone;

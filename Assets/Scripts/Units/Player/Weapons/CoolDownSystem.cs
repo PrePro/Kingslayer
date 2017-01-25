@@ -71,11 +71,17 @@ public class CoolDownSystem : MonoBehaviour
     private Vector3 AoeScale;
     private bool AoeExpand = false;
     public float ScaleRate = 0.5f;
+    public AoeMorality AoeState;
+
+    [Header("Parry")]
+    [Tooltip("Parry stuff")]
+    public float parryWaitTime;
+    public bool isParry;
+    public GameObject Blocker;
 
     [HideInInspector]
     public DashState currentDashState;
     private ProjectState currentState;
-    public AoeMorality AoeState;
 
     [SerializeField]
     private bool canSmallDash;
@@ -137,6 +143,12 @@ public class CoolDownSystem : MonoBehaviour
         if(AoeExpand)
         {
             AoeSphere.transform.localScale += new Vector3 (0.5f, 0.5f, 0.5f); //Expand the Aoe Ability
+        }
+
+        if (Input.GetMouseButton(1))
+        {
+            Debug.Log("RIGHT");
+            StartCoroutine(ParryDelay(parryWaitTime));
         }
     }
 
@@ -288,6 +300,15 @@ public class CoolDownSystem : MonoBehaviour
         currentDashState = DashState.RightDash;
         yield return new WaitForSeconds(waitTime);
         currentDashState = DashState.NotDashing;
+    }
+
+    IEnumerator ParryDelay(float waitTime)
+    {
+        isParry = true;
+        Blocker.SetActive(true);
+        yield return new WaitForSeconds(waitTime);
+        Blocker.SetActive(false);
+        isParry = false;
     }
     //IEnumerator SwordSwing(float waitTime)
     //{

@@ -15,19 +15,19 @@ public class Dialog : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             TextUpdater();
-
+            if (Input.GetKeyDown(KeyCode.E)) 
+                dialog.gameObject.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log("Q pressed");
+                if(holder -1 == -1)
+                {
+                    return;
+                }
                 text[holder - 1].gameObject.SetActive(false);
                 holder = 0;
             }
         }
-    }
-
-    void OnTriggerEnter(Collider col)
-    {
-        dialog.gameObject.SetActive(true);
     }
 
     void Update()

@@ -11,10 +11,7 @@ public class PlayerDamage : MonoBehaviour
         if (col.tag == "Enemy")
         {
             //if(cdsystem.swing == true)
-           // {
-                Debug.Log("Damage");
-                col.GetComponent<NPStats>().ReceiveDamage(damage);
-           //}
+            col.GetComponent<NPStats>().ReceiveDamage(damage);
         }
     }
 

@@ -8,15 +8,18 @@ public class Dialog : MonoBehaviour
     public Text[] text;
 
     public int holder = 0;
+    private bool Collid;
 
     void OnTriggerStay(Collider col)
     {
         if (col.gameObject.tag == "Player")
         {
-            TextUpdater();
+            Collid = true;
             if (Input.GetKeyDown(KeyCode.E))
                 if(dialog.isActiveAndEnabled == false)
+                {
                     dialog.gameObject.SetActive(true);
+                }
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log("Q pressed");
@@ -26,12 +29,17 @@ public class Dialog : MonoBehaviour
                 }
                 text[holder - 1].gameObject.SetActive(false);
                 holder = 0;
+                dialog.gameObject.SetActive(false);
             }
         }
     }
 
     void Update()
     {
+        if(Collid == true)
+        {
+            TextUpdater();
+        }
         if (holder == text.Length)
         {
             text[text.Length - 1].gameObject.SetActive(true);
@@ -46,9 +54,11 @@ public class Dialog : MonoBehaviour
             if (holder != text.Length)
             {
                 if (holder - 1 != -1)
+                {
                     text[holder - 1].gameObject.SetActive(false);
+                }
                 text[holder].gameObject.SetActive(true);
-                holder++;
+                ++holder;
             }
         }
     }
@@ -57,8 +67,12 @@ public class Dialog : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            holder = 0;
+            foreach(Text a in text)
+            {
+                a.gameObject.SetActive(false);
+            }
             dialog.gameObject.SetActive(false);
+            holder = 0;
         }
     }
 }

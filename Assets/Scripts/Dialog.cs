@@ -15,7 +15,8 @@ public class Dialog : MonoBehaviour
         {
             TextUpdater();
             if (Input.GetKeyDown(KeyCode.E))
-                dialog.gameObject.SetActive(true);
+                if(dialog.isActiveAndEnabled == false)
+                    dialog.gameObject.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log("Q pressed");

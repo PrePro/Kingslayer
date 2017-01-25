@@ -23,7 +23,7 @@ public class NPC : NPCBase
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (debuffState == Debuff.None)
+        if(debuffState == Debuff.None)
         {
             RunBehavior();
         }
@@ -36,7 +36,7 @@ public class NPC : NPCBase
     bool isAttacking = false;
     bool isFacing = false;
     bool isInRange = false;
-  
+    float attackSpeed = 10.0f;
     //======================================================================================================
     // Function to run specific behavior on state change 
     //======================================================================================================
@@ -58,17 +58,14 @@ public class NPC : NPCBase
                 break;
             case State.Attacking:
                 {
-                    SetAnimation(AnimationState.Idle);
-
                     Debug.Log("Attack Case");
                     agent.Stop();
-                    // agent.destination = transform.position;
+                   // agent.destination = transform.position;
                 }
                 break;
             case State.Chasing:
                 {
-                    SetAnimation(AnimationState.Running);
-                    agent.speed = RunSpeed;
+                    SetAnimation(AnimationState.Walking);
                     agent.Resume();
                     agent.destination = currentTarget.position;
                 }
@@ -77,7 +74,6 @@ public class NPC : NPCBase
                 {
                     SetAnimation(AnimationState.Walking);
                     agent.Resume();
-                    agent.speed = WalkSpeed;
 
                     if (patrolRoute == null)
                     {
@@ -105,7 +101,6 @@ public class NPC : NPCBase
                 {
                     SetAnimation(AnimationState.Walking);
                     agent.Resume();
-                    agent.speed = WalkSpeed;
 
                     agent.destination = currentTarget.position;
                 }
@@ -120,7 +115,7 @@ public class NPC : NPCBase
         debuffState = Debuff.Rooted;
         yield return new WaitForSeconds(time);
 
-        if (debuffState == Debuff.Rooted)
+        if(debuffState == Debuff.Rooted)
         {
             debuffState = Debuff.Disabled;
         }
@@ -150,8 +145,8 @@ public class NPC : NPCBase
             case Debuff.Stunned:
                 break;
             case Debuff.Rooted:
-
-                if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange) && isTargetSeen && dominantBehavior != Behavior.Passive)
+                
+                if(GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange) && isTargetSeen && dominantBehavior != Behavior.Passive)
                 {
                     AttackTarget();
                 }
@@ -203,7 +198,7 @@ public class NPC : NPCBase
         {
             agent.destination = currentTarget.position;
         }
-
+        
         if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange, 1.0f))
         {
             Debug.Log("Within range");
@@ -213,7 +208,7 @@ public class NPC : NPCBase
 
     public override void AttackTarget()
     {
-        if (!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
+        if(!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
         {
             isAttacking = false;
             isFacing = false;
@@ -223,7 +218,7 @@ public class NPC : NPCBase
             Vector3 newDir = Vector3.RotateTowards(transform.forward, target, agent.angularSpeed * Time.deltaTime, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDir);
         }
-        else if (isInRange)
+        else if(isInRange)
         {
             isFacing = true;
         }
@@ -252,20 +247,9 @@ public class NPC : NPCBase
 
         if (!isAttacking && isFacing && isInRange)
         {
-            StartCoroutine(Attack());
+            isAttacking = true;
+            SetAnimation(AnimationState.Attacking);
         }
-    }
-
-    IEnumerator Attack()
-    {
-        isAttacking = true;
-        SetAnimation(AnimationState.Attacking);
-
-        yield return new WaitForSeconds(1.0f / attackSpeed);
-        SetAnimation(AnimationState.Idle);
-        isAttacking = false;
-
-        yield return null;
     }
 
     //======================================================================================================
@@ -327,11 +311,12 @@ public class NPC : NPCBase
 
     public override void SetAnimation(AnimationState animState)
     {
-        if (currentAnimation != animState)
+        if(currentAnimation == animState)
         {
-            currentAnimation = animState;
-            UpdateAnimation();
+            return;
         }
+        currentAnimation = animState;
+        UpdateAnimation();
     }
 
 

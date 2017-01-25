@@ -8,6 +8,7 @@ public class AoeAbility : MonoBehaviour
     public int damage;
     private CoolDownSystem cdsystem;
     private PlayerStats stats;
+    private NPC npc;
 
     void Update()
     {
@@ -19,10 +20,12 @@ public class AoeAbility : MonoBehaviour
     {
         if (col.tag == "Enemy")
         {
+            npc = col.GetComponent<NPC>();
             if(cdsystem.AoeState == CoolDownSystem.AoeMorality.Stun)
             {
                 Debug.Log("Stun");
                 //Added stun enemy here
+                StartCoroutine(npc.RootAI(2f));
             }
             else if(cdsystem.AoeState == CoolDownSystem.AoeMorality.KnockBack)
             {

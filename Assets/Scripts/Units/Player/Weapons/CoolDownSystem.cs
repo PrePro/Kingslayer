@@ -60,8 +60,10 @@ public class CoolDownSystem : MonoBehaviour
     [Header("Sword & Projectile")]
     [Tooltip("Variables for bullets and swords")]
     public float bulletSpeed;
+    public float swingSpeed;
+    public float swingTime;
 
-    //public bool swing = false;
+    public bool swing = false;
     private bool rightIsPressed = false;
     private bool leftIsPressed = false;
 
@@ -135,10 +137,10 @@ public class CoolDownSystem : MonoBehaviour
             }
         }
 
-        //if (swing)
-        //{
-        //    StartCoroutine("SwordSwingmove", swingTime);
-        //}
+        if (swing)
+        {
+            StartCoroutine("SwordSwingmove", swingTime);
+        }
 
         if(AoeExpand)
         {
@@ -149,7 +151,7 @@ public class CoolDownSystem : MonoBehaviour
         {
             Debug.Log("RIGHT");
             StartCoroutine(ParryDelay(parryWaitTime));
-        }
+    }
     }
 
     void FixedUpdate()
@@ -171,6 +173,7 @@ public class CoolDownSystem : MonoBehaviour
             if (skills[2].currentcooldown >= skills[2].cooldown)
             {
                 myAnimator.SetTrigger("privoSlash");
+                //StartCoroutine("SwordSwing", 0.5f); // Dont need this with animation
                 skills[2].currentcooldown = 0;
             }
             if (currentState == ProjectState.CanShoot)
@@ -310,6 +313,7 @@ public class CoolDownSystem : MonoBehaviour
         Blocker.SetActive(false);
         isParry = false;
     }
+
     //IEnumerator SwordSwing(float waitTime)
     //{
     //    swing = true;

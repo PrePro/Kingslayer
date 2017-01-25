@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-//using System.Linq;
 using UnityEngine.UI;
 
 public class Dialog : MonoBehaviour
@@ -15,12 +14,12 @@ public class Dialog : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             TextUpdater();
-            if (Input.GetKeyDown(KeyCode.E)) 
+            if (Input.GetKeyDown(KeyCode.E))
                 dialog.gameObject.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Debug.Log("Q pressed");
-                if(holder -1 == -1)
+                if (holder - 1 == -1)
                 {
                     return;
                 }
@@ -46,7 +45,7 @@ public class Dialog : MonoBehaviour
             if (holder != text.Length)
             {
                 if (holder - 1 != -1)
-                text[holder - 1].gameObject.SetActive(false);
+                    text[holder - 1].gameObject.SetActive(false);
                 text[holder].gameObject.SetActive(true);
                 holder++;
             }
@@ -62,6 +61,3 @@ public class Dialog : MonoBehaviour
         }
     }
 }
-
-
-

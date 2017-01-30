@@ -36,14 +36,6 @@ public class CoolDownSystem : MonoBehaviour
         Steal,
         Nothin
     }
-
-    public enum ProjectileMorality
-    {
-        Stun,
-        Debuff,
-        Blast,
-        Nothin
-    }
     //======================================================================================================
     // Variables
     //======================================================================================================
@@ -81,18 +73,12 @@ public class CoolDownSystem : MonoBehaviour
     private Vector3 AoeScale;
     private bool AoeExpand = false;
     public float ScaleRate = 0.5f;
-    public AoeMorality AoeState;
-
-    [Header("Parry")]
-    [Tooltip("Parry stuff")]
-    public float parryWaitTime;
-    public bool isParry;
-    public GameObject Blocker;
 
     [HideInInspector]
     public DashState currentDashState;
     private ProjectState currentState;
-    public ProjectileMorality currentProjState;
+    public AoeMorality AoeState;
+
     [SerializeField]
     private bool canSmallDash;
     [Header("Player Abilities")]
@@ -154,12 +140,6 @@ public class CoolDownSystem : MonoBehaviour
         {
             AoeSphere.transform.localScale += new Vector3 (0.5f, 0.5f, 0.5f); //Expand the Aoe Ability
         }
-
-        if (Input.GetMouseButton(1))
-        {
-            Debug.Log("RIGHT");
-            StartCoroutine(ParryDelay(parryWaitTime));
-    }
     }
 
     void FixedUpdate()
@@ -188,21 +168,6 @@ public class CoolDownSystem : MonoBehaviour
             {
                 if (skills[1].currentcooldown >= skills[1].cooldown) // Projectile [1]
                 {
-                    if(stats.moralityPorj == 0)  //Stun
-                    {
-                        currentProjState = ProjectileMorality.Stun;
-                    }
-
-                    if (stats.moralityPorj == 50) //Debuff
-                    {
-                        currentProjState = ProjectileMorality.Debuff;
-                    }
-
-                    if (stats.moralityPorj == 100) //Damage & Damage
-                    {
-                        currentProjState = ProjectileMorality.Blast;
-                    }
-
                     Shoot();
                     skills[1].currentcooldown = 0;
                     currentState = ProjectState.IsDone;
@@ -327,22 +292,19 @@ public class CoolDownSystem : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         currentDashState = DashState.NotDashing;
     }
-
-    IEnumerator ParryDelay(float waitTime)
+    IEnumerator SwordSwing(float waitTime)
     {
-        isParry = true;
-        Blocker.SetActive(true);
+        swing = true;
         yield return new WaitForSeconds(waitTime);
-        Blocker.SetActive(false);
-        isParry = false;
+        swing = false;
     }
-
-    //IEnumerator SwordSwing(float waitTime)
-    //{
-    //    swing = true;
-    //    yield return new WaitForSeconds(waitTime);
-    //    swing = false;
-    //}
+    IEnumerator SwordSwingmove(float waitTime)
+    {
+        //Debug.Log("Swing");
+        Sword.transform.Rotate(Vector3.back * swingSpeed);
+        yield return new WaitForSeconds(waitTime);
+        Sword.transform.Rotate(Vector3.forward * swingSpeed);
+    }
     #endregion
 
     //======================================================================================================

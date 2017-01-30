@@ -3,28 +3,26 @@ using System.Collections;
 
 public class EnemyDamage : MonoBehaviour
 {
+    private bool canAttack = true;
     public int damage;
-    public float parryTimer;
-    private bool isParry;
 
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player")
         {
-            if(isParry == false)
-            col.GetComponent<PlayerStats>().ReceiveDamage(damage);
-        }
-        if(col.tag == "Parry")
-        {
-            Debug.Log("Parry");
-            StartCoroutine(ParryTimer(parryTimer));
+            Debug.Log(canAttack);
+            if (canAttack == true)
+            { 
+                col.GetComponent<PlayerStats>().ReceiveDamage(damage);
+                StartCoroutine("damageTime", 1f);
+            }
         }
     }
 
-    IEnumerator ParryTimer(float waitTime)
+    IEnumerator damageTime(float waitTime)
     {
-        isParry = true;
+        canAttack = false;
         yield return new WaitForSeconds(waitTime);
-        isParry = false;
+        canAttack = true;
     }
 }

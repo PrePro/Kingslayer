@@ -6,20 +6,45 @@
 using UnityEngine;
 using System.Collections;
 
-public class CameraFollowPlayer : MonoBehaviour {
-
-    public GameObject player;  
-    private Vector3 offset; 
-
+public class CameraFollowPlayer : MonoBehaviour
+{
+    public GameObject player;
+    private Vector3 offset;
+    private float targetAngle = 0;
+    public float rotationDegree;
+    private const float rotationAmount = 1.5f; // Dont touch
     void Start()
     {
-        //Calculate and store the offset value by getting the distance between the player's position and camera's position.
         offset = transform.position - player.transform.position;
     }
 
-    void LateUpdate()
+    void Update()
     {
-        // Set the position of the camera's transform to be the same as the player's, but offset by the calculated offset distance.
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            targetAngle -= rotationDegree;
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            targetAngle += rotationDegree;
+        }
+
         transform.position = player.transform.position + offset;
+
+        if (targetAngle > 0)
+        {
+            transform.RotateAround(player.transform.position, Vector3.up, -rotationAmount);
+            offset = transform.position - player.transform.position;
+
+            targetAngle -= rotationAmount;
+        }
+
+        else if (targetAngle < 0)
+        {
+            transform.RotateAround(player.transform.position, Vector3.up, rotationAmount);
+            offset = transform.position - player.transform.position;
+
+            targetAngle += rotationAmount;
+        }
     }
 }

@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 300180774}
   - component: {fileID: 300180773}
   - component: {fileID: 300180772}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,6 +369,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!23 &300180773
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -728,7 +729,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  parryTimer: 3
 --- !u!65 &355145046
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -807,7 +807,7 @@ GameObject:
   - component: {fileID: 400440167}
   - component: {fileID: 400440166}
   - component: {fileID: 400440165}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -828,6 +828,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!23 &400440166
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1009,7 +1010,7 @@ GameObject:
   - component: {fileID: 601406749}
   - component: {fileID: 601406748}
   - component: {fileID: 601406747}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1030,6 +1031,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!23 &601406748
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1105,7 +1107,7 @@ GameObject:
   - component: {fileID: 649597849}
   - component: {fileID: 649597848}
   - component: {fileID: 649597847}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1126,6 +1128,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!23 &649597848
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1343,7 +1346,7 @@ GameObject:
   - component: {fileID: 859593975}
   - component: {fileID: 859593974}
   - component: {fileID: 859593973}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1364,6 +1367,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!23 &859593974
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1575,7 +1579,7 @@ GameObject:
   - component: {fileID: 1089362489}
   - component: {fileID: 1089362488}
   - component: {fileID: 1089362487}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1596,6 +1600,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!23 &1089362488
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1733,7 +1738,7 @@ GameObject:
   - component: {fileID: 1199061150}
   - component: {fileID: 1199061149}
   - component: {fileID: 1199061148}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1754,6 +1759,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!23 &1199061149
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1829,7 +1835,7 @@ GameObject:
   - component: {fileID: 1243021688}
   - component: {fileID: 1243021687}
   - component: {fileID: 1243021686}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1850,6 +1856,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!23 &1243021687
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2069,7 +2076,7 @@ GameObject:
   - component: {fileID: 1362494179}
   - component: {fileID: 1362494178}
   - component: {fileID: 1362494177}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2090,6 +2097,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!23 &1362494178
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2316,11 +2324,6 @@ Prefab:
       propertyPath: patrolRoute.Array.data[1]
       value: 
       objectReference: {fileID: 1398626983}
-    - target: {fileID: 114431006266111174, guid: 4102260c7134c15468f9d2f67a0ce3dc,
-        type: 2}
-      propertyPath: attackRange
-      value: 15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4102260c7134c15468f9d2f67a0ce3dc, type: 2}
   m_IsPrefabParent: 0
@@ -2423,7 +2426,7 @@ GameObject:
   - component: {fileID: 1504514330}
   - component: {fileID: 1504514329}
   - component: {fileID: 1504514328}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2444,6 +2447,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!23 &1504514329
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2566,7 +2570,7 @@ GameObject:
   - component: {fileID: 1612874333}
   - component: {fileID: 1612874332}
   - component: {fileID: 1612874331}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2587,6 +2591,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!23 &1612874332
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2809,6 +2814,10 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1472086216}
+    - target: {fileID: 174456, guid: d1e3881e689e661449feb62bb9beb72b, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1e3881e689e661449feb62bb9beb72b, type: 2}
   m_IsPrefabParent: 0
@@ -2830,7 +2839,7 @@ GameObject:
   - component: {fileID: 1903960343}
   - component: {fileID: 1903960342}
   - component: {fileID: 1903960341}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2851,6 +2860,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!23 &1903960342
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2926,9 +2936,9 @@ GameObject:
   - component: {fileID: 1906093741}
   - component: {fileID: 1906093740}
   - component: {fileID: 1906093739}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -2947,6 +2957,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!23 &1906093740
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3084,7 +3095,7 @@ GameObject:
   - component: {fileID: 1936610631}
   - component: {fileID: 1936610630}
   - component: {fileID: 1936610634}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3168,6 +3179,7 @@ MonoBehaviour:
   alphaTransparency: 0.3
   opaqueValue: 1
   fadeSpeed: 0.95
+  obstacles: []
 --- !u!1 &1949971715
 GameObject:
   m_ObjectHideFlags: 0

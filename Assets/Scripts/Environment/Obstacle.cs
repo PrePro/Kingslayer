@@ -5,11 +5,11 @@ public class Obstacle : MonoBehaviour
 {
     bool isBlocking;
     Renderer meshRenderer;
-    Color currentColor;
-
+    Color[] currentColors;
     public float alphaTransparency = 0.3f;
     public float opaqueValue = 1.0f;
     public float fadeSpeed = 0.95f;
+    public GameObject[] obstacles;
 
     public bool Blocking
     {
@@ -19,7 +19,13 @@ public class Obstacle : MonoBehaviour
 	void Start ()
     {
         meshRenderer = GetComponent<Renderer>();
-        currentColor = meshRenderer.material.color;
+        var materials = meshRenderer.materials;
+        currentColors = new Color[materials.Length];
+
+        for(int i = 0; i < materials.Length; ++i)
+        {
+            currentColors[i] = materials[i].color;
+        }
 	}
 	
 	// Update is called once per frame
@@ -37,6 +43,28 @@ public class Obstacle : MonoBehaviour
         }
 	}
 
+    bool GameObjectIsObstacle(GameObject other)
+    {
+        if(other == gameObject)
+        {
+            return true;
+        }
+        if(obstacles == null)
+        {
+            return false;
+        }
+        for(int i = 0; i < obstacles.Length; ++i)
+        {
+            if(other == obstacles[i])
+            {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
     void CheckIfBlocking()
     {
         Ray cameraToPlayer = new Ray(Camera.main.transform.position, (Player.Position - Camera.main.transform.position).normalized);
@@ -47,13 +75,16 @@ public class Obstacle : MonoBehaviour
 
         bool isHit = false;
         float playerDistance = 0.0f;
-        float obstacleDistance = 0.0f;
+        float obstacleDistance = float.MaxValue;
         foreach(var hit in hits)
         {
-            if(hit.collider.gameObject == gameObject)
+            if(GameObjectIsObstacle(hit.collider.gameObject))
             {
                 isHit = true;
-                obstacleDistance = hit.distance;
+                if(obstacleDistance > hit.distance)
+                {
+                    obstacleDistance = hit.distance;
+                }
             }
             if(hit.collider.gameObject.tag == "Player")
             {
@@ -69,21 +100,33 @@ public class Obstacle : MonoBehaviour
 
     void FadeAway()
     {
-        if (Mathf.Approximately(currentColor.a, alphaTransparency))
+        if (Mathf.Approximately(currentColors[0].a, alphaTransparency))
         {
             return;
         }
-        currentColor.a = Mathf.Lerp(currentColor.a, alphaTransparency, fadeSpeed * Time.deltaTime);
-        meshRenderer.material.color = currentColor;
+        float alpha = Mathf.Lerp(currentColors[0].a, alphaTransparency, fadeSpeed * Time.deltaTime);
+
+        var materials = meshRenderer.materials;
+        for(int i = 0; i < materials.Length; ++i)
+        {
+            currentColors[i].a = alpha;
+            materials[i].color = currentColors[i];
+        }
     }
 
     void Reappear()
     {
-        if(Mathf.Approximately(currentColor.a, opaqueValue))
+        if(Mathf.Approximately(currentColors[0].a, opaqueValue))
         {
             return;
         }
-        currentColor.a = Mathf.Lerp(currentColor.a, opaqueValue, fadeSpeed * Time.deltaTime);
-        meshRenderer.material.color = currentColor;
+        float alpha = Mathf.Lerp(currentColors[0].a, opaqueValue, fadeSpeed * Time.deltaTime);
+
+        var materials = meshRenderer.materials;
+        for (int i = 0; i < materials.Length; ++i)
+        {
+            currentColors[i].a = alpha;
+            materials[i].color = currentColors[i];
+        }
     }
 }

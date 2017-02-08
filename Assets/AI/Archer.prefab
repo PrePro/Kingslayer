@@ -2233,10 +2233,8 @@ MonoBehaviour:
   patrolIndex: 0
   patrolDistanceThreshold: 1
   isTargetSeen: 0
-  attackRange: 5
+  attackRange: 15
   attackDamage: 5
-  WalkSpeed: 3
-  RunSpeed: 5
 --- !u!114 &114581820265137898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2265,6 +2263,9 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!135 &135106057138500886
 SphereCollider:
   m_ObjectHideFlags: 1

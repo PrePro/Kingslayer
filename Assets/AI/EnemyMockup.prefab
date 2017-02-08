@@ -58,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.79, y: 1, z: 22.12}
+  m_LocalPosition: {x: 29.12, y: 1, z: 16.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 426912}
@@ -98,8 +98,6 @@ MonoBehaviour:
   isTargetSeen: 0
   attackRange: 5
   attackDamage: 5
-  WalkSpeed: 3
-  RunSpeed: 5
 --- !u!114 &11454416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,6 +126,9 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!135 &13503454
 SphereCollider:
   m_ObjectHideFlags: 1

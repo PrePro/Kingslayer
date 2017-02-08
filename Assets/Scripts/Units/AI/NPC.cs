@@ -342,6 +342,7 @@ public class NPC : NPCBase
     //======================================================================================================
     public override void OnTargetLost()
     {
+        Debug.Log("lost Target");
         isTargetSeen = false;
         if (currentState == State.Chasing || currentState == State.Attacking)
         {

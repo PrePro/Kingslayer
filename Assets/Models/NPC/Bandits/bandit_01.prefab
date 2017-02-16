@@ -308,6 +308,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4000170090924598}
   - component: {fileID: 95269723641861418}
+  - component: {fileID: 195476699547266512}
+  - component: {fileID: 114624341102968010}
   m_Layer: 0
   m_Name: bandit_01
   m_TagString: Untagged
@@ -987,8 +989,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1319786182853556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.434937, y: 7.79904e-17, z: -3.5123754}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -70.77811, y: 48.581543, z: 180.57}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4257289937134980}
   - {fileID: 4839768453059628}
@@ -2000,13 +2002,44 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1162192dcbcf3544eaef26cc8bf440d4, type: 3}
   m_Controller: {fileID: 9100000, guid: 263bf91aec14dda488a9c79e743d362a, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some transforms are animated by both a Humanoid
+    animation clip and a Generic animation clip. Only the Humanoid clip will be applied
+    on those transforms.\n\tTransform 'Base HumanLDigit43'\n\tTransform 'Base HumanSpine1'\n\tTransform
+    'Base HumanNeck'\n\tTransform 'Base HumanRDigit11'\n\tTransform 'Base HumanLDigit32'\n\tTransform
+    'Base HumanRDigit12'\n\tTransform 'Base HumanRDigit23'\n\tTransform 'Base HumanLDigit41'\n\tTransform
+    'Base HumanLDigit53'\n\tTransform 'Base HumanLDigit51'\n\tand more ...\n\tFrom
+    animation clip 'run'\n\tFrom animation clip 'walk1'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114624341102968010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1319786182853556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d9b6b36baa7674782364a24ad9e9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dominantBehavior: 3
+  faction: 0
+  unitClass: 0
+  currentState: 0
+  currentAnimation: 0
+  currentTarget: {fileID: 0}
+  patrolRoute:
+  - {fileID: 0}
+  - {fileID: 0}
+  patrolIndex: 0
+  patrolDistanceThreshold: 0
+  isTargetSeen: 0
+  attackRange: 0
+  attackDamage: 0
 --- !u!137 &137333907296415156
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2154,3 +2187,23 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.08967072, y: 0.06521487, z: -0.0042954087}
     m_Extent: {x: 0.9465844, y: 0.22739208, z: 0.4042011}
   m_DirtyAABB: 0
+--- !u!195 &195476699547266512
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1319786182853556}
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

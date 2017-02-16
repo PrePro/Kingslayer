@@ -18,11 +18,22 @@ public class DialogManager : MonoBehaviour
 
     private int holder;
 
+    struct Helper
+    {
+        Canvas holder;
+        int adder;
+    }
+
     void OnTriggerEnter(Collider col)
     {
         playerStats = col.GetComponent<PlayerStats>();
         Running = true;
-        GetFirstCanvas();
+        GetChildren(0);
+    }
+
+    void Start()
+    {
+        mList = new List<GameObject>();
     }
 
     void Update()
@@ -38,14 +49,6 @@ public class DialogManager : MonoBehaviour
                 }
             }
             TextUpdater(Children);
-        }
-    }
-
-    void OnTriggerStay(Collider col)
-    {
-        if (col.gameObject.tag == "Player")
-        {
-
         }
     }
 
@@ -74,35 +77,77 @@ public class DialogManager : MonoBehaviour
             }
             else
             {
-                //Open the buttons
+                //Turn on buttons
+                foreach (Button button in npcText[0].button)
+                {
+                    button.gameObject.SetActive(true);
+                }
             }
         }
     }
 
-    void GetFirstCanvas()
+    //void GetFirstCanvas()
+    //{
+    //    for (int i = 0; i <= npcText.Capacity - 1; ++i)
+    //    {
+    //        for (int j = 0; j < npcText[i].canvas.Length; j++)
+    //        {
+    //            mList.Add(npcText[i].canvas[j].gameObject);
+    //            mList[i].SetActive(true);
+    //            Children = mList[i].GetComponentsInChildren<Text>(true);
+    //            foreach (Text text in Children) ;
+    //        }
+    //    }
+    //}
+
+    void GetChildren(int i)
     {
-        for (int i = 0; i <= npcText.Capacity - 1; ++i)
+        for (int j = 0; j < npcText[i].canvas.Length; j++)
         {
-            for (int j = 0; j < npcText[i].text.Length; j++)
-            {
-                mList.Add(npcText[i].text[j].gameObject);
-                mList[i].SetActive(true);
-                Children = mList[i].GetComponentsInChildren<Text>(true);
-                foreach (Text text in Children) ;
-            }
+            mList.Add(npcText[i].canvas[j].gameObject);
+            mList[i].SetActive(true);
+            Children = mList[i].GetComponentsInChildren<Text>(true);
+            foreach (Text text in Children) ;
         }
     }
 
-    void Start()
+    void SetChildren(int index)
     {
-        mList = new List<GameObject>();
+        Children = mList[index].GetComponentsInChildren<Text>(true);
+        foreach (Text text in Children) ;
     }
 
+    void AddmList(int index, int j)
+    {
+        mList.Add(npcText[index].canvas[j].gameObject);
+    }
+
+    int mListGetLength()
+    {
+        return mList.Capacity;
+    }
+
+    int mListChildGetLength(int index)
+    {
+        return mList[index].GetComponentsInChildren<Text>().Length;
+    }
+
+    void Test()
+    {
+        for (int i = 0; i < mListGetLength();)
+        {
+            AddmList(i, i); // 
+            if (mListChildGetLength(i) == holder)
+            {
+
+            }
+        }
+    }
 
     #region ButtonClicks
-    public void ButtonOneClick()
+    public void ButtonOneClick(int morailty)
     {
-        npcText[0].text[0].gameObject.SetActive(true);
+        npcText[1].canvas[0].gameObject.SetActive(true);
         //Delete Button
         //Spawn new canvas connected to this one
     }
@@ -113,7 +158,7 @@ public class DialogManager : MonoBehaviour
 [System.Serializable]
 public class NpcText
 {
-    public Canvas[] text;
+    public Canvas[] canvas;
     public Button[] button;
 }
 #endregion

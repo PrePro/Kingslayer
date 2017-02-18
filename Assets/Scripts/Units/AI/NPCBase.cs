@@ -44,14 +44,14 @@ public abstract class NPCBase : MonoBehaviour
 
     public enum AnimationState
     {
-        Idle,// 0
-        Walking, // 1
-        Attacking, // 2
-        Running, // 3
-        Blocking, // 4
-        Disabled, // 5
-        Stunned, // 6
-        Rooted // 7
+        Idle,
+        Walking,
+        Attacking,
+        Running,
+        Blocking,
+        Disabled,
+        Stunned,
+        Rooted
     }
 
     protected enum Behavior

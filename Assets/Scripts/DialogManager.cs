@@ -204,6 +204,7 @@ public class DialogManager : MonoBehaviour
     }
     #endregion
 
+
 }
 #region NpcText Class
 [System.Serializable]

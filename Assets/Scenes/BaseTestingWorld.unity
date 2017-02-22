@@ -1107,10 +1107,6 @@ Prefab:
       propertyPath: m_Name
       value: EnemyMockup (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 13673362, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
   m_IsPrefabParent: 0
@@ -1119,35 +1115,6 @@ Canvas:
   m_PrefabParentObject: {fileID: 22306864, guid: 84800dcc356330548ace50a6c0e1dd8a,
     type: 2}
   m_PrefabInternal: {fileID: 316482759}
---- !u!1 &355145042 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1954340175819160, guid: 2dd98356bb60a1543bd976c68277d846,
-    type: 2}
-  m_PrefabInternal: {fileID: 325968417}
---- !u!114 &355145045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 355145042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f02925e550a25449a4471a667ee4621, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
---- !u!65 &355145046
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 355145042}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.021081964, y: 0.12484622, z: 0.023934538}
-  m_Center: {x: 0.3461385, y: -0.079534195, z: 0.75864583}
 --- !u!1001 &389572041
 Prefab:
   m_ObjectHideFlags: 0
@@ -1649,6 +1616,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1472086212}
   rotationDegree: 90
+--- !u!4 &541598812 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 406802, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+  m_PrefabInternal: {fileID: 1119318241}
+--- !u!1 &547158253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 547158254}
+  - component: {fileID: 547158256}
+  - component: {fileID: 547158255}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &547158254
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 547158253}
+  m_LocalRotation: {x: 0.7061002, y: -0.0367565, z: -0.24707091, w: 0.66259146}
+  m_LocalPosition: {x: 0.113, y: -0.031, z: 0.452}
+  m_LocalScale: {x: -0.025806108, y: -0.72989887, z: 0.122532144}
+  m_Children: []
+  m_Father: {fileID: 541598812}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 113.42999, y: 90.020996, z: 72.548996}
+--- !u!114 &547158255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 547158253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d814415628dcb7243a8c99c651ec7fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  cdsystem: {fileID: 1472086217}
+--- !u!136 &547158256
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 547158253}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &595680691
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,6 +1847,11 @@ Transform:
   m_Father: {fileID: 1606398044}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &618758207 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1725504887534930, guid: 4102260c7134c15468f9d2f67a0ce3dc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1470345025}
 --- !u!1 &631906751
 GameObject:
   m_ObjectHideFlags: 0
@@ -3093,7 +3125,21 @@ Prefab:
       propertyPath: moralityAoe
       value: 100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 136987126884979906, guid: ba95798575ac0fd4a8d1e0568b2ee07e,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136987126884979906, guid: ba95798575ac0fd4a8d1e0568b2ee07e,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 65862376473253806, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+    - {fileID: 6561694, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+    - {fileID: 11446112, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+    - {fileID: 114934938091067398, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1155455570
@@ -3517,11 +3563,11 @@ Prefab:
     - target: {fileID: 11457214, guid: c68ec8add0222ea4b8684fb39947466c, type: 2}
       propertyPath: text.Array.data[0]
       value: 
-      objectReference: {fileID: 889504022}
+      objectReference: {fileID: 1475330605}
     - target: {fileID: 11457214, guid: c68ec8add0222ea4b8684fb39947466c, type: 2}
       propertyPath: text.Array.data[1]
       value: 
-      objectReference: {fileID: 1390911810}
+      objectReference: {fileID: 889504022}
     - target: {fileID: 11457214, guid: c68ec8add0222ea4b8684fb39947466c, type: 2}
       propertyPath: dialogueoption
       value: 0
@@ -3529,15 +3575,15 @@ Prefab:
     - target: {fileID: 11457214, guid: c68ec8add0222ea4b8684fb39947466c, type: 2}
       propertyPath: text.Array.data[2]
       value: 
-      objectReference: {fileID: 293432490}
+      objectReference: {fileID: 1390911810}
     - target: {fileID: 11457214, guid: c68ec8add0222ea4b8684fb39947466c, type: 2}
       propertyPath: text.Array.data[3]
       value: 
-      objectReference: {fileID: 889504022}
+      objectReference: {fileID: 0}
     - target: {fileID: 11457214, guid: c68ec8add0222ea4b8684fb39947466c, type: 2}
       propertyPath: text.Array.data[4]
       value: 
-      objectReference: {fileID: 1390911810}
+      objectReference: {fileID: 0}
     - target: {fileID: 11457214, guid: c68ec8add0222ea4b8684fb39947466c, type: 2}
       propertyPath: text.Array.data[5]
       value: 
@@ -4191,6 +4237,32 @@ Prefab:
       propertyPath: m_Radius
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 114431006266111174, guid: 4102260c7134c15468f9d2f67a0ce3dc,
+        type: 2}
+      propertyPath: dominantBehavior
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114431006266111174, guid: 4102260c7134c15468f9d2f67a0ce3dc,
+        type: 2}
+      propertyPath: unitClass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114431006266111174, guid: 4102260c7134c15468f9d2f67a0ce3dc,
+        type: 2}
+      propertyPath: BulletTarget
+      value: 
+      objectReference: {fileID: 618758207}
+    - target: {fileID: 114431006266111174, guid: 4102260c7134c15468f9d2f67a0ce3dc,
+        type: 2}
+      propertyPath: Bullet
+      value: 
+      objectReference: {fileID: 1748685142382638, guid: 406f7ea2b55577544906b157552e9a64,
+        type: 2}
+    - target: {fileID: 114431006266111174, guid: 4102260c7134c15468f9d2f67a0ce3dc,
+        type: 2}
+      propertyPath: bulletSpeed
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4102260c7134c15468f9d2f67a0ce3dc, type: 2}
   m_IsPrefabParent: 0
@@ -4204,6 +4276,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1119318241}
   m_Script: {fileID: 11500000, guid: 4c4ef9bdba636774aa1b2023a527527e, type: 3}
+--- !u!114 &1472086217 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11493090, guid: ba95798575ac0fd4a8d1e0568b2ee07e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1119318241}
+  m_Script: {fileID: 11500000, guid: 8010e9007aad9c74886a256e5c2c2d4e, type: 3}
 --- !u!1 &1475330603
 GameObject:
   m_ObjectHideFlags: 0
@@ -4855,6 +4933,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialog: {fileID: 2055331134}
+  endText: {fileID: 2101312406}
+  mBottons:
+  - {fileID: 839982470}
+  - {fileID: 631906753}
+  - {fileID: 2133710212}
   npcText:
   - canvas:
     - {fileID: 1811356480}
@@ -4880,12 +4963,6 @@ MonoBehaviour:
     - Fuck you
     mbuttons: 1
     morality: 05000000
-  tons:
-  - {fileID: 839982470}
-  - {fileID: 631906753}
-  - {fileID: 2133710212}
-  endText: {fileID: 2101312406}
-  mIndex: 0
 --- !u!1001 &1766303652
 Prefab:
   m_ObjectHideFlags: 0

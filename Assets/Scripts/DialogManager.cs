@@ -8,27 +8,33 @@ using System;
 
 public class DialogManager : MonoBehaviour
 {
+    [Header("Canvas")]
+    [Tooltip("This is where you add the main canvas prefab")]
     public Canvas dialog;
+
+    [Tooltip("The text the npc will say when you talk to him again")]
+    public Text endText;
+    [Tooltip("How many buttons you have in the canvas (Max 3)")]
+    public Button[] mBottons;
+
+    [Header("Main Text")]
+    [Tooltip("If you need help ask Casey >.<")]
     public List<NpcText> npcText;
+
     private List<GameObject> mList;
     private PlayerStats playerStats;
-
-    private bool Running;
-    private Text[] Children;
-    public Button[] tons;
-    public Text endText;
-
-    private int holder;
-    private bool EndTalk = false;
+    private bool running;
+    private Text[] children;
+    private int mHolder;
+    private bool mEndTalk = false;
     private bool mDeleted = false;
-    public int mIndex;
+    private int mIndex;
 
     void OnTriggerEnter(Collider col)
     {
-        //Debug.Log("ENTER");
-        if (Running) return; // Makes sure Trigger is called once 
+        if (running) return; // Makes sure Trigger is called once 
         playerStats = col.GetComponent<PlayerStats>(); // Gets stats for player to change morality
-        Running = true;
+        running = true;
 
         if(!mDeleted)
         {
@@ -42,14 +48,14 @@ public class DialogManager : MonoBehaviour
         mList = new List<GameObject>();
         for(int i = 0; i < npcText[mIndex].mbuttons; ++i)
         {
-            tons[i].GetComponentInChildren<Text>().text = npcText[mIndex].buttonText[i];
+            mBottons[i].GetComponentInChildren<Text>().text = npcText[mIndex].buttonText[i];
         }
     }
 
 
     void Update()
     {
-        if (Running)
+        if (running)
         {
             for (int i = 0; i < npcText.Capacity - 1; i++)
             {
@@ -58,16 +64,16 @@ public class DialogManager : MonoBehaviour
                     Debug.Log("YOU FUCKING aDSFAFDKGA");
                 }
             }
-            if(EndTalk && !mDeleted) //Deletion
+            if(mEndTalk && !mDeleted) //Deletion
             {
                 for(int i =0; i < npcText.Capacity; ++i)
                 {
                     for(int j =0; j < npcText[i].canvas.Length; ++j)
                     Destroy(npcText[i].canvas[j].gameObject);
                 }
-                for (int i = 0; i < tons.Length; i++)
+                for (int i = 0; i < mBottons.Length; i++)
                 {
-                    Destroy(tons[i].gameObject);
+                    Destroy(mBottons[i].gameObject);
                 }
                 mDeleted = true;
             }
@@ -79,7 +85,7 @@ public class DialogManager : MonoBehaviour
                     dialog.gameObject.SetActive(true);
                 }
             }
-            TextUpdater(Children);
+            TextUpdater(children);
         }
     }
 
@@ -89,28 +95,28 @@ public class DialogManager : MonoBehaviour
         {
             dialog.gameObject.SetActive(false);
         }
-        Running = false;
+        running = false;
     }
 
     void TextUpdater(Text[] text) //Scrolls through the text in canvas
     {
-        if(!EndTalk)
+        if(!mEndTalk)
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (holder != text.Length)
+            if (mHolder != text.Length)
             {
-                if (holder - 1 != -1)
+                if (mHolder - 1 != -1)
                 {
-                    text[holder - 1].gameObject.SetActive(false); // Break
+                    text[mHolder - 1].gameObject.SetActive(false); // Break
                 }
-                text[holder].gameObject.SetActive(true);
-                ++holder;
+                text[mHolder].gameObject.SetActive(true);
+                ++mHolder;
             }
             else
             {
                 for (int i = 0; i < npcText[mIndex].mbuttons; i++)
                 {
-                    tons[i].gameObject.SetActive(true);
+                    mBottons[i].gameObject.SetActive(true);
                 }
             }
         }
@@ -132,21 +138,21 @@ public class DialogManager : MonoBehaviour
         for (int j = 0; j < npcText[i].canvas.Length; j++)
         {
             mList[i].SetActive(true); //Set the canvas on
-            Children = mList[i].GetComponentsInChildren<Text>(true); // Putting the Children into array
-            foreach (Text text in Children) ; //Needs to be here if the text is disabled
+            children = mList[i].GetComponentsInChildren<Text>(true); // Putting the Children into array
+            foreach (Text text in children) ; //Needs to be here if the text is disabled
         }
     }
     void GetChildrenMult(int i)
     {
-        Children = npcText[mIndex + 1].canvas[i].GetComponentsInChildren<Text>(true); // Putting the Children into array
-        foreach (Text text in Children) ; //Needs to be here if the text is disabled
+        children = npcText[mIndex + 1].canvas[i].GetComponentsInChildren<Text>(true); // Putting the Children into array
+        foreach (Text text in children) ; //Needs to be here if the text is disabled
 
     }
 
     #region ButtonClicks
-    public void ButtonClick(int k)
+    public void ButtonClick(int buttonIndex)
     {
-        switch (k)
+        switch (buttonIndex)
         {
             case 0:
                 playerStats.moralityAoe += npcText[mIndex].morality[0];
@@ -164,9 +170,9 @@ public class DialogManager : MonoBehaviour
         if (mIndex + 1 == npcText.Capacity)
         {
             Debug.Log("IF");
-            EndTalk = true;
-            npcText[mIndex].canvas[k].gameObject.SetActive(false);
-            foreach (Button b in tons)
+            mEndTalk = true;
+            npcText[mIndex].canvas[buttonIndex].gameObject.SetActive(false);
+            foreach (Button b in mBottons)
             {
                 b.gameObject.SetActive(false);
             }
@@ -175,7 +181,7 @@ public class DialogManager : MonoBehaviour
         else
         {
             Debug.Log("Button");
-            holder = 0;
+            mHolder = 0;
 
             Debug.Log(mList[mIndex].name);
             mList[mIndex].SetActive(false);
@@ -186,17 +192,17 @@ public class DialogManager : MonoBehaviour
                     npcText[mIndex].canvas[j].gameObject.SetActive(false);
                 }
             }
-            npcText[mIndex + 1].canvas[k].gameObject.SetActive(true);
+            npcText[mIndex + 1].canvas[buttonIndex].gameObject.SetActive(true);
 
 
-            Array.Clear(Children, 0, Children.Length);
-            GetChildrenMult(k);
+            Array.Clear(children, 0, children.Length);
+            GetChildrenMult(buttonIndex);
             ++mIndex;
             for (int i = 0; i < npcText[mIndex].mbuttons; ++i)
             {
-                tons[i].GetComponentInChildren<Text>().text = npcText[mIndex].buttonText[i];
+                mBottons[i].GetComponentInChildren<Text>().text = npcText[mIndex].buttonText[i];
             }
-            foreach (Button b in tons)
+            foreach (Button b in mBottons)
             {
                 b.gameObject.SetActive(false);
             }
@@ -210,9 +216,13 @@ public class DialogManager : MonoBehaviour
 [System.Serializable]
 public class NpcText
 {
+    [Tooltip("Canvas to be turned on")]
     public Canvas[] canvas;
+    [Tooltip("The text in each button")]
     public string[] buttonText;
+    [Tooltip("How many buttons you want (Max 3)")]
     public int mbuttons;
+    [Tooltip("How much morality each button gives")]
     public int[] morality;
 }
 #endregion

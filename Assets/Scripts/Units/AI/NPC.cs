@@ -21,6 +21,10 @@ public class NPC : NPCBase
     public bool isAttack;
     */
     // Update is called once per frame
+
+    public GameObject Bullet;
+    public GameObject BulletTarget;
+    public float bulletSpeed;
     void FixedUpdate()
     {
         if(debuffState == Debuff.None)
@@ -244,14 +248,39 @@ public class NPC : NPCBase
         {
             isInRange = true;
         }
-
-        if (!isAttacking && isFacing && isInRange)
+        if (unitClass == UnitClass.Knight)
         {
-            isAttacking = true;
-            SetAnimation(AnimationState.Attacking);
+
+
+            if (!isAttacking && isFacing && isInRange)
+            {
+                isAttacking = true;
+                SetAnimation(AnimationState.Attacking);
+            }
+        }
+        else
+        {
+            if (!isAttacking && isFacing && isInRange)
+            {
+                Debug.Log("Archer Attack");
+                isAttacking = true;
+                //SetAnimation(AnimationState.Attacking);
+                Shoot();
+            }
         }
     }
+    private void Shoot()
+    {
+        Vector3 firePosition = BulletTarget.transform.position;
+        GameObject bullet = GameObject.Instantiate(Bullet, firePosition, BulletTarget.transform.rotation) as GameObject;
 
+        if (bullet != null)
+        {
+            Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
+            Vector3 force = transform.forward * bulletSpeed;
+            rigidbody.AddForce(force);
+        }
+    }
     //======================================================================================================
     // Iterate throught array of patrol paths 
     //======================================================================================================

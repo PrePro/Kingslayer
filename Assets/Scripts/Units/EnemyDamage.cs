@@ -9,12 +9,11 @@ public class EnemyDamage : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log("Player IN ENEMEY TIGGER");
+        //Debug.Log("Player IN ENEMEY TIGGER");
 
         if (col.tag == "Player")
         {
             if (mRunning) return;
-            Debug.Log("Player TAKES DAMAGE");
             col.GetComponent<PlayerStats>().ReceiveDamage(damage);
         }
     }

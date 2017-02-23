@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4491415905090242}
   - component: {fileID: 95638589975382238}
+  - component: {fileID: 114719128256278300}
   m_Layer: 0
   m_Name: shanker_01
   m_TagString: Untagged
@@ -1373,8 +1374,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1065646858523654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.368008, y: -5.7223147e-18, z: 0.25771013}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 43.24794, y: 6.6155396, z: -107.31201}
+  m_LocalScale: {x: 2, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4675075171257160}
   - {fileID: 4594407238951872}
@@ -1977,6 +1978,32 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114719128256278300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1065646858523654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d9b6b36baa7674782364a24ad9e9c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dominantBehavior: 0
+  faction: 0
+  unitClass: 0
+  currentState: 0
+  currentAnimation: 0
+  currentTarget: {fileID: 0}
+  patrolRoute: []
+  patrolIndex: 0
+  patrolDistanceThreshold: 0
+  isTargetSeen: 0
+  attackRange: 0
+  attackDamage: 0
+  Bullet: {fileID: 0}
+  BulletTarget: {fileID: 0}
+  bulletSpeed: 0
 --- !u!137 &137282551209929888
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

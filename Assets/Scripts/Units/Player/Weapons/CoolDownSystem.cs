@@ -36,6 +36,13 @@ public class CoolDownSystem : MonoBehaviour
         Steal,
         Nothin
     }
+    public enum ProjectileMorality
+    {
+        Stun,
+        Debuff,
+        Blast,
+        Nothin
+    }
     //======================================================================================================
     // Variables
     //======================================================================================================
@@ -78,6 +85,7 @@ public class CoolDownSystem : MonoBehaviour
     public DashState currentDashState;
     private ProjectState currentState;
     public AoeMorality AoeState;
+    public ProjectileMorality currentProjState;
 
     [SerializeField]
     private bool canSmallDash;
@@ -136,9 +144,9 @@ public class CoolDownSystem : MonoBehaviour
         //    StartCoroutine("SwordSwingmove", swingTime);
         //}
 
-        if(AoeExpand)
+        if (AoeExpand)
         {
-            AoeSphere.transform.localScale += new Vector3 (0.5f, 0.5f, 0.5f); //Expand the Aoe Ability
+            AoeSphere.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f); //Expand the Aoe Ability
         }
     }
 
@@ -168,6 +176,20 @@ public class CoolDownSystem : MonoBehaviour
             {
                 if (skills[1].currentcooldown >= skills[1].cooldown) // Projectile [1]
                 {
+                    if (stats.moralityPorj == 0)  //Stun
+                    {
+                        currentProjState = ProjectileMorality.Stun;
+                    }
+
+                    if (stats.moralityPorj == 50) //Debuff
+                    {
+                        currentProjState = ProjectileMorality.Debuff;
+                    }
+
+                    if (stats.moralityPorj == 100) //Damage & Damage
+                    {
+                        currentProjState = ProjectileMorality.Blast;
+                    }
                     Shoot();
                     skills[1].currentcooldown = 0;
                     currentState = ProjectState.IsDone;
@@ -228,14 +250,14 @@ public class CoolDownSystem : MonoBehaviour
                     StartCoroutine("AoeTime", 0.5f);
                     skills[5].currentcooldown = 0;
                 }
-                else if(stats.moralityAoe == 50) //Knock Back + Damage
+                else if (stats.moralityAoe == 50) //Knock Back + Damage
                 {
                     AoeSphere.SetActive(true);
                     AoeState = AoeMorality.KnockBack;
                     StartCoroutine("AoeTime", 0.5f);
                     skills[5].currentcooldown = 0;
                 }
-                if(stats .moralityAoe == 100) // Heal Steal
+                if (stats.moralityAoe == 100) // Heal Steal
                 {
                     AoeSphere.SetActive(true);
                     AoeState = AoeMorality.Steal;
@@ -305,6 +327,15 @@ public class CoolDownSystem : MonoBehaviour
     //    yield return new WaitForSeconds(waitTime);
     //    Sword.transform.Rotate(Vector3.forward * swingSpeed);
     //}
+    IEnumerable Tester(float time)
+    {
+        bool apples;
+        apples = true;
+        Debug.Log(apples);
+        yield return new WaitForSeconds(time);
+        apples = false;
+        Debug.Log(apples);
+    }
     #endregion
 
     //======================================================================================================
@@ -323,7 +354,7 @@ public class CoolDownSystem : MonoBehaviour
             rigidbody.AddForce(force);
         }
     }
-   
+
     #endregion
 
 }

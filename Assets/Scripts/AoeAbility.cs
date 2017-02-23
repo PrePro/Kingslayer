@@ -8,6 +8,8 @@ public class AoeAbility : MonoBehaviour
     public int damage;
     private CoolDownSystem cdsystem;
     private PlayerStats stats;
+    private NPC npc;
+    private bool running;
 
     void Update()
     {
@@ -19,10 +21,12 @@ public class AoeAbility : MonoBehaviour
     {
         if (col.tag == "Enemy")
         {
-            if(cdsystem.AoeState == CoolDownSystem.AoeMorality.Stun)
+            if (running) return;
+            npc = col.GetComponent<NPC>();
+            if (cdsystem.AoeState == CoolDownSystem.AoeMorality.Stun)
             {
-                Debug.Log("Stun");
-                //Added stun enemy here
+                //Debug.Log("Stun");
+                npc.startStunAI(2f);
             }
             else if(cdsystem.AoeState == CoolDownSystem.AoeMorality.KnockBack)
             {
@@ -38,4 +42,10 @@ public class AoeAbility : MonoBehaviour
             }
         }
     }
+
+    void OnTriggerExit(Collider col)
+    {
+        running = false;
+    }
+
 }

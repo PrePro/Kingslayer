@@ -25,14 +25,18 @@ public class NPC : NPCBase
     public GameObject Bullet;
     public GameObject BulletTarget;
     public float bulletSpeed;
-    void FixedUpdate()
+
+    void Update()
     {
-        if(debuffState == Debuff.None)
+        //Debug.Log(debuffState);
+        if (debuffState == Debuff.None)
         {
+            Debug.Log("RunBehavior");
             RunBehavior();
         }
         else
         {
+            Debug.Log("HandleDebuff");
             HandleDebuff();
         }
     }
@@ -62,9 +66,9 @@ public class NPC : NPCBase
                 break;
             case State.Attacking:
                 {
-                    Debug.Log("Attack Case");
+                    //Debug.Log("Attack Case");
                     agent.Stop();
-                   // agent.destination = transform.position;
+                    // agent.destination = transform.position;
                 }
                 break;
             case State.Chasing:
@@ -119,23 +123,38 @@ public class NPC : NPCBase
         debuffState = Debuff.Rooted;
         yield return new WaitForSeconds(time);
 
-        if(debuffState == Debuff.Rooted)
+        if (debuffState == Debuff.Rooted)
         {
-            debuffState = Debuff.Disabled;
+            debuffState = Debuff.None;
         }
         yield return null;
     }
 
+    public void startStunAI(float time)
+    {
+        StartCoroutine(StunAI(time));
+    }
+
+    public void startRootAI(float time)
+    {
+        StartCoroutine(RootAI(time));
+    }
+
+
     public IEnumerator StunAI(float time)
     {
+        Debug.Log("STUN AI");
+        Debug.Log(time);
         debuffState = Debuff.Stunned;
         yield return new WaitForSeconds(time);
 
+        Debug.Log("Changed Stunned");
         if (debuffState == Debuff.Stunned)
         {
-            debuffState = Debuff.Disabled;
+            debuffState = Debuff.None;
         }
-        yield return null;
+        Debug.Log("Done");
+        //yield return null;
     }
 
     //======================================================================================================
@@ -144,13 +163,16 @@ public class NPC : NPCBase
     #region Behaviors
     public override void HandleDebuff()
     {
+        Debug.Log("HANDLE DEBUFF CALLED");
         switch (debuffState)
         {
             case Debuff.Stunned:
+                Debug.Log("Stun");
+                agent.Stop();
                 break;
             case Debuff.Rooted:
-                
-                if(GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange) && isTargetSeen && dominantBehavior != Behavior.Passive)
+
+                if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange) && isTargetSeen && dominantBehavior != Behavior.Passive)
                 {
                     AttackTarget();
                 }
@@ -159,6 +181,7 @@ public class NPC : NPCBase
                 break;
         }
     }
+
 
     public override void RunBehavior()
     {
@@ -202,17 +225,17 @@ public class NPC : NPCBase
         {
             agent.destination = currentTarget.position;
         }
-        
+
         if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange, 1.0f))
         {
-            Debug.Log("Within range");
+            //Debug.Log("Within range");
             SetState(State.Attacking);
         }
     }
 
     public override void AttackTarget()
     {
-        if(!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
+        if (!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
         {
             isAttacking = false;
             isFacing = false;
@@ -222,7 +245,7 @@ public class NPC : NPCBase
             Vector3 newDir = Vector3.RotateTowards(transform.forward, target, agent.angularSpeed * Time.deltaTime, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDir);
         }
-        else if(isInRange)
+        else if (isInRange)
         {
             isFacing = true;
         }
@@ -340,7 +363,7 @@ public class NPC : NPCBase
 
     public override void SetAnimation(AnimationState animState)
     {
-        if(currentAnimation == animState)
+        if (currentAnimation == animState)
         {
             return;
         }
@@ -371,7 +394,7 @@ public class NPC : NPCBase
     //======================================================================================================
     public override void OnTargetLost()
     {
-        Debug.Log("lost Target");
+        //Debug.Log("lost Target");
         isTargetSeen = false;
         if (currentState == State.Chasing || currentState == State.Attacking)
         {

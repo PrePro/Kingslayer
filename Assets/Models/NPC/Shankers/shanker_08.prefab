@@ -747,6 +747,7 @@ GameObject:
   - component: {fileID: 4199029892042518}
   - component: {fileID: 95321378507954246}
   - component: {fileID: 114585394413398828}
+  - component: {fileID: 195082381055334842}
   m_Layer: 0
   m_Name: shanker_08
   m_TagString: Untagged
@@ -1139,16 +1140,16 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1815389684492008}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.30652735, y: -8.040398e-17, z: 3.6210735}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.7106868, z: -0, w: 0.7035086}
+  m_LocalPosition: {x: -7.8364377, y: 6.6155396, z: -77.64069}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4952302192734356}
   - {fileID: 4355588829718742}
   - {fileID: 4134435586112116}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90.582, z: 0}
 --- !u!4 &4242589785094958
 Transform:
   m_ObjectHideFlags: 1
@@ -1932,13 +1933,11 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1162192dcbcf3544eaef26cc8bf440d4, type: 3}
   m_Controller: {fileID: 9100000, guid: 90fcf7396390b9d459297586cffd23bb, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
-  m_WarningMessage: '
-
-    Transform ''bon_gob_war_jaw'' has been deleted'
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114585394413398828
@@ -1952,7 +1951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d9b6b36baa7674782364a24ad9e9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dominantBehavior: 0
+  dominantBehavior: 3
   faction: 0
   unitClass: 0
   currentState: 0
@@ -2113,3 +2112,23 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.095171005, y: 0.12678145, z: -0.0011475086}
     m_Extent: {x: 0.942431, y: 0.421008, z: 0.41890544}
   m_DirtyAABB: 0
+--- !u!195 &195082381055334842
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1815389684492008}
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

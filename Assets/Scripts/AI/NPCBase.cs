@@ -74,9 +74,9 @@ public abstract class NPCBase : MonoBehaviour
     [SerializeField]
     [Tooltip("The basic fallback behavior of the NPC: \nPassive units do not attack\nAggressive units search for enemies\nIdleDefencives units do not move but attack enemies in their radius\nPatrolDefencive units follow a patrol path until an enemy is found")]
     protected Behavior dominantBehavior;
-    [SerializeField]
-    [Tooltip("Set the faction of the NPC to determine whether the unit is allied, neutral, or and enemy")]
-    protected Faction faction;
+    //[SerializeField]
+    //[Tooltip("Set the faction of the NPC to determine whether the unit is allied, neutral, or and enemy")]
+    //protected Faction faction;
     protected UnityEngine.AI.NavMeshAgent agent;
     [SerializeField]
     protected UnitClass unitClass;

@@ -22,21 +22,24 @@ public class NPC : NPCBase
     */
     // Update is called once per frame
 
+    [Header("Bullet")]
+    [Tooltip("Only need to be added if you")]
     public GameObject Bullet;
     public GameObject BulletTarget;
     public float bulletSpeed;
+
 
     void Update()
     {
         //Debug.Log(debuffState);
         if (debuffState == Debuff.None)
         {
-            Debug.Log("RunBehavior");
+            //Debug.Log("RunBehavior");
             RunBehavior();
         }
         else
         {
-            Debug.Log("HandleDebuff");
+            //Debug.Log("HandleDebuff");
             HandleDebuff();
         }
     }
@@ -48,6 +51,25 @@ public class NPC : NPCBase
     //======================================================================================================
     // Function to run specific behavior on state change 
     //======================================================================================================
+    IEnumerator RotateFind() // Turn enemy to find player
+    {
+        float totalTime = 0.0f;
+        while(totalTime < 5.0f)
+        {
+            //Debug.Log(totalTime);
+            totalTime += Time.deltaTime;
+            transform.Rotate(new Vector3(0, Time.deltaTime * 10, 0));
+        }
+        totalTime = 0.0f;
+        while (totalTime < 10.0f)
+        {
+            //Debug.Log(totalTime);
+            totalTime += Time.deltaTime;
+            transform.Rotate(new Vector3(0, Time.deltaTime * -10, 0));
+        }
+        yield return null;
+    }
+
     public override void SetState(State newState)
     {
         if (currentState == newState)
@@ -62,6 +84,11 @@ public class NPC : NPCBase
                     //agent.destination = transform.position;
 
                     SetAnimation(AnimationState.Idle);
+                    if(currentState == State.Searching)
+                    {
+                        StartCoroutine(RotateFind());
+                    }
+
                 }
                 break;
             case State.Attacking:
@@ -163,11 +190,9 @@ public class NPC : NPCBase
     #region Behaviors
     public override void HandleDebuff()
     {
-        Debug.Log("HANDLE DEBUFF CALLED");
         switch (debuffState)
         {
             case Debuff.Stunned:
-                Debug.Log("Stun");
                 agent.Stop();
                 break;
             case Debuff.Rooted:
@@ -394,12 +419,14 @@ public class NPC : NPCBase
     //======================================================================================================
     public override void OnTargetLost()
     {
-        //Debug.Log("lost Target");
+        Debug.Log("lost Target");
         isTargetSeen = false;
         if (currentState == State.Chasing || currentState == State.Attacking)
         {
+            Debug.Log("Searching");
             SetState(State.Searching);
         }
+        
     }
     #endregion
 

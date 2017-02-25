@@ -26,6 +26,7 @@ public class AoeAbility : MonoBehaviour
             if (cdsystem.AoeState == CoolDownSystem.AoeMorality.Stun)
             {
                 //Debug.Log("Stun");
+                //StartCoroutine(npc.StunAI(1f));
                 npc.startStunAI(2f);
             }
             else if(cdsystem.AoeState == CoolDownSystem.AoeMorality.KnockBack)

@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 using System;
 
 
-public class DialogManager : MonoBehaviour
+public class Main_Dialog : MonoBehaviour
 {
     [Header("Canvas")]
     [Tooltip("This is where you add the main canvas prefab")]
@@ -79,6 +79,7 @@ public class DialogManager : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
+
                 if (!dialog.gameObject.activeSelf)
                 {
                     //Debug.Log("IsActive");
@@ -93,9 +94,12 @@ public class DialogManager : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            
             dialog.gameObject.SetActive(false);
         }
+
         running = false;
+
     }
 
     void TextUpdater(Text[] text) //Scrolls through the text in canvas

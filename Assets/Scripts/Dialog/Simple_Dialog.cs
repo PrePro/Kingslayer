@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Dialog : MonoBehaviour
+public class Simple_Dialog : MonoBehaviour
 {
     public Canvas dialog;
     public Text[] text;
@@ -14,6 +14,7 @@ public class Dialog : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            Debug.Log("PLAYER ENETER");
             Collid = true;
             if (Input.GetKeyDown(KeyCode.E))
                 if (dialog.isActiveAndEnabled == false)
@@ -73,6 +74,7 @@ public class Dialog : MonoBehaviour
                 a.gameObject.SetActive(false);
             }
             dialog.gameObject.SetActive(false);
+            Collid = false;
             holder = 0;
         }
     }

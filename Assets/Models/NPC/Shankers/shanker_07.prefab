@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 95147789428941364}
   - component: {fileID: 114071525473348790}
   - component: {fileID: 195797293915594672}
+  - component: {fileID: 114676021513867954}
   m_Layer: 0
   m_Name: shanker_07
   m_TagString: Untagged
@@ -84,6 +85,23 @@ GameObject:
   - component: {fileID: 4822403757813116}
   m_Layer: 0
   m_Name: Base HumanLDigit52
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1096249257388112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4134282635405496}
+  - component: {fileID: 114935481839483304}
+  - component: {fileID: 135515668982704568}
+  m_Layer: 0
+  m_Name: Perception
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1185,6 +1203,19 @@ Transform:
   m_Father: {fileID: 4048696894965676}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4134282635405496
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096249257388112}
+  m_LocalRotation: {x: -0, y: -0.7157967, z: -0, w: 0.6983087}
+  m_LocalPosition: {x: 0.2, y: 0.16, z: -0.22}
+  m_LocalScale: {x: 0.6666666, y: 0.6666667, z: 0.6666666}
+  m_Children: []
+  m_Father: {fileID: 4853438940867072}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4187150826109884
 Transform:
   m_ObjectHideFlags: 1
@@ -1718,12 +1749,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1043900717702646}
   m_LocalRotation: {x: -0, y: 0.7157967, z: -0, w: 0.6983087}
-  m_LocalPosition: {x: -4.8582096, y: 6.6155396, z: -79.49336}
+  m_LocalPosition: {x: -8.14, y: 6.6155396, z: -80.61}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4055736150394932}
   - {fileID: 4232400668952016}
   - {fileID: 4187150826109884}
+  - {fileID: 4134282635405496}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 91.41701, z: 0}
@@ -1933,7 +1965,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1162192dcbcf3544eaef26cc8bf440d4, type: 3}
   m_Controller: {fileID: 9100000, guid: 8e4cd03ba9ca7f94d83060c605499052, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
@@ -1952,12 +1984,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dominantBehavior: 3
-  faction: 0
   unitClass: 0
   currentState: 0
   currentAnimation: 0
   currentTarget: {fileID: 0}
-  patrolRoute: []
+  patrolRoute:
+  - {fileID: 0}
   patrolIndex: 0
   patrolDistanceThreshold: 0
   isTargetSeen: 0
@@ -1966,6 +1998,49 @@ MonoBehaviour:
   Bullet: {fileID: 0}
   BulletTarget: {fileID: 0}
   bulletSpeed: 0
+--- !u!114 &114676021513867954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1043900717702646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92aa0b374c3d2b84b8eef78196c234c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 10
+  armor: 0
+--- !u!114 &114935481839483304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096249257388112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc4729a65191df24c876535e8c4b8770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!135 &135515668982704568
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1096249257388112}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137454370373865170
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

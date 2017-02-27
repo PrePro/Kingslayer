@@ -748,6 +748,7 @@ GameObject:
   - component: {fileID: 95321378507954246}
   - component: {fileID: 114585394413398828}
   - component: {fileID: 195082381055334842}
+  - component: {fileID: 114286384092026790}
   m_Layer: 0
   m_Name: shanker_08
   m_TagString: Untagged
@@ -950,6 +951,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1979301995216640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4287878696855424}
+  - component: {fileID: 114547435004319958}
+  - component: {fileID: 135464947925603370}
+  m_Layer: 0
+  m_Name: Perception
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1983162992969908
 GameObject:
   m_ObjectHideFlags: 1
@@ -1141,12 +1159,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1815389684492008}
   m_LocalRotation: {x: -0, y: 0.7106868, z: -0, w: 0.7035086}
-  m_LocalPosition: {x: -7.8364377, y: 6.6155396, z: -77.64069}
+  m_LocalPosition: {x: -8.42, y: 6.6155396, z: -78.05}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4952302192734356}
   - {fileID: 4355588829718742}
   - {fileID: 4134435586112116}
+  - {fileID: 4287878696855424}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90.582, z: 0}
@@ -1190,6 +1209,19 @@ Transform:
   - {fileID: 4563044371281546}
   m_Father: {fileID: 4099092860041296}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4287878696855424
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979301995216640}
+  m_LocalRotation: {x: -0, y: -0.7106868, z: -0, w: 0.7035086}
+  m_LocalPosition: {x: 0.15, y: 0.16, z: 0.11}
+  m_LocalScale: {x: 0.6666668, y: 0.6666667, z: 0.6666668}
+  m_Children: []
+  m_Father: {fileID: 4199029892042518}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4296653652743230
 Transform:
@@ -1933,13 +1965,44 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1162192dcbcf3544eaef26cc8bf440d4, type: 3}
   m_Controller: {fileID: 9100000, guid: 90fcf7396390b9d459297586cffd23bb, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114286384092026790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1815389684492008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92aa0b374c3d2b84b8eef78196c234c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 10
+  armor: 0
+--- !u!114 &114547435004319958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979301995216640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc4729a65191df24c876535e8c4b8770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  obstructionLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &114585394413398828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1952,12 +2015,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dominantBehavior: 3
-  faction: 0
   unitClass: 0
   currentState: 0
   currentAnimation: 0
   currentTarget: {fileID: 0}
-  patrolRoute: []
+  patrolRoute:
+  - {fileID: 0}
   patrolIndex: 0
   patrolDistanceThreshold: 0
   isTargetSeen: 0
@@ -1966,6 +2029,18 @@ MonoBehaviour:
   Bullet: {fileID: 0}
   BulletTarget: {fileID: 0}
   bulletSpeed: 0
+--- !u!135 &135464947925603370
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979301995216640}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137343269664307896
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

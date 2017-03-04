@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 6255e2eb6b9806141b1aef1ce3685229
-timeCreated: 1488603530
+guid: f0fbc68cddc240a4eb85e7d9d841c0ff
+timeCreated: 1488603870
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -318,7 +318,7 @@ ModelImporter:
     4300000: Sword1
     4300002: sword_holder
     4300004: Head1
-    7400000: Privo_walk
+    7400000: Privo_crouch
     9500000: //RootNode
     13700000: Head1
     13700002: Sword1
@@ -334,16 +334,10 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween
-      bone rotation in copied configuration does not match rotation in animation file\nPrivo_WalkCycle\nClip
-      'Take 001' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Spine3JNT'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'L_BallJNT'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'R_BallJNT'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -351,25 +345,25 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Privo_walk
+      name: Privo_crouch
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 28
+      lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
-      loopBlendPositionY: 1
+      loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 0
+      keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
-      heightFromFeet: 1
+      heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -461,15 +455,15 @@ ModelImporter:
         weight: 1
       - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/HeadCTRL
         weight: 1
-      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Shieth1CTRL
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Sword_MiddleCTRL
         weight: 1
-      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Shieth1CTRL/Shieth2CTRL
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Sword_MiddleCTRL/Sword_BladeCTRL
         weight: 1
-      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Shieth1CTRL/Sword_MainCTRL
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Sword_MiddleCTRL/Sword_MainCTRL
         weight: 1
-      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Shieth1CTRL/Sword_MainCTRL/Sword_MiddleCTRL
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Sword_MiddleCTRL/Sword_MainCTRL/Shieth1CTRL
         weight: 1
-      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Shieth1CTRL/Sword_MainCTRL/Sword_MiddleCTRL/Sword_BladeCTRL
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Sword_MiddleCTRL/Sword_MainCTRL/Shieth1CTRL/Shieth2CTRL
         weight: 1
       - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL
         weight: 1
@@ -623,6 +617,12 @@ ModelImporter:
         weight: 1
       - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/NeckJNT/HeadJNT/R_EyeJNT
         weight: 1
+      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/NeckJNT/HeadJNT/SwordStartJNT
+        weight: 1
+      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/NeckJNT/HeadJNT/SwordStartJNT/SwardMiddleJNT
+        weight: 1
+      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/NeckJNT/HeadJNT/SwordStartJNT/SwardMiddleJNT/SwordEndJNT
+        weight: 1
       - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/R_ClavicleJNT
         weight: 1
       - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/R_ClavicleJNT/R_ShoulderJNT
@@ -672,12 +672,6 @@ ModelImporter:
       - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/R_ClavicleJNT/R_ShoulderJNT/R_ElbowJNT/R_WristJNT/R_Thumb1JNT/R_Thumb2JNT/R_Thumb3JNT
         weight: 1
       - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/R_ClavicleJNT/R_ShoulderJNT/R_ElbowJNT/R_WristJNT/R_Thumb1JNT/R_Thumb2JNT/R_Thumb3JNT/R_ThumbendJNT
-        weight: 1
-      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/SwordStartJNT
-        weight: 1
-      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/SwordStartJNT/SwardMiddleJNT
-        weight: 1
-      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/SwordStartJNT/SwardMiddleJNT/SwordEndJNT
         weight: 1
       - path: Shieth1JNT
         weight: 1

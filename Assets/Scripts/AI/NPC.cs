@@ -28,6 +28,7 @@ public class NPC : NPCBase
     public GameObject BulletTarget;
     public float bulletSpeed;
 
+    public bool HasWaitTime = false;
 
     void Update()
     {
@@ -54,7 +55,7 @@ public class NPC : NPCBase
     IEnumerator RotateFind() // Turn enemy to find player
     {
         float totalTime = 0.0f;
-        while(totalTime < 5.0f)
+        while (totalTime < 5.0f)
         {
             //Debug.Log(totalTime);
             totalTime += Time.deltaTime;
@@ -80,13 +81,22 @@ public class NPC : NPCBase
         {
             case State.Idle:
                 {
-                    agent.Stop();
-                    //agent.destination = transform.position;
-
-                    SetAnimation(AnimationState.Idle);
-                    if(currentState == State.Searching)
+                    if (unitClass == UnitClass.Archer)
                     {
-                        StartCoroutine(RotateFind());
+                        Debug.Log("ARCHER");
+                       
+
+                        }
+                    else
+                    {
+                        agent.Stop();
+                        //agent.destination = transform.position;
+
+                        SetAnimation(AnimationState.Idle);
+                        if (currentState == State.Searching)
+                        {
+                            StartCoroutine(RotateFind());
+                        }
                     }
 
                 }
@@ -144,7 +154,13 @@ public class NPC : NPCBase
         previousState = currentState;
         currentState = newState;
     }
+    IEnumerator AIWait(float time)
+    {
+        yield return new WaitForSeconds(time);
+        agent.destination = patrolRoute[patrolIndex].position;
+        agent.Resume();
 
+    }
     public IEnumerator RootAI(float time)
     {
         debuffState = Debuff.Rooted;
@@ -214,6 +230,10 @@ public class NPC : NPCBase
         {
             case State.Idle:
                 {
+                    if(dominantBehavior == Behavior.IdleDefencive)
+                    {
+                        Debug.Log("IdleDefencive");
+                    }
                 }
                 break;
             case State.Searching:
@@ -311,6 +331,7 @@ public class NPC : NPCBase
             if (!isAttacking && isFacing && isInRange)
             {
                 Debug.Log("Archer Attack");
+                agent.Stop();
                 isAttacking = true;
                 //SetAnimation(AnimationState.Attacking);
                 Shoot();
@@ -341,8 +362,30 @@ public class NPC : NPCBase
             {
                 patrolIndex = 0;
             }
-            agent.destination = patrolRoute[patrolIndex].position;
+
+            if(HasWaitTime == true)  // Enemy Stop here to search 
+            {
+                int ran = UnityEngine.Random.Range(0, 11);
+                if (ran >= 2) //80% change to stop and wait
+                {
+                    agent.Stop();
+                    //YASH if you want to run an animation for the partrol do it here
+                    int waitTime = UnityEngine.Random.Range(0, 11);
+                    StartCoroutine(AIWait(waitTime));
+                }
+                else
+                {
+                    agent.destination = patrolRoute[patrolIndex].position;
+                }
+
+            }
+            else
+            {
+                agent.destination = patrolRoute[patrolIndex].position;
+            }
+
         }
+
     }
 
     public override void Search()
@@ -421,12 +464,18 @@ public class NPC : NPCBase
     {
         Debug.Log("lost Target");
         isTargetSeen = false;
+        if(unitClass == UnitClass.Archer)
+        {
+            Debug.Log("CANT MOVE");
+            SetAnimation(AnimationState.Idle);
+            SetState(State.Idle);
+        }
         if (currentState == State.Chasing || currentState == State.Attacking)
         {
             Debug.Log("Searching");
             SetState(State.Searching);
         }
-        
+
     }
     #endregion
 

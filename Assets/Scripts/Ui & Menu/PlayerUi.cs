@@ -8,13 +8,14 @@ public class PlayerUi : MonoBehaviour
     public Image HealthBar;
     public PlayerStats player;
 
+    void Start()
+    {
+        player.startPosition = player.transform.position;
+    }
+
     void Update()
     {
         HandleHealthBar();
-        if (player.GetHealth() <= 0)
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
     }
 
     void HandleHealthBar()

@@ -12,6 +12,8 @@ public class Main_Dialog : MonoBehaviour
     [Tooltip("This is where you add the main canvas prefab")]
     public Canvas dialog;
 
+    public Image playerImage;
+    public Text playerName;
     [Tooltip("The text the npc will say when you talk to him again")]
     public Text endText;
     [Tooltip("How many buttons you have in the canvas (Max 3)")]
@@ -82,8 +84,10 @@ public class Main_Dialog : MonoBehaviour
 
                 if (!dialog.gameObject.activeSelf)
                 {
-                    //Debug.Log("IsActive");
+                    Debug.Log("IsActive");
                     dialog.gameObject.SetActive(true);
+                    playerImage.gameObject.SetActive(true);
+                    playerName.gameObject.SetActive(true);
                     npcText[0].Person.gameObject.SetActive(true);
                     npcText[0].name.gameObject.SetActive(true);
                 }
@@ -182,6 +186,8 @@ public class Main_Dialog : MonoBehaviour
             {
                 b.gameObject.SetActive(false);
             }
+            playerImage.gameObject.SetActive(false);
+            playerName.gameObject.SetActive(false);
             endText.gameObject.SetActive(true);
         }
         else

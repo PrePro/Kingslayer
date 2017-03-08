@@ -23,6 +23,11 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void LoadPrivoHouse()
+    {
+        SceneManager.LoadScene("PrivoHouse");
+    }
+
     public void UnPause()
     {
         pauseScreen.gameObject.SetActive(false);

@@ -48,6 +48,7 @@ public class Movement : MonoBehaviour
     private Animator myAnimator;
     public bool isWalking;
     public bool isRunning;
+    public bool isCrouching;
     #endregion
 
     //======================================================================================================
@@ -57,6 +58,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         isWalking = false;
+        //isCrouching = false;
         StartCoroutine("StopMovement", StopTimer);
         currentSpeed = speed;
         target.position = transform.position;
@@ -150,6 +152,13 @@ public class Movement : MonoBehaviour
                 if (Input.GetKey(KeyCode.X))
                 {
                     currentSpeed = crouchSpeed;
+                    isCrouching = true;
+                    myAnimator.SetBool("privoCrouch", isCrouching);
+                }
+                else
+                {
+                    isCrouching = false;
+                    myAnimator.SetBool("privoCrouch", isCrouching);
                 }
                 transform.Translate((Vector3.forward * Time.deltaTime * currentSpeed));
                 isWalking = true;
@@ -179,9 +188,13 @@ public class Movement : MonoBehaviour
                 else if (Input.GetKey(KeyCode.X))
                 {
                     currentSpeed = crouchSpeed;
+                    isCrouching = true;
+                    myAnimator.SetBool("privoCrouch", isCrouching);
                 }
                 else
                 {
+                    isCrouching = false;
+                    myAnimator.SetBool("privoCrouch", isCrouching);
                     currentSpeed = runningSpeed;
                 }
                 target.Translate(Vector3.forward * Time.deltaTime * currentSpeed);
@@ -198,10 +211,14 @@ public class Movement : MonoBehaviour
                 else if (Input.GetKey(KeyCode.X))
                 {
                     currentSpeed = crouchSpeed;
+                    isCrouching = true;
+                    myAnimator.SetBool("privoCrouch", isCrouching);
                 }
                 else
                 {
                     currentSpeed = runningSpeed;
+                    isCrouching = false;
+                    myAnimator.SetBool("privoCrouch", isCrouching);
                 }
                 target.Translate(Vector3.right * Time.deltaTime * currentSpeed);
 
@@ -218,10 +235,14 @@ public class Movement : MonoBehaviour
                 else if (Input.GetKey(KeyCode.X))
                 {
                     currentSpeed = crouchSpeed;
+                    isCrouching = true;
+                    myAnimator.SetBool("privoCrouch", isCrouching);
                 }
                 else
                 {
                     currentSpeed = runningSpeed;
+                    isCrouching = false;
+                    myAnimator.SetBool("privoCrouch", isCrouching);
                 }
                 target.Translate(Vector3.back * Time.deltaTime * currentSpeed);
             }
@@ -237,10 +258,14 @@ public class Movement : MonoBehaviour
                 else if (Input.GetKey(KeyCode.X))
                 {
                     currentSpeed = crouchSpeed;
+                    isCrouching = true;
+                    myAnimator.SetBool("privoCrouch", isCrouching);
                 }
                 else
                 {
                     currentSpeed = runningSpeed;
+                    isCrouching = false;
+                    myAnimator.SetBool("privoCrouch", isCrouching);
                 }
                 target.Translate(Vector3.left * Time.deltaTime * currentSpeed);
             }

@@ -12,6 +12,8 @@ public class Main_Dialog : MonoBehaviour
     [Tooltip("This is where you add the main canvas prefab")]
     public Canvas dialog;
 
+    public Image playerImage;
+    public Text playerName;
     [Tooltip("The text the npc will say when you talk to him again")]
     public Text endText;
     [Tooltip("How many buttons you have in the canvas (Max 3)")]
@@ -82,8 +84,12 @@ public class Main_Dialog : MonoBehaviour
 
                 if (!dialog.gameObject.activeSelf)
                 {
-                    //Debug.Log("IsActive");
+                    Debug.Log("IsActive");
                     dialog.gameObject.SetActive(true);
+                    playerImage.gameObject.SetActive(true);
+                    playerName.gameObject.SetActive(true);
+                    npcText[0].Person.gameObject.SetActive(true);
+                    npcText[0].name.gameObject.SetActive(true);
                 }
             }
             TextUpdater(children);
@@ -180,6 +186,8 @@ public class Main_Dialog : MonoBehaviour
             {
                 b.gameObject.SetActive(false);
             }
+            playerImage.gameObject.SetActive(false);
+            playerName.gameObject.SetActive(false);
             endText.gameObject.SetActive(true);
         }
         else
@@ -189,7 +197,11 @@ public class Main_Dialog : MonoBehaviour
 
             Debug.Log(mList[mIndex].name);
             mList[mIndex].SetActive(false);
-            for(int i =0; i < npcText.Capacity; ++i)
+            npcText[mIndex].Person.gameObject.SetActive(false);
+            npcText[mIndex].name.gameObject.SetActive(false);
+            npcText[mIndex + 1].Person.gameObject.SetActive(true);
+            npcText[mIndex + 1].name.gameObject.SetActive(true);
+            for (int i =0; i < npcText.Capacity; ++i)
             {
                 for (int j = 0; j < npcText[mIndex].canvas.Length; j++)
                 {
@@ -220,6 +232,10 @@ public class Main_Dialog : MonoBehaviour
 [System.Serializable]
 public class NpcText
 {
+    [Tooltip("Image of the person you are talking with")]
+    public Image Person;
+    [Tooltip("Name of the person you are talking with")]
+    public Text name;
     [Tooltip("Canvas to be turned on")]
     public Canvas[] canvas;
     [Tooltip("The text in each button")]

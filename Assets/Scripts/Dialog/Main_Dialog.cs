@@ -162,6 +162,7 @@ public class Main_Dialog : MonoBehaviour
     #region ButtonClicks
     public void ButtonClick(int buttonIndex)
     {
+        Debug.Log("ASDJAG");
         switch (buttonIndex)
         {
             case 0:
@@ -193,7 +194,7 @@ public class Main_Dialog : MonoBehaviour
         else
         {
             Debug.Log("Button");
-            mHolder = 0;
+            mHolder = 1;
 
             Debug.Log(mList[mIndex].name);
             mList[mIndex].SetActive(false);
@@ -210,9 +211,9 @@ public class Main_Dialog : MonoBehaviour
             }
             npcText[mIndex + 1].canvas[buttonIndex].gameObject.SetActive(true);
 
-
             Array.Clear(children, 0, children.Length);
             GetChildrenMult(buttonIndex);
+            children[0].gameObject.SetActive(true);
             ++mIndex;
             for (int i = 0; i < npcText[mIndex].mbuttons; ++i)
             {

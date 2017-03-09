@@ -1898,8 +1898,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d9b6b36baa7674782364a24ad9e9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dominantBehavior: 3
   unitClass: 0
+  dominantBehavior: 3
   currentState: 0
   currentAnimation: 0
   currentTarget: {fileID: 0}
@@ -1908,11 +1908,12 @@ MonoBehaviour:
   patrolIndex: 0
   patrolDistanceThreshold: 0
   isTargetSeen: 0
-  attackRange: 0
-  attackDamage: 0
+  attackRange: 5
+  attackDamage: 10
   Bullet: {fileID: 0}
   BulletTarget: {fileID: 0}
   bulletSpeed: 0
+  HasWaitTime: 0
 --- !u!114 &114784519570457594
 MonoBehaviour:
   m_ObjectHideFlags: 1

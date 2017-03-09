@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114719128256278300}
   - component: {fileID: 195800038396500186}
   - component: {fileID: 114928656482143234}
+  - component: {fileID: 136060801884892360}
   m_Layer: 0
   m_Name: shanker_01
   m_TagString: Untagged
@@ -2022,8 +2023,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d9b6b36baa7674782364a24ad9e9c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dominantBehavior: 3
   unitClass: 0
+  dominantBehavior: 3
   currentState: 0
   currentAnimation: 0
   currentTarget: {fileID: 0}
@@ -2032,11 +2033,12 @@ MonoBehaviour:
   patrolIndex: 0
   patrolDistanceThreshold: 0
   isTargetSeen: 0
-  attackRange: 0
-  attackDamage: 0
+  attackRange: 5
+  attackDamage: 10
   Bullet: {fileID: 0}
   BulletTarget: {fileID: 0}
   bulletSpeed: 0
+  HasWaitTime: 0
 --- !u!114 &114825188276723536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2079,6 +2081,19 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136060801884892360
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1065646858523654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137282551209929888
 SkinnedMeshRenderer:

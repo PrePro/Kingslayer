@@ -104,6 +104,7 @@ public class NPC : NPCBase
             case State.Attacking:
                 {
                     //Debug.Log("Attack Case");
+                    SetAnimation(AnimationState.Attacking);
                     agent.Stop();
                     // agent.destination = transform.position;
                 }

@@ -10,6 +10,10 @@ using UnityEngine.UI;
 
 public class CoolDownSystem : MonoBehaviour
 {
+    public GameObject thing;
+    public GameObject thing2;
+    public Avatar walkingamin;
+    public Avatar Swiningamin;
     [Header("Animation")]
     [Tooltip("...")]
     [SerializeField]
@@ -94,7 +98,7 @@ public class CoolDownSystem : MonoBehaviour
     [Tooltip("These are the players abilities and cooldowns")]
     public List<Skills> skills;
     private PlayerStats stats;
-
+    bool InMyState;
     #endregion
 
     //======================================================================================================
@@ -149,7 +153,27 @@ public class CoolDownSystem : MonoBehaviour
         {
             AoeSphere.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f); //Expand the Aoe Ability
         }
+
+        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_leftrightslash_sheeth"))
+        {
+           print("IDLE IS PLAYING");
+        }
+        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_leftrightslash_sheeth"))
+        {
+            // Avoid any reload.
+            InMyState = true;
+        }
+        else if (InMyState)
+        {
+            Debug.Log("IS DONE");
+            InMyState = false;
+            thing.SetActive(false);
+            thing2.SetActive(true);
+            myAnimator.avatar = walkingamin;
+        }
+
     }
+
 
     void FixedUpdate()
     {
@@ -170,9 +194,13 @@ public class CoolDownSystem : MonoBehaviour
             {
                 if (skills[2].currentcooldown >= skills[2].cooldown)
                 {
+                    thing.SetActive(true);
+                    thing2.SetActive(false);
+                    myAnimator.avatar = Swiningamin;
                     myAnimator.SetTrigger("privoSlash");
-                    //StartCoroutine("SwordSwing", 0.5f); // Dont need this with animation
+
                     skills[2].currentcooldown = 0;
+
                 }
             }
         }

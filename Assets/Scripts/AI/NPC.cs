@@ -21,26 +21,14 @@ public class NPC : NPCBase
     public bool isAttack;
     */
     // Update is called once per frame
-
-    [Header("Bullet")]
-    [Tooltip("Only need to be added if you")]
-    public GameObject Bullet;
-    public GameObject BulletTarget;
-    public float bulletSpeed;
-
-    public bool HasWaitTime = false;
-
-    void Update()
+    void FixedUpdate()
     {
-        //Debug.Log(debuffState);
-        if (debuffState == Debuff.None)
+        if(debuffState == Debuff.None)
         {
-            //Debug.Log("RunBehavior");
             RunBehavior();
         }
         else
         {
-            //Debug.Log("HandleDebuff");
             HandleDebuff();
         }
     }
@@ -52,25 +40,6 @@ public class NPC : NPCBase
     //======================================================================================================
     // Function to run specific behavior on state change 
     //======================================================================================================
-    IEnumerator RotateFind() // Turn enemy to find player
-    {
-        float totalTime = 0.0f;
-        while (totalTime < 5.0f)
-        {
-            //Debug.Log(totalTime);
-            totalTime += Time.deltaTime;
-            transform.Rotate(new Vector3(0, Time.deltaTime * 10, 0));
-        }
-        totalTime = 0.0f;
-        while (totalTime < 10.0f)
-        {
-            //Debug.Log(totalTime);
-            totalTime += Time.deltaTime;
-            transform.Rotate(new Vector3(0, Time.deltaTime * -10, 0));
-        }
-        yield return null;
-    }
-
     public override void SetState(State newState)
     {
         if (currentState == newState)
@@ -81,33 +50,17 @@ public class NPC : NPCBase
         {
             case State.Idle:
                 {
-                    if (unitClass == UnitClass.Archer)
-                    {
-                        Debug.Log("ARCHER");
-                       
+                    agent.Stop();
+                    //agent.destination = transform.position;
 
-                        }
-                    else
-                    {
-                        agent.Stop();
-                        //agent.destination = transform.position;
-
-                        SetAnimation(AnimationState.Idle);
-                        if (currentState == State.Searching)
-                        {
-                            StartCoroutine(RotateFind());
-                        }
-                    }
-
+                    SetAnimation(AnimationState.Idle);
                 }
                 break;
             case State.Attacking:
                 {
-                    //Debug.Log("Attack Case");
-                    //Added this for testing
-                    SetAnimation(AnimationState.Attacking);
+                    Debug.Log("Attack Case");
                     agent.Stop();
-                    // agent.destination = transform.position;
+                   // agent.destination = transform.position;
                 }
                 break;
             case State.Chasing:
@@ -156,50 +109,29 @@ public class NPC : NPCBase
         previousState = currentState;
         currentState = newState;
     }
-    IEnumerator AIWait(float time)
-    {
-        yield return new WaitForSeconds(time);
-        agent.destination = patrolRoute[patrolIndex].position;
-        agent.Resume();
 
-    }
     public IEnumerator RootAI(float time)
     {
         debuffState = Debuff.Rooted;
         yield return new WaitForSeconds(time);
 
-        if (debuffState == Debuff.Rooted)
+        if(debuffState == Debuff.Rooted)
         {
-            debuffState = Debuff.None;
+            debuffState = Debuff.Disabled;
         }
         yield return null;
     }
 
-    public void startStunAI(float time)
-    {
-        StartCoroutine(StunAI(time));
-    }
-
-    public void startRootAI(float time)
-    {
-        StartCoroutine(RootAI(time));
-    }
-
-
     public IEnumerator StunAI(float time)
     {
-        Debug.Log("STUN AI");
-        Debug.Log(time);
         debuffState = Debuff.Stunned;
         yield return new WaitForSeconds(time);
 
-        Debug.Log("Changed Stunned");
         if (debuffState == Debuff.Stunned)
         {
-            debuffState = Debuff.None;
+            debuffState = Debuff.Disabled;
         }
-        Debug.Log("Done");
-        //yield return null;
+        yield return null;
     }
 
     //======================================================================================================
@@ -211,11 +143,10 @@ public class NPC : NPCBase
         switch (debuffState)
         {
             case Debuff.Stunned:
-                agent.Stop();
                 break;
             case Debuff.Rooted:
-
-                if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange) && isTargetSeen && dominantBehavior != Behavior.Passive)
+                
+                if(GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange) && isTargetSeen && dominantBehavior != Behavior.Passive)
                 {
                     AttackTarget();
                 }
@@ -225,17 +156,12 @@ public class NPC : NPCBase
         }
     }
 
-
     public override void RunBehavior()
     {
         switch (currentState)
         {
             case State.Idle:
                 {
-                    if(dominantBehavior == Behavior.IdleDefencive)
-                    {
-                        Debug.Log("IdleDefencive");
-                    }
                 }
                 break;
             case State.Searching:
@@ -272,17 +198,17 @@ public class NPC : NPCBase
         {
             agent.destination = currentTarget.position;
         }
-
+        
         if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange, 1.0f))
         {
-            //Debug.Log("Within range");
+            Debug.Log("Within range");
             SetState(State.Attacking);
         }
     }
 
     public override void AttackTarget()
     {
-        if (!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
+        if(!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
         {
             isAttacking = false;
             isFacing = false;
@@ -292,7 +218,7 @@ public class NPC : NPCBase
             Vector3 newDir = Vector3.RotateTowards(transform.forward, target, agent.angularSpeed * Time.deltaTime, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDir);
         }
-        else if (isInRange)
+        else if(isInRange)
         {
             isFacing = true;
         }
@@ -318,40 +244,14 @@ public class NPC : NPCBase
         {
             isInRange = true;
         }
-        if (unitClass == UnitClass.Knight)
-        {
 
-
-            if (!isAttacking && isFacing && isInRange)
-            {
-                isAttacking = true;
-                SetAnimation(AnimationState.Attacking);
-            }
-        }
-        else
+        if (!isAttacking && isFacing && isInRange)
         {
-            if (!isAttacking && isFacing && isInRange)
-            {
-                Debug.Log("Archer Attack");
-                agent.Stop();
-                isAttacking = true;
-                //SetAnimation(AnimationState.Attacking);
-                Shoot();
-            }
+            isAttacking = true;
+            SetAnimation(AnimationState.Attacking);
         }
     }
-    private void Shoot()
-    {
-        Vector3 firePosition = BulletTarget.transform.position;
-        GameObject bullet = GameObject.Instantiate(Bullet, firePosition, BulletTarget.transform.rotation) as GameObject;
 
-        if (bullet != null)
-        {
-            Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
-            Vector3 force = transform.forward * bulletSpeed;
-            rigidbody.AddForce(force);
-        }
-    }
     //======================================================================================================
     // Iterate throught array of patrol paths 
     //======================================================================================================
@@ -364,30 +264,8 @@ public class NPC : NPCBase
             {
                 patrolIndex = 0;
             }
-
-            if(HasWaitTime == true)  // Enemy Stop here to search 
-            {
-                int ran = UnityEngine.Random.Range(0, 11);
-                if (ran >= 2) //80% change to stop and wait
-                {
-                    agent.Stop();
-                    //YASH if you want to run an animation for the partrol do it here
-                    int waitTime = UnityEngine.Random.Range(0, 11);
-                    StartCoroutine(AIWait(waitTime));
-                }
-                else
-                {
-                    agent.destination = patrolRoute[patrolIndex].position;
-                }
-
-            }
-            else
-            {
-                agent.destination = patrolRoute[patrolIndex].position;
-            }
-
+            agent.destination = patrolRoute[patrolIndex].position;
         }
-
     }
 
     public override void Search()
@@ -433,7 +311,7 @@ public class NPC : NPCBase
 
     public override void SetAnimation(AnimationState animState)
     {
-        if (currentAnimation == animState)
+        if(currentAnimation == animState)
         {
             return;
         }
@@ -466,18 +344,10 @@ public class NPC : NPCBase
     {
         Debug.Log("lost Target");
         isTargetSeen = false;
-        if(unitClass == UnitClass.Archer)
-        {
-            Debug.Log("CANT MOVE");
-            SetAnimation(AnimationState.Idle);
-            SetState(State.Idle);
-        }
         if (currentState == State.Chasing || currentState == State.Attacking)
         {
-            Debug.Log("Searching");
             SetState(State.Searching);
         }
-
     }
     #endregion
 

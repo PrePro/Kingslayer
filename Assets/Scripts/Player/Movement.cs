@@ -23,7 +23,6 @@ public class Movement : MonoBehaviour
     [Header("Player Speeds")]
     [Tooltip("Speeds")]
     public float speed;
-    public float crouchSpeed;
     public float runningSpeed;
     private float currentSpeed;
 
@@ -48,7 +47,6 @@ public class Movement : MonoBehaviour
     private Animator myAnimator;
     public bool isWalking;
     public bool isRunning;
-    public bool isCrouching;
     #endregion
 
     //======================================================================================================
@@ -58,7 +56,6 @@ public class Movement : MonoBehaviour
     void Start()
     {
         isWalking = false;
-        //isCrouching = false;
         StartCoroutine("StopMovement", StopTimer);
         currentSpeed = speed;
         target.position = transform.position;
@@ -120,6 +117,7 @@ public class Movement : MonoBehaviour
             }
         }
 
+
         //Cant walk in both directions
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
         {
@@ -149,17 +147,6 @@ public class Movement : MonoBehaviour
             //Player wants to move make them move 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
-                if (Input.GetKey(KeyCode.X))
-                {
-                    currentSpeed = crouchSpeed;
-                    isCrouching = true;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
-                }
-                else
-                {
-                    isCrouching = false;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
-                }
                 transform.Translate((Vector3.forward * Time.deltaTime * currentSpeed));
                 isWalking = true;
                 myAnimator.SetBool("privoWalk", isWalking);
@@ -175,7 +162,6 @@ public class Movement : MonoBehaviour
         target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y, 0);
 
         // Moves the targets 
-        Debug.Log(currentSpeed);
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {
             if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
@@ -185,20 +171,12 @@ public class Movement : MonoBehaviour
                 {
                     currentSpeed = speed;
                 }
-                else if (Input.GetKey(KeyCode.X))
-                {
-                    currentSpeed = crouchSpeed;
-                    isCrouching = true;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
-                }
                 else
                 {
-                    isCrouching = false;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
                     currentSpeed = runningSpeed;
                 }
-                target.Translate(Vector3.forward * Time.deltaTime * currentSpeed);
 
+                target.Translate(Vector3.forward * Time.deltaTime * currentSpeed);
             }
 
             // Moves the targets 
@@ -208,17 +186,9 @@ public class Movement : MonoBehaviour
                 {
                     currentSpeed = speed;
                 }
-                else if (Input.GetKey(KeyCode.X))
-                {
-                    currentSpeed = crouchSpeed;
-                    isCrouching = true;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
-                }
                 else
                 {
                     currentSpeed = runningSpeed;
-                    isCrouching = false;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
                 }
                 target.Translate(Vector3.right * Time.deltaTime * currentSpeed);
 
@@ -232,17 +202,9 @@ public class Movement : MonoBehaviour
                 {
                     currentSpeed = speed;
                 }
-                else if (Input.GetKey(KeyCode.X))
-                {
-                    currentSpeed = crouchSpeed;
-                    isCrouching = true;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
-                }
                 else
                 {
                     currentSpeed = runningSpeed;
-                    isCrouching = false;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
                 }
                 target.Translate(Vector3.back * Time.deltaTime * currentSpeed);
             }
@@ -255,17 +217,9 @@ public class Movement : MonoBehaviour
                 {
                     currentSpeed = speed;
                 }
-                else if (Input.GetKey(KeyCode.X))
-                {
-                    currentSpeed = crouchSpeed;
-                    isCrouching = true;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
-                }
                 else
                 {
                     currentSpeed = runningSpeed;
-                    isCrouching = false;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
                 }
                 target.Translate(Vector3.left * Time.deltaTime * currentSpeed);
             }

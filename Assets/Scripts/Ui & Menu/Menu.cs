@@ -45,6 +45,10 @@ public class Menu : MonoBehaviour
 
         Application.Quit();
     }
+    public void LoadMainMenuNew()
+    {
+        SceneManager.LoadScene("Forge");
+    }
 
     
     public void UnPause()

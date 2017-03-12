@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NextLevel : MonoBehaviour {
-
-	void Start ()
+public class NextLevel : MonoBehaviour
+{
+ 
+	void Start()
+	
     {
-		
-	}
+
+           }
 
     void OnTriggerEnter()
     {
         SceneManager.LoadScene("FullCity");
     }
     
-    void Update ()
-    {
-	
-	}
+    void Update()
+
+{
 
 }
+ 
+ }

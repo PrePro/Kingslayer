@@ -3,26 +3,20 @@ using System.Collections;
 
 public class EnemyDamage : MonoBehaviour
 {
-    private bool canAttack = true;
+    private bool mRunning = false;
+
+   
     public int damage;
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "Player")
+                //Debug.Log("Player IN ENEMEY TIGGER");
+        
+         if (col.tag == "Player")
         {
-            Debug.Log(canAttack);
-            if (canAttack == true)
-            { 
-                col.GetComponent<PlayerStats>().ReceiveDamage(damage);
-                StartCoroutine("damageTime", 1f);
-            }
+                        if (mRunning) return;
+            col.GetComponent<PlayerStats>().ReceiveDamage(damage);
+          
         }
-    }
-
-    IEnumerator damageTime(float waitTime)
-    {
-        canAttack = false;
-        yield return new WaitForSeconds(waitTime);
-        canAttack = true;
     }
 }

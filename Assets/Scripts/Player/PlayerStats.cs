@@ -5,23 +5,13 @@ public class PlayerStats : UnitStats
 {
     public int moralityAoe; // 0 is bad / 100 is good
     public int moralityPorj;
- 
-    public Vector3 startPosition;
-    
-     void Update()
+
+    void Update()
     {
         if (Input.GetKey(KeyCode.U))
         {
             currentHealth--;
         }
-        
-               if (currentHealth <= 0)
-                    {
-            Debug.Log("ASD");
-            SetHealth();
-            transform.position = startPosition;
-                        //SceneManager.LoadScene("MainMenu");
-                    }
     }
 
     public override void ReceiveDamage(int damage)
@@ -37,19 +27,14 @@ public class PlayerStats : UnitStats
             currentHealth = maxHealth;
         }
     }
- 
-    public void SetHealth()
+
+    public float GetHealth()
     {
-        currentHealth = maxHealth;
+        return currentHealth;
     }
 
-     public float GetHealth()
-{
-    return currentHealth;
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
 }
-
-public float GetMaxHealth()
-{
-    return maxHealth;
-}
- }

@@ -7,23 +7,21 @@ public class PlayerUi : MonoBehaviour
 {
     public Image HealthBar;
     public PlayerStats player;
- 
-    void Start()
+
+    void Update()
     {
-        player.startPosition = player.transform.position;
+        HandleHealthBar();
+        if (player.GetHealth() <= 0)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
-     void Update()
-{
-    HandleHealthBar();
-    
-}
+    void HandleHealthBar()
+    {
+        //float healthBarMap = player.currentHealth / Player.MaxHealth;
 
-void HandleHealthBar()
-{
-    //float healthBarMap = player.currentHealth / Player.MaxHealth;
-
-    float healthBarMap = player.GetHealth() / player.GetMaxHealth();
-    HealthBar.fillAmount = healthBarMap;
+        float healthBarMap = player.GetHealth() / player.GetMaxHealth();
+        HealthBar.fillAmount = healthBarMap;
+    }
 }
- }

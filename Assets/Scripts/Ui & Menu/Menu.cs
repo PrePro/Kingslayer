@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public Canvas pauseScreen;
+
     public void LoadCity()
     {
-        SceneManager.LoadScene("City");
+        SceneManager.LoadScene("FullCity");
     }
     public void LoadVillage()
     {
-        SceneManager.LoadScene("Village");
+        SceneManager.LoadScene("Village1.1");
     }
     public void LoadTestWorld()
     {
@@ -22,7 +23,7 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
- 
+
     public void LoadPrivoHouse()
     {
         SceneManager.LoadScene("PrivoHouse");
@@ -38,13 +39,18 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("CryptGrayblock");
     }
 
+    public void LoadQuit()
+    {
+        Debug.Log("Clicked");
 
+        Application.Quit();
+    }
 
+    
+    public void UnPause()
+    {
+        pauseScreen.gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
 
-     public void UnPause()
-{
-    pauseScreen.gameObject.SetActive(false);
-    Time.timeScale = 1;
 }
- 
- }

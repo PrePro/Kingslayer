@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraSwitchMenu : MonoBehaviour {
-    public Camera cam1;
-    public Camera cam2;
+    public GameObject cam1;
+    public GameObject cam2;
 
 	// Use this for initialization
 	void Awake () {
-        cam1.enabled = true;
-        cam2.enabled = false;
+        
+        //cam2.gameObject.SetActive(false);
         //cam1.gameObject.SetActive(true);
-	}
+        cam1.gameObject.SetActive(true);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -19,9 +20,19 @@ public class CameraSwitchMenu : MonoBehaviour {
 		
 	}
 
-    void switchCamera()
+    public void enableCamera1()
     {
-        cam1.enabled = !cam1.enabled;
-        cam2.enabled = !cam2.enabled;
+
+        Debug.Log("enableCam1");
+        cam1.SetActive(true);
+        cam2.SetActive(false);
+    }
+
+    public void enableCamera2()
+    {
+
+        Debug.Log("enableCam2");
+        cam1.SetActive(false);
+        cam2.SetActive(true);
     }
 }

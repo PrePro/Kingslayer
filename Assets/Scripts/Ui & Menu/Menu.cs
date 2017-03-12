@@ -9,11 +9,11 @@ public class Menu : MonoBehaviour
 
     public void LoadCity()
     {
-        SceneManager.LoadScene("City");
+        SceneManager.LoadScene("FullCity");
     }
     public void LoadVillage()
     {
-        SceneManager.LoadScene("Village");
+        SceneManager.LoadScene("Village1.1");
     }
     public void LoadTestWorld()
     {
@@ -41,6 +41,8 @@ public class Menu : MonoBehaviour
 
     public void LoadQuit()
     {
+        Debug.Log("Clicked");
+
         Application.Quit();
     }
 

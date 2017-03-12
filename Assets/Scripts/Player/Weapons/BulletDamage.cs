@@ -39,7 +39,9 @@ public class BulletDamage : MonoBehaviour
                         {
             Debug.Log("Damage");
             col.GetComponent<NPStats>().ReceiveDamage(damage);
-                        }
+
+            }
+
       
     }
 }

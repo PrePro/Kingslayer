@@ -1,5 +1,4 @@
-﻿
-//======================================================================================================
+﻿//======================================================================================================
 // NamingConvention.cs
 // Description: Basic naming conventions programmers should follow during the development process.
 // Should be revised througout development.

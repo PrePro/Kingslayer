@@ -11,6 +11,8 @@ public class AoeAbility : MonoBehaviour
     private NPC npc;
     private bool running;
 
+
+
     void Update()
     {
         cdsystem = GameObject.Find("Player").GetComponent<CoolDownSystem>();

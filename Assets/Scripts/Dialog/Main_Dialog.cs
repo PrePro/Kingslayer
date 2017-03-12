@@ -126,6 +126,7 @@ public class Main_Dialog : MonoBehaviour
                 }
                 text[mHolder].gameObject.SetActive(true);
                 ++mHolder;
+
             }
             else
             {

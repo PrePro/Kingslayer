@@ -174,6 +174,8 @@ public class Movement : MonoBehaviour
         target.transform.rotation = gameCamera.transform.rotation;
         target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y, 0);
 
+
+
         // Moves the targets 
         Debug.Log(currentSpeed);
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)

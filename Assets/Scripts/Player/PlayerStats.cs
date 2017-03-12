@@ -7,7 +7,6 @@ public class PlayerStats : UnitStats
     public int moralityPorj;
  
     public Vector3 startPosition;
-    
      void Update()
     {
         if (Input.GetKey(KeyCode.U))

@@ -23,6 +23,7 @@ public class PlayerDamage : MonoBehaviour
                
         }
     }
+
  
     void OnTriggerExit(Collider col)
     {

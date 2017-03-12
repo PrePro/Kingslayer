@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
- 
+
 public class Simple_Dialog : MonoBehaviour
 
 {
@@ -17,24 +17,24 @@ public class Simple_Dialog : MonoBehaviour
         {
             Debug.Log("PLAYER ENETER");
             Collid = true;
-                        if (Input.GetKeyDown(KeyCode.E))
-                                if (dialog.isActiveAndEnabled == false)
-                                {
-                dialog.gameObject.SetActive(true);
-                                }
-                        if (Input.GetKeyDown(KeyCode.Q))
-                            {
+            if (Input.GetKeyDown(KeyCode.E))
+                if (dialog.isActiveAndEnabled == false)
+                {
+                    dialog.gameObject.SetActive(true);
+                }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
                 Debug.Log("Q pressed");
-                                if (holder - 1 == 1)
-                                    {
-                                        return;
-                                    }
+                if (holder - 1 == 1)
+                {
+                    return;
+                }
                 text[holder - 1].gameObject.SetActive(false);
                 holder = 0;
                 dialog.gameObject.SetActive(false);
-                            }
-                    }
             }
+        }
+    }
 
     void Update()
     {
@@ -62,22 +62,23 @@ public class Simple_Dialog : MonoBehaviour
                 text[holder].gameObject.SetActive(true);
                 ++holder;
             }
-             dialog.gameObject.SetActive(true);
-         }
-     }
+            dialog.gameObject.SetActive(true);
+        }
+    }
+
 
     void OnTriggerExit(Collider col)
 
     {
         if (col.gameObject.tag == "Player")
-    {
-                    foreach (Text a in text)
-                        {
-            a.gameObject.SetActive(false);
-                        }
-        dialog.gameObject.SetActive(false);
-        Collid = false;
-        holder = 0;
+        {
+            foreach (Text a in text)
+            {
+                a.gameObject.SetActive(false);
+            }
+            dialog.gameObject.SetActive(false);
+            Collid = false;
+            holder = 0;
+        }
     }
 }
-} 

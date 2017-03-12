@@ -226,6 +226,7 @@ public class NPC : NPCBase
     }
 
 
+
     public override void RunBehavior()
     {
         switch (currentState)

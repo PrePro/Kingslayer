@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public Canvas pauseScreen;
+
     public void LoadCity()
     {
         SceneManager.LoadScene("City");
@@ -38,9 +39,12 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("CryptGrayblock");
     }
 
+    public void LoadQuit()
+    {
+        Application.Quit();
+    }
 
-
-
+    
     public void UnPause()
     {
         pauseScreen.gameObject.SetActive(false);

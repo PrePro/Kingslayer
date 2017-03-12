@@ -22,11 +22,29 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
-
-    public void UnPause()
+ 
+    public void LoadPrivoHouse()
     {
-        pauseScreen.gameObject.SetActive(false);
-        Time.timeScale = 1;
+        SceneManager.LoadScene("PrivoHouse");
     }
 
+    public void LoadBarracks()
+    {
+        SceneManager.LoadScene("Barracks");
+    }
+
+    public void LoadCrypt()
+    {
+        SceneManager.LoadScene("CryptGrayblock");
+    }
+
+
+
+
+     public void UnPause()
+{
+    pauseScreen.gameObject.SetActive(false);
+    Time.timeScale = 1;
 }
+ 
+ }

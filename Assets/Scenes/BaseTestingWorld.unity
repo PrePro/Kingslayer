@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -420,6 +420,87 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &55894870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 55894874}
+  - component: {fileID: 55894873}
+  - component: {fileID: 55894872}
+  - component: {fileID: 55894871}
+  m_Layer: 10
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &55894871
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 55894870}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 76d91b73c9a347241b1dd884bb189705, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &55894872
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 55894870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &55894873
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 55894870}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &55894874
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 55894870}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.962, y: 0.67, z: 8.376}
+  m_LocalScale: {x: 3.2267501, y: 1.3742193, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &141344875
 GameObject:
@@ -1182,7 +1263,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 29.12
+      value: 0.92
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1190,7 +1271,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 16.98
+      value: 12.37
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1223,6 +1304,18 @@ Prefab:
     - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_Name
       value: EnemyMockup (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 426912, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 426912, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 426912, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.53
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
@@ -3363,6 +3456,18 @@ Prefab:
       propertyPath: crouchSpeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 13674300, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13674300, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13674300, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
+      propertyPath: m_Center.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 65862376473253806, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
     - {fileID: 6561694, guid: ba95798575ac0fd4a8d1e0568b2ee07e, type: 2}
@@ -5251,45 +5356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2902d936d72f2294ea54b4dd4afceb63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog: {fileID: 2055331134}
-  playerImage: {fileID: 1406004196}
-  playerName: {fileID: 1770665580}
-  endText: {fileID: 2101312406}
-  mBottons:
-  - {fileID: 839982470}
-  - {fileID: 631906753}
-  - {fileID: 2133710212}
-  npcText:
-  - Person: {fileID: 1087342343}
-    name: {fileID: 874311650}
-    canvas:
-    - {fileID: 1811356480}
-    buttonText:
-    - Sure!
-    - go away you fucking loser
-    - apples
-    mbuttons: 3
-    morality: 000000000000000000000000
-  - Person: {fileID: 1980353975}
-    name: {fileID: 1231976986}
-    canvas:
-    - {fileID: 416142871}
-    - {fileID: 1434747858}
-    - {fileID: 1203853974}
-    buttonText:
-    - One
-    - Two
-    mbuttons: 2
-    morality: 0500000005000000
-  - Person: {fileID: 699212380}
-    name: {fileID: 568793363}
-    canvas:
-    - {fileID: 1535308998}
-    - {fileID: 2070713842}
-    buttonText:
-    - Fuck you
-    mbuttons: 1
-    morality: 05000000
 --- !u!1001 &1766303652
 Prefab:
   m_ObjectHideFlags: 0

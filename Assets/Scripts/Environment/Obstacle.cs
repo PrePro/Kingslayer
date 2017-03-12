@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Obstacle : MonoBehaviour
 {
+
     bool isBlocking;
     Renderer meshRenderer;
     Color[] currentColors;

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Perception : MonoBehaviour
 {
+
     NPCBase npc;
     [SerializeField]
     LayerMask targetLayer;

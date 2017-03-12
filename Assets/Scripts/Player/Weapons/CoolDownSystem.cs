@@ -10,6 +10,10 @@ using UnityEngine.UI;
 
 public class CoolDownSystem : MonoBehaviour
 {
+    public GameObject thing;
+    public GameObject thing2;
+    public Avatar walkingamin;
+    public Avatar Swiningamin;
     [Header("Animation")]
     [Tooltip("...")]
     [SerializeField]
@@ -36,6 +40,13 @@ public class CoolDownSystem : MonoBehaviour
         Steal,
         Nothin
     }
+    public enum ProjectileMorality
+    {
+        Stun,
+        Debuff,
+        Blast,
+        Nothin
+    }
     //======================================================================================================
     // Variables
     //======================================================================================================
@@ -60,10 +71,12 @@ public class CoolDownSystem : MonoBehaviour
     [Header("Sword & Projectile")]
     [Tooltip("Variables for bullets and swords")]
     public float bulletSpeed;
-    public float swingSpeed;
-    public float swingTime;
+    //public float swingSpeed;
+    //public float swingTime;
 
-    public bool swing = false;
+
+    //public bool swing = false;
+
     private bool rightIsPressed = false;
     private bool leftIsPressed = false;
 
@@ -78,14 +91,16 @@ public class CoolDownSystem : MonoBehaviour
     public DashState currentDashState;
     private ProjectState currentState;
     public AoeMorality AoeState;
+    public ProjectileMorality currentProjState;
 
     [SerializeField]
     private bool canSmallDash;
+    public bool canAttack = true;
     [Header("Player Abilities")]
     [Tooltip("These are the players abilities and cooldowns")]
     public List<Skills> skills;
     private PlayerStats stats;
-
+    bool InMyState;
     #endregion
 
     //======================================================================================================
@@ -131,16 +146,40 @@ public class CoolDownSystem : MonoBehaviour
             }
         }
 
-        if (swing)
+        //if (swing)
+        //{
+        //    StartCoroutine("SwordSwingmove", swingTime);
+        //}
+
+        if (AoeExpand)
+
         {
-            StartCoroutine("SwordSwingmove", swingTime);
+            AoeSphere.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f); //Expand the Aoe Ability
+
         }
 
-        if(AoeExpand)
+        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_leftrightslash_sheeth"))
+
         {
-            AoeSphere.transform.localScale += new Vector3 (0.5f, 0.5f, 0.5f); //Expand the Aoe Ability
+            print("IDLE IS PLAYING");
+
         }
+        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_leftrightslash_sheeth"))
+        {
+            // Avoid any reload.
+            InMyState = true;
+        }
+        else if (InMyState)
+        {
+            Debug.Log("IS DONE");
+            InMyState = false;
+            thing.SetActive(false);
+            thing2.SetActive(true);
+            myAnimator.avatar = walkingamin;
+        }
+
     }
+
 
     void FixedUpdate()
     {
@@ -155,25 +194,52 @@ public class CoolDownSystem : MonoBehaviour
                 }
             }
         }
+        if (canAttack == true)
 
-        if (Input.GetButton("Fire1") && currentDashState == DashState.NotDashing) // Sword [2]
         {
-            if (skills[2].currentcooldown >= skills[2].cooldown)
+            if (Input.GetButton("Fire1") && currentDashState == DashState.NotDashing) // Sword [2]
+
             {
-                myAnimator.SetTrigger("privoSlash");
-                //StartCoroutine("SwordSwing", 0.5f); // Dont need this with animation
-                skills[2].currentcooldown = 0;
-            }
-            if (currentState == ProjectState.CanShoot)
-            {
-                if (skills[1].currentcooldown >= skills[1].cooldown) // Projectile [1]
+                if (skills[2].currentcooldown >= skills[2].cooldown)
                 {
-                    Shoot();
-                    skills[1].currentcooldown = 0;
-                    currentState = ProjectState.IsDone;
+                    thing.SetActive(true);
+                    thing2.SetActive(false);
+                    myAnimator.avatar = Swiningamin;
+                    myAnimator.SetTrigger("privoSlash");
+
+                    skills[2].currentcooldown = 0;
+
                 }
+
             }
         }
+        if (Input.GetButton("Fire1") && currentState == ProjectState.CanShoot)
+        {
+            if (skills[1].currentcooldown >= skills[1].cooldown) // Projectile [1]
+
+            {
+                if (stats.moralityPorj == 0)  //Stun
+                {
+                    currentProjState = ProjectileMorality.Stun;
+                }
+
+                if (stats.moralityPorj == 50) //Debuff
+
+                {
+                    currentProjState = ProjectileMorality.Debuff;
+
+                }
+
+                if (stats.moralityPorj == 100) //Damage & Damage
+                {
+                    currentProjState = ProjectileMorality.Blast;
+                }
+                Shoot();
+                skills[1].currentcooldown = 0;
+                currentState = ProjectState.IsDone;
+            }
+        }
+
         #region Dash Left/Right
         if (canSmallDash)
         {
@@ -214,33 +280,40 @@ public class CoolDownSystem : MonoBehaviour
             }
         }
         #endregion
+        if (canAttack == true)
 
-        if (skills[5].currentcooldown >= skills[5].cooldown) //Push Back AOE
+
         {
-            if (Input.GetKey(KeyCode.Alpha3)) // AOE [5]
+            if (skills[5].currentcooldown >= skills[5].cooldown) //Push Back AOE
+
             {
-                AoeState = AoeMorality.Nothin;
-                if (stats.moralityAoe == 0) //Stun
+                if (Input.GetKey(KeyCode.Alpha3)) // AOE [5]
+
                 {
-                    // Added stun enemy here
-                    AoeSphere.SetActive(true);
-                    AoeState = AoeMorality.Stun;
-                    StartCoroutine("AoeTime", 0.5f);
-                    skills[5].currentcooldown = 0;
-                }
-                else if(stats.moralityAoe == 50) //Knock Back + Damage
-                {
-                    AoeSphere.SetActive(true);
-                    AoeState = AoeMorality.KnockBack;
-                    StartCoroutine("AoeTime", 0.5f);
-                    skills[5].currentcooldown = 0;
-                }
-                if(stats .moralityAoe == 100) // Heal Steal
-                {
-                    AoeSphere.SetActive(true);
-                    AoeState = AoeMorality.Steal;
-                    StartCoroutine("AoeTime", 0.5f);
-                    skills[5].currentcooldown = 0;
+                    AoeState = AoeMorality.Nothin;
+                    if (stats.moralityAoe == 0) //Stun
+                    {
+                        // Added stun enemy here
+                        AoeSphere.SetActive(true);
+                        AoeState = AoeMorality.Stun;
+                        StartCoroutine("AoeTime", 0.5f);
+                        skills[5].currentcooldown = 0;
+                    }
+                    else if (stats.moralityAoe == 50) //Knock Back + Damage
+                    {
+                        AoeSphere.SetActive(true);
+                        AoeState = AoeMorality.KnockBack;
+                        StartCoroutine("AoeTime", 0.5f);
+                        skills[5].currentcooldown = 0;
+                    }
+                    if (stats.moralityAoe == 100) // Heal Steal
+                    {
+                        AoeSphere.SetActive(true);
+                        AoeState = AoeMorality.Steal;
+                        StartCoroutine("AoeTime", 0.5f);
+                        skills[5].currentcooldown = 0;
+                    }
+
                 }
             }
         }
@@ -292,19 +365,20 @@ public class CoolDownSystem : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         currentDashState = DashState.NotDashing;
     }
-    IEnumerator SwordSwing(float waitTime)
-    {
-        swing = true;
-        yield return new WaitForSeconds(waitTime);
-        swing = false;
-    }
-    IEnumerator SwordSwingmove(float waitTime)
-    {
-        //Debug.Log("Swing");
-        Sword.transform.Rotate(Vector3.back * swingSpeed);
-        yield return new WaitForSeconds(waitTime);
-        Sword.transform.Rotate(Vector3.forward * swingSpeed);
-    }
+    //IEnumerator SwordSwing(float waitTime)
+    //{
+    //    swing = true;
+    //    yield return new WaitForSeconds(waitTime);
+    //    swing = false;
+    //}
+    //IEnumerator SwordSwingmove(float waitTime)
+    //{
+    //    //Debug.Log("Swing");
+    //    Sword.transform.Rotate(Vector3.back * swingSpeed);
+    //    yield return new WaitForSeconds(waitTime);
+    //    Sword.transform.Rotate(Vector3.forward * swingSpeed);
+    //}
+
     #endregion
 
     //======================================================================================================
@@ -323,7 +397,8 @@ public class CoolDownSystem : MonoBehaviour
             rigidbody.AddForce(force);
         }
     }
-   
+
+
     #endregion
 
 }

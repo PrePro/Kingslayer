@@ -9,6 +9,7 @@ using System;
 
 public class NPStats : UnitStats
 {
+
     void Update()
     {
         if(currentHealth <= 0)

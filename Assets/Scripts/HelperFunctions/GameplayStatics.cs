@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public static class GameplayStatics
 {
     public static bool IsFacing(Transform transform, Vector3 other, float accuracy = 0.95f)

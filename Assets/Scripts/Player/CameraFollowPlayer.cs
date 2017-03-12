@@ -6,6 +6,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class CameraFollowPlayer : MonoBehaviour
 {
     public GameObject player;

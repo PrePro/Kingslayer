@@ -56,7 +56,7 @@ public abstract class NPCBase : MonoBehaviour
 
     protected enum Behavior
     {
-        Passive,  //Passive walk around cant be killed 
+        Passive,
         Aggressive,
         IdleDefencive,
         PatrolDefencive
@@ -72,14 +72,14 @@ public abstract class NPCBase : MonoBehaviour
     #region MemberVariables
     [Header("AI States")]
     [SerializeField]
-    protected UnitClass unitClass;
-    [SerializeField]
     [Tooltip("The basic fallback behavior of the NPC: \nPassive units do not attack\nAggressive units search for enemies\nIdleDefencives units do not move but attack enemies in their radius\nPatrolDefencive units follow a patrol path until an enemy is found")]
     protected Behavior dominantBehavior;
-    //[SerializeField]
-    //[Tooltip("Set the faction of the NPC to determine whether the unit is allied, neutral, or and enemy")]
-    //protected Faction faction;
+    [SerializeField]
+    [Tooltip("Set the faction of the NPC to determine whether the unit is allied, neutral, or and enemy")]
+    protected Faction faction;
     protected UnityEngine.AI.NavMeshAgent agent;
+    [SerializeField]
+    protected UnitClass unitClass;
 
     //Debugging
     [SerializeField]
@@ -113,7 +113,7 @@ public abstract class NPCBase : MonoBehaviour
     protected int attackDamage;
 
     protected Animator animator;
-    protected Vector3 startPosition;
+
     #endregion
     //======================================================================================================
     // Properties
@@ -133,7 +133,6 @@ public abstract class NPCBase : MonoBehaviour
     #region GameObject Functions
     void Start()
     {
-        startPosition = transform.position;
         animator = GetComponent<Animator>();
         isTargetSeen = false;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();

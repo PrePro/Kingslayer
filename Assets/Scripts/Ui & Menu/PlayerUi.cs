@@ -11,10 +11,10 @@ public class PlayerUi : MonoBehaviour
     void Update()
     {
         HandleHealthBar();
-        if (player.GetHealth() <= 0)
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
+        //if (player.GetHealth() <= 0)
+        //{
+        //    SceneManager.LoadScene("MainMenu");
+        //}
     }
 
     void HandleHealthBar()

@@ -10,10 +10,10 @@ using UnityEngine.UI;
 
 public class CoolDownSystem : MonoBehaviour
 {
-    public GameObject thing;
-    public GameObject thing2;
-    public Avatar walkingamin;
-    public Avatar Swiningamin;
+    public GameObject swordInHand;
+    public GameObject swordInSheeth;
+    public Avatar AswordInHand;
+    public Avatar AswordInSheeth;
     [Header("Animation")]
     [Tooltip("...")]
     [SerializeField]
@@ -150,7 +150,23 @@ public class CoolDownSystem : MonoBehaviour
         //{
         //    StartCoroutine("SwordSwingmove", swingTime);
         //}
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (swordInHand.activeSelf)
+            {
+                swordInSheeth.SetActive(true);
+                myAnimator.avatar = AswordInSheeth;
+                myAnimator.SetTrigger("privoUnsheeth");
+                swordInHand.SetActive(false);
 
+            }
+            else
+            {
+                swordInHand.SetActive(true);
+                myAnimator.avatar = AswordInHand;
+                swordInSheeth.SetActive(false);
+            }
+        }
         if (AoeExpand)
 
         {
@@ -158,25 +174,25 @@ public class CoolDownSystem : MonoBehaviour
 
         }
 
-        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_leftrightslash_sheeth"))
+        //if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_leftrightslash_sheeth"))
 
-        {
-            print("IDLE IS PLAYING");
+        //{
+        //    print("IDLE IS PLAYING");
 
-        }
-        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_leftrightslash_sheeth"))
-        {
-            // Avoid any reload.
-            InMyState = true;
-        }
-        else if (InMyState)
-        {
-            Debug.Log("IS DONE");
-            InMyState = false;
-            thing.SetActive(false);
-            thing2.SetActive(true);
-            myAnimator.avatar = walkingamin;
-        }
+        //}
+        //if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_leftrightslash_sheeth"))
+        //{
+        //    // Avoid any reload.
+        //    InMyState = true;
+        //}
+        //else if (InMyState)
+        //{
+        //    Debug.Log("IS DONE");
+        //    InMyState = false;
+        //    swordInHand.SetActive(false);
+        //    swordInSheeth.SetActive(true);
+        //    myAnimator.avatar = walkingamin;
+        //}
 
     }
 
@@ -202,10 +218,18 @@ public class CoolDownSystem : MonoBehaviour
             {
                 if (skills[2].currentcooldown >= skills[2].cooldown)
                 {
-                    thing.SetActive(true);
-                    thing2.SetActive(false);
-                    myAnimator.avatar = Swiningamin;
-                    myAnimator.SetTrigger("privoSlash");
+                    //swordInHand.SetActive(true);
+                    //swordInSheeth.SetActive(false);
+                    //myAnimator.avatar = Swiningamin;
+                    //if(swordInHand.activeSelf)
+                    //{
+                    //    //Than you can swing
+                    //}
+                    if(swordInHand.activeSelf)
+                    {
+                        Debug.Log("SWING");
+                        myAnimator.SetTrigger("privoSlash");
+                    }
 
                     skills[2].currentcooldown = 0;
 

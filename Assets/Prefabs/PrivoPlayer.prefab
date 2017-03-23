@@ -376,6 +376,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4884266644058034}
   - component: {fileID: 137301037996202302}
+  - component: {fileID: 65872200712947402}
+  - component: {fileID: 114360748991227158}
   m_Layer: 0
   m_Name: Privo_Rig_SwordInHand:Sword1
   m_TagString: Untagged
@@ -9579,6 +9581,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65872200712947402
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087671462452252}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8604523, y: 0.27049416, z: 3.7987516}
+  m_Center: {x: -0.0000007869676, y: -0.009119159, z: 1.0534751}
 --- !u!81 &81617542569122512
 AudioListener:
   m_ObjectHideFlags: 1
@@ -9684,6 +9698,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1050639950477372}
   rotationDegree: 90
+--- !u!114 &114360748991227158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087671462452252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d814415628dcb7243a8c99c651ec7fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  cdsystem: {fileID: 114635787318804704}
 --- !u!114 &114563876557230926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9719,10 +9746,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8010e9007aad9c74886a256e5c2c2d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thing: {fileID: 1245731611018236}
-  thing2: {fileID: 1476016896218504}
-  walkingamin: {fileID: 9000000, guid: 028766c29e04f2d40a9d8fca3f7146c7, type: 3}
-  Swiningamin: {fileID: 9000000, guid: f568c745510c86f4693d27fef451ab22, type: 3}
+  swordInHand: {fileID: 1245731611018236}
+  swordInSheeth: {fileID: 1476016896218504}
+  AswordInHand: {fileID: 9000000, guid: f568c745510c86f4693d27fef451ab22, type: 3}
+  AswordInSheeth: {fileID: 9000000, guid: 028766c29e04f2d40a9d8fca3f7146c7, type: 3}
   myAnimator: {fileID: 95551551989838608}
   Sword: {fileID: 1308371007552164}
   Bullet: {fileID: 185558, guid: eab69c0bdda16e0468827d235a819d59, type: 2}

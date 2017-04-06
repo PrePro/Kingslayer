@@ -18,6 +18,8 @@ public class CoolDownSystem : MonoBehaviour
     [Tooltip("...")]
     [SerializeField]
     private Animator myAnimator;
+    public bool unSheeth;
+    public bool reSheeth;
 
     public enum DashState
     {
@@ -154,16 +156,22 @@ public class CoolDownSystem : MonoBehaviour
         {
             if (swordInHand.activeSelf)
             {
-                swordInSheeth.SetActive(true);
                 myAnimator.avatar = AswordInSheeth;
-                myAnimator.SetTrigger("privoUnsheeth");
+                reSheeth = true;
+                unSheeth = false;
+                myAnimator.SetBool("privoResheeth", reSheeth);
+                myAnimator.SetBool("privoUnsheeth", unSheeth);
+                swordInSheeth.SetActive(true);
                 swordInHand.SetActive(false);
-
             }
             else
             {
-                swordInHand.SetActive(true);
                 myAnimator.avatar = AswordInHand;
+                unSheeth = true;
+                reSheeth = false;
+                myAnimator.SetBool("privoUnsheeth", unSheeth);
+                myAnimator.SetBool("privoResheeth", reSheeth);
+                swordInHand.SetActive(true);
                 swordInSheeth.SetActive(false);
             }
         }

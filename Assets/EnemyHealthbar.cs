@@ -7,6 +7,7 @@ public class EnemyHealthbar : MonoBehaviour {
     Camera m_Camera;
 	// Use this for initialization
 	void Start () {
+
         m_Camera = Camera.main;
 		
 	}

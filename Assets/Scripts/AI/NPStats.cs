@@ -6,21 +6,28 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class NPStats : UnitStats
 {
+    public Image healthbar; 
 
     void Update()
     {
+        healthbar.fillAmount = currentHealth / 20;
+
         if(currentHealth <= 0)
         {
             Destroy(this.gameObject);
         }
+        
     }
 
     public override void ReceiveDamage(int damage)
     {
         currentHealth -= damage;
+        //StartCoroutine("turnON", 1);
+        
     }
 
     public override void RecieveHealing(int hpHealed)
@@ -31,6 +38,12 @@ public class NPStats : UnitStats
             currentHealth = maxHealth;
         }
     }
-    
 
+    /*IEnumerator turnON(float waitTime)
+    {
+        Debug.Log("Ienmum running");
+        healthbar.enabled = true;
+        yield return new WaitForSeconds(waitTime);
+        healthbar.enabled = false;
+    }*/
 }

@@ -4674,7 +4674,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4434125081842058}
   - component: {fileID: 137609602072733632}
-  - component: {fileID: 114885475508550948}
+  - component: {fileID: 65901002705433800}
+  - component: {fileID: 114720590195744482}
   m_Layer: 0
   m_Name: Privo_Rig_SwordInHand:Sword1
   m_TagString: Untagged
@@ -9609,6 +9610,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65901002705433800
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1972281688023954}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8604523, y: 0.27049416, z: 3.7987516}
+  m_Center: {x: 0.0000011203811, y: -0.009087687, z: 1.0534751}
 --- !u!81 &81111793014688512
 AudioListener:
   m_ObjectHideFlags: 1
@@ -9813,7 +9826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1160510519027210}
   rotationDegree: 90
---- !u!114 &114885475508550948
+--- !u!114 &114720590195744482
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -9821,10 +9834,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1972281688023954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f02925e550a25449a4471a667ee4621, type: 3}
+  m_Script: {fileID: 11500000, guid: d814415628dcb7243a8c99c651ec7fd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 10
+  cdsystem: {fileID: 114099273044772420}
 --- !u!124 &124140486574260530
 Behaviour:
   m_ObjectHideFlags: 1

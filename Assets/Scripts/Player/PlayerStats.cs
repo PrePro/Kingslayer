@@ -28,7 +28,7 @@ public class PlayerStats : UnitStats
         }
     }
 
-    public override void ReceiveDamage(int damage)
+    public override void ReceiveDamage(float damage)
     {
         currentHealth -= damage;
     }

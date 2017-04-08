@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour
     public float speed;
     public float crouchSpeed;
     public float runningSpeed;
-    private float currentSpeed;
+    public float currentSpeed;
 
     private bool isRuning = false;
     private float relativePosx;
@@ -177,7 +177,6 @@ public class Movement : MonoBehaviour
 
 
         // Moves the targets 
-        Debug.Log(currentSpeed);
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {
             if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))

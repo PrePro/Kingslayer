@@ -23,7 +23,7 @@ public class NPStats : UnitStats
         
     }
 
-    public override void ReceiveDamage(int damage)
+    public override void ReceiveDamage(float damage)
     {
         currentHealth -= damage;
         //StartCoroutine("turnON", 1);

@@ -23,6 +23,6 @@ public abstract class UnitStats : MonoBehaviour
     //======================================================================================================
     // Theoretical stat system 
     //======================================================================================================
-    public abstract void ReceiveDamage(int damage);
+    public abstract void ReceiveDamage(float damage);
     public abstract void RecieveHealing(int hpHealed);
 }

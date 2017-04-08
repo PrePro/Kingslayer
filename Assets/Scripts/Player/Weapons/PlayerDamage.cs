@@ -7,24 +7,28 @@ public class PlayerDamage : MonoBehaviour
     public CoolDownSystem cdsystem;
     private bool mRunning = false;
 
-     void OnTriggerEnter(Collider col)
+    void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Enemy")
         {
-                        if (mRunning) return;
-            
+            if (mRunning) return;
+
             mRunning = true;
-                        //Debug.Log("Player hit enemy trigger");
-                       // if(cdsystem.swing == true)
-                        //{
-           
-                col.GetComponent<NPStats>().ReceiveDamage(damage);
-                           // }
-               
+            //Debug.Log("Player hit enemy trigger");
+            // if(cdsystem.swing == true)
+            //{
+
+            col.GetComponent<NPStats>().ReceiveDamage(damage);
+            // }
         }
+        if (col.tag == "Wizard")
+        {
+            col.GetComponent<WizardBoss>().ReceiveDamage(damage);
+        }
+
     }
 
- 
+
     void OnTriggerExit(Collider col)
     {
         if (col.tag == "Enemy")
@@ -33,4 +37,4 @@ public class PlayerDamage : MonoBehaviour
         }
 
     }
- }
+}

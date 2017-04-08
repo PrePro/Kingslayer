@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class Traps : MonoBehaviour
 {
     public GameObject WizardBase;
+    Movement player;
+    PlayerStats playerstats;
     private WizardBoss Wizard;
     bool playerEnter;
     float timer;
@@ -13,6 +15,7 @@ public class Traps : MonoBehaviour
     public float speed;
     NavMeshAgent nav;
     Vector3 target;
+    int waitTime;
 
     void OnTriggerEnter(Collider col)
     {
@@ -23,6 +26,9 @@ public class Traps : MonoBehaviour
                 return;
             }
 
+
+            player = col.GetComponent<Movement>();
+            playerstats = col.GetComponent<PlayerStats>();
             playerEnter = true;
         }
     }
@@ -37,20 +43,42 @@ public class Traps : MonoBehaviour
             }
         }
     }
+
+    void OnTriggerStay(Collider col)
+    {
+        if (col.tag == "Player")
+        {
+            playerstats.ReceiveDamage(5 * Time.deltaTime);
+        }
+    }
     void Start()
     {
         WizardBase = GameObject.Find("Wizard");
         Wizard = WizardBase.GetComponent<WizardBoss>();
         nav = gameObject.GetComponent<NavMeshAgent>();
-        StartCoroutine("DestroyTraps", 5);
+        StartCoroutine("DestroyTraps");
     }
-
     void Update()
     {
         if (playerEnter)
         {
-            Debug.Log("ENTER");
+            switch (Wizard.CurrentPhase)
+            {
+                case WizardBoss.Phase.Phase1:
+                    player.currentSpeed = 3;
+                    break;
+                case WizardBoss.Phase.Phase2:
+
+                    player.currentSpeed = 2;
+                    break;
+                case WizardBoss.Phase.Phase3:
+                    player.currentSpeed = 0;
+                    break;
+                default:
+                    break;
+            }
         }
+
         if (Wizard.CurrentPhase != WizardBoss.Phase.Phase1)
         {
             timer += Time.deltaTime;
@@ -59,10 +87,6 @@ public class Traps : MonoBehaviour
                 NewTarget();
                 timer = 0;
             }
-        }
-        if (Wizard.CurrentPhase != WizardBoss.Phase.Phase2)
-        {
-
         }
 
     }
@@ -81,8 +105,22 @@ public class Traps : MonoBehaviour
         nav.SetDestination(target);
     }
 
-    IEnumerator DestroyTraps(float waitTime)
+    IEnumerator DestroyTraps()
     {
+        switch (Wizard.CurrentPhase)
+        {
+            case WizardBoss.Phase.Phase1:
+                waitTime = 2;
+                break;
+            case WizardBoss.Phase.Phase2:
+                waitTime = 4;
+                break;
+            case WizardBoss.Phase.Phase3:
+                waitTime = 8;
+                break;
+            default:
+                break;
+        }
         yield return new WaitForSeconds(waitTime);
         Destroy(this.gameObject);
         Wizard.spawnerdone = false;

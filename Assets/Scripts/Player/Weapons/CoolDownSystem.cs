@@ -321,7 +321,7 @@ public class CoolDownSystem : MonoBehaviour
 
             {
                 if (Input.GetKey(KeyCode.Alpha3)) // AOE [5]
-                    myAnimator.SetTrigger("privoAOE");
+                    //myAnimator.SetTrigger("privoAOE");
                 {
                     AoeState = AoeMorality.Nothin;
                     if (stats.moralityAoe == 0) //Stun

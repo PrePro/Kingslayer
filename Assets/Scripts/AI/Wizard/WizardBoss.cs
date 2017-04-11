@@ -13,6 +13,7 @@ public class WizardBoss : MonoBehaviour
     int amountToBeSpawned;
     public int mHitCounter;
     public bool spawnerdone = false;
+    public bool turnOnWizard = false;
     public enum Phase
     {
         Phase1, // Phase 1. 100%-75% HP
@@ -43,44 +44,48 @@ public class WizardBoss : MonoBehaviour
 
     void Update()
     {
-        GetHealthPercent();
-        switch (CurrentPhase)
+        if(turnOnWizard)
         {
-            case Phase.Phase1:
-                amountToBeSpawned = 2;
-                if(mHitCounter == Random.Range(2,4))
-                {
-                    AOE.gameObject.SetActive(true);
-                }
-                break;
-            case Phase.Phase2:
-                amountToBeSpawned = 4;
-                if (mHitCounter == Random.Range(1, 3))
-                {
-                    AOE.gameObject.SetActive(true);
-                }
-                break;
-            case Phase.Phase3:
-                amountToBeSpawned = 8;
-                if (mHitCounter == Random.Range(1, 3))
-                {
-                    AOE.gameObject.SetActive(true);
-                }
-                break;
-            case Phase.Killed:
-                Debug.Log("Wizard is Dead");
-                break;
-            default:
-                break;
-        }
-        if (spawnerdone == false)
-        {
-            for (int i = 0; i < amountToBeSpawned; i++)
+            GetHealthPercent();
+            switch (CurrentPhase)
             {
-                SpawnTraps();
+                case Phase.Phase1:
+                    amountToBeSpawned = 2;
+                    if (mHitCounter == Random.Range(2, 4))
+                    {
+                        AOE.gameObject.SetActive(true);
+                    }
+                    break;
+                case Phase.Phase2:
+                    amountToBeSpawned = 4;
+                    if (mHitCounter == Random.Range(2, 3))
+                    {
+                        AOE.gameObject.SetActive(true);
+                    }
+                    break;
+                case Phase.Phase3:
+                    amountToBeSpawned = 8;
+                    if (mHitCounter == Random.Range(1, 2))
+                    {
+                        AOE.gameObject.SetActive(true);
+                    }
+                    break;
+                case Phase.Killed:
+                    Debug.Log("Wizard is Dead");
+                    break;
+                default:
+                    break;
             }
-            spawnerdone = true;
+            if (spawnerdone == false)
+            {
+                for (int i = 0; i < amountToBeSpawned; i++)
+                {
+                    SpawnTraps();
+                }
+                spawnerdone = true;
+            }
         }
+       
     }
 
     void GetHealthPercent()

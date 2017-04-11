@@ -7,6 +7,7 @@ public class WizardAOE : MonoBehaviour
     public int Push;
     WizardBoss Wizard;
     public int AOEDamage;
+
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player")
@@ -21,10 +22,5 @@ public class WizardAOE : MonoBehaviour
     void Start()
     {
         Wizard = transform.parent.gameObject.GetComponent<WizardBoss>();
-    }
-
-    void Update()
-    {
-       
     }
 }

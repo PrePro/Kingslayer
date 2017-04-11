@@ -178,6 +178,7 @@ public class CoolDownSystem : MonoBehaviour
         if (AoeExpand)
 
         {
+            
             AoeSphere.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f); //Expand the Aoe Ability
 
         }
@@ -320,7 +321,7 @@ public class CoolDownSystem : MonoBehaviour
 
             {
                 if (Input.GetKey(KeyCode.Alpha3)) // AOE [5]
-
+                    //myAnimator.SetTrigger("privoAOE");
                 {
                     AoeState = AoeMorality.Nothin;
                     if (stats.moralityAoe == 0) //Stun

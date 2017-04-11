@@ -10,7 +10,6 @@ public class EnemyDamage : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            Debug.Log(canAttack);
             if (canAttack == true)
             { 
                 col.GetComponent<PlayerStats>().ReceiveDamage(damage);

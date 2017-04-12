@@ -105,21 +105,8 @@ public class NPC : NPCBase
                 break;
             case State.Attacking:
                 {
-                    //if (timer >= attackSpeed)
-                    //{
-                    //    Debug.Log("Attacking");
-                    //    SetAnimation(AnimationState.Attacking);
-                    //    timer = 0;
-                    //}
-                    //else
-                    //{
-                    //    Debug.Log("DSF");
-                    //}
-                    //SetAnimation(AnimationState.Attacking);
-                    //SetAnimation(AnimationState.Attacking);
                     SetAnimation(AnimationState.Attacking);
                     agent.Stop();
-                    // agent.destination = transform.position;
                 }
                 break;
             case State.Chasing:
@@ -160,8 +147,16 @@ public class NPC : NPCBase
                 {
                     SetAnimation(AnimationState.Walking);
                     agent.Resume();
-
-                    agent.destination = currentTarget.position;
+                    if (dominantBehavior == Behavior.IdleDefencive)
+                    {
+                        Debug.Log("IdleDefencive");
+                        agent.destination = startPosition;
+                        
+                    }
+                    else
+                    {
+                        agent.destination = currentTarget.position;
+                    }
                 }
                 break;
         }
@@ -244,10 +239,6 @@ public class NPC : NPCBase
         {
             case State.Idle:
                 {
-                    if (dominantBehavior == Behavior.IdleDefencive)
-                    {
-                        Debug.Log("IdleDefencive");
-                    }
                 }
                 break;
             case State.Searching:
@@ -287,7 +278,6 @@ public class NPC : NPCBase
 
         if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange, 1.0f))
         {
-            Debug.Log("Within range");
             SetState(State.Attacking);
             //AttackTarget();
         }
@@ -295,7 +285,6 @@ public class NPC : NPCBase
 
     public override void AttackTarget()
     {
-        Debug.Log("AttackTarget");
         if (!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
         {
             isAttacking = false;
@@ -505,6 +494,7 @@ public class NPC : NPCBase
     public override void OnTargetLost()
     {
         isTargetSeen = false;
+
         if (unitClass == UnitClass.Archer)
         {
             SetAnimation(AnimationState.Idle);

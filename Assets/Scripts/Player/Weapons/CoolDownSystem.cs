@@ -103,6 +103,12 @@ public class CoolDownSystem : MonoBehaviour
     public List<Skills> skills;
     private PlayerStats stats;
     bool InMyState;
+
+    [Header("Parry")]
+    [Tooltip("Parry stuff")]
+    public float parryWaitTime;
+    public bool isParry;
+    public GameObject Blocker;
     #endregion
 
     //======================================================================================================
@@ -175,6 +181,12 @@ public class CoolDownSystem : MonoBehaviour
                 swordInSheeth.SetActive(false);
             }
         }
+
+        if (Input.GetMouseButton(1))
+                 {
+            Debug.Log("RIGHT");
+            StartCoroutine(ParryDelay(parryWaitTime));
+                  }
         if (AoeExpand)
 
         {
@@ -398,27 +410,35 @@ public class CoolDownSystem : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         currentDashState = DashState.NotDashing;
     }
-    //IEnumerator SwordSwing(float waitTime)
-    //{
-    //    swing = true;
-    //    yield return new WaitForSeconds(waitTime);
-    //    swing = false;
-    //}
-    //IEnumerator SwordSwingmove(float waitTime)
-    //{
-    //    //Debug.Log("Swing");
-    //    Sword.transform.Rotate(Vector3.back * swingSpeed);
-    //    yield return new WaitForSeconds(waitTime);
-    //    Sword.transform.Rotate(Vector3.forward * swingSpeed);
-    //}
+    IEnumerator ParryDelay(float waitTime)
+     {
+         isParry = true;
+         Blocker.SetActive(true);
+         yield return new WaitForSeconds(waitTime);
+         Blocker.SetActive(false);
+         isParry = false;
+     }
+//IEnumerator SwordSwing(float waitTime)
+//{
+//    swing = true;
+//    yield return new WaitForSeconds(waitTime);
+//    swing = false;
+//}
+//IEnumerator SwordSwingmove(float waitTime)
+//{
+//    //Debug.Log("Swing");
+//    Sword.transform.Rotate(Vector3.back * swingSpeed);
+//    yield return new WaitForSeconds(waitTime);
+//    Sword.transform.Rotate(Vector3.forward * swingSpeed);
+//}
 
-    #endregion
+#endregion
 
-    //======================================================================================================
-    // Private Member Functions 
-    //======================================================================================================
-    #region Private Member Functions
-    private void Shoot()
+//======================================================================================================
+// Private Member Functions 
+//======================================================================================================
+#region Private Member Functions
+private void Shoot()
     {
         Vector3 firePosition = BulletTarget.transform.position;
         GameObject bullet = GameObject.Instantiate(Bullet, firePosition, BulletTarget.transform.rotation) as GameObject;

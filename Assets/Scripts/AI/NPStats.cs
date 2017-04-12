@@ -14,7 +14,7 @@ public class NPStats : UnitStats
 
     void Update()
     {
-        healthbar.fillAmount = currentHealth / 20;
+        healthbar.fillAmount = currentHealth / maxHealth;
 
         if(currentHealth <= 0)
         {

@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
 {
 
     private Player() { }
-    PlayerStats playerStats;
 
     static Player instance;
     static public Player Instance
@@ -32,8 +31,4 @@ public class Player : MonoBehaviour
         get { return Instance.transform.position; }
     }
 
-    public static PlayerStats Stats
-    {
-        get { return Instance.playerStats; }
-    }
 }

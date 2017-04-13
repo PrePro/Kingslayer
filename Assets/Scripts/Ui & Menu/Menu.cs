@@ -36,7 +36,7 @@ public class Menu : MonoBehaviour
 
     public void LoadCrypt()
     {
-        SceneManager.LoadScene("CryptGrayblock");
+        SceneManager.LoadScene("Crypt");
     }
 
     public void LoadQuit()

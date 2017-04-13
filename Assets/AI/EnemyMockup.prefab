@@ -57,15 +57,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110500}
-  m_LocalRotation: {x: -0, y: -0.9998026, z: -0, w: 0.019870542}
-  m_LocalPosition: {x: -14.96, y: 11.4, z: 140.36}
+  m_LocalRotation: {x: -0, y: -0.040011685, z: -0, w: -0.9991992}
+  m_LocalPosition: {x: -119.633026, y: 51.56, z: 60.209183}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 426912}
   - {fileID: 4943794231296982}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -177.723, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -355.414, z: 0}
 --- !u!33 &3378370
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -101,6 +101,8 @@ MonoBehaviour:
   BulletTarget: {fileID: 0}
   bulletSpeed: 0
   HasWaitTime: 0
+  timer: 0
+  attackSpeed: 10
 --- !u!114 &11454416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,9 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92aa0b374c3d2b84b8eef78196c234c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  currentHealth: 20
-  armor: 0
+  maxHealth: 200
+  currentHealth: 200
+  armor: 10
   healthbar: {fileID: 114930486460464826}
 --- !u!114 &11458398
 MonoBehaviour:

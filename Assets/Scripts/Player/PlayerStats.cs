@@ -5,11 +5,14 @@ public class PlayerStats : UnitStats
 {
     public int moralityAoe; // 0 is bad / 100 is good
     public int moralityPorj;
+    public float HealthTime;
+    public int HealthingAmount;
 
     public Vector3 startPosition;
     void Start()
     {
         startPosition = transform.position;
+        StartCoroutine(Regeneration());
     }
 
     void Update()
@@ -56,4 +59,20 @@ public class PlayerStats : UnitStats
     {
         return maxHealth;
     }
-}
+
+    IEnumerator Regeneration()
+     {
+         while (true)
+         {
+             if (currentHealth<maxHealth)
+             { 
+                 currentHealth += HealthingAmount;
+                 yield return new WaitForSeconds(HealthTime);
+             }
+             else
+             { 
+                 yield return null;
+             }
+         }
+     }
+ } 

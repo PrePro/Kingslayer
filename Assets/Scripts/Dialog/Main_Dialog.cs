@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
 using System;
- 
- 
+
+
 public class Main_Dialog : MonoBehaviour
 
 {
     [Header("Canvas")]
     [Tooltip("This is where you add the main canvas prefab")]
     public Canvas dialog;
- 
+
     public Image playerImage;
     public Text playerName;
     [Tooltip("The text the npc will say when you talk to him again")]
@@ -22,8 +22,8 @@ public class Main_Dialog : MonoBehaviour
 
     [Header("Main Text")]
     [Tooltip("If you need help ask Casey >.<")]
-   public List<NpcText> npcText;
-   
+    public List<NpcText> npcText;
+
 
     private List<GameObject> mList;
     private PlayerStats playerStats;
@@ -40,44 +40,44 @@ public class Main_Dialog : MonoBehaviour
         playerStats = col.GetComponent<PlayerStats>(); // Gets stats for player to change morality
         running = true;
 
-        if(!mDeleted)
+        if (!mDeleted)
         {
             FillmList();
-            GetFirstChildren(mIndex);    
+            GetFirstChildren(mIndex);
         }
     }
 
     void Start()
-  
-{
-    mList = new List<GameObject>();
-            for (int i = 0; i < npcText[mIndex].mbuttons; ++i)
-                {
-        mBottons[i].GetComponentInChildren<Text>().text = npcText[mIndex].buttonText[i];
-                }
+
+    {
+        mList = new List<GameObject>();
+        for (int i = 0; i < npcText[mIndex].mbuttons; ++i)
+        {
+            mBottons[i].GetComponentInChildren<Text>().text = npcText[mIndex].buttonText[i];
         }
+    }
 
 
     void Update()
     {
         if (running)
-       
+
         {
-            for (int i = 0; i<npcText.Capacity - 1; i++)
+            for (int i = 0; i < npcText.Capacity - 1; i++)
             {
-               if(npcText[i].mbuttons != npcText[i + 1].canvas.Length)
+                if (npcText[i].mbuttons != npcText[i + 1].canvas.Length)
                 {
                     Debug.Log("YOU FUCKING aDSFAFDKGA");
                 }
             }
-            if(mEndTalk && !mDeleted) //Deletion
+            if (mEndTalk && !mDeleted) //Deletion
             {
-                for(int i = 0; i<npcText.Capacity; ++i)
+                for (int i = 0; i < npcText.Capacity; ++i)
                 {
-                    for(int j = 0; j<npcText[i].canvas.Length; ++j)
-                    Destroy(npcText[i].canvas[j].gameObject);
+                    for (int j = 0; j < npcText[i].canvas.Length; ++j)
+                        Destroy(npcText[i].canvas[j].gameObject);
                 }
-                for (int i = 0; i<mBottons.Length; i++)
+                for (int i = 0; i < mBottons.Length; i++)
                 {
                     Destroy(mBottons[i].gameObject);
                 }
@@ -87,7 +87,7 @@ public class Main_Dialog : MonoBehaviour
             {
 
                 if (!dialog.gameObject.activeSelf)
-            
+
                 {
                     Debug.Log("IsActive");
                     dialog.gameObject.SetActive(true);
@@ -101,71 +101,71 @@ public class Main_Dialog : MonoBehaviour
         }
     }
 
-     void OnTriggerExit(Collider col)
-{
-    if (col.gameObject.tag == "Player")
+    void OnTriggerExit(Collider col)
     {
-        
-                     dialog.gameObject.SetActive(false);
-    }
-    
-    running = false;
-    
+        if (col.gameObject.tag == "Player")
+        {
+
+            dialog.gameObject.SetActive(false);
         }
+
+        running = false;
+
+    }
 
     void TextUpdater(Text[] text) //Scrolls through the text in canvas
     {
-        if(!mEndTalk)
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (mHolder != text.Length)
+        if (!mEndTalk)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                if (mHolder - 1 != -1)
+                if (mHolder != text.Length)
                 {
-                    text[mHolder - 1].gameObject.SetActive(false); // Break
-                }
-                text[mHolder].gameObject.SetActive(true);
-                ++mHolder;
+                    if (mHolder - 1 != -1)
+                    {
+                        text[mHolder - 1].gameObject.SetActive(false); // Break
+                    }
+                    text[mHolder].gameObject.SetActive(true);
+                    ++mHolder;
 
-            }
-            else
-            {
-                for (int i = 0; i<npcText[mIndex].mbuttons; i++)
+                }
+                else
                 {
-                    mBottons[i].gameObject.SetActive(true);
+                    for (int i = 0; i < npcText[mIndex].mbuttons; i++)
+                    {
+                        mBottons[i].gameObject.SetActive(true);
+                    }
                 }
             }
-        }
     }
 
     void FillmList()
-   
-{
-            for (int i = 0; i <= npcText.Capacity - 1; ++i)
-                {
-                    for (int j = 0; j < npcText[i].canvas.Length; j++)
-                        {
-            mList.Add(npcText[i].canvas[j].gameObject);
-                        }
-                }
-   
-}
- 
-    void GetFirstChildren(int i)
-    
-{
+
+    {
+        for (int i = 0; i <= npcText.Capacity - 1; ++i)
+        {
             for (int j = 0; j < npcText[i].canvas.Length; j++)
-                {
-        mList[i].SetActive(true); //Set the canvas on
-        children = mList[i].GetComponentsInChildren<Text>(true); // Putting the Children into array
-                    foreach (Text text in children) ; //Needs to be here if the text is disabled
-                }
+            {
+                mList.Add(npcText[i].canvas[j].gameObject);
+            }
         }
+
+    }
+
+    void GetFirstChildren(int i)
+
+    {
+        for (int j = 0; j < npcText[i].canvas.Length; j++)
+        {
+            mList[i].SetActive(true); //Set the canvas on
+            children = mList[i].GetComponentsInChildren<Text>(true); // Putting the Children into array
+            foreach (Text text in children) ; //Needs to be here if the text is disabled
+        }
+    }
     void GetChildrenMult(int i)
     {
         children = npcText[mIndex + 1].canvas[i].GetComponentsInChildren<Text>(true); // Putting the Children into array
         foreach (Text text in children) ; //Needs to be here if the text is disabled
-      
+
 
     }
 
@@ -174,7 +174,7 @@ public class Main_Dialog : MonoBehaviour
     {
         Debug.Log("ASDJAG");
         switch (buttonIndex)
-       
+
         {
             case 0:
                 playerStats.moralityAoe += npcText[mIndex].morality[0];
@@ -213,9 +213,9 @@ public class Main_Dialog : MonoBehaviour
             npcText[mIndex].name.gameObject.SetActive(false);
             npcText[mIndex + 1].Person.gameObject.SetActive(true);
             npcText[mIndex + 1].name.gameObject.SetActive(true);
-            for (int i = 0; i<npcText.Capacity; ++i)
+            for (int i = 0; i < npcText.Capacity; ++i)
             {
-                for (int j = 0; j<npcText[mIndex].canvas.Length; j++)
+                for (int j = 0; j < npcText[mIndex].canvas.Length; j++)
                 {
                     npcText[mIndex].canvas[j].gameObject.SetActive(false);
                 }
@@ -226,7 +226,7 @@ public class Main_Dialog : MonoBehaviour
             GetChildrenMult(buttonIndex);
             children[0].gameObject.SetActive(true);
             ++mIndex;
-            for (int i = 0; i<npcText[mIndex].mbuttons; ++i)
+            for (int i = 0; i < npcText[mIndex].mbuttons; ++i)
             {
                 mBottons[i].GetComponentInChildren<Text>().text = npcText[mIndex].buttonText[i];
             }
@@ -234,7 +234,7 @@ public class Main_Dialog : MonoBehaviour
             {
                 b.gameObject.SetActive(false);
             }
-          
+
         }
     }
     #endregion
@@ -259,4 +259,4 @@ public class NpcText
     public int[] morality;
 
 }
-#endregion 
+#endregion

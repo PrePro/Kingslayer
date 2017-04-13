@@ -325,21 +325,27 @@ public class NPC : NPCBase
         }
         if (unitClass == UnitClass.Knight)
         {
-            if (timer >= 50f)
+            if (timer >= attackSpeed)
             {
-                Debug.Log("isAttacking = " + isAttacking);
-                Debug.Log("isFacing = " + isFacing);
-                Debug.Log("isInRange = " + isInRange);
+                //Debug.Log("isAttacking = " + isAttacking);
+                //Debug.Log("isFacing = " + isFacing);
+                //Debug.Log("isInRange = " + isInRange);
                 isFacing = true;
                 if (!isAttacking && isFacing && isInRange)
                 {
                     Debug.Log("Knight Attack");
                     isAttacking = true;
-                    //SetAnimation(AnimationState.Attacking);
-                    SetState(State.Attacking);
+                    SetAnimation(AnimationState.Attacking);
+                    //SetState(State.Attacking);
                     //SetAnimation(AnimationState.Attacking);
                     timer = 0;
-                }
+                    isAttacking = false;
+                }              
+            }
+            else
+            {
+                if(isFacing && isInRange)
+                SetAnimation(AnimationState.Idle);
             }
         }
         
@@ -445,10 +451,11 @@ public class NPC : NPCBase
         if (currentAnimation == AnimationState.Attacking && currAnim == AnimationState.Attacking)
         {
             Debug.Log("Hellp me");
-            animator.SetInteger("AnimationState", (int)currentAnimation);
+            animator.SetInteger("AnimationState", 0);
+            //animator.SetInteger("AnimationState", (int)currentAnimation);
         }
 
-            if (currentAnimation != currAnim)
+        if (currentAnimation != currAnim)
         {
             animator.SetInteger("AnimationState", (int)currentAnimation);
         }
@@ -459,6 +466,7 @@ public class NPC : NPCBase
         if(currentAnimation == AnimationState.Attacking && animState == AnimationState.Attacking)
         {
             Debug.Log("Fuck my life");
+            //currentAnimation = animState;
             UpdateAnimation();
         }
 

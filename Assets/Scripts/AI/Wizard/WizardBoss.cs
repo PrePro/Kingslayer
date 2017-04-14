@@ -8,12 +8,28 @@ public class WizardBoss : MonoBehaviour
     WizardAOE AOE;
     public float mCurrentHealth;
     public float MaxHealth;
+    [HideInInspector]
     public float HealthPercent;
+    [Tooltip("Debugger dont use this")]
     public Phase CurrentPhase;
     int amountToBeSpawned;
+    [HideInInspector]
     public int mHitCounter;
+    [HideInInspector]
     public bool spawnerdone = false;
     public bool turnOnWizard = false;
+
+    [Tooltip("Phase 1 time before the trap destroys")]
+    public float P1Timer;
+    [Tooltip("Phase 2 time before the trap destroys")]
+    public float P2Timer;
+    [Tooltip("Phase 3 time before the trap destroys")]
+    public float P3Timer;
+
+    [Tooltip("Min Spawn size for the room example -10")]
+    public int MinSpawn;
+    [Tooltip("Max Spawn size for the room example 10")]
+    public int MaxSpawn;
     public enum Phase
     {
         Phase1, // Phase 1. 100%-75% HP
@@ -38,7 +54,7 @@ public class WizardBoss : MonoBehaviour
     }
     void SpawnTraps()
     {
-        Vector3 position = new Vector3(Random.Range(-10.0F, 10.0F), 1, Random.Range(-10.0F, 10.0F));
+        Vector3 position = new Vector3(Random.Range(MinSpawn, MaxSpawn), 1, Random.Range(MinSpawn, MaxSpawn));
         Instantiate(mTraps, position, Quaternion.identity);
     }
 
@@ -71,6 +87,7 @@ public class WizardBoss : MonoBehaviour
                     }
                     break;
                 case Phase.Killed:
+                    spawnerdone = true;
                     Debug.Log("Wizard is Dead");
                     break;
                 default:

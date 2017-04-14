@@ -8,14 +8,20 @@ public class Traps : MonoBehaviour
     public GameObject WizardBase;
     Movement player;
     PlayerStats playerstats;
-    private WizardBoss Wizard;
+    WizardBoss Wizard;
     bool playerEnter;
     float timer;
+    [Tooltip("How long it will take before the trap picks a new direction")]
     public float newtargetTimer;
+    [Tooltip("Speed of the trap")]
     public float speed;
     NavMeshAgent nav;
     Vector3 target;
-    int waitTime;
+    [Tooltip("How long it will take before the trap will do damage")]
+    public float DamageWaitTime;
+    bool canDamagePlayer;
+
+    float waitTime;
 
     void OnTriggerEnter(Collider col)
     {
@@ -48,7 +54,10 @@ public class Traps : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            playerstats.ReceiveDamage(5 * Time.deltaTime);
+            if(canDamagePlayer)
+            {
+                playerstats.ReceiveDamage(5 * Time.deltaTime);
+            }
         }
     }
     void Start()
@@ -57,6 +66,7 @@ public class Traps : MonoBehaviour
         Wizard = WizardBase.GetComponent<WizardBoss>();
         nav = gameObject.GetComponent<NavMeshAgent>();
         StartCoroutine("DestroyTraps");
+        StartCoroutine("DelayDamage");
     }
     void Update()
     {
@@ -110,13 +120,13 @@ public class Traps : MonoBehaviour
         switch (Wizard.CurrentPhase)
         {
             case WizardBoss.Phase.Phase1:
-                waitTime = 2;
+                waitTime = Wizard.P1Timer;
                 break;
             case WizardBoss.Phase.Phase2:
-                waitTime = 4;
+                waitTime = Wizard.P2Timer;
                 break;
             case WizardBoss.Phase.Phase3:
-                waitTime = 8;
+                waitTime = Wizard.P3Timer;
                 break;
             default:
                 break;
@@ -124,5 +134,12 @@ public class Traps : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         Destroy(this.gameObject);
         Wizard.spawnerdone = false;
+    }
+
+    IEnumerator DelayDamage()
+    {
+        canDamagePlayer = false;
+        yield return new WaitForSeconds(DamageWaitTime);
+        canDamagePlayer = true;
     }
 }

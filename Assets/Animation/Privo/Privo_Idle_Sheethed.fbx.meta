@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: b83bafa71c4aff4488440555c1c9520a
-timeCreated: 1491695319
-licenseType: Pro
+guid: 791edbbf1cd45fe48ba68b8acfdb7af9
+timeCreated: 1492216801
+licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -318,7 +318,7 @@ ModelImporter:
     4300000: Sword1
     4300002: sword_holder
     4300004: Head1
-    7400000: Take 001
+    7400000: Pirvo_Idle
     9500000: //RootNode
     13700000: Head1
     13700002: Sword1
@@ -345,17 +345,17 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Pirvo_Idle
       takeName: Take 001
-      firstFrame: -1
-      lastFrame: 344
+      firstFrame: 1
+      lastFrame: 343
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -459,6 +459,12 @@ ModelImporter:
         weight: 1
       - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Shieth1CTRL/Shieth2CTRL
         weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Shieth1CTRL/Sword_MainCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Shieth1CTRL/Sword_MainCTRL/Sword_MiddleCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/Shieth1CTRL/Sword_MainCTRL/Sword_MiddleCTRL/Sword_BladeCTRL
+        weight: 1
       - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL
         weight: 1
       - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL
@@ -502,12 +508,6 @@ ModelImporter:
       - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Thumb1CTRLGRP/R_Thumb1CTRL/R_Thumb2CTRLGRP/R_Thumb2CTRL/R_Thumb3CTRLGRP
         weight: 1
       - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Thumb1CTRLGRP/R_Thumb1CTRL/R_Thumb2CTRLGRP/R_Thumb2CTRL/R_Thumb3CTRLGRP/R_Thumb3CTRL
-        weight: 1
-      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/Sword_MainCTRL
-        weight: 1
-      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/Sword_MainCTRL/Sword_MiddleCTRL
-        weight: 1
-      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/Sword_MainCTRL/Sword_MiddleCTRL/Sword_BladeCTRL
         weight: 1
       - path: Main_CTRL/L_FootCTRL
         weight: 1
@@ -667,15 +667,15 @@ ModelImporter:
         weight: 1
       - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/R_ClavicleJNT/R_ShoulderJNT/R_ElbowJNT/R_WristJNT/R_Thumb1JNT/R_Thumb2JNT/R_Thumb3JNT/R_ThumbendJNT
         weight: 1
-      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/R_ClavicleJNT/R_ShoulderJNT/R_ElbowJNT/R_WristJNT/SwordStartJNT
+      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/SwordStartJNT
         weight: 1
-      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/R_ClavicleJNT/R_ShoulderJNT/R_ElbowJNT/R_WristJNT/SwordStartJNT/SwardMiddleJNT
+      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/SwordStartJNT/Shieth1JNT
         weight: 1
-      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/R_ClavicleJNT/R_ShoulderJNT/R_ElbowJNT/R_WristJNT/SwordStartJNT/SwardMiddleJNT/SwordEndJNT
+      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/SwordStartJNT/Shieth1JNT/Shieth2JNT
         weight: 1
-      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/Shieth1JNT
+      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/SwordStartJNT/SwardMiddleJNT
         weight: 1
-      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/Shieth1JNT/Shieth2JNT
+      - path: RootJNT/Spine1JNT/Spine2JNT/Spine3JNT/SwordStartJNT/SwardMiddleJNT/SwordEndJNT
         weight: 1
       - path: sword_holder
         weight: 1
@@ -722,7 +722,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 82c0d58dd3619e2408a5ba14c51e7604,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: f1387310e482499478e3bda10f97f4fd,
     type: 3}
   animationType: 2
   humanoidOversampling: 1

@@ -20,6 +20,7 @@ public class CoolDownSystem : MonoBehaviour
     private Animator myAnimator;
     public bool unSheeth;
     public bool reSheeth;
+    public ParticleSystem ps;
 
     public enum DashState
     {
@@ -88,6 +89,7 @@ public class CoolDownSystem : MonoBehaviour
     private Vector3 AoeScale;
     private bool AoeExpand = false;
     public float ScaleRate = 0.5f;
+    public float aoewaitTime =0;
 
     [HideInInspector]
     public DashState currentDashState;
@@ -117,6 +119,7 @@ public class CoolDownSystem : MonoBehaviour
     #region GameObject Functions
     void Start()
     {
+        ps = GetComponent<ParticleSystem>();
         foreach (Skills x in skills)
         {
             x.currentcooldown = x.cooldown; // Setting current cooldown to cooldown
@@ -335,6 +338,7 @@ public class CoolDownSystem : MonoBehaviour
                 if (Input.GetKey(KeyCode.Alpha3)) // AOE [5]
                 {
                     myAnimator.SetTrigger("privoAOE");
+                    StartCoroutine("AOEWait", aoewaitTime);
                     AoeState = AoeMorality.Nothin;
                     if (stats.moralityAoe == 0) //Stun
                     {
@@ -375,6 +379,13 @@ public class CoolDownSystem : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         currentDashState = DashState.NotDashing;
     }
+
+    IEnumerator AOEWait(float waitTime)
+    {
+        ps.Play();
+        yield return new WaitForSeconds(waitTime);
+    }
+
 
     IEnumerator AoeTime(float waitTime)
     {

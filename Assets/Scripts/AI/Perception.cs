@@ -36,11 +36,11 @@ public class Perception : MonoBehaviour
             if (movement.isCrouching)
             {
                 Debug.Log("Crouch");
-                PlayerHead.transform.position = new Vector3(PlayerHead.transform.position.x, 0 , PlayerHead.transform.position.z);
+                PlayerHead.transform.position = new Vector3(PlayerHead.transform.position.x, transform.position.y - 1.5f, PlayerHead.transform.position.z);
             }
             else
             {
-                PlayerHead.transform.position = new Vector3(PlayerHead.transform.position.x, 3, PlayerHead.transform.position.z);
+                PlayerHead.transform.position = new Vector3(PlayerHead.transform.position.x, transform.position.y, PlayerHead.transform.position.z);
             }
         }
        
@@ -51,7 +51,7 @@ public class Perception : MonoBehaviour
         if (other.gameObject.tag == "PlayerHead")
         {
             //PlayerHead.transform.position = other.gameObject.transform.position;
-            transform.position = new Vector3(transform.position.x, 3, transform.position.z);
+            //transform.position = new Vector3(transform.position.x, 3, transform.position.z);
             direction = (other.gameObject.transform.position - transform.position).normalized;
             ray = new Ray(transform.position + direction, direction);
 

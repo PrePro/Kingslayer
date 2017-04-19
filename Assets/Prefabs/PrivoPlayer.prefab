@@ -15660,14 +15660,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1302781443591642}
-  m_LocalRotation: {x: -0, y: 0.9603177, z: -0, w: 0.2789085}
-  m_LocalPosition: {x: -166.33, y: 16.53, z: 73.04373}
+  m_LocalRotation: {x: -0, y: -0.37860444, z: -0, w: -0.9255586}
+  m_LocalPosition: {x: 24.88, y: 48.589252, z: -424.44}
   m_LocalScale: {x: 1.2, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 4359662059745932}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 304.467, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 404.49402, z: 0}
 --- !u!4 &4711809914288742
 Transform:
   m_ObjectHideFlags: 1
@@ -17593,7 +17593,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1770039649526458}
   m_LocalRotation: {x: 0.16180736, y: -0.7538898, z: 0.20200418, w: 0.6038732}
-  m_LocalPosition: {x: 8.779321, y: 9.388725, z: 5.927622}
+  m_LocalPosition: {x: 367.7, y: 205.4, z: 80.1}
   m_LocalScale: {x: 0.7722855, y: 0.7844927, z: 0.81501585}
   m_Children: []
   m_Father: {fileID: 4359662059745932}
@@ -18450,7 +18450,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -19008,6 +19008,7 @@ MonoBehaviour:
   myAnimator: {fileID: 95551551989838608}
   unSheeth: 0
   reSheeth: 0
+  ps: {fileID: 0}
   Sword: {fileID: 1308371007552164}
   Bullet: {fileID: 185558, guid: eab69c0bdda16e0468827d235a819d59, type: 2}
   BulletTarget: {fileID: 1615071329223646}
@@ -19018,6 +19019,7 @@ MonoBehaviour:
   bulletSpeed: 500
   AoeSphere: {fileID: 1955424394128712}
   ScaleRate: 0.5
+  aoewaitTime: 0
   currentDashState: 0
   AoeState: 0
   currentProjState: 0

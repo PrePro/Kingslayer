@@ -21,6 +21,7 @@ public class CoolDownSystem : MonoBehaviour
     public bool unSheeth;
     public bool reSheeth;
     public ParticleSystem ps;
+    public ParticleSystem psDash;
 
     public enum DashState
     {
@@ -89,7 +90,7 @@ public class CoolDownSystem : MonoBehaviour
     private Vector3 AoeScale;
     private bool AoeExpand = false;
     public float ScaleRate = 0.5f;
-    public float aoewaitTime =0;
+    public float aoewaitTime = 60;
 
     [HideInInspector]
     public DashState currentDashState;
@@ -119,7 +120,7 @@ public class CoolDownSystem : MonoBehaviour
     #region GameObject Functions
     void Start()
     {
-        ps = GetComponent<ParticleSystem>();
+        //ps = GetComponent<ParticleSystem>();
         foreach (Skills x in skills)
         {
             x.currentcooldown = x.cooldown; // Setting current cooldown to cooldown
@@ -191,11 +192,10 @@ public class CoolDownSystem : MonoBehaviour
             StartCoroutine(ParryDelay(parryWaitTime));
                   }
         if (AoeExpand)
-
         {
             
             AoeSphere.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f); //Expand the Aoe Ability
-
+            
         }
 
         //if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_leftrightslash_sheeth"))
@@ -339,25 +339,26 @@ public class CoolDownSystem : MonoBehaviour
                 {
                     myAnimator.SetTrigger("privoAOE");
                     StartCoroutine("AOEWait", aoewaitTime);
+                    AoeSphere.SetActive(true);
                     AoeState = AoeMorality.Nothin;
                     if (stats.moralityAoe == 0) //Stun
                     {
                         // Added stun enemy here
-                        AoeSphere.SetActive(true);
+                        //AoeSphere.SetActive(true);
                         AoeState = AoeMorality.Stun;
                         StartCoroutine("AoeTime", 0.5f);
                         skills[5].currentcooldown = 0;
                     }
                     else if (stats.moralityAoe == 50) //Knock Back + Damage
                     {
-                        AoeSphere.SetActive(true);
+                        //AoeSphere.SetActive(true);
                         AoeState = AoeMorality.KnockBack;
                         StartCoroutine("AoeTime", 0.5f);
                         skills[5].currentcooldown = 0;
                     }
                     if (stats.moralityAoe == 100) // Heal Steal
                     {
-                        AoeSphere.SetActive(true);
+                        //AoeSphere.SetActive(true);
                         AoeState = AoeMorality.Steal;
                         StartCoroutine("AoeTime", 0.5f);
                         skills[5].currentcooldown = 0;
@@ -375,6 +376,7 @@ public class CoolDownSystem : MonoBehaviour
     #region IEnumerator Functions
     IEnumerator Dashtime(float waitTime)
     {
+        psDash.Play();
         currentDashState = DashState.ForwardDash;
         yield return new WaitForSeconds(waitTime);
         currentDashState = DashState.NotDashing;
@@ -394,6 +396,7 @@ public class CoolDownSystem : MonoBehaviour
         AoeSphere.transform.localScale = AoeScale;
         AoeSphere.SetActive(false);
         AoeExpand = false;
+        
     }
 
     IEnumerator DashtimeLeft(float waitTime)

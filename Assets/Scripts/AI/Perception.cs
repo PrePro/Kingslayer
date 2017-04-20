@@ -54,8 +54,16 @@ public class Perception : MonoBehaviour
             //transform.position = new Vector3(transform.position.x, 3, transform.position.z);
             direction = (other.gameObject.transform.position - transform.position).normalized;
             ray = new Ray(transform.position + direction, direction);
-
-            var hits = Physics.RaycastAll(ray, sphereCollider.radius, obstructionLayer);
+            if (Vector3.Dot(direction, transform.forward) >= 0)
+            {
+                Debug.Log("Target is in front of this game object.");
+            }
+            else
+            {
+                //Debug.Log("behind");
+                return;
+            }
+                var hits = Physics.RaycastAll(ray, sphereCollider.radius, obstructionLayer);
             float targetDistance = Vector3.Distance(transform.position, other.transform.position);
             float barrierDistance = float.MaxValue;
             bool hitBarrier = hits.Length > 0;

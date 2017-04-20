@@ -54,8 +54,8 @@ public class Main_Dialog : MonoBehaviour
             }
             else
             {
-                return;
                 Debug.Log("More than one");
+                return;
             }
 
             if (!mDeleted)

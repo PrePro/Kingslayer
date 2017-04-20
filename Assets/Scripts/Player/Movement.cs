@@ -169,7 +169,7 @@ public class Movement : MonoBehaviour
             {
                 isWalking = false;
                 myAnimator.SetBool("privoWalk", isWalking);
-                psWalk.Stop();
+                //psWalk.Stop();
             }
         }
         //Target rotates around camera
@@ -280,7 +280,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
         {
             target.transform.position = objectForward.transform.position;
-            psWalk.Play();
+            //psWalk.Play();
 
             if (isRuning == false)
             {

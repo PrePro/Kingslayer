@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     public CoolDownSystem coolDownSystem;
     public Transform objectForward;
     public GameObject gameCamera;
+    public ParticleSystem psWalk;
 
     [Header("Player Speeds")]
     [Tooltip("Speeds")]
@@ -168,6 +169,7 @@ public class Movement : MonoBehaviour
             {
                 isWalking = false;
                 myAnimator.SetBool("privoWalk", isWalking);
+                //psWalk.Stop();
             }
         }
         //Target rotates around camera
@@ -191,6 +193,7 @@ public class Movement : MonoBehaviour
                     currentSpeed = crouchSpeed;
                     isCrouching = true;
                     myAnimator.SetBool("privoCrouch", isCrouching);
+                    psWalk.Stop();
                 }
                 else
                 {
@@ -277,6 +280,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
         {
             target.transform.position = objectForward.transform.position;
+            //psWalk.Play();
 
             if (isRuning == false)
             {

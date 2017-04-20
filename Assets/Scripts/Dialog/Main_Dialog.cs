@@ -27,6 +27,7 @@ public class Main_Dialog : MonoBehaviour
 
     private List<GameObject> mList;
     private PlayerStats playerStats;
+    private PlayerController playerController;
     private bool running;
     private Text[] children;
     private int mHolder;
@@ -36,15 +37,36 @@ public class Main_Dialog : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (running) return; // Makes sure Trigger is called once 
-        playerStats = col.GetComponent<PlayerStats>(); // Gets stats for player to change morality
-        running = true;
-
-        if (!mDeleted)
+        if (col.tag == "Player")
         {
-            FillmList();
-            GetFirstChildren(mIndex);
+            if (running)// Makes sure Trigger is called once 
+            {
+                Debug.Log("Running");
+                return;
+            }
+            playerStats = col.gameObject.GetComponent<PlayerStats>(); // Gets stats for player to change morality
+            playerController = col.gameObject.GetComponent<PlayerController>();
+
+            playerController.DialogActive++;
+            if (playerController.DialogActive <= 1)
+            {
+                running = true;
+            }
+            else
+            {
+                Debug.Log("More than one");
+                return;
+            }
+
+            if (!mDeleted)
+            {
+                FillmList();
+                GetFirstChildren(mIndex);
+            }
         }
+      
+
+       
     }
 
     void Start()
@@ -61,7 +83,6 @@ public class Main_Dialog : MonoBehaviour
     void Update()
     {
         if (running)
-
         {
             for (int i = 0; i < npcText.Capacity - 1; i++)
             {
@@ -89,7 +110,6 @@ public class Main_Dialog : MonoBehaviour
                 if (!dialog.gameObject.activeSelf)
 
                 {
-                    Debug.Log("IsActive");
                     dialog.gameObject.SetActive(true);
                     playerImage.gameObject.SetActive(true);
                     playerName.gameObject.SetActive(true);
@@ -105,8 +125,8 @@ public class Main_Dialog : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-
             dialog.gameObject.SetActive(false);
+            playerController.DialogActive--;
         }
 
         running = false;
@@ -172,7 +192,6 @@ public class Main_Dialog : MonoBehaviour
     #region ButtonClicks
     public void ButtonClick(int buttonIndex)
     {
-        Debug.Log("ASDJAG");
         switch (buttonIndex)
 
         {
@@ -191,7 +210,6 @@ public class Main_Dialog : MonoBehaviour
 
         if (mIndex + 1 == npcText.Capacity)
         {
-            Debug.Log("IF");
             mEndTalk = true;
             npcText[mIndex].canvas[buttonIndex].gameObject.SetActive(false);
             foreach (Button b in mBottons)
@@ -204,7 +222,6 @@ public class Main_Dialog : MonoBehaviour
         }
         else
         {
-            Debug.Log("Button");
             mHolder = 1;
 
             Debug.Log(mList[mIndex].name);

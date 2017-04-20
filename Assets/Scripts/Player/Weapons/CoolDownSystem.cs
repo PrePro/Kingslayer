@@ -21,6 +21,7 @@ public class CoolDownSystem : MonoBehaviour
     public bool unSheeth;
     public bool reSheeth;
     public ParticleSystem ps;
+    public ParticleSystem psDash;
 
     public enum DashState
     {
@@ -119,7 +120,7 @@ public class CoolDownSystem : MonoBehaviour
     #region GameObject Functions
     void Start()
     {
-        ps = GetComponent<ParticleSystem>();
+        //ps = GetComponent<ParticleSystem>();
         foreach (Skills x in skills)
         {
             x.currentcooldown = x.cooldown; // Setting current cooldown to cooldown
@@ -375,6 +376,7 @@ public class CoolDownSystem : MonoBehaviour
     #region IEnumerator Functions
     IEnumerator Dashtime(float waitTime)
     {
+        psDash.Play();
         currentDashState = DashState.ForwardDash;
         yield return new WaitForSeconds(waitTime);
         currentDashState = DashState.NotDashing;

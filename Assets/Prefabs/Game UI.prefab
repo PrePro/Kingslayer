@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 22343634}
   - component: {fileID: 11461018}
   - component: {fileID: 11487032}
+  - component: {fileID: 114206278550880940}
   m_Layer: 5
   m_Name: Game UI
   m_TagString: Untagged
@@ -316,6 +317,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114206278550880940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f239cfd7a41547bd9bbca0228e239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthBar: {fileID: 11457104}
+  player: {fileID: 0}
 --- !u!114 &114539165835408452
 MonoBehaviour:
   m_ObjectHideFlags: 1

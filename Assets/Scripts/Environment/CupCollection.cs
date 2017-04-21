@@ -5,7 +5,7 @@ using UnityEngine;
 public class CupCollection : MonoBehaviour
 {
 
-    //public ParticleSystem CupParticle;
+    public ParticleSystem CupParticle;
     public static int cupCount = 0;
 
     void Start ()
@@ -21,7 +21,7 @@ public class CupCollection : MonoBehaviour
         if (col.tag == "Player")
         {
             cupCount += 1;
-           // Instantiate(CupParticle, gameObject.transform.position, gameObject.transform.rotation);
+            CupParticle.Play();
             Destroy(gameObject);
         }
     }

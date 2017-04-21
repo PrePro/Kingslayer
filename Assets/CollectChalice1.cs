@@ -5,23 +5,26 @@ using UnityEngine;
 public class CollectChalice1 : MonoBehaviour
 {
     public Renderer rend;
+    bool cup1Collected = false;
 
-	void Start ()
+	void Start()
     {
         rend = GetComponent<Renderer>();
         rend.enabled = false;
     }
 	
-	void Update ()
+	void Update()
     {
 	}
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "Player" && CupCollection.cupCount >= 1)
+        if (col.tag == "Player" && CupCollection.cupCount >= 1 && cup1Collected == false)
         {
             PuzzleWall.cupsDelivered += 1;
             rend.enabled = true;
+            cup1Collected = true;
+
         }
     }
 }

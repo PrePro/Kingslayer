@@ -5,9 +5,12 @@ using UnityEngine;
 public class PuzzleWall : MonoBehaviour
 {
     Vector3 moveDown = new Vector3(0f, -0.02f, 0f);
+    Vector3 moveUp = new Vector3(0f, +0.04f, 0f);
     bool puzzleComplete = false;
     int moveDownDistance;
+    int moveUpDistance = 0;
     public static int cupsDelivered = 0;
+    public static bool goBackUp = false;
 
     public int totalCups = 0;
 
@@ -26,6 +29,12 @@ public class PuzzleWall : MonoBehaviour
         {
             transform.position += moveDown;
             moveDownDistance += 1;
+        }
+
+        if (goBackUp == true && moveUpDistance < 150)
+        {
+            transform.position += moveUp;
+            moveUpDistance += 1;
         }
         
 	}

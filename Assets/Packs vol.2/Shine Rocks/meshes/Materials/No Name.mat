@@ -8,8 +8,8 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: No Name
   m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: EFFECT_BUMP GEOM_TYPE_MESH _NORMALMAP _SPECGLOSSMAP
-  m_LightmapFlags: 5
+  m_ShaderKeywords: EFFECT_BUMP GEOM_TYPE_MESH _EMISSION _NORMALMAP _SPECGLOSSMAP
+  m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -101,8 +101,14 @@ Material:
         name: _EmissionScaleUI
       second: 0
     - first:
+        name: _GlossMapScale
+      second: 1
+    - first:
         name: _Glossiness
       second: 0
+    - first:
+        name: _GlossyReflections
+      second: 1
     - first:
         name: _Metallic
       second: 0
@@ -118,6 +124,12 @@ Material:
     - first:
         name: _Shininess
       second: 0.02
+    - first:
+        name: _SmoothnessTextureChannel
+      second: 0
+    - first:
+        name: _SpecularHighlights
+      second: 1
     - first:
         name: _SrcBlend
       second: 1

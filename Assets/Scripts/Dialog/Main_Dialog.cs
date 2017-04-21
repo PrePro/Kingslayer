@@ -18,7 +18,7 @@ public class Main_Dialog : MonoBehaviour
     [Tooltip("The text the npc will say when you talk to him again")]
     public Text endText;
     [Tooltip("How many buttons you have in the canvas (Max 3)")]
-    public Button[] mBottons;
+    public Button[] mButtons;
 
     [Header("Main Text")]
     [Tooltip("If you need help ask Casey >.<")]
@@ -75,7 +75,7 @@ public class Main_Dialog : MonoBehaviour
         mList = new List<GameObject>();
         for (int i = 0; i < npcText[mIndex].mbuttons; ++i)
         {
-            mBottons[i].GetComponentInChildren<Text>().text = npcText[mIndex].buttonText[i];
+            mButtons[i].GetComponentInChildren<Text>().text = npcText[mIndex].buttonText[i];
         }
     }
 
@@ -98,9 +98,9 @@ public class Main_Dialog : MonoBehaviour
                     for (int j = 0; j < npcText[i].canvas.Length; ++j)
                         Destroy(npcText[i].canvas[j].gameObject);
                 }
-                for (int i = 0; i < mBottons.Length; i++)
+                for (int i = 0; i < mButtons.Length; i++)
                 {
-                    Destroy(mBottons[i].gameObject);
+                    Destroy(mButtons[i].gameObject);
                 }
                 mDeleted = true;
             }
@@ -152,7 +152,7 @@ public class Main_Dialog : MonoBehaviour
                 {
                     for (int i = 0; i < npcText[mIndex].mbuttons; i++)
                     {
-                        mBottons[i].gameObject.SetActive(true);
+                        mButtons[i].gameObject.SetActive(true);
                     }
                 }
             }
@@ -212,7 +212,7 @@ public class Main_Dialog : MonoBehaviour
         {
             mEndTalk = true;
             npcText[mIndex].canvas[buttonIndex].gameObject.SetActive(false);
-            foreach (Button b in mBottons)
+            foreach (Button b in mButtons)
             {
                 b.gameObject.SetActive(false);
             }
@@ -245,9 +245,9 @@ public class Main_Dialog : MonoBehaviour
             ++mIndex;
             for (int i = 0; i < npcText[mIndex].mbuttons; ++i)
             {
-                mBottons[i].GetComponentInChildren<Text>().text = npcText[mIndex].buttonText[i];
+                mButtons[i].GetComponentInChildren<Text>().text = npcText[mIndex].buttonText[i];
             }
-            foreach (Button b in mBottons)
+            foreach (Button b in mButtons)
             {
                 b.gameObject.SetActive(false);
             }

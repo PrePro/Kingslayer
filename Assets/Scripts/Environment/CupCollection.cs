@@ -5,6 +5,7 @@ using UnityEngine;
 public class CupCollection : MonoBehaviour
 {
 
+    public ParticleSystem CupParticle;
     public static int cupCount = 0;
 
     void Start ()
@@ -20,6 +21,7 @@ public class CupCollection : MonoBehaviour
         if (col.tag == "Player")
         {
             cupCount += 1;
+            CupParticle.Play();
             Destroy(gameObject);
         }
     }

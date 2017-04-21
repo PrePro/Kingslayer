@@ -22,6 +22,7 @@ public class CoolDownSystem : MonoBehaviour
     public bool reSheeth;
     public ParticleSystem ps;
     public ParticleSystem psDash;
+    public ParticleSystem psSlash;
 
     public enum DashState
     {
@@ -252,6 +253,7 @@ public class CoolDownSystem : MonoBehaviour
                     if(swordInHand.activeSelf)
                     {
                         Debug.Log("SWING");
+                        psSlash.Play();
                         myAnimator.SetTrigger("privoSlash");
                     }
 

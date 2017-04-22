@@ -7,6 +7,7 @@ public class PrivoHouseCutScene : MonoBehaviour
 
     public QuickCutsceneController houseCutscene;
     public bool houseCutsceneRunning = false;
+    
 
     // Use this for initialization
     void Start()
@@ -20,8 +21,18 @@ public class PrivoHouseCutScene : MonoBehaviour
         if (houseCutscene.playingCutscene == false && houseCutsceneRunning == false)
         {
             houseCutscene.ActivateCutscene();
-            houseCutsceneRunning = true;
-
+            Debug.Log("cutscene1:" + houseCutscene.playingCutscene);
         }
+        if(houseCutscene.playingCutscene == true)
+        {
+            houseCutsceneRunning = true;
+            Debug.Log("cutscene2:" + houseCutscene.playingCutscene);
+        }
+        if(houseCutscene.playingCutscene == false && houseCutsceneRunning == true)
+        {
+            houseCutscene.EndCutscene();
+            Debug.Log("cutscene3:"+ houseCutscene.playingCutscene);
+        }
+        
     }
 }

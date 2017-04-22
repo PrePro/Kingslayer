@@ -21,26 +21,41 @@ public class PrivoHouseCutScene : MonoBehaviour
         if (houseCutscene.playingCutscene == false && houseCutsceneRunning == false)
         {
             houseCutscene.ActivateCutscene();
+            StartCoroutine(CinematicHouse());
             Debug.Log("cutscene1:" + houseCutscene.playingCutscene);
         }
-        if(houseCutscene.playingCutscene == true)
+        /*if(houseCutscene.playingCutscene == true)
         {
-            houseCutsceneRunning = true;
+            
             Debug.Log("cutscene2:" + houseCutscene.playingCutscene);
+            
+            //houseCutsceneRunning = true;
+
             //ShouseCutscene.OnCutsceneEnd()
-            houseCutscene.playingCutscene = false;
         }
-        if(houseCutscene.playingCutscene == false && houseCutsceneRunning == true)
+        
+        houseCutsceneRunning = false;
+        if (houseCutsceneRunning == true)
         {
-            houseCutscene.EndCutscene();
+            
+
             Debug.Log("cutscene3:"+ houseCutscene.playingCutscene);
             
-        }
+        }*/
         
     }
 
     public void Endcutscene()
     {
         houseCutscene.EndCutscene();
+    }
+
+    IEnumerator CinematicHouse()
+    {
+        
+        yield return new WaitForSecondsRealtime(20f);
+        houseCutscene.EndCutscene();
+        houseCutsceneRunning = true;
+       
     }
 }

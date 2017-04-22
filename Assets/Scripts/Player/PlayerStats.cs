@@ -7,6 +7,7 @@ public class PlayerStats : UnitStats
     public int moralityPorj;
     public float HealthTime;
     public int HealthingAmount;
+    public int DialogActive = 0;
 
     public Vector3 startPosition;
     void Start()

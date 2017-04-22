@@ -16,7 +16,7 @@ public class SwordCollisionSpark : MonoBehaviour
 		
 	}
 
-    void OnTriggerEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
         CollisionSpark.Play();
     }

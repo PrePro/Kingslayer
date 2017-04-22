@@ -25,7 +25,6 @@ public class Perception : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 forward = transform.TransformDirection(Vector3.forward) * 15;
         Debug.DrawRay(transform.position + direction, ray.direction * 15, Color.red);
         if(movement == null)
         {

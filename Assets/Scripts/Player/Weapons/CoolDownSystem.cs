@@ -113,6 +113,7 @@ public class CoolDownSystem : MonoBehaviour
     public float parryWaitTime;
     public bool isParry;
     public GameObject Blocker;
+    private bool m_isAxisInUse = false;
     #endregion
 
     //======================================================================================================
@@ -163,7 +164,20 @@ public class CoolDownSystem : MonoBehaviour
         //{
         //    StartCoroutine("SwordSwingmove", swingTime);
         //}
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetAxisRaw("DpadH") != 0)
+        {
+            if (m_isAxisInUse == false)
+            {
+                // Call your event function here.
+                m_isAxisInUse = true;
+            }
+        }
+        if (Input.GetAxisRaw("DpadH") == 0)
+        {
+            m_isAxisInUse = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) || m_isAxisInUse == true)
         {
             if (swordInHand.activeSelf)
             {
@@ -187,16 +201,16 @@ public class CoolDownSystem : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(1))
-                 {
+        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.Joystick1Button4))
+        {
             Debug.Log("RIGHT");
             StartCoroutine(ParryDelay(parryWaitTime));
-                  }
+        }
         if (AoeExpand)
         {
-            
+
             AoeSphere.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f); //Expand the Aoe Ability
-            
+
         }
 
         //if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_leftrightslash_sheeth"))
@@ -238,8 +252,7 @@ public class CoolDownSystem : MonoBehaviour
         if (canAttack == true)
 
         {
-            if (Input.GetButton("Fire1") && currentDashState == DashState.NotDashing) // Sword [2]
-
+            if (Input.GetButton("Fire1") || Input.GetKey(KeyCode.Joystick1Button5) && currentDashState == DashState.NotDashing) // Sword [2]
             {
                 if (skills[2].currentcooldown >= skills[2].cooldown)
                 {
@@ -250,10 +263,10 @@ public class CoolDownSystem : MonoBehaviour
                     //{
                     //    //Than you can swing
                     //}
-                    if(swordInHand.activeSelf)
+                    if (swordInHand.activeSelf)
                     {
                         Debug.Log("SWING");
-                        psSlash.Play();
+                        //psSlash.Play();
                         myAnimator.SetTrigger("privoSlash");
                     }
 
@@ -398,7 +411,7 @@ public class CoolDownSystem : MonoBehaviour
         AoeSphere.transform.localScale = AoeScale;
         AoeSphere.SetActive(false);
         AoeExpand = false;
-        
+
     }
 
     IEnumerator DashtimeLeft(float waitTime)
@@ -427,34 +440,34 @@ public class CoolDownSystem : MonoBehaviour
         currentDashState = DashState.NotDashing;
     }
     IEnumerator ParryDelay(float waitTime)
-     {
-         isParry = true;
-         Blocker.SetActive(true);
-         yield return new WaitForSeconds(waitTime);
-         Blocker.SetActive(false);
-         isParry = false;
-     }
-//IEnumerator SwordSwing(float waitTime)
-//{
-//    swing = true;
-//    yield return new WaitForSeconds(waitTime);
-//    swing = false;
-//}
-//IEnumerator SwordSwingmove(float waitTime)
-//{
-//    //Debug.Log("Swing");
-//    Sword.transform.Rotate(Vector3.back * swingSpeed);
-//    yield return new WaitForSeconds(waitTime);
-//    Sword.transform.Rotate(Vector3.forward * swingSpeed);
-//}
+    {
+        isParry = true;
+        Blocker.SetActive(true);
+        yield return new WaitForSeconds(waitTime);
+        Blocker.SetActive(false);
+        isParry = false;
+    }
+    //IEnumerator SwordSwing(float waitTime)
+    //{
+    //    swing = true;
+    //    yield return new WaitForSeconds(waitTime);
+    //    swing = false;
+    //}
+    //IEnumerator SwordSwingmove(float waitTime)
+    //{
+    //    //Debug.Log("Swing");
+    //    Sword.transform.Rotate(Vector3.back * swingSpeed);
+    //    yield return new WaitForSeconds(waitTime);
+    //    Sword.transform.Rotate(Vector3.forward * swingSpeed);
+    //}
 
-#endregion
+    #endregion
 
-//======================================================================================================
-// Private Member Functions 
-//======================================================================================================
-#region Private Member Functions
-private void Shoot()
+    //======================================================================================================
+    // Private Member Functions 
+    //======================================================================================================
+    #region Private Member Functions
+    private void Shoot()
     {
         Vector3 firePosition = BulletTarget.transform.position;
         GameObject bullet = GameObject.Instantiate(Bullet, firePosition, BulletTarget.transform.rotation) as GameObject;

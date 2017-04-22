@@ -27,12 +27,20 @@ public class PrivoHouseCutScene : MonoBehaviour
         {
             houseCutsceneRunning = true;
             Debug.Log("cutscene2:" + houseCutscene.playingCutscene);
+            //ShouseCutscene.OnCutsceneEnd()
+            houseCutscene.playingCutscene = false;
         }
         if(houseCutscene.playingCutscene == false && houseCutsceneRunning == true)
         {
             houseCutscene.EndCutscene();
             Debug.Log("cutscene3:"+ houseCutscene.playingCutscene);
+            
         }
         
+    }
+
+    public void Endcutscene()
+    {
+        houseCutscene.EndCutscene();
     }
 }

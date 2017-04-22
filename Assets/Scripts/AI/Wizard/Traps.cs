@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Traps : MonoBehaviour
 {
-    public GameObject WizardBase;
+    GameObject WizardBase;
     Movement player;
     PlayerStats playerstats;
     WizardBoss Wizard;

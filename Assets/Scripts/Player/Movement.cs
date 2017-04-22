@@ -81,6 +81,7 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+       
         if (mCooldown <= 2f)
         {
             mCooldown += Time.deltaTime;

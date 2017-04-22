@@ -2,20 +2,19 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Simple_Dialog : MonoBehaviour
+public class Simple_Dialogue : MonoBehaviour
 
 {
     public Canvas dialog;
     public Text[] text;
 
-    public int holder = 0;
+    private int holder = 0;
     private bool Collid;
 
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("PLAYER ENETER");
             Collid = true;
             if (Input.GetKeyDown(KeyCode.E))
                 if (dialog.isActiveAndEnabled == false)

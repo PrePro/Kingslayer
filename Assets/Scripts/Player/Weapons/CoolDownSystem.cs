@@ -266,8 +266,8 @@ public class CoolDownSystem : MonoBehaviour
                     if (swordInHand.activeSelf)
                     {
                         Debug.Log("SWING");
-                        //psSlash.Play();
                         myAnimator.SetTrigger("privoSlash");
+                        psSlash.Play();
                     }
 
                     skills[2].currentcooldown = 0;

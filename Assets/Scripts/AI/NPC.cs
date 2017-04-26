@@ -27,6 +27,7 @@ public class NPC : NPCBase
     public GameObject Bullet;
     public GameObject BulletTarget;
     public float bulletSpeed;
+    public ParticleSystem enemySlash;
 
     public bool HasWaitTime = false;
 
@@ -106,6 +107,7 @@ public class NPC : NPCBase
             case State.Attacking:
                 {
                     SetAnimation(AnimationState.Attacking);
+                    enemySlash.Play();
                     agent.Stop();
                 }
                 break;

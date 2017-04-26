@@ -319,7 +319,7 @@ public class Movement : MonoBehaviour
         if (x == 0 || y == 0)
         {
             target.transform.position = objectForward.transform.position;
-            //psWalk.Play();
+            psWalk.Play();
 
             if (isRunning == false)
             {

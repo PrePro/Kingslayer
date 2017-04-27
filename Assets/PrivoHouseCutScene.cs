@@ -7,6 +7,7 @@ public class PrivoHouseCutScene : MonoBehaviour
 
     public QuickCutsceneController houseCutscene;
     public bool houseCutsceneRunning = false;
+    public Camera cinematicCamera;
     
 
     // Use this for initialization
@@ -55,7 +56,8 @@ public class PrivoHouseCutScene : MonoBehaviour
         
         yield return new WaitForSecondsRealtime(20f);
         houseCutscene.EndCutscene();
-        houseCutsceneRunning = true;
+        cinematicCamera.enabled = false;
+        //houseCutsceneRunning = true;
        
     }
 }

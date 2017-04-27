@@ -16,6 +16,11 @@ public class CameraSwitchMenu : MonoBehaviour {
     public GameObject Village;
     public GameObject Barracks;
     public GameObject Castle;
+    public GameObject House1;
+    public GameObject City1;
+    public GameObject Crypt1;
+    public GameObject Village1;
+    public GameObject bgImage;
     // Use this for initialization
     void Awake () {
 
@@ -29,6 +34,11 @@ public class CameraSwitchMenu : MonoBehaviour {
         Village.SetActive(false);
         Barracks.SetActive(false);
         Castle.SetActive(false);
+        House1.SetActive(false);
+        City1.SetActive(false);
+        Crypt1.SetActive(false);
+        Village1.SetActive(false);
+        bgImage.SetActive(false);
         //cam2.gameObject.SetActive(false);
         //cam1.gameObject.SetActive(true);
         cam1.gameObject.SetActive(true);
@@ -56,6 +66,8 @@ public class CameraSwitchMenu : MonoBehaviour {
         Village.SetActive(false);
         Barracks.SetActive(false);
         Castle.SetActive(false);
+
+
     }
 
     public void enableCamera2()
@@ -74,5 +86,22 @@ public class CameraSwitchMenu : MonoBehaviour {
         Debug.Log("enableCam2");
         cam1.SetActive(false);
         cam2.SetActive(true);
+    }
+
+    public void levelSelect()
+    {
+        House1.SetActive(true);
+        City1.SetActive(true);
+        Crypt1.SetActive(true);
+        Village1.SetActive(true);
+        bgImage.SetActive(true);
+    }
+    public void levelSelectOff()
+    {
+        House1.SetActive(false);
+        City1.SetActive(false);
+        Crypt1.SetActive(false);
+        Village1.SetActive(false);
+        bgImage.SetActive(false);
     }
 }

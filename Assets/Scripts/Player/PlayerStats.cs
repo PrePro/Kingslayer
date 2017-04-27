@@ -8,6 +8,7 @@ public class PlayerStats : UnitStats
     public float HealthTime;
     public int HealthingAmount;
     public int DialogActive = 0;
+    private Animator myAnimator;
 
     public Vector3 startPosition;
     void Start()
@@ -34,6 +35,7 @@ public class PlayerStats : UnitStats
 
     public override void ReceiveDamage(float damage)
     {
+        //myAnimator.SetTrigger("privoHurt");
         currentHealth -= damage;
     }
 

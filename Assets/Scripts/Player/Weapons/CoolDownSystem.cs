@@ -264,7 +264,6 @@ public class CoolDownSystem : MonoBehaviour
                     //}
                     if (swordInHand.activeSelf)
                     {
-                        Debug.Log("SWING");
                         myAnimator.SetTrigger("privoSlash");
                         psSlash.Play();
                     }

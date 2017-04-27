@@ -94,6 +94,7 @@ public class World_AI : MonoBehaviour
                 break;
         }
     }
+
     void SleepLogic()
     {
         if (mCooldown <= 2f)
@@ -120,11 +121,9 @@ public class World_AI : MonoBehaviour
 
     IEnumerator Disable(float waitTime) // Move the object for sleep so it seems they disapper
     { 
-        Debug.Log("Disable");
         gameObject.transform.position = new Vector3(1000, 0, 1000);
         yield return new WaitForSeconds(waitTime);
         gameObject.transform.position = Food_WayPoint.transform.position;
-        Debug.Log("Enable");
     }
 
     #region Gizmos

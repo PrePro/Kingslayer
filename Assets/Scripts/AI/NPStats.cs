@@ -10,15 +10,24 @@ using UnityEngine.UI;
 
 public class NPStats : UnitStats
 {
-    public Image healthbar; 
+    public Image healthbar;
+    public bool Death = false;
+    NPC npc;
+    
+    void Start()
+    {
+        npc = this.gameObject.GetComponent<NPC>();
+    }
 
     void Update()
     {
         healthbar.fillAmount = currentHealth / maxHealth;
 
-        if(currentHealth <= 0)
+        if(currentHealth <= 0 && Death == false)
         {
-            Destroy(this.gameObject);
+            Death = true;
+            npc.SetState(NPCBase.State.Dead);
+            //Destroy(this.gameObject);
         }
         
     }

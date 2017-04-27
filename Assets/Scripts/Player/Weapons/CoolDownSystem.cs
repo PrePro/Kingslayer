@@ -181,12 +181,10 @@ public class CoolDownSystem : MonoBehaviour
         {
             if (swordInHand.activeSelf)
             {
-                
-                
                 reSheeth = true;
                 unSheeth = false;
                 myAnimator.SetBool("privoUnsheeth", unSheeth);
-                StartCoroutine(sheethDelay());
+                StartCoroutine(sheethDelay()); // Yash
                 
             }
             else
@@ -448,10 +446,10 @@ public class CoolDownSystem : MonoBehaviour
         Blocker.SetActive(false);
         isParry = false;
     }
-    IEnumerator sheethDelay()
+    IEnumerator sheethDelay()       //Yash
     {
         myAnimator.SetBool("privoResheeth", true);
-        yield return new WaitForSecondsRealtime(.95f);
+        yield return new WaitForSecondsRealtime(1.02f);
         swordInHand.SetActive(false);
         swordInSheeth.SetActive(true);
         myAnimator.avatar = AswordInSheeth;

@@ -401,17 +401,21 @@ public class Movement : MonoBehaviour
             if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) // UP
             {
                 target.Translate(Vector3.forward * Time.deltaTime * currentSpeed * 4);
-                if (isRunning == false)
+                if (isRunning == false && isCrouching == false)
                 {
                     currentSpeed = speed;
                 }
-                else if (isCrouching == true)
-                {
-                    currentSpeed = crouchSpeed;
-                }
+                
                 else
                 {
-                    currentSpeed = runningSpeed;
+                    if(isCrouching == true && isRunning == false)
+                    {
+                        currentSpeed = crouchSpeed;
+                    }
+                    if (isRunning == true && isCrouching == false)
+                    {
+                        currentSpeed = runningSpeed;
+                    }
                 }
 
             }
@@ -419,17 +423,21 @@ public class Movement : MonoBehaviour
             if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W)) // Down
             {
                 target.Translate(Vector3.back * Time.deltaTime * currentSpeed * 4);
-                if (isRunning == false)
+
+                if (isRunning == false && isCrouching == false)
                 {
                     currentSpeed = speed;
                 }
-                else if (isCrouching == true)
-                {
-                    currentSpeed = crouchSpeed;
-                }
                 else
                 {
-                    currentSpeed = runningSpeed;
+                    if (isCrouching == true && isRunning == false)
+                    {
+                        currentSpeed = crouchSpeed;
+                    }
+                    if (isRunning == true && isCrouching == false)
+                    {
+                        currentSpeed = runningSpeed;
+                    }
                 }
 
             }
@@ -437,17 +445,20 @@ public class Movement : MonoBehaviour
             if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) // Right
             {
                 target.Translate(Vector3.right * Time.deltaTime * currentSpeed * 4);
-                if (isRunning == false)
+                if (isRunning == false && isCrouching == false)
                 {
                     currentSpeed = speed;
                 }
-                else if (isCrouching == true)
-                {
-                    currentSpeed = crouchSpeed;
-                }
                 else
                 {
-                    currentSpeed = runningSpeed;
+                    if (isCrouching == true && isRunning == false)
+                    {
+                        currentSpeed = crouchSpeed;
+                    }
+                    if (isRunning == true && isCrouching == false)
+                    {
+                        currentSpeed = runningSpeed;
+                    }
                 }
 
             }
@@ -455,17 +466,20 @@ public class Movement : MonoBehaviour
             if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) // Left
             {
                 target.Translate(Vector3.left * Time.deltaTime * currentSpeed * 4);
-                if (isRunning == false)
+                if (isRunning == false && isCrouching == false)
                 {
                     currentSpeed = speed;
                 }
-                else if (isCrouching == true)
-                {
-                    currentSpeed = crouchSpeed;
-                }
                 else
                 {
-                    currentSpeed = runningSpeed;
+                    if (isCrouching == true && isRunning == false)
+                    {
+                        currentSpeed = crouchSpeed;
+                    }
+                    if (isRunning == true && isCrouching == false)
+                    {
+                        currentSpeed = runningSpeed;
+                    }
                 }
 
             }
@@ -476,18 +490,20 @@ public class Movement : MonoBehaviour
         {
             target.transform.position = objectForward.transform.position;
             //psWalk.Play();
-
-            if (isRunning == false)
+            if (isRunning == false && isCrouching == false)
             {
                 currentSpeed = speed;
             }
-            else if (isCrouching == true)
-            {
-                currentSpeed = crouchSpeed;
-            }
             else
             {
-                currentSpeed = runningSpeed;
+                if (isCrouching == true && isRunning == false)
+                {
+                    currentSpeed = crouchSpeed;
+                }
+                if (isRunning == true && isCrouching == false)
+                {
+                    currentSpeed = runningSpeed;
+                }
             }
 
         }

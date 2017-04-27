@@ -30,6 +30,7 @@ public abstract class NPCBase : MonoBehaviour
         Chasing,
         Attacking,
         Searching,
+        Dead,
         Disabled
     }
 
@@ -80,6 +81,7 @@ public abstract class NPCBase : MonoBehaviour
     //[Tooltip("Set the faction of the NPC to determine whether the unit is allied, neutral, or and enemy")]
     //protected Faction faction;
     protected UnityEngine.AI.NavMeshAgent agent;
+    protected NPStats stats;
 
     //Debugging
     [SerializeField]
@@ -114,6 +116,8 @@ public abstract class NPCBase : MonoBehaviour
 
     protected Animator animator;
     protected Vector3 startPosition;
+
+
       #endregion
       //======================================================================================================
       // Properties
@@ -133,6 +137,7 @@ public abstract class NPCBase : MonoBehaviour
     #region GameObject Functions
     void Start()
     {
+        stats = GetComponent<NPStats>();
         startPosition = transform.position;
         animator = GetComponent<Animator>();
         isTargetSeen = false;

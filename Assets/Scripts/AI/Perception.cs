@@ -14,9 +14,11 @@ public class Perception : MonoBehaviour
     Movement movement;
     GameObject PlayerHead;
     Ray ray;
+    NPStats stats;
     // Use this for initialization
     void Start()
     {
+        stats = GetComponentInParent<NPStats>();
         npc = GetComponentInParent<NPCBase>();
         sphereCollider = GetComponent<SphereCollider>();
         PlayerHead = GameObject.FindWithTag("PlayerHead");
@@ -25,6 +27,12 @@ public class Perception : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(stats.Death == true)
+        {
+            Debug.Log("ImDead");
+            return;
+        }
+
         Debug.DrawRay(transform.position + direction, ray.direction * 15, Color.red);
         if(movement == null)
         {

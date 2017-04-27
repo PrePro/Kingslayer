@@ -170,7 +170,7 @@ public class NPC : NPCBase
                 break;
             case State.Dead:
                 {
-                    SetAnimation(AnimationState.Idle); // Set to death animation
+                    //SetAnimation(AnimationState.Idle); // Set to death animation
                 }
                 break;
         }
@@ -279,7 +279,7 @@ public class NPC : NPCBase
             case State.Dead:
                 {
                     Debug.Log("HELPFDGLKNADGFA");
-                    //Death();
+                    Death();
                 }
                 break;
         }
@@ -288,7 +288,7 @@ public class NPC : NPCBase
 
     void Death()
     {
-     
+        SetAnimation(AnimationState.Dead);
         agent.Stop();
     }
 

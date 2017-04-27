@@ -52,7 +52,8 @@ public abstract class NPCBase : MonoBehaviour
         Blocking,
         Disabled,
         Stunned,
-        Rooted
+        Rooted,
+        Dead
     }
 
     protected enum Behavior

@@ -18,7 +18,7 @@ public class Cutscene2PrivosHouse : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
-            PrivoPlayer.transform.Translate(new Vector3(8, 0, 0) * Time.deltaTime);
+            PrivoPlayer.transform.Translate(new Vector3(50, 50, 50) * Time.deltaTime);
             //chair.transform.Translate (Vector3.right* speed * Time.deltaTime);
         }
     }

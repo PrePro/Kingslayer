@@ -58,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110500}
   m_LocalRotation: {x: -0, y: -0.040011685, z: -0, w: -0.9991992}
-  m_LocalPosition: {x: -119.633026, y: 51.56, z: 60.209183}
+  m_LocalPosition: {x: -45.543945, y: 58.13, z: -454.97482}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 426912}
@@ -100,6 +100,7 @@ MonoBehaviour:
   Bullet: {fileID: 0}
   BulletTarget: {fileID: 0}
   bulletSpeed: 0
+  enemySlash: {fileID: 0}
   HasWaitTime: 0
   timer: 0
   attackSpeed: 1.3
@@ -118,6 +119,7 @@ MonoBehaviour:
   currentHealth: 200
   armor: 10
   healthbar: {fileID: 114930486460464826}
+  Death: 0
 --- !u!114 &11458398
 MonoBehaviour:
   m_ObjectHideFlags: 1

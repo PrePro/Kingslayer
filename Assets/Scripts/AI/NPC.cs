@@ -36,11 +36,18 @@ public class NPC : NPCBase
     void Update()
     {
         timer += Time.deltaTime;
-        //Debug.Log(debuffState);
         if (debuffState == Debuff.None)
         {
-            //Debug.Log("RunBehavior");
-            RunBehavior();
+            //Debug.Log("RunBehavior");   
+            if(stats.Death == false)
+            {
+                RunBehavior();
+            }
+            else
+             {
+                Death();
+             }
+
         }
         else
         {
@@ -107,7 +114,7 @@ public class NPC : NPCBase
             case State.Attacking:
                 {
                     SetAnimation(AnimationState.Attacking);
-                    enemySlash.Play();
+                    //enemySlash.Play();
                     agent.Stop();
                 }
                 break;
@@ -159,6 +166,11 @@ public class NPC : NPCBase
                     {
                         agent.destination = currentTarget.position;
                     }
+                }
+                break;
+            case State.Dead:
+                {
+                    //SetAnimation(AnimationState.Idle); // Set to death animation
                 }
                 break;
         }
@@ -263,10 +275,21 @@ public class NPC : NPCBase
                     ChaseTarget();
                 }
                 break;
+            case State.Dead:
+                {
+                    Debug.Log("HELPFDGLKNADGFA");
+                    Death();
+                }
+                break;
         }
 
     }
 
+    void Death()
+    {
+        SetAnimation(AnimationState.Dead);
+        agent.Stop();
+    }
 
     //======================================================================================================
     // As long as the target is seen, update the target's new position 
@@ -309,7 +332,6 @@ public class NPC : NPCBase
 
         if (!GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange))
         {
-            Debug.Log("IsWithinRange2D");
             isAttacking = false;
             isInRange = false;
             if (!isTargetSeen)
@@ -335,7 +357,6 @@ public class NPC : NPCBase
                 isFacing = true;
                 if (!isAttacking && isFacing && isInRange)
                 {
-                    Debug.Log("Knight Attack");
                     isAttacking = true;
                     SetAnimation(AnimationState.Attacking);
                     //SetState(State.Attacking);
@@ -452,7 +473,6 @@ public class NPC : NPCBase
         AnimationState currAnim = (AnimationState)animator.GetInteger("AnimationState");
         if (currentAnimation == AnimationState.Attacking && currAnim == AnimationState.Attacking)
         {
-            Debug.Log("Hellp me");
             animator.SetInteger("AnimationState", 0);
             //animator.SetInteger("AnimationState", (int)currentAnimation);
         }
@@ -467,7 +487,6 @@ public class NPC : NPCBase
     {
         if(currentAnimation == AnimationState.Attacking && animState == AnimationState.Attacking)
         {
-            Debug.Log("Fuck my life");
             //currentAnimation = animState;
             UpdateAnimation();
         }

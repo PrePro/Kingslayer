@@ -13,6 +13,7 @@ public class PlayerStats : UnitStats
     public Vector3 startPosition;
     void Start()
     {
+        myAnimator = GetComponent<Animator>();
         startPosition = transform.position;
         StartCoroutine(Regeneration());
     }
@@ -26,7 +27,6 @@ public class PlayerStats : UnitStats
 
         if (currentHealth <= 0)
         {
-            Debug.Log("ASD");
             SetHealth();
             transform.position = startPosition;
             //SceneManager.LoadScene("MainMenu");
@@ -35,7 +35,8 @@ public class PlayerStats : UnitStats
 
     public override void ReceiveDamage(float damage)
     {
-        //myAnimator.SetTrigger("privoHurt");
+        Debug.Log("TAKE DAMAGE");
+        myAnimator.SetTrigger("privoHurt");
         currentHealth -= damage;
     }
 

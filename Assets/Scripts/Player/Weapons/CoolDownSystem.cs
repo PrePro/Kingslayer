@@ -237,24 +237,26 @@ public class CoolDownSystem : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space)) // Dash [0]
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0)) // Dash [0]
         {
+            Debug.Log("DASH");
             if (skills[0].currentcooldown >= skills[0].cooldown)
             {
                 if (currentDashState == DashState.NotDashing)
                 {
+                    Debug.Log("CD1");
                     StartCoroutine("Dashtime", dashTimeForward);
                     skills[0].currentcooldown = 0;
                 }
             }
         }
         if (canAttack == true)
-
         {
-            if (Input.GetButton("Fire1") || Input.GetKey(KeyCode.Joystick1Button5) && currentDashState == DashState.NotDashing) // Sword [2]
+
+            if (Input.GetButton("Fire1") || Input.GetAxis("RightTrigger") == 1 && currentDashState == DashState.NotDashing) // Sword [2]LeftBumper
             {
                 if (skills[2].currentcooldown >= skills[2].cooldown)
-                {
+                { 
                     //swordInHand.SetActive(true);
                     //swordInSheeth.SetActive(false);
                     //myAnimator.avatar = Swiningamin;
@@ -342,13 +344,11 @@ public class CoolDownSystem : MonoBehaviour
         }
         #endregion
         if (canAttack == true)
-
-
         {
             if (skills[5].currentcooldown >= skills[5].cooldown) //Push Back AOE
 
             {
-                if (Input.GetKey(KeyCode.Alpha3)) // AOE [5]
+                if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Joystick1Button2)) // AOE [5]
                 {
                     myAnimator.SetTrigger("privoAOE");
                     StartCoroutine("AOEWait", aoewaitTime);

@@ -249,7 +249,6 @@ public class NPC : NPCBase
 
     public override void RunBehavior()
     {
-        Debug.Log("RunB");
         switch (currentState)
         {
             case State.Idle:

@@ -29,7 +29,6 @@ public class Movement : MonoBehaviour
     public float runningSpeed;
     public float currentSpeed;
 
-    private bool isRunning = false;
     private float relativePosx;
     private float relativePosz;
 
@@ -51,6 +50,7 @@ public class Movement : MonoBehaviour
     [Header("Debugger")]
     [Tooltip("Dont Touch this is for testing")]
     [SerializeField]
+    public bool isRunning;
     public bool isWalking;
     public bool isCrouching;
     private float mCooldown;
@@ -81,7 +81,7 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-       
+        Dashes();
         if (mCooldown <= 2f)
         {
             mCooldown += Time.deltaTime;
@@ -103,7 +103,6 @@ public class Movement : MonoBehaviour
             else
             {
                 //Debug.Log("Key Board");
-                Dashes();
                 PlayerMove();
             }
 
@@ -131,6 +130,7 @@ public class Movement : MonoBehaviour
 
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.ForwardDash)
         {
+            Debug.Log("DASH12312");
             transform.Translate((Vector3.forward * Time.deltaTime * dashSpeedForward));
             target.transform.position = objectForward.transform.position;
         }
@@ -178,28 +178,26 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Joystick1Button2))
+        if (Input.GetKey(KeyCode.Joystick1Button8) && mCooldown >= 0.8f && isCrouching == false)
         {
-            isRunning = false;
-            myAnimator.SetBool("privoRun", isRunning);//Added for sprint animation. 
+            isRunning = !isRunning;
+            mCooldown = 0;
+            myAnimator.SetBool("privoRun", isRunning);
         }
+
+        if (Input.GetKey(KeyCode.Joystick1Button1) && mCooldown >= 0.8f && isRunning == false) //Set that to b
+        {
+            isCrouching = !isCrouching;
+            mCooldown = 0; 
+            myAnimator.SetBool("privoCrouch", isCrouching);
+        }
+
 
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {
             //Player wants to move make them move 
             if (x != 0 || y != 0)
             {
-                if (Input.GetKey(KeyCode.Joystick1Button9))
-                {
-                    currentSpeed = crouchSpeed;
-                    isCrouching = true;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
-                }
-                else
-                {
-                    isCrouching = false;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
-                }
                 transform.Translate((Vector3.forward * Time.deltaTime * currentSpeed));
                 isWalking = true;
                 myAnimator.SetBool("privoWalk", isWalking);
@@ -221,22 +219,21 @@ public class Movement : MonoBehaviour
             if (y >= 0 && y != 0)
             {
                 Debug.Log("UP");
-                if (isRunning == false)
+                if (isRunning == false && isCrouching == false)
                 {
                     currentSpeed = speed;
                 }
-                else if (Input.GetKey(KeyCode.Joystick1Button9))
-                {
-                    currentSpeed = crouchSpeed;
-                    isCrouching = true;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
-                    psWalk.Stop();
-                }
+
                 else
                 {
-                    isCrouching = false;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
-                    currentSpeed = runningSpeed;
+                    if (isCrouching == true && isRunning == false)
+                    {
+                        currentSpeed = crouchSpeed;
+                    }
+                    if (isRunning == true && isCrouching == false)
+                    {
+                        currentSpeed = runningSpeed;
+                    }
                 }
                 target.Translate(Vector3.forward * Time.deltaTime * currentSpeed);
 
@@ -247,21 +244,21 @@ public class Movement : MonoBehaviour
             if (x >= 0 && x != 0)
             {
                 Debug.Log("RIGHT");
-                if (isRunning == false)
+                if (isRunning == false && isCrouching == false)
                 {
                     currentSpeed = speed;
                 }
-                else if (Input.GetKey(KeyCode.Joystick1Button9))
-                {
-                    currentSpeed = crouchSpeed;
-                    isCrouching = true;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
-                }
+
                 else
                 {
-                    currentSpeed = runningSpeed;
-                    isCrouching = false;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
+                    if (isCrouching == true && isRunning == false)
+                    {
+                        currentSpeed = crouchSpeed;
+                    }
+                    if (isRunning == true && isCrouching == false)
+                    {
+                        currentSpeed = runningSpeed;
+                    }
                 }
                 target.Translate(Vector3.right * Time.deltaTime * currentSpeed);
 
@@ -272,21 +269,21 @@ public class Movement : MonoBehaviour
             {
                 Debug.Log("DOWN");
 
-                if (isRunning == false)
+                if (isRunning == false && isCrouching == false)
                 {
                     currentSpeed = speed;
                 }
-                else if (Input.GetKey(KeyCode.Joystick1Button9))
-                {
-                    currentSpeed = crouchSpeed;
-                    isCrouching = true;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
-                }
+
                 else
                 {
-                    currentSpeed = runningSpeed;
-                    isCrouching = false;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
+                    if (isCrouching == true && isRunning == false)
+                    {
+                        currentSpeed = crouchSpeed;
+                    }
+                    if (isRunning == true && isCrouching == false)
+                    {
+                        currentSpeed = runningSpeed;
+                    }
                 }
                 target.Translate(Vector3.back * Time.deltaTime * currentSpeed);
             }
@@ -294,42 +291,50 @@ public class Movement : MonoBehaviour
             // Moves the targets 
             if (x <= 0 && x != 0)
             {
-                Debug.Log("LEFT");
-                if (isRunning == false)
+                if (isRunning == false && isCrouching == false)
                 {
                     currentSpeed = speed;
                 }
-                else if (Input.GetKey(KeyCode.Joystick1Button9))
-                {
-                    currentSpeed = crouchSpeed;
-                    isCrouching = true;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
-                }
+
                 else
                 {
-                    currentSpeed = runningSpeed;
-                    isCrouching = false;
-                    myAnimator.SetBool("privoCrouch", isCrouching);
+                    if (isCrouching == true && isRunning == false)
+                    {
+                        currentSpeed = crouchSpeed;
+                    }
+                    if (isRunning == true && isCrouching == false)
+                    {
+                        currentSpeed = runningSpeed;
+                    }
                 }
                 target.Translate(Vector3.left * Time.deltaTime * currentSpeed);
             }
         }
 
         // Reset
-        if (x == 0 || y == 0)
+        if (x == 0 && y == 0)
         {
+            Debug.Log("Stop moving");
             target.transform.position = objectForward.transform.position;
             //psWalk.Play();
-
-            if (isRunning == false)
+            
+            if (isRunning == false && isCrouching == false)
             {
                 currentSpeed = speed;
             }
+
             else
             {
-                currentSpeed = runningSpeed;
+                if (isCrouching == true && isRunning == false)
+                {
+                    currentSpeed = crouchSpeed;
+                }
+                if (isRunning == true && isCrouching == false)
+                {
+                    isRunning = false;
+                    myAnimator.SetBool("privoRun", isRunning);
+                }
             }
-
         }
 
     }

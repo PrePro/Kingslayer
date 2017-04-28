@@ -29,7 +29,7 @@ public class Perception : MonoBehaviour
     {
         if(stats.Death == true)
         {
-            Debug.Log("ImDead");
+            //Debug.Log(" Npc is Dead");
             return;
         }
 

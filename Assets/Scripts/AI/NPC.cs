@@ -22,36 +22,26 @@ public class NPC : NPCBase
     */
     // Update is called once per frame
 
-    [Header("Bullet")]
-    [Tooltip("Only need to be added if you")]
-    public GameObject Bullet;
-    public GameObject BulletTarget;
-    public float bulletSpeed;
-    public ParticleSystem enemySlash;
 
-    public bool HasWaitTime = false;
+    private float timer;
 
-    public float timer;
 
     void Update()
     {
         timer += Time.deltaTime;
         if (debuffState == Debuff.None)
         {
-            //Debug.Log("RunBehavior");   
-            if(stats.Death == false)
+            if (stats.Death == false)
             {
                 RunBehavior();
             }
             else
-             {
+            {
                 Death();
-             }
-
+            }
         }
         else
         {
-            //Debug.Log("HandleDebuff");
             HandleDebuff();
         }
     }
@@ -59,7 +49,6 @@ public class NPC : NPCBase
     bool isAttacking = false;
     bool isFacing = false;
     bool isInRange = false;
-    public float attackSpeed = 10.0f;
     //======================================================================================================
     // Function to run specific behavior on state change 
     //======================================================================================================
@@ -160,7 +149,7 @@ public class NPC : NPCBase
                     {
                         Debug.Log("IdleDefencive");
                         agent.destination = startPosition;
-                        
+
                     }
                     else
                     {
@@ -359,25 +348,24 @@ public class NPC : NPCBase
                 {
                     isAttacking = true;
                     SetAnimation(AnimationState.Attacking);
-                    //SetState(State.Attacking);
-                    //SetAnimation(AnimationState.Attacking);
+                    StartCoroutine(OnCompleteAttackAnimation());
                     timer = 0;
                     isAttacking = false;
-                }              
+                }
             }
             else
             {
-                if(isFacing && isInRange)
-                SetAnimation(AnimationState.Idle);
+                if (isFacing && isInRange)
+                    SetAnimation(AnimationState.Idle);
             }
         }
-        
+
         else
         {
             if (!isAttacking && isFacing && isInRange)
             {
                 Debug.Log("Archer Attack");
-                
+
                 agent.Stop();
                 isAttacking = true;
 
@@ -386,6 +374,14 @@ public class NPC : NPCBase
             }
         }
     }
+
+    IEnumerator OnCompleteAttackAnimation()
+    {
+        Debug.Log("Start ATTACKING");
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("sword_and_shield_slash") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8f);
+        Debug.Log("DONE ATTACKING");
+    }
+
     private void Shoot()
     {
         Vector3 firePosition = BulletTarget.transform.position;
@@ -485,7 +481,7 @@ public class NPC : NPCBase
 
     public override void SetAnimation(AnimationState animState)
     {
-        if(currentAnimation == AnimationState.Attacking && animState == AnimationState.Attacking)
+        if (currentAnimation == AnimationState.Attacking && animState == AnimationState.Attacking)
         {
             //currentAnimation = animState;
             UpdateAnimation();

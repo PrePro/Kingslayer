@@ -293,24 +293,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1445608561125976
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 224796546688615302}
-  - component: {fileID: 223363231800555524}
-  - component: {fileID: 114815076210847542}
-  - component: {fileID: 114830973415673792}
-  m_Layer: 5
-  m_Name: NPCResponseDialogue 10
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &1470390396260538
 GameObject:
   m_ObjectHideFlags: 1
@@ -480,6 +462,7 @@ GameObject:
   - component: {fileID: 224685641654109022}
   - component: {fileID: 222400080634836092}
   - component: {fileID: 114784173719088692}
+  - component: {fileID: 114790904937490812}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -497,6 +480,7 @@ GameObject:
   - component: {fileID: 224127665156362824}
   - component: {fileID: 222980183242323118}
   - component: {fileID: 114463839613859258}
+  - component: {fileID: 114782097441386130}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -696,23 +680,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1957829315838932
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 224657533717784842}
-  - component: {fileID: 222765901269646782}
-  - component: {fileID: 114128830000333920}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &1970641572066186
 GameObject:
   m_ObjectHideFlags: 1
@@ -763,8 +730,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hmmm, an intriguing tale. I believe I can help you, Faery. But first, what
-    will you offer in return? '
+  m_Text: "That\u2019s a kind way of putting it. They were supposed to go out on a
+    job tonight but it seems to me you\u2019re willing to take their place."
 --- !u!114 &114061432530753278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -854,7 +821,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Hello, sir, what might Broker do for you?
+  m_Text: "You idiotic hare-brained IMBECILES! How in the Elementals\u2019 hell do
+    you lose track of an old drunk? He owes us!"
 --- !u!114 &114088646161955158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -912,41 +880,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114128830000333920
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1957829315838932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.88235295, g: 0.6862745, b: 0.09803922, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: ca612a387ecc96847b7f929cac1ff3e0, type: 3}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: A fine dagger, a family heirloom. I last had it at the old Elemental Church
-    north of here. Bring it to me, and I will give you the information you seek. Until
-    then, I will tell you nothing.
 --- !u!114 &114131935581296070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1374,8 +1307,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ' I have little need for the gold that humans crave so desperately. But,
-    if you can retrieve a lost item of mine, I shall tell you what you seek.'
+  m_Text: "Well you should head to the market gates, I\u2019ll explain there once
+    the crew is together."
 --- !u!114 &114463839613859258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1408,10 +1341,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'I had a dagger, a small pretty little thing. No real value I assure you,
-    just a trinket from my grandfather. Last I can remember it was in my pocket at
-    the old Elemental Church just north of here. If you could retrieve this for me
-    I would be grateful enough to aid you in your quest. '
+  m_Text: "I don\u2019t want to explain this more than once, head to the market gates
+    and I\u2019ll tell everyone at once."
 --- !u!114 &114483722408111968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1444,7 +1375,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Don't come back till you have my dagger!
+  m_Text: Get to the gate, mongrel!
 --- !u!114 &114540124016452146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1587,8 +1518,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Well they told you right, Faery, I wonder though if you truly know what
-    you want... hmmm? '
+  m_Text: "You don\u2019t look to be particularly fresh, nor talented. Now scram before
+    I make you"
 --- !u!114 &114614590151217042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1621,8 +1552,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Ah yes, I know of whom you speak. But first, what might you offer in exchange
-    for such valuable and dangerous information my good sir? '
+  m_Text: ' Well, swinging your sword is all you need to do around here! In fact,now
+    that my men have come up short, you can start swinging away!'
 --- !u!114 &114631064403844984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1923,8 +1854,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "I am no weak willed human to be frightened into speech. However I likely
-    know what you want, if you know the correct question\u2026"
+  m_Text: "These idiots aren\u2019t worthy of cleaning our chamber-pots! You don\u2019t
+    look to be much better though. You should leave before things get ugly."
 --- !u!114 &114731717566927958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1967,6 +1898,20 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114782097441386130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1718713892053820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 4, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114784173719088692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1988,21 +1933,19 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: ca612a387ecc96847b7f929cac1ff3e0, type: 3}
-    m_FontSize: 14
+    m_FontSize: 45
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 4
+    m_MaxSize: 45
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Well, last I knew it was with me at the old Elemental Church north of here.
-    My dagger, that is. It\u2019s a small pretty little thing, nice to look at but
-    without any value. I wish it to be returned to my possessions, it was my grandfather\u2019s
-    after all. "
+  m_Text: ' I can guarantee that! I''ll give you the details once everyone is assembled
+    at the market gates, now get going, recruit.'
 --- !u!114 &114787091635986640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2036,27 +1979,20 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Privo
---- !u!114 &114815076210847542
+--- !u!114 &114790904937490812
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1445608561125976}
+  m_GameObject: {fileID: 1695702498690132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 4, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114824348913397696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2088,22 +2024,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114830973415673792
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1445608561125976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &114845836137779530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2136,8 +2056,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: That is a terrible story. I can guide you to those responsible, but I require
-    payment for such volatile information.
+  m_Text: "They came recommended, I can\u2019t imagine why though. They had a job
+    for tonight though, now you\u2019re stuck with it."
 --- !u!114 &114863632941879434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2207,7 +2127,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Broker
+  m_Text: Angor
 --- !u!114 &114911609172567420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2306,8 +2226,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Ah yes, I have access to a great deal of information. But do you know what
-    to ask for, Faery? '
+  m_Text: Ha! The Red Band Mercs do not require anything from you runt.
 --- !u!114 &114992123244221962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2465,12 +2384,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1925036280516874}
---- !u!222 &222765901269646782
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1957829315838932}
 --- !u!222 &222799953724861202
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -2588,25 +2501,6 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1201329720642794}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
---- !u!223 &223363231800555524
-Canvas:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1445608561125976}
   m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 0
@@ -2813,7 +2707,6 @@ RectTransform:
   - {fileID: 224375832614451664}
   - {fileID: 224997946937861884}
   - {fileID: 224157140682158178}
-  - {fileID: 224796546688615302}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3251,24 +3144,6 @@ RectTransform:
   m_AnchoredPosition: {x: -55.1, y: -2.7}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224657533717784842
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1957829315838932}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 224796546688615302}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 679, y: 231}
-  m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224660934647964562
 RectTransform:
   m_ObjectHideFlags: 1
@@ -3341,25 +3216,6 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 679, y: 231}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &224796546688615302
-RectTransform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1445608561125976}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 224657533717784842}
-  m_Father: {fileID: 224069003609049042}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 819, y: 446}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224798301326016122
 RectTransform:

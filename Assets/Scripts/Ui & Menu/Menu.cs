@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public Canvas pauseScreen;
+    public Slider volumeSlider;
+    public AudioSource volumeAudio;
 
     public void LoadCity()
     {
@@ -55,6 +57,11 @@ public class Menu : MonoBehaviour
     {
         pauseScreen.gameObject.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void VolumeControl()
+    {
+        volumeAudio.volume = volumeSlider.value;
     }
 
 }

@@ -28,6 +28,7 @@ public class PlayerStats : UnitStats
         if (currentHealth <= 0)
         {
             SetHealth();
+            // Death animation
             transform.position = startPosition;
             //SceneManager.LoadScene("MainMenu");
         }
@@ -35,7 +36,6 @@ public class PlayerStats : UnitStats
 
     public override void ReceiveDamage(float damage)
     {
-        Debug.Log("TAKE DAMAGE");
         myAnimator.SetTrigger("privoHurt");
         currentHealth -= damage;
     }

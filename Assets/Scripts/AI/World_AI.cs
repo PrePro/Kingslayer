@@ -4,56 +4,88 @@ using UnityEngine;
 
 public class World_AI : MonoBehaviour
 {
-    public GameObject Food_WayPoint;
-    public int speed;
-    protected UnityEngine.AI.NavMeshAgent agent;
-    public State mState;
-    private float mCooldown;
-
     public enum State
     {
-        Idle,
-        Shop,
-        Talk,
-        Sleep,
-        Work,
-        Play,
-        Find,
-        Flee
+        Idle,  // Wander Around
+        Shop,  // Go to the Shop
+        Talk,  // Stop and talk to the player
+        Sleep, // Go home and sleep
+        Work,  // gp to a place and work (Run work animation)
+        Play,  // go to a place and play (Run play animation)
+        Find,  // Find the player and talk with him
+        Flee   // if they get hit from the player couple times run away from him
     }
 
-    int food = 10;
-    public int Sleep = 5;
+    public enum AnimationState
+    {
+        Idle,
+        Walking,
+        Attacking,
+        Running,
+        Blocking,
+        Disabled,
+        Stunned,
+        Rooted,
+        Dead
+    }
+
+    [Header("General Stuff")]
+    [Tooltip("How fast the npc moves")]
+    public int speed;
+    protected UnityEngine.AI.NavMeshAgent agent;
+    [Tooltip("Debugging only dont touch")]
+    public State currentState;
+    protected State previousState;
+    protected AnimationState currentAnimation;
+    protected Animator animator;
+
+    [Header("Sleep State Logic")]
+    public GameObject Sleep_WayPoint;
+    [Tooltip("How long until the npc will decide to go home")]
+    public int SleepTimer; //How long until the npc will take a nap
+    [Tooltip("How long the npc will be inside its house")]
+    public float TimeAway; //How long the npc will "be inside its house
+    private float mCooldown; //The time holder for the sleep logic
+    bool SleepCallOnce = false;
+
+    [Header("Wander or Idle Logic")]
+    [Tooltip("How long it will take before the trap picks a new direction")]
+    public float newtargetTimer;
+    Vector3 target;
+    float timer;
+
+
     // Use this for initialization
     void Start()
     {
-
-        StartCoroutine("Disable", 2f);
+        animator = GetComponent<Animator>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        
         agent.speed = speed;
     }
 
     void SetState(State state)
     {
-        if (mState == state)
+        if (currentState == state)
         {
-            Debug.Log("Resetting State");
+            Debug.Log("Resetting the same State");
             return;
         }
-        switch (mState)
+
+        switch (state)
         {
             case State.Idle:
+                {
+                    agent.speed = 1;
+                }
                 break;
             case State.Shop:
-               
                 break;
             case State.Talk:
                 break;
             case State.Sleep:
-                //Set Walking Animation
-                agent.SetDestination(Food_WayPoint.transform.position);
-               
+                //SetAnimation(AnimationState.Walking);
+                agent.speed = 3f;
+                agent.SetDestination(Sleep_WayPoint.transform.position);
                 break;
             case State.Work:
                 break;
@@ -66,13 +98,23 @@ public class World_AI : MonoBehaviour
             default:
                 break;
         }
+        previousState = currentState;
+        currentState = state;
     }
 
     void RunBehavior()
     {
-        switch (mState)
+        switch (currentState)
         {
             case State.Idle:
+                {
+                    timer += Time.deltaTime;
+                    if (timer >= newtargetTimer)
+                    {
+                        NewTarget();
+                        timer = 0;
+                    }
+                }
                 break;
             case State.Shop:
                 //agent.SetDestination(Food_WayPoint.transform.position);
@@ -80,7 +122,12 @@ public class World_AI : MonoBehaviour
             case State.Talk:
                 break;
             case State.Sleep:
-                SleepLogic();
+                {
+                    if (Vector3.Distance(transform.position, agent.destination) <= 1f)
+                    {
+                        StartCoroutine("Disable", TimeAway);
+                    }
+                }
                 break;
             case State.Work:
                 break;
@@ -97,36 +144,79 @@ public class World_AI : MonoBehaviour
 
     void SleepLogic()
     {
-        if (mCooldown <= 2f)
+        if (mCooldown <= SleepTimer + 2f)
         {
             mCooldown += Time.deltaTime;
         }
 
-        if (mCooldown >= 1f)
+        if(mCooldown >= SleepTimer && SleepCallOnce == false)
         {
-            Sleep--;
-            mCooldown = 0;
-        }
-        if (Sleep == 0)
-        {
+            SleepCallOnce = true;
             SetState(State.Sleep);
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        RunBehavior(); 
+        RunBehavior();
+        SleepLogic();
+    }
+
+    void NewTarget()
+    {
+        float myX = gameObject.transform.position.x;
+        float myZ = gameObject.transform.position.z;
+
+        float xPos = myX + Random.Range(myX - 10, myX + 10);
+        float zPos = myZ + Random.Range(myZ - 10, myZ + 10);
+
+        target = new Vector3(xPos, transform.position.y, zPos);
+
+        agent.SetDestination(target);
     }
 
     IEnumerator Disable(float waitTime) // Move the object for sleep so it seems they disapper
     { 
         gameObject.transform.position = new Vector3(1000, 0, 1000);
         yield return new WaitForSeconds(waitTime);
-        gameObject.transform.position = Food_WayPoint.transform.position;
+        mCooldown = 0;
+        SleepCallOnce = false;
+        gameObject.transform.position = Sleep_WayPoint.transform.position;
+        SetState(State.Idle); // GET NEW LOGIC
     }
 
-    #region Gizmos
+    #region Gizmos & Animation
+    public void UpdateAnimation()
+    {
+        AnimationState currAnim = (AnimationState)animator.GetInteger("AnimationState");
+        if (currentAnimation == AnimationState.Attacking && currAnim == AnimationState.Attacking)
+        {
+            animator.SetInteger("AnimationState", 0);
+            //animator.SetInteger("AnimationState", (int)currentAnimation);
+        }
+
+        if (currentAnimation != currAnim)
+        {
+            animator.SetInteger("AnimationState", (int)currentAnimation);
+        }
+    }
+
+    public void SetAnimation(AnimationState animState)
+    {
+        if (currentAnimation == AnimationState.Attacking && animState == AnimationState.Attacking)
+        {
+            //currentAnimation = animState;
+            UpdateAnimation();
+        }
+
+        if (currentAnimation == animState)
+        {
+            return;
+        }
+        currentAnimation = animState;
+        UpdateAnimation();
+    }
+
     public void OnDrawGizmos()
     {
         DrawBehaviorGizmo();
@@ -139,7 +229,7 @@ public class World_AI : MonoBehaviour
             return;
         }
 
-        switch (mState)
+        switch (currentState)
         {
             case State.Idle:
                 Gizmos.color = Color.green;

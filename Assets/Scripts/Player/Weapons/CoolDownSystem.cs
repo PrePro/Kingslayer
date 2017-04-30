@@ -239,12 +239,10 @@ public class CoolDownSystem : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0)) // Dash [0]
         {
-            Debug.Log("DASH");
             if (skills[0].currentcooldown >= skills[0].cooldown)
             {
                 if (currentDashState == DashState.NotDashing)
                 {
-                    Debug.Log("CD1");
                     StartCoroutine("Dashtime", dashTimeForward);
                     skills[0].currentcooldown = 0;
                 }
@@ -279,8 +277,8 @@ public class CoolDownSystem : MonoBehaviour
         if (Input.GetButton("Fire1") && currentState == ProjectState.CanShoot)
         {
             if (skills[1].currentcooldown >= skills[1].cooldown) // Projectile [1]
-
             {
+                // Set animation here
                 if (stats.moralityPorj == 0)  //Stun
                 {
                     currentProjState = ProjectileMorality.Stun;

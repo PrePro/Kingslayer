@@ -21,6 +21,9 @@ public class CameraSwitchMenu : MonoBehaviour {
     public GameObject Crypt1;
     public GameObject Village1;
     public GameObject bgImage;
+    public GameObject volume;
+    public GameObject resTexture;
+    public GameObject bgImage2;
     // Use this for initialization
     void Awake () {
 
@@ -39,6 +42,9 @@ public class CameraSwitchMenu : MonoBehaviour {
         Crypt1.SetActive(false);
         Village1.SetActive(false);
         bgImage.SetActive(false);
+        volume.SetActive(false);
+        resTexture.SetActive(false);
+        bgImage2.SetActive(false);
         //cam2.gameObject.SetActive(false);
         //cam1.gameObject.SetActive(true);
         cam1.gameObject.SetActive(true);
@@ -104,4 +110,18 @@ public class CameraSwitchMenu : MonoBehaviour {
         Village1.SetActive(false);
         bgImage.SetActive(false);
     }
+    public void optionSelectOn()
+    {
+        volume.SetActive(true);
+        resTexture.SetActive(true);
+        bgImage2.SetActive(true);
+    }
+    public void optionSelectOff()
+    {
+        volume.SetActive(false);
+        resTexture.SetActive(false);
+        bgImage2.SetActive(false);
+    }
+
+
 }

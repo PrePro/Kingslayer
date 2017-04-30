@@ -54,7 +54,7 @@ public class PrivoHouseCutScene : MonoBehaviour
     IEnumerator CinematicHouse()
     {
         
-        yield return new WaitForSecondsRealtime(17f);
+        yield return new WaitForSecondsRealtime(25f);
         houseCutscene.EndCutscene();
         cinematicCamera.enabled = false;
         //houseCutsceneRunning = true;

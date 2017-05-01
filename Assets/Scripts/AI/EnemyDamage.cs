@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemyDamage : MonoBehaviour
 {
+    private NPStats stats;
     private bool canAttack = true;
     [Tooltip("How much damage does the enemy do")]
     public int damage;
@@ -10,11 +11,16 @@ public class EnemyDamage : MonoBehaviour
     public float parryTimer;
     private bool isParry;
 
+    void Start()
+    {
+        stats = GetComponentInParent<NPStats>();
+    }
+
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player")
         {
-            if (canAttack == true)
+            if (canAttack == true && stats.Death == false)
             {
                 if (isParry == false)
                 col.GetComponent<PlayerStats>().ReceiveDamage(damage);

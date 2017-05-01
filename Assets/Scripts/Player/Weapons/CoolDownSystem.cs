@@ -250,7 +250,6 @@ public class CoolDownSystem : MonoBehaviour
         }
         if (canAttack == true)
         {
-
             if (Input.GetButton("Fire1") || Input.GetAxis("RightTrigger") == 1 && currentDashState == DashState.NotDashing) // Sword [2]LeftBumper
             {
                 if (skills[2].currentcooldown >= skills[2].cooldown)

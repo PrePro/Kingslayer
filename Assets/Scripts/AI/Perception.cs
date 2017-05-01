@@ -27,30 +27,31 @@ public class Perception : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(stats.Death == true)
+        if (stats.Death == false)
         {
             //Debug.Log(" Npc is Dead");
-            return;
-        }
-
-        Debug.DrawRay(transform.position + direction, ray.direction * 15, Color.red);
-        if(movement == null)
-        {
-            return;
-        }
-        else
-        {
-            if (movement.isCrouching)
+            Debug.DrawRay(transform.position + direction, ray.direction * 15, Color.red);
+            if (movement == null)
             {
-                Debug.Log("Crouch");
-                PlayerHead.transform.position = new Vector3(PlayerHead.transform.position.x, transform.position.y - 1.5f, PlayerHead.transform.position.z);
+                return;
             }
             else
             {
-                PlayerHead.transform.position = new Vector3(PlayerHead.transform.position.x, transform.position.y, PlayerHead.transform.position.z);
+                if (movement.isCrouching)
+                {
+                    Debug.Log("Crouch");
+                    PlayerHead.transform.position = new Vector3(PlayerHead.transform.position.x, transform.position.y - 1.5f, PlayerHead.transform.position.z);
+                }
+                else
+                {
+                    PlayerHead.transform.position = new Vector3(PlayerHead.transform.position.x, transform.position.y, PlayerHead.transform.position.z);
+                }
             }
         }
-       
+        else
+        {
+            Debug.Log("Perception is turned off");
+        }
     }
 
     public void OnTriggerStay(Collider other)
@@ -96,11 +97,11 @@ public class Perception : MonoBehaviour
             }
         }
     }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-
             movement = other.GetComponent<Movement>();
         }
     }

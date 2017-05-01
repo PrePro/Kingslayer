@@ -114,6 +114,12 @@ public class CoolDownSystem : MonoBehaviour
     public bool isParry;
     public GameObject Blocker;
     private bool m_isAxisInUse = false;
+    [SerializeField]
+    public static bool AoeIsOn;
+    public static bool ProjIsOn;
+
+    public bool AoeIsAvailable;
+    public bool ProjIsAvailable;
     #endregion
 
     //======================================================================================================
@@ -122,6 +128,8 @@ public class CoolDownSystem : MonoBehaviour
     #region GameObject Functions
     void Start()
     {
+        AoeIsAvailable = AoeIsOn;
+        ProjIsAvailable = ProjIsOn;
         //ps = GetComponent<ParticleSystem>();
         foreach (Skills x in skills)
         {
@@ -250,7 +258,6 @@ public class CoolDownSystem : MonoBehaviour
         }
         if (canAttack == true)
         {
-
             if (Input.GetButton("Fire1") || Input.GetAxis("RightTrigger") == 1 && currentDashState == DashState.NotDashing) // Sword [2]LeftBumper
             {
                 if (skills[2].currentcooldown >= skills[2].cooldown)
@@ -276,7 +283,7 @@ public class CoolDownSystem : MonoBehaviour
         }
         if (Input.GetButton("Fire1") && currentState == ProjectState.CanShoot)
         {
-            if (skills[1].currentcooldown >= skills[1].cooldown) // Projectile [1]
+            if (skills[1].currentcooldown >= skills[1].cooldown && ProjIsAvailable == true) // Projectile [1]
             {
                 // Set animation here
                 if (stats.moralityPorj == 0)  //Stun
@@ -343,7 +350,7 @@ public class CoolDownSystem : MonoBehaviour
         #endregion
         if (canAttack == true)
         {
-            if (skills[5].currentcooldown >= skills[5].cooldown) //Push Back AOE
+            if (skills[5].currentcooldown >= skills[5].cooldown && AoeIsAvailable == true) //Push Back AOE
 
             {
                 if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Joystick1Button2)) // AOE [5]

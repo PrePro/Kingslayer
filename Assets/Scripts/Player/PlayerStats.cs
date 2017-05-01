@@ -3,19 +3,39 @@ using System.Collections;
 
 public class PlayerStats : UnitStats
 {
+    public int Morality;
+
     public int moralityAoe; // 0 is bad / 100 is good
     public int moralityPorj;
+
     public float HealthTime;
     public int HealthingAmount;
+    [HideInInspector]
     public int DialogActive = 0;
     private Animator myAnimator;
 
     public Vector3 startPosition;
+
+    void Awake()
+    {
+    }
+
     void Start()
     {
+        Morality = PlayerPrefs.GetInt("Morality", 0);
+        moralityAoe = PlayerPrefs.GetInt("moralityAoe", 0);
+        moralityPorj = PlayerPrefs.GetInt("moralityPorj", 0);
+
         myAnimator = GetComponent<Animator>();
         startPosition = transform.position;
         StartCoroutine(Regeneration());
+    }
+
+    void OnDestroy()
+    {
+        PlayerPrefs.SetInt("Morality", Morality);
+        PlayerPrefs.SetInt("MoralityAoe", moralityAoe);
+        PlayerPrefs.SetInt("MoralityPorj", moralityPorj);
     }
 
     void Update()
@@ -28,7 +48,7 @@ public class PlayerStats : UnitStats
         if (currentHealth <= 0)
         {
             SetHealth();
-            myAnimator.SetTrigger("privoDeath");
+            // Death animation
             transform.position = startPosition;
             //SceneManager.LoadScene("MainMenu");
         }

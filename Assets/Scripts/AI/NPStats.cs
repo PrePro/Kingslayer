@@ -27,14 +27,16 @@ public class NPStats : UnitStats
         {
             Death = true;
             npc.SetState(NPCBase.State.Dead);
-            //Destroy(this.gameObject);
         }
         
     }
 
     public override void ReceiveDamage(float damage)
     {
-        currentHealth -= damage;
+        if(Death == false)
+        {
+            currentHealth -= damage;
+        }
         // Set animation damage here
 
         //StartCoroutine("turnON", 1);

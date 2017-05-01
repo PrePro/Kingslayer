@@ -193,13 +193,13 @@ public class Main_Dialogue : MonoBehaviour
 
         {
             case 0:
-                playerStats.moralityAoe += mNpcText[mIndex].morality[0];
+                playerStats.Morality += mNpcText[mIndex].morality[0];
                 break;
             case 1:
-                playerStats.moralityAoe += mNpcText[mIndex].morality[1];
+                playerStats.Morality += mNpcText[mIndex].morality[1];
                 break;
             case 2:
-                playerStats.moralityAoe += mNpcText[mIndex].morality[2];
+                playerStats.Morality += mNpcText[mIndex].morality[2];
                 break;
             default:
                 break;

@@ -23,6 +23,9 @@ public class CoolDownSystem : MonoBehaviour
     public ParticleSystem ps;
     public ParticleSystem psDash;
     public ParticleSystem psSlash;
+    public AudioClip slash;
+    AudioSource audio;
+
 
     public enum DashState
     {
@@ -139,6 +142,7 @@ public class CoolDownSystem : MonoBehaviour
         AoeScale = AoeSphere.transform.localScale; // Getting Scale of the Aoe to reset state later
         currentState = ProjectState.IsDone;
         stats = gameObject.GetComponent<PlayerStats>();
+        audio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -272,6 +276,7 @@ public class CoolDownSystem : MonoBehaviour
                     if (swordInHand.activeSelf)
                     {
                         myAnimator.SetTrigger("privoSlash");
+                        audio.PlayOneShot(slash, 5F);
                         psSlash.Play();
                     }
 

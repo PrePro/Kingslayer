@@ -22,8 +22,8 @@ public class NPC : NPCBase
     */
     // Update is called once per frame
 
-
     private float timer;
+    bool mDeath;
 
 
     void Update()
@@ -37,6 +37,7 @@ public class NPC : NPCBase
             }
             else
             {
+                Debug.Log("DEATHHHH");
                 Death();
             }
         }
@@ -159,19 +160,32 @@ public class NPC : NPCBase
                 break;
             case State.Dead:
                 {
-                    //SetAnimation(AnimationState.Idle); // Set to death animation
+                    Debug.Log("SetState Dead");
+                    SetAnimation(AnimationState.Dead);
+                    DeathBox.SetActive(true);
+                    StartCoroutine("Death", 10);
                 }
                 break;
         }
         previousState = currentState;
         currentState = newState;
     }
+    IEnumerator Death(float time)
+    {
+        Debug.Log("DEATH start");
+        yield return new WaitForSeconds(time);
+
+        PlayerStats stats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        stats.Morality += 10;
+        mDeath = true;
+        Debug.Log("DEATH End");
+    }
+
     IEnumerator AIWait(float time)
     {
         yield return new WaitForSeconds(time);
         agent.destination = patrolRoute[patrolIndex].position;
         agent.Resume();
-
     }
     public IEnumerator RootAI(float time)
     {
@@ -266,8 +280,6 @@ public class NPC : NPCBase
                 break;
             case State.Dead:
                 {
-                    Debug.Log("HELPFDGLKNADGFA");
-                    Death();
                 }
                 break;
         }
@@ -276,8 +288,22 @@ public class NPC : NPCBase
 
     void Death()
     {
-        SetAnimation(AnimationState.Dead);
-        agent.Stop();
+        if (mDeath == true)
+        {
+            agent.Resume();
+            SetAnimation(AnimationState.Walking);
+
+            agent.SetDestination(new Vector3(0, 0, 0)); // Make this a gameObject
+            
+            if (Vector3.Distance(transform.position, agent.destination) <= 3f)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+        else
+        {
+            agent.Stop();
+        }
     }
 
     //======================================================================================================
@@ -299,78 +325,82 @@ public class NPC : NPCBase
 
     public override void AttackTarget()
     {
-        if (!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
+        if (stats.Death == false)
         {
-            isAttacking = false;
-            isFacing = false;
-            Vector3 target = currentTarget.position;
-            target.y = transform.position.y;
-            target = target - transform.position;
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, target, agent.angularSpeed * Time.deltaTime, 0.0f);
-            transform.rotation = Quaternion.LookRotation(newDir);
-        }
-        else if (isInRange)
-        {
-            //Debug.Log("IsFacing");
-            isFacing = true;
-        }
-        else
-        {
-            isFacing = false;
-        }
 
-        if (!GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange))
-        {
-            isAttacking = false;
-            isInRange = false;
-            if (!isTargetSeen)
+            if (!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
             {
-                SetState(State.Searching);
+                isAttacking = false;
+                isFacing = false;
+                Vector3 target = currentTarget.position;
+                target.y = transform.position.y;
+                target = target - transform.position;
+                Vector3 newDir = Vector3.RotateTowards(transform.forward, target, agent.angularSpeed * Time.deltaTime, 0.0f);
+                transform.rotation = Quaternion.LookRotation(newDir);
+            }
+            else if (isInRange)
+            {
+                //Debug.Log("IsFacing");
+                isFacing = true;
             }
             else
             {
-                SetState(State.Chasing);
+                isFacing = false;
             }
-        }
-        else
-        {
-            isInRange = true;
-        }
-        if (unitClass == UnitClass.Knight)
-        {
-            if (timer >= attackSpeed)
+
+            if (!GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange))
             {
-                //Debug.Log("isAttacking = " + isAttacking);
-                //Debug.Log("isFacing = " + isFacing);
-                //Debug.Log("isInRange = " + isInRange);
-                isFacing = true;
-                if (!isAttacking && isFacing && isInRange)
+                isAttacking = false;
+                isInRange = false;
+                if (!isTargetSeen)
                 {
-                    isAttacking = true;
-                    SetAnimation(AnimationState.Attacking);
-                    StartCoroutine(OnCompleteAttackAnimation());
-                    timer = 0;
-                    isAttacking = false;
+                    SetState(State.Searching);
+                }
+                else
+                {
+                    SetState(State.Chasing);
                 }
             }
             else
             {
-                if (isFacing && isInRange)
-                    SetAnimation(AnimationState.Idle);
+                isInRange = true;
             }
-        }
-
-        else
-        {
-            if (!isAttacking && isFacing && isInRange)
+            if (unitClass == UnitClass.Knight)
             {
-                Debug.Log("Archer Attack");
+                if (timer >= attackSpeed)
+                {
+                    //Debug.Log("isAttacking = " + isAttacking);
+                    //Debug.Log("isFacing = " + isFacing);
+                    //Debug.Log("isInRange = " + isInRange);
+                    isFacing = true;
+                    if (!isAttacking && isFacing && isInRange)
+                    {
+                        isAttacking = true;
+                        SetAnimation(AnimationState.Attacking);
+                        StartCoroutine(OnCompleteAttackAnimation());
+                        timer = 0;
+                        isAttacking = false;
+                    }
+                }
+                else
+                {
+                    if (isFacing && isInRange)
+                        SetAnimation(AnimationState.Idle);
+                }
+            }
 
-                agent.Stop();
-                isAttacking = true;
+            else
+            {
+                if (!isAttacking && isFacing && isInRange)
+                {
+                    Debug.Log("Archer Attack");
 
-                //SetAnimation(AnimationState.Attacking);
-                Shoot();
+                    agent.Stop();
+                    isAttacking = true;
+
+                    //SetAnimation(AnimationState.Attacking);
+                    Shoot();
+                }
             }
         }
     }
@@ -502,15 +532,19 @@ public class NPC : NPCBase
     //======================================================================================================
     public override void OnTargetFound(GameObject foundObject)
     {
-        if (dominantBehavior != Behavior.Passive)
+        if (stats.Death == false)
         {
-            currentTarget = foundObject.transform;
-            if (currentState != State.Attacking)
+            if (dominantBehavior != Behavior.Passive)
             {
-                SetState(State.Chasing);
+                currentTarget = foundObject.transform;
+                if (currentState != State.Attacking)
+                {
+                    SetState(State.Chasing);
+                }
+                isTargetSeen = true;
             }
-            isTargetSeen = true;
         }
+
     }
 
     //======================================================================================================

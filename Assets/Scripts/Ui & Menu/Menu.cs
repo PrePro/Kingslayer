@@ -8,6 +8,10 @@ public class Menu : MonoBehaviour
     public Canvas pauseScreen;
     public Slider volumeSlider;
     public AudioSource volumeAudio;
+    void Start()
+    {
+        volumeSlider.value = volumeAudio.volume;
+    }
 
     public void LoadCity()
     {

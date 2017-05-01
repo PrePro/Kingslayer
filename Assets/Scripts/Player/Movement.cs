@@ -130,7 +130,6 @@ public class Movement : MonoBehaviour
 
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.ForwardDash)
         {
-            Debug.Log("DASH12312");
             transform.Translate((Vector3.forward * Time.deltaTime * dashSpeedForward));
             target.transform.position = objectForward.transform.position;
         }

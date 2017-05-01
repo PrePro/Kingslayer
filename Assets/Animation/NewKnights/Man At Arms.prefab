@@ -1462,15 +1462,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1317695390912736}
-  m_LocalRotation: {x: -0, y: 0.9912779, z: -0, w: 0.1317888}
-  m_LocalPosition: {x: -34.94, y: 57.79, z: -476.22}
+  m_LocalRotation: {x: -0, y: 0.83187485, z: -0, w: -0.55496335}
+  m_LocalPosition: {x: -42.26, y: 57.87, z: -482.24}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4434316960730668}
   - {fileID: 4406469203932198}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -587.815, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -472.584, z: 0}
 --- !u!4 &4271881962172840
 Transform:
   m_ObjectHideFlags: 1
@@ -1953,8 +1953,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1597338278115994}
   m_LocalRotation: {x: 0.7145569, y: 0.08064043, z: -0.11273725, w: 0.68570834}
-  m_LocalPosition: {x: 0.14, y: -0.037, z: 0.52}
-  m_LocalScale: {x: 0.10599542, y: 1.0397711, z: 0.17747119}
+  m_LocalPosition: {x: 0.122, y: -0.034, z: 0.456}
+  m_LocalScale: {x: 0.10599542, y: 0.8966049, z: 0.17747119}
   m_Children: []
   m_Father: {fileID: 4315243800507206}
   m_RootOrder: 0
@@ -2301,7 +2301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  parryTimer: 0
+  parryTimer: 0.3
 --- !u!114 &114451509357643520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2397,22 +2397,16 @@ MonoBehaviour:
   dominantBehavior: 1
   currentState: 0
   currentAnimation: 0
-  currentTarget: {fileID: 0}
   patrolRoute:
   - {fileID: 0}
   - {fileID: 0}
-  patrolIndex: 0
+  HasWaitTime: 0
   patrolDistanceThreshold: 1
-  isTargetSeen: 0
   attackRange: 5
-  attackDamage: 5
+  attackSpeed: 100
   Bullet: {fileID: 0}
   BulletTarget: {fileID: 0}
   bulletSpeed: 0
-  enemySlash: {fileID: 0}
-  HasWaitTime: 0
-  timer: 0
-  attackSpeed: 100
 --- !u!114 &114981839227002166
 MonoBehaviour:
   m_ObjectHideFlags: 1

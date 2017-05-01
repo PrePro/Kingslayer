@@ -39,7 +39,7 @@ public class PlayerStats : UnitStats
         if (currentHealth <= 0)
         {
             SetHealth();
-            // Death animation
+            myAnimator.SetTrigger("privoDeath");
             transform.position = startPosition;
             //SceneManager.LoadScene("MainMenu");
         }

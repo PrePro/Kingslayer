@@ -118,7 +118,7 @@ public class CoolDownSystem : MonoBehaviour
     public GameObject Blocker;
     private bool m_isAxisInUse = false;
     [SerializeField]
-    public static bool AoeIsOn;
+    public static bool AoeIsOn = true;
     public static bool ProjIsOn;
 
     public bool AoeIsAvailable;

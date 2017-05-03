@@ -451,7 +451,9 @@ public class CoolDownSystem : MonoBehaviour
     {
         isParry = true;
         Blocker.SetActive(true);
+        myAnimator.SetBool("privoParry", true);
         yield return new WaitForSeconds(waitTime);
+        myAnimator.SetBool("privoParry", false);
         Blocker.SetActive(false);
         isParry = false;
     }

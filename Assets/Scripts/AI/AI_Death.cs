@@ -7,15 +7,17 @@ public class AI_Death : MonoBehaviour
 
     PlayerStats stats;
     bool PlayerInTrigger;
+    [Header("Death")]
+    [Tooltip("How much morality the player gets for killing the enemy\nShould be negative")]
+    public int MoralityForKilling;
 
     void Update()
     {
         if(PlayerInTrigger == true)
         {
             if (Input.GetKey(KeyCode.E))
-            {
-                Debug.Log("I KILLL YOU BITCH");
-                stats.Morality -= 10;
+            { 
+                stats.Morality += MoralityForKilling;
                 Destroy(transform.parent.gameObject);
             }
         }

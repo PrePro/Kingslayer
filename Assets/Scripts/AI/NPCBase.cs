@@ -128,7 +128,8 @@ public abstract class NPCBase : MonoBehaviour
     [SerializeField]
     protected float bulletSpeed;
 
-    public GameObject DeathBox;
+    [SerializeField]
+    protected GameObject DeathBox;
     protected World_AIBrain Brain;
     #endregion
     //======================================================================================================

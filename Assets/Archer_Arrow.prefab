@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 54463862885733790}
   - component: {fileID: 114903008059046150}
   - component: {fileID: 114192317115432724}
+  - component: {fileID: 136773811747573290}
   m_Layer: 0
   m_Name: Archer_Arrow
   m_TagString: Untagged
@@ -38,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1315884258548092}
   m_LocalRotation: {x: -0.5824088, y: -0.00000017136328, z: 0.00000024214378, w: 0.8128961}
-  m_LocalPosition: {x: -0, y: 0.346, z: 0.108}
+  m_LocalPosition: {x: -6.526173, y: -2.3076372, z: 7.596647}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -120,4 +121,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451d160b31ffc5645a41bda86f7e2a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 10000
+--- !u!136 &136773811747573290
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1315884258548092}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.3752012
+  m_Height: 0.039952736
+  m_Direction: 1
+  m_Center: {x: 5.505973e-15, y: 0.0066587874, z: 0.06959218}

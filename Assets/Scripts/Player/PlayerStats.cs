@@ -38,8 +38,21 @@ public class PlayerStats : UnitStats
         PlayerPrefs.SetInt("MoralityPorj", moralityPorj);
     }
 
+    void MoralityUpdater()
+    {
+        if(Morality > 100)
+        {
+            Morality = 100;
+        }
+        else if(Morality < -100)
+        {
+            Morality = -100;
+        }
+    }
+
     void Update()
     {
+        MoralityUpdater();
         if (Input.GetKey(KeyCode.U))
         {
             currentHealth--;

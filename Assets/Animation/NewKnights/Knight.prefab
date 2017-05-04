@@ -1390,7 +1390,7 @@ Transform:
   m_GameObject: {fileID: 1767937988523440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 4345728864049126}
   m_RootOrder: 0
@@ -1596,15 +1596,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1291457089047494}
-  m_LocalRotation: {x: -0, y: -0.25190586, z: -0, w: -0.9677518}
-  m_LocalPosition: {x: -33.475918, y: 57.77, z: -478.15137}
+  m_LocalRotation: {x: -0, y: 0.70795786, z: -0, w: -0.7062547}
+  m_LocalPosition: {x: -36.07, y: 57.98, z: -410.79}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4123146876386238}
   - {fileID: 4722916529598586}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -330.819, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -450.138, z: 0}
 --- !u!4 &4391482590152810
 Transform:
   m_ObjectHideFlags: 1
@@ -2332,6 +2332,10 @@ MonoBehaviour:
   Bullet: {fileID: 0}
   BulletTarget: {fileID: 0}
   bulletSpeed: 0
+  DeathBox: {fileID: 0}
+  DeathWayPoint: {fileID: 0}
+  DeathTimer: 40
+  MoralityForSaving: 20
 --- !u!114 &114290231684371210
 MonoBehaviour:
   m_ObjectHideFlags: 1

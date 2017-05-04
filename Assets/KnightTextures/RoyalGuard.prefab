@@ -987,7 +987,7 @@ GameObject:
   - component: {fileID: 114378771656846008}
   - component: {fileID: 114766485156957640}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Health_Bar_Final
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2120,7 +2120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1221722850117014}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -25.630985, y: 57.83, z: -491.758}
+  m_LocalPosition: {x: 3.84, y: -1.31, z: 5.69}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4028736727940600}
@@ -2399,6 +2399,10 @@ MonoBehaviour:
   Bullet: {fileID: 0}
   BulletTarget: {fileID: 0}
   bulletSpeed: 0
+  DeathBox: {fileID: 0}
+  DeathWayPoint: {fileID: 0}
+  DeathTimer: 0
+  MoralityForSaving: 0
 --- !u!114 &114579477549690674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2488,7 +2492,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!136 &136440820026474582
 CapsuleCollider:
   m_ObjectHideFlags: 1

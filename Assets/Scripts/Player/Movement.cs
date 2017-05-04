@@ -514,8 +514,9 @@ public class Movement : MonoBehaviour
 
     }
 
-    IEnumerator StopMovement(float waitTime)
+    public IEnumerator StopMovement(float waitTime)
     {
+        Debug.Log("Stop movement");
         stopMovement = true;
         yield return new WaitForSeconds(waitTime);
         stopMovement = false;

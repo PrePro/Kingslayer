@@ -508,6 +508,11 @@ Prefab:
       propertyPath: ProjIsAvailable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23622788788533222, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
   m_IsPrefabParent: 0
@@ -1249,27 +1254,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: m_Name
-      value: EnemyMockup (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114600434994124976, guid: 2dd98356bb60a1543bd976c68277d846,
-        type: 2}
-      propertyPath: MoralityForKilling
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: MoralityForKilling
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: DeathTimer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: DeathWayPoint
       value: 
       objectReference: {fileID: 1501172214}
+    - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: m_Name
+      value: EnemyMockup (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: attackSpeed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
   m_IsPrefabParent: 0
@@ -3548,6 +3544,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: patrolRoute.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.x
       value: 60.21
@@ -3587,7 +3587,7 @@ Prefab:
     - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: patrolRoute.Array.data[1]
       value: 
-      objectReference: {fileID: 1949971716}
+      objectReference: {fileID: 826190066}
     - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: dominantBehavior
       value: 3
@@ -3600,6 +3600,10 @@ Prefab:
       propertyPath: HasWaitTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: DeathWayPoint
+      value: 
+      objectReference: {fileID: 1501172214}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
   m_IsPrefabParent: 0
@@ -3818,7 +3822,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1372396833}
   m_LocalRotation: {x: -0, y: 0.9603177, z: -0, w: 0.2789085}
-  m_LocalPosition: {x: -13.44, y: 4.4, z: 1.58}
+  m_LocalPosition: {x: -41.2, y: 4.4, z: 27.5}
   m_LocalScale: {x: 15.386899, y: 16.669127, z: 16.669125}
   m_Children: []
   m_Father: {fileID: 0}

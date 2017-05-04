@@ -21,6 +21,13 @@ public class NPC : NPCBase
     public bool isAttack;
     */
     // Update is called once per frame
+    [Header("Death")]
+    [Tooltip("This is where they go after they die")]
+    public GameObject DeathWayPoint;
+    [Tooltip("How long they wait before they get up and walk away")]
+    public float DeathTimer;
+    [Tooltip("How much morality the player gets for letting the npc live\nShould be positive")]
+    public int MoralityForSaving;
 
     private float timer;
     bool mDeath;
@@ -37,7 +44,6 @@ public class NPC : NPCBase
             }
             else
             {
-                Debug.Log("DEATHHHH");
                 Death();
             }
         }
@@ -160,10 +166,9 @@ public class NPC : NPCBase
                 break;
             case State.Dead:
                 {
-                    Debug.Log("SetState Dead");
                     SetAnimation(AnimationState.Dead);
                     DeathBox.SetActive(true);
-                    StartCoroutine("Death", 10);
+                    StartCoroutine("Death", DeathTimer);
                 }
                 break;
         }
@@ -172,13 +177,11 @@ public class NPC : NPCBase
     }
     IEnumerator Death(float time)
     {
-        Debug.Log("DEATH start");
         yield return new WaitForSeconds(time);
 
         PlayerStats stats = GameObject.Find("Player").GetComponent<PlayerStats>();
-        stats.Morality += 10;
+        stats.Morality += MoralityForSaving;
         mDeath = true;
-        Debug.Log("DEATH End");
     }
 
     IEnumerator AIWait(float time)
@@ -293,7 +296,7 @@ public class NPC : NPCBase
             agent.Resume();
             SetAnimation(AnimationState.Walking);
 
-            agent.SetDestination(new Vector3(0, 0, 0)); // Make this a gameObject
+            agent.SetDestination(DeathWayPoint.transform.position); // Make this a gameObject
             
             if (Vector3.Distance(transform.position, agent.destination) <= 3f)
             {

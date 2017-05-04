@@ -613,6 +613,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1449519442110356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4307055762184602}
+  - component: {fileID: 65694697604309042}
+  - component: {fileID: 114687025994830976}
+  m_Layer: 0
+  m_Name: DeathBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1465405542559882
 GameObject:
   m_ObjectHideFlags: 1
@@ -1462,15 +1479,16 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1317695390912736}
-  m_LocalRotation: {x: -0, y: -0.06805373, z: -0, w: -0.9976817}
-  m_LocalPosition: {x: -16.03, y: 57.87, z: -483.95}
+  m_LocalRotation: {x: -0, y: 0.36891016, z: -0, w: -0.9294651}
+  m_LocalPosition: {x: -67.4, y: 57.71, z: -444.28}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4434316960730668}
   - {fileID: 4406469203932198}
+  - {fileID: 4307055762184602}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -352.196, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -403.297, z: 0}
 --- !u!4 &4271881962172840
 Transform:
   m_ObjectHideFlags: 1
@@ -1510,6 +1528,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4406469203932198}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4307055762184602
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1449519442110356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 7.395854, y: 7.395847, z: 7.3958473}
+  m_Children: []
+  m_Father: {fileID: 4268226378556610}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4315243800507206
@@ -1625,7 +1656,7 @@ Transform:
   m_GameObject: {fileID: 1220010507450356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_Children: []
   m_Father: {fileID: 4268226378556610}
   m_RootOrder: 0
@@ -2244,6 +2275,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1317695390912736}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65694697604309042
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1449519442110356}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95121419530877606
 Animator:
   serializedVersion: 3
@@ -2301,7 +2344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  parryTimer: 0.3
+  parryTimer: 0.25
 --- !u!114 &114451509357643520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2355,6 +2398,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114687025994830976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1449519442110356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db27ca5af1f88c64cb231f0e7438103e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoralityForKilling: -10
 --- !u!114 &114691300760047800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2394,7 +2449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitClass: 0
-  dominantBehavior: 3
+  dominantBehavior: 1
   currentState: 0
   currentAnimation: 0
   patrolRoute:
@@ -2409,7 +2464,10 @@ MonoBehaviour:
   Bullet: {fileID: 0}
   BulletTarget: {fileID: 0}
   bulletSpeed: 0
-  DeathBox: {fileID: 0}
+  DeathBox: {fileID: 1449519442110356}
+  DeathWayPoint: {fileID: 0}
+  DeathTimer: 30
+  MoralityForSaving: 10
 --- !u!114 &114981839227002166
 MonoBehaviour:
   m_ObjectHideFlags: 1

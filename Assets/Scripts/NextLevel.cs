@@ -15,7 +15,7 @@ public class NextLevel : MonoBehaviour
 
     void OnTriggerEnter()
     {
-        SceneManager.LoadScene("FullCity");
+        SceneManager.LoadScene("City");
     }
     
     void Update()

@@ -262,19 +262,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4763842118196904, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.71572655
+      value: -0.7157266
       objectReference: {fileID: 0}
     - target: {fileID: 4763842118196904, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.0887751
+      value: 0.088775106
       objectReference: {fileID: 0}
     - target: {fileID: 4763842118196904, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0.18478484
+      value: -0.18478486
       objectReference: {fileID: 0}
     - target: {fileID: 4763842118196904, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.6676144
+      value: 0.66761446
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
@@ -292,7 +292,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4762594765613792, guid: 07eca2cf5b62b154ea0d25ac517537c2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.61
+      value: -0.94
       objectReference: {fileID: 0}
     - target: {fileID: 4762594765613792, guid: 07eca2cf5b62b154ea0d25ac517537c2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -325,6 +325,11 @@ Prefab:
     - target: {fileID: 1221722850117014, guid: 07eca2cf5b62b154ea0d25ac517537c2, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114424391663591286, guid: 07eca2cf5b62b154ea0d25ac517537c2,
+        type: 2}
+      propertyPath: DeathTimer
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07eca2cf5b62b154ea0d25ac517537c2, type: 2}
@@ -749,6 +754,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1919666112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1919666113}
+  m_Layer: 0
+  m_Name: Deathpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1919666113
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1919666112}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 18.47, y: -1.31, z: 5.69}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1925561930
 Prefab:
   m_ObjectHideFlags: 0
@@ -766,7 +799,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4762594765613792, guid: 07eca2cf5b62b154ea0d25ac517537c2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 5.69
+      value: 1.78
       objectReference: {fileID: 0}
     - target: {fileID: 4762594765613792, guid: 07eca2cf5b62b154ea0d25ac517537c2, type: 2}
       propertyPath: m_LocalRotation.x
@@ -790,7 +823,33 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1221722850117014, guid: 07eca2cf5b62b154ea0d25ac517537c2, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114424391663591286, guid: 07eca2cf5b62b154ea0d25ac517537c2,
+        type: 2}
+      propertyPath: MoralityForSaving
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114424391663591286, guid: 07eca2cf5b62b154ea0d25ac517537c2,
+        type: 2}
+      propertyPath: DeathTimer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114424391663591286, guid: 07eca2cf5b62b154ea0d25ac517537c2,
+        type: 2}
+      propertyPath: DeathBox
+      value: 
+      objectReference: {fileID: 1113979290346710, guid: 90cecabfa2df2a341a6b36aecac06d7c,
+        type: 2}
+    - target: {fileID: 114424391663591286, guid: 07eca2cf5b62b154ea0d25ac517537c2,
+        type: 2}
+      propertyPath: DeathWayPoint
+      value: 
+      objectReference: {fileID: 1919666112}
+    - target: {fileID: 114244304571195854, guid: 07eca2cf5b62b154ea0d25ac517537c2,
+        type: 2}
+      propertyPath: currentHealth
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07eca2cf5b62b154ea0d25ac517537c2, type: 2}

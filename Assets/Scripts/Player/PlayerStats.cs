@@ -78,6 +78,10 @@ public class PlayerStats : UnitStats
     {
         return currentHealth;
     }
+    public float GetMorality()
+    {
+        return Morality;
+    }
 
     public float GetMaxHealth()
     {

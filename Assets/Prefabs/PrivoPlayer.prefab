@@ -3854,6 +3854,7 @@ GameObject:
   - component: {fileID: 4395851322156264}
   - component: {fileID: 33294037677163246}
   - component: {fileID: 135376367414844982}
+  - component: {fileID: 114993627326980746}
   m_Layer: 8
   m_Name: Sphere
   m_TagString: PlayerHead
@@ -8160,7 +8161,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1302781443591642}
   m_LocalRotation: {x: -0, y: 0.9603177, z: -0, w: 0.2789085}
-  m_LocalPosition: {x: -44.04, y: 58.249, z: -424.32}
+  m_LocalPosition: {x: -5.73, y: 1.767808, z: 7.42}
   m_LocalScale: {x: 1.2, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 4359662059745932}
@@ -9871,7 +9872,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1955424394128712}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -10122,7 +10123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d814415628dcb7243a8c99c651ec7fd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 50
   cdsystem: {fileID: 114635787318804704}
 --- !u!114 &114228113833122090
 MonoBehaviour:
@@ -10153,6 +10154,7 @@ MonoBehaviour:
   isRunning: 0
   isWalking: 0
   isCrouching: 0
+  PlayerHead: {fileID: 1761383953389294}
   mController: 0
 --- !u!114 &114543030680188974
 MonoBehaviour:
@@ -10211,6 +10213,7 @@ MonoBehaviour:
   ps: {fileID: 198180331173257494}
   psDash: {fileID: 198692801669013650}
   psSlash: {fileID: 198157089681325170, guid: 8e51ad9e8bb40b747aba62ff9c362572, type: 2}
+  slash: {fileID: 0}
   Sword: {fileID: 1308371007552164}
   Bullet: {fileID: 185558, guid: eab69c0bdda16e0468827d235a819d59, type: 2}
   BulletTarget: {fileID: 1615071329223646}
@@ -10255,6 +10258,8 @@ MonoBehaviour:
   parryWaitTime: 5
   isParry: 0
   Blocker: {fileID: 1082814677255226}
+  AoeIsAvailable: 0
+  ProjIsAvailable: 0
 --- !u!114 &114711849223845478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10269,8 +10274,9 @@ MonoBehaviour:
   maxHealth: 150
   currentHealth: 150
   armor: 0
-  moralityAoe: 50
-  moralityPorj: 0
+  Morality: 26
+  moralityAoe: 65
+  moralityPorj: 323
   HealthTime: 4
   HealthingAmount: 1
   DialogActive: 0
@@ -10288,6 +10294,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1050639950477372}
   rotationDegree: 90
+--- !u!114 &114993627326980746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1761383953389294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a67ed6269fb77a41b2f12833ef16748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &124987923389645966
 Behaviour:
   m_ObjectHideFlags: 1

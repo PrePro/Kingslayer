@@ -29,9 +29,11 @@ public class NPC : NPCBase
     [Tooltip("How much morality the player gets for letting the npc live\nShould be positive")]
     public int MoralityForSaving;
 
+    public bool MultiAnim;
     private float timer;
     bool mDeath;
 
+    int[] randomAnim = new int[] { 2, 9, 10, 11 };
 
     void Update()
     {
@@ -379,8 +381,16 @@ public class NPC : NPCBase
                     if (!isAttacking && isFacing && isInRange)
                     {
                         isAttacking = true;
-                        SetAnimation(AnimationState.Attacking);
-                        StartCoroutine(OnCompleteAttackAnimation());
+                        if (MultiAnim == true)
+                        {
+                            int RandomAnimation = randomAnim[UnityEngine.Random.Range(0, randomAnim.Length)];
+                            //Debug.Log(RandomAnimation);
+                            SetAnimation((AnimationState)RandomAnimation);
+                        }
+                        else
+                        {
+                            SetAnimation(AnimationState.Attacking);
+                        }
                         timer = 0;
                         isAttacking = false;
                     }
@@ -406,13 +416,6 @@ public class NPC : NPCBase
                 }
             }
         }
-    }
-
-    IEnumerator OnCompleteAttackAnimation()
-    {
-        Debug.Log("Start ATTACKING");
-        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("sword_and_shield_slash") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8f);
-        Debug.Log("DONE ATTACKING");
     }
 
     private void Shoot()
@@ -500,8 +503,9 @@ public class NPC : NPCBase
     public override void UpdateAnimation()
     {
         AnimationState currAnim = (AnimationState)animator.GetInteger("AnimationState");
-        if (currentAnimation == AnimationState.Attacking && currAnim == AnimationState.Attacking)
+        if (currentAnimation == AnimationState.Attacking && currAnim == AnimationState.Attacking) //|| currAnim == AnimationState.Attack1 || currAnim == AnimationState.Attack2 || currAnim == AnimationState.Attack3
         {
+            Debug.Log("Fkc");
             animator.SetInteger("AnimationState", 0);
             //animator.SetInteger("AnimationState", (int)currentAnimation);
         }

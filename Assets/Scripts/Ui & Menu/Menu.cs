@@ -10,6 +10,10 @@ public class Menu : MonoBehaviour
     public AudioSource volumeAudio;
     void Start()
     {
+        if(volumeAudio == null || volumeSlider == null)
+        {
+            return;
+        }
         volumeSlider.value = volumeAudio.volume;
     }
 

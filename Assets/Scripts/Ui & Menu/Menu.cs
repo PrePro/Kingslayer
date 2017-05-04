@@ -19,7 +19,7 @@ public class Menu : MonoBehaviour
 
     public void LoadCity()
     {
-        SceneManager.LoadScene("FullCity");
+        SceneManager.LoadScene("City");
     }
     public void LoadVillage()
     {
@@ -41,7 +41,7 @@ public class Menu : MonoBehaviour
 
     public void LoadBarracks()
     {
-        SceneManager.LoadScene("Barracks");
+        SceneManager.LoadScene("City");
     }
 
     public void LoadCrypt()

@@ -47,7 +47,10 @@ public abstract class NPCBase : MonoBehaviour
         Disabled,
         Stunned,
         Rooted,
-        Dead
+        Dead,
+        Attack1,
+        Attack2,
+        Attack3
     }
 
     protected enum Behavior

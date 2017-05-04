@@ -1737,6 +1737,265 @@ Transform:
   m_Father: {fileID: 1593084662}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &58874555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 58874559}
+  - component: {fileID: 58874558}
+  - component: {fileID: 58874557}
+  - component: {fileID: 58874556}
+  m_Layer: 0
+  m_Name: Doll Dialogue manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &58874556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 58874555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2902d936d72f2294ea54b4dd4afceb63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog: {fileID: 68141949}
+  playerImage: {fileID: 68141957}
+  playerName: {fileID: 68141956}
+  endText: {fileID: 68141952}
+  mButtons:
+  - {fileID: 68141953}
+  mNpcText:
+  - Person: {fileID: 68141954}
+    name: {fileID: 68141955}
+    canvas:
+    - {fileID: 68141951}
+    buttonText:
+    - This is... NOX! I gave this doll to Nox!
+    mbuttons: 1
+    morality: 
+  - Person: {fileID: 68141954}
+    name: {fileID: 68141955}
+    canvas:
+    - {fileID: 68141950}
+    buttonText:
+    - If Nox is here then Raptus may be as well!
+    mbuttons: 1
+    morality: 
+--- !u!135 &58874557
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 58874555}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5.06
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &58874558
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 58874555}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &58874559
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 58874555}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 45.95, y: 46.59, z: -527.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 41
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &68141948
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246067064578486, guid: ca3e476317ab0654e98855dff6e3e161, type: 2}
+      propertyPath: m_Name
+      value: Doll_Dialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 114084927243394144, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Text
+      value: "There\u2019s something familiar in that cage."
+      objectReference: {fileID: 0}
+    - target: {fileID: 114981618605095730, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Text
+      value: Nox must be here then! We have to find her!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114604388395763766, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Text
+      value: Nox must be here then! We have to find her!
+      objectReference: {fileID: 0}
+    - target: {fileID: 114483722408111968, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Text
+      value: Come on Privo! We need to search for Nox and Raptus!
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ca3e476317ab0654e98855dff6e3e161, type: 2}
+  m_IsPrefabParent: 0
+--- !u!223 &68141949 stripped
+Canvas:
+  m_PrefabParentObject: {fileID: 223519221011730100, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 68141948}
+--- !u!223 &68141950 stripped
+Canvas:
+  m_PrefabParentObject: {fileID: 223633314618376060, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 68141948}
+--- !u!223 &68141951 stripped
+Canvas:
+  m_PrefabParentObject: {fileID: 223305107557596454, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 68141948}
+--- !u!114 &68141952 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114483722408111968, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 68141948}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &68141953 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114911609172567420, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 68141948}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &68141954 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114398820902234886, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 68141948}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &68141955 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114892292905341386, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 68141948}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &68141956 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114787091635986640, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 68141948}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &68141957 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114061432530753278, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 68141948}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &68702389
 GameObject:
   m_ObjectHideFlags: 0
@@ -3240,6 +3499,87 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 118394706}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &119990782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 119990786}
+  - component: {fileID: 119990785}
+  - component: {fileID: 119990784}
+  - component: {fileID: 119990783}
+  m_Layer: 0
+  m_Name: Wizard Dialogue placeholder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &119990783
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 119990782}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!135 &119990784
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 119990782}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &119990785
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 119990782}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &119990786
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 119990782}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 23.07, y: 50.02, z: -349.39}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 43
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &120510374
 GameObject:
   m_ObjectHideFlags: 0
@@ -56710,6 +57050,233 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 2.5, z: 2.5}
   m_Center: {x: 0.39, y: 0.13, z: -0.35}
+--- !u!1001 &1815942050
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224069003609049042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246067064578486, guid: ca3e476317ab0654e98855dff6e3e161, type: 2}
+      propertyPath: m_Name
+      value: Wizard_Dialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 114084927243394144, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Text
+      value: HAHAHAHAHA! Do you see the might of my magic Faery?
+      objectReference: {fileID: 0}
+    - target: {fileID: 114981618605095730, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Text
+      value: Mwahahaha. Foolish Faery! I was warned about you...
+      objectReference: {fileID: 0}
+    - target: {fileID: 114604388395763766, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Text
+      value: "Oh you aren\u2019t leaving this crypt, Faery. Hahaha. His Highness has
+        given me a task to complete and a great means to do so. Surrender now or I
+        will use my magic to take what I want!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114730591500892800, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Text
+      value: "Hmm\u2026 You will be dead soon enough, so I suppose there is no harm
+        in telling you. My Lord prayed to the gods for weeks without rest! Just when
+        he felt his strength falter, the Elementals revealed themselves to him! They
+        told him how to harness the power of magic and make us strong again! You Faeries
+        always acted so superior with your magic, but now I can steal it from you!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114614590151217042, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Text
+      value: "Your magic is a part of you. It is in your lifeblood. The solution is
+        so simple. It was hidden right in front of us! The gods took pity on our ignorance
+        and told his Highness how to make us your equal and become what they always
+        intended! It\u2019s all in your hearts! By cutting out and eating your beating
+        hearts, we humans can take your magic for ourselves!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004087225697110, guid: ca3e476317ab0654e98855dff6e3e161,
+        type: 2}
+      propertyPath: m_Text
+      value: Hehehehe! I will have your heart, Faery! Now come and die!
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ca3e476317ab0654e98855dff6e3e161, type: 2}
+  m_IsPrefabParent: 0
+--- !u!223 &1815942051 stripped
+Canvas:
+  m_PrefabParentObject: {fileID: 223519221011730100, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+--- !u!223 &1815942052 stripped
+Canvas:
+  m_PrefabParentObject: {fileID: 223414210322932246, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+--- !u!223 &1815942053 stripped
+Canvas:
+  m_PrefabParentObject: {fileID: 223270111937466072, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+--- !u!223 &1815942054 stripped
+Canvas:
+  m_PrefabParentObject: {fileID: 223608740839003660, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+--- !u!223 &1815942055 stripped
+Canvas:
+  m_PrefabParentObject: {fileID: 223759031492073624, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+--- !u!223 &1815942056 stripped
+Canvas:
+  m_PrefabParentObject: {fileID: 223633314618376060, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+--- !u!223 &1815942057 stripped
+Canvas:
+  m_PrefabParentObject: {fileID: 223305107557596454, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+--- !u!114 &1815942058 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114483722408111968, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1815942059 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114631064403844984, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1815942060 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114634652122231892, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1815942061 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114911609172567420, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1815942062 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114398820902234886, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1815942063 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114892292905341386, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1815942064 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114787091635986640, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1815942065 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114061432530753278, guid: ca3e476317ab0654e98855dff6e3e161,
+    type: 2}
+  m_PrefabInternal: {fileID: 1815942050}
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1816024619
 GameObject:
   m_ObjectHideFlags: 0
@@ -63480,6 +64047,87 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2041473663}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2045541780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2045541784}
+  - component: {fileID: 2045541783}
+  - component: {fileID: 2045541782}
+  - component: {fileID: 2045541781}
+  m_Layer: 0
+  m_Name: Doll_Placeholder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &2045541781
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2045541780}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!135 &2045541782
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2045541780}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &2045541783
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2045541780}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2045541784
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2045541780}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 45.95, y: 46.59, z: -527.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 40
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2048244650
 GameObject:
   m_ObjectHideFlags: 0
@@ -66627,6 +67275,134 @@ Transform:
   m_Children: []
   m_Father: {fileID: 796174846}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2121828733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2121828737}
+  - component: {fileID: 2121828736}
+  - component: {fileID: 2121828735}
+  - component: {fileID: 2121828734}
+  m_Layer: 0
+  m_Name: Wizard Dialogue manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2121828734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2121828733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2902d936d72f2294ea54b4dd4afceb63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog: {fileID: 1815942051}
+  playerImage: {fileID: 1815942065}
+  playerName: {fileID: 1815942064}
+  endText: {fileID: 1815942058}
+  mButtons:
+  - {fileID: 1815942061}
+  - {fileID: 1815942060}
+  - {fileID: 1815942059}
+  mNpcText:
+  - Person: {fileID: 1815942062}
+    name: {fileID: 1815942064}
+    canvas:
+    - {fileID: 1815942057}
+    buttonText:
+    - "Wh-what? Magic? But humans can\u2019t-"
+    mbuttons: 1
+    morality: 
+  - Person: {fileID: 1815942062}
+    name: {fileID: 1815942063}
+    canvas:
+    - {fileID: 1815942056}
+    buttonText:
+    - I know my children are here, return the m to me and everyone can leave peacefully.
+    - "I don\u2019t care what you\u2019re doing here but you will give me my children!"
+    - Give me back my children or I will slaughter you, human.
+    mbuttons: 3
+    morality: 0100000000000000ffffffff
+  - Person: {fileID: 1815942062}
+    name: {fileID: 1815942063}
+    canvas:
+    - {fileID: 1815942055}
+    buttonText:
+    - "But how? Humans don\u2019t have magic!"
+    mbuttons: 1
+    morality: 
+  - Person: {fileID: 1815942062}
+    name: {fileID: 1815942063}
+    canvas:
+    - {fileID: 1815942054}
+    buttonText:
+    - 'Steal our magic? How? '
+    - "That shouldn\u2019t be possible..."
+    - What have you done, human? Tell me before I beat it out of you!
+    mbuttons: 3
+    morality: 0100000000000000ffffffff
+  - Person: {fileID: 1815942062}
+    name: {fileID: 1815942063}
+    canvas:
+    - {fileID: 1815942053}
+    buttonText:
+    - "I cannot let this stand, Praefator\u2026 Surrender and your death shall be
+      quick. "
+    - I will not allow such perversion to continue, Praefator. I must put an end to
+      you.
+    - "You monsters\u2026 Where is my daughter? WHERE IS NOX?! I will kill you all!"
+    mbuttons: 3
+    morality: 0200000000000000feffffff
+  - Person: {fileID: 1815942062}
+    name: {fileID: 1815942063}
+    canvas:
+    - {fileID: 1815942052}
+    buttonText:
+    - No, I will take my children back from you!
+    - You will try Praefator.
+    - I'll kill you first bastard!
+    mbuttons: 3
+    morality: 0200000000000000feffffff
+--- !u!135 &2121828735
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2121828733}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.43
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &2121828736
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2121828733}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2121828737
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2121828733}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 23.07, y: 50.02, z: -349.39}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2132005927
 GameObject:

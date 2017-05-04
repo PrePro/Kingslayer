@@ -12,7 +12,6 @@ public class Perception : MonoBehaviour
     SphereCollider sphereCollider;
     Vector3 direction;
     Movement movement;
-    GameObject PlayerHead;
     Ray ray;
     NPStats stats;
     // Use this for initialization
@@ -21,7 +20,6 @@ public class Perception : MonoBehaviour
         stats = GetComponentInParent<NPStats>();
         npc = GetComponentInParent<NPCBase>();
         sphereCollider = GetComponent<SphereCollider>();
-        PlayerHead = GameObject.FindWithTag("PlayerHead");
     }
 
     // Update is called once per frame
@@ -34,18 +32,6 @@ public class Perception : MonoBehaviour
             if (movement == null)
             {
                 return;
-            }
-            else
-            {
-                if (movement.isCrouching)
-                {
-                    Debug.Log("Crouch");
-                    PlayerHead.transform.position = new Vector3(PlayerHead.transform.position.x, transform.position.y - 1.5f, PlayerHead.transform.position.z);
-                }
-                else
-                {
-                    PlayerHead.transform.position = new Vector3(PlayerHead.transform.position.x, transform.position.y, PlayerHead.transform.position.z);
-                }
             }
         }
         else

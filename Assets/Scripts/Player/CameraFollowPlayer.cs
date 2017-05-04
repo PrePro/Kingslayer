@@ -21,11 +21,11 @@ public class CameraFollowPlayer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             targetAngle -= rotationDegree;
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.P))
         {
             targetAngle += rotationDegree;
         }

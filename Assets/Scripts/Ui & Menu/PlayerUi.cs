@@ -7,6 +7,7 @@ public class PlayerUi : MonoBehaviour
 {
     public Image HealthBar;
     public PlayerStats player;
+    public Image MoralityBar;
 
     void Update()
     {
@@ -23,5 +24,10 @@ public class PlayerUi : MonoBehaviour
 
         float healthBarMap = player.GetHealth() / player.GetMaxHealth();
         HealthBar.fillAmount = healthBarMap;
+    }
+    void HandleMoralityBar()
+    {
+        float moralityBarMap = player.GetMorality() / 100;
+        MoralityBar.fillAmount = moralityBarMap;
     }
 }

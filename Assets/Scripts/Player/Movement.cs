@@ -55,6 +55,8 @@ public class Movement : MonoBehaviour
     public bool isCrouching;
     private float mCooldown;
 
+    public GameObject PlayerHead;
+
 
     public enum Controller
     {
@@ -81,6 +83,11 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        if(isCrouching == true)
+        {
+            //PlayerHead.transform.position.Set(Player.Position.x, Player.Position.y - 1, Player.Position.z);
+        }
+
         Dashes();
         if (mCooldown <= 2f)
         {
@@ -514,8 +521,9 @@ public class Movement : MonoBehaviour
 
     }
 
-    IEnumerator StopMovement(float waitTime)
+    public IEnumerator StopMovement(float waitTime)
     {
+        Debug.Log("Stop movement");
         stopMovement = true;
         yield return new WaitForSeconds(waitTime);
         stopMovement = false;

@@ -36,11 +36,12 @@ public class NPStats : UnitStats
         if(Death == false)
         {
             currentHealth -= damage;
+            npc.SetAnimation(NPCBase.AnimationState.HitFlinch);
         }
         // Set animation damage here
 
         //StartCoroutine("turnON", 1);
-        
+
     }
 
     public override void RecieveHealing(int hpHealed)

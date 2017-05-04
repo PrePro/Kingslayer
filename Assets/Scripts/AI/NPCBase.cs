@@ -50,7 +50,8 @@ public abstract class NPCBase : MonoBehaviour
         Dead,
         Attack1,
         Attack2,
-        Attack3
+        Attack3,
+        HitFlinch
     }
 
     protected enum Behavior

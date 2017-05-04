@@ -1656,7 +1656,7 @@ Transform:
   m_GameObject: {fileID: 1220010507450356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_Children: []
   m_Father: {fileID: 4268226378556610}
   m_RootOrder: 0
@@ -2344,7 +2344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  parryTimer: 0.3
+  parryTimer: 0.25
 --- !u!114 &114451509357643520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2450,7 +2450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitClass: 0
   dominantBehavior: 1
-  currentState: 4
+  currentState: 0
   currentAnimation: 0
   patrolRoute:
   - {fileID: 0}
@@ -2464,9 +2464,9 @@ MonoBehaviour:
   Bullet: {fileID: 0}
   BulletTarget: {fileID: 0}
   bulletSpeed: 0
-  DeathBox: {fileID: 0}
+  DeathBox: {fileID: 1449519442110356}
   DeathWayPoint: {fileID: 0}
-  DeathTimer: 40
+  DeathTimer: 30
   MoralityForSaving: 10
 --- !u!114 &114981839227002166
 MonoBehaviour:

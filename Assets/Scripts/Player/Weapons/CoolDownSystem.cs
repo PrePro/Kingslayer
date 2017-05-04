@@ -109,6 +109,7 @@ public class CoolDownSystem : MonoBehaviour
     [Tooltip("These are the players abilities and cooldowns")]
     public List<Skills> skills;
     private PlayerStats stats;
+    private Movement movement;
     bool InMyState;
 
     [Header("Parry")]
@@ -124,13 +125,13 @@ public class CoolDownSystem : MonoBehaviour
     public bool AoeIsAvailable;
     public bool ProjIsAvailable;
     #endregion
-
+    bool fake;
     //======================================================================================================
     // GameObject Functions
     //======================================================================================================
     #region GameObject Functions
     void Start()
-    {
+    { 
         AoeIsAvailable = AoeIsOn;
         ProjIsAvailable = ProjIsOn;
         //ps = GetComponent<ParticleSystem>();
@@ -143,10 +144,30 @@ public class CoolDownSystem : MonoBehaviour
         currentState = ProjectState.IsDone;
         stats = gameObject.GetComponent<PlayerStats>();
         audio = GetComponent<AudioSource>();
+        movement = GetComponent<Movement>();
     }
-
+    IEnumerator Thing()
+    {
+        fake = true;
+        Debug.Log("Fuck");
+        yield return new WaitForSeconds(myAnimator.GetCurrentAnimatorStateInfo(0).length);
+        AoeSphere.SetActive(true);
+        StartCoroutine("AoeTime", 0.5f);
+        ps.Play();
+        Debug.Log("Duck");
+        fake = false;
+    }
     void Update()
     {
+
+        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("PrivoAOE"))
+        {
+            Debug.Log("AOE ANIM");
+            if(fake == false)
+            {
+                StartCoroutine("Thing");
+            }
+        }
         //Update current cool down for each skill
         foreach (Skills x in skills)
         {
@@ -286,6 +307,7 @@ public class CoolDownSystem : MonoBehaviour
 
             }
         }
+
         if (Input.GetButton("Fire1") && currentState == ProjectState.CanShoot)
         {
             if (skills[1].currentcooldown >= skills[1].cooldown && ProjIsAvailable == true) // Projectile [1]
@@ -361,29 +383,31 @@ public class CoolDownSystem : MonoBehaviour
                 if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Joystick1Button2)) // AOE [5]
                 {
                     myAnimator.SetTrigger("privoAOE");
+                    StartCoroutine(movement.StopMovement(1f));
+                   
                     StartCoroutine("AOEWait", aoewaitTime);
-                    AoeSphere.SetActive(true);
+                    //AoeSphere.SetActive(true);
                     AoeState = AoeMorality.Nothin;
                     if (stats.moralityAoe == 0) //Stun
                     {
                         // Added stun enemy here
                         //AoeSphere.SetActive(true);
                         AoeState = AoeMorality.Stun;
-                        StartCoroutine("AoeTime", 0.5f);
+                        //StartCoroutine("AoeTime", 0.5f);
                         skills[5].currentcooldown = 0;
                     }
                     else if (stats.moralityAoe == 50) //Knock Back + Damage
                     {
                         //AoeSphere.SetActive(true);
                         AoeState = AoeMorality.KnockBack;
-                        StartCoroutine("AoeTime", 0.5f);
+                        //StartCoroutine("AoeTime", 0.5f);
                         skills[5].currentcooldown = 0;
                     }
                     if (stats.moralityAoe == 100) // Heal Steal
                     {
                         //AoeSphere.SetActive(true);
                         AoeState = AoeMorality.Steal;
-                        StartCoroutine("AoeTime", 0.5f);
+                        //StartCoroutine("AoeTime", 0.5f);
                         skills[5].currentcooldown = 0;
                     }
 
@@ -407,7 +431,6 @@ public class CoolDownSystem : MonoBehaviour
 
     IEnumerator AOEWait(float waitTime)
     {
-        ps.Play();
         yield return new WaitForSeconds(waitTime);
     }
 

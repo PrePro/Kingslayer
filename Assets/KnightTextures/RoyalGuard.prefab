@@ -274,7 +274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1223531337577344
 GameObject:
   m_ObjectHideFlags: 1
@@ -1237,8 +1237,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1028124286164466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.00000067429, y: -0.000012716, z: -0.0000024521}
+  m_LocalScale: {x: 14.494472, y: 14.494473, z: 14.494473}
   m_Children: []
   m_Father: {fileID: 4762594765613792}
   m_RootOrder: 0
@@ -2119,15 +2119,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1221722850117014}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -7.53, y: -1.31, z: 1.78}
+  m_LocalRotation: {x: -0, y: 0.7953437, z: -0, w: -0.60615873}
+  m_LocalPosition: {x: -52.21, y: 58.09, z: -407.58}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4028736727940600}
   - {fileID: 4603426597162068}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 254.625, z: 0}
 --- !u!4 &4770405240515668
 Transform:
   m_ObjectHideFlags: 1
@@ -2342,8 +2342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92aa0b374c3d2b84b8eef78196c234c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 90
-  currentHealth: 90
+  maxHealth: 120
+  currentHealth: 120
   armor: 10
   healthbar: {fileID: 114378771656846008}
   Death: 0
@@ -2401,7 +2401,7 @@ MonoBehaviour:
   bulletSpeed: 0
   DeathBox: {fileID: 1113979290346710, guid: 90cecabfa2df2a341a6b36aecac06d7c, type: 2}
   DeathWayPoint: {fileID: 0}
-  DeathTimer: 10
+  DeathTimer: 40
   MoralityForSaving: 20
   MultiAnim: 1
 --- !u!114 &114579477549690674
@@ -2715,7 +2715,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1221722850117014}
   m_Enabled: 1
   m_Radius: 0.4
-  m_Speed: 6
+  m_Speed: 5
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 720

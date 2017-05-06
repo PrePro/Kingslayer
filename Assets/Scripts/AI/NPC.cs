@@ -9,6 +9,7 @@ using System;
 
 public class NPC : NPCBase
 {
+    
 
     // Use this for initialization
 
@@ -32,6 +33,7 @@ public class NPC : NPCBase
     public bool MultiAnim;
     private float timer;
     bool mDeath;
+    public GameObject foundImage;
 
     int[] randomAnim = new int[] { 2, 9, 10, 11 };
 
@@ -105,6 +107,7 @@ public class NPC : NPCBase
                         {
                             StartCoroutine(RotateFind());
                         }
+                        foundImage.SetActive(false);
                     }
 
                 }
@@ -118,6 +121,7 @@ public class NPC : NPCBase
                 break;
             case State.Chasing:
                 {
+                    foundImage.SetActive(true);
                     SetAnimation(AnimationState.Walking);
                     agent.Resume();
                     agent.destination = currentTarget.position;

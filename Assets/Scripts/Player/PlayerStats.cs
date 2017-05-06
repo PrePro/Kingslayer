@@ -15,6 +15,7 @@ public class PlayerStats : UnitStats
     private Animator myAnimator;
 
     public Vector3 startPosition;
+    CoolDownSystem cd;
 
     void Awake()
     {
@@ -25,6 +26,7 @@ public class PlayerStats : UnitStats
         Morality = PlayerPrefs.GetInt("Morality", 0);
         moralityAoe = PlayerPrefs.GetInt("moralityAoe", 0);
         moralityPorj = PlayerPrefs.GetInt("moralityPorj", 0);
+        cd = GetComponent<CoolDownSystem>();
 
         myAnimator = GetComponent<Animator>();
         startPosition = transform.position;
@@ -36,6 +38,22 @@ public class PlayerStats : UnitStats
         PlayerPrefs.SetInt("Morality", Morality);
         PlayerPrefs.SetInt("MoralityAoe", moralityAoe);
         PlayerPrefs.SetInt("MoralityPorj", moralityPorj);
+    }
+
+   public void TurnOnAbility(int i) // 1 is aoe 2 proj
+    {
+        if (i == 1)
+        {
+            moralityAoe = Morality;
+            Morality = 0;
+            cd.AoeIsAvailable = true;
+        }
+        else if (i == 2)
+        {
+            moralityPorj = Morality;
+            Morality = 0;
+            cd.ProjIsAvailable = true;
+        }
     }
 
     void MoralityUpdater()

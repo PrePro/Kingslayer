@@ -119,8 +119,6 @@ public class CoolDownSystem : MonoBehaviour
     public GameObject Blocker;
     private bool m_isAxisInUse = false;
     [SerializeField]
-    public static bool AoeIsOn = true;
-    public static bool ProjIsOn;
 
     public bool AoeIsAvailable;
     public bool ProjIsAvailable;
@@ -132,8 +130,6 @@ public class CoolDownSystem : MonoBehaviour
     #region GameObject Functions
     void Start()
     { 
-        AoeIsAvailable = AoeIsOn;
-        ProjIsAvailable = ProjIsOn;
         //ps = GetComponent<ParticleSystem>();
         foreach (Skills x in skills)
         {
@@ -146,6 +142,7 @@ public class CoolDownSystem : MonoBehaviour
         audio = GetComponent<AudioSource>();
         movement = GetComponent<Movement>();
     }
+
     IEnumerator Thing()
     {
         fake = true;
@@ -157,6 +154,8 @@ public class CoolDownSystem : MonoBehaviour
         Debug.Log("Duck");
         fake = false;
     }
+
+
     void Update()
     {
 
@@ -212,6 +211,7 @@ public class CoolDownSystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) || m_isAxisInUse == true)
         {
+            stats.TurnOnAbility(1);
             if (swordInHand.activeSelf)
             {
                 reSheeth = true;
@@ -235,7 +235,7 @@ public class CoolDownSystem : MonoBehaviour
 
         if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.Joystick1Button4))
         {
-            Debug.Log("RIGHT");
+            Debug.Log("PARRY");
             StartCoroutine(ParryDelay(parryWaitTime));
         }
         if (AoeExpand)

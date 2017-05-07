@@ -56,6 +56,7 @@ public class Movement : MonoBehaviour
     private float mCooldown;
 
     public GameObject PlayerHead;
+    private Rigidbody rigidbody;
 
 
     public enum Controller
@@ -75,6 +76,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         isWalking = false;
+        rigidbody = GetComponent<Rigidbody>();
         //isCrouching = false;
         StartCoroutine("StopMovement", StopTimer);
         currentSpeed = speed;
@@ -111,6 +113,7 @@ public class Movement : MonoBehaviour
             {
                 //Debug.Log("Key Board");
                 PlayerMove();
+                //PMove();
             }
 
         }
@@ -140,6 +143,16 @@ public class Movement : MonoBehaviour
             transform.Translate((Vector3.forward * Time.deltaTime * dashSpeedForward));
             target.transform.position = objectForward.transform.position;
         }
+    }
+
+    void PMove()
+    {
+        var moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        Debug.Log(moveDirection);
+        moveDirection = Camera.main.transform.TransformDirection(moveDirection);
+        moveDirection.y = 0;
+
+        rigidbody.AddForce(rigidbody.position + moveDirection * speed * Time.deltaTime);
     }
 
     private void ControllerSetUp()

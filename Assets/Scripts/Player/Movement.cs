@@ -56,7 +56,7 @@ public class Movement : MonoBehaviour
     private float mCooldown;
 
     public GameObject PlayerHead;
-    private Rigidbody rigidbody;
+    //private Rigidbody rigidbody;
 
 
     public enum Controller
@@ -76,7 +76,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         isWalking = false;
-        rigidbody = GetComponent<Rigidbody>();
+        //rigidbody = GetComponent<Rigidbody>();
         //isCrouching = false;
         StartCoroutine("StopMovement", StopTimer);
         currentSpeed = speed;
@@ -145,15 +145,15 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void PMove()
-    {
-        var moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        Debug.Log(moveDirection);
-        moveDirection = Camera.main.transform.TransformDirection(moveDirection);
-        moveDirection.y = 0;
+    //void PMove()
+    //{
+    //    var moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+    //    Debug.Log(moveDirection);
+    //    moveDirection = Camera.main.transform.TransformDirection(moveDirection);
+    //    moveDirection.y = 0;
 
-        rigidbody.AddForce(rigidbody.position + moveDirection * speed * Time.deltaTime);
-    }
+    //    rigidbody.AddForce(rigidbody.position + moveDirection * speed * Time.deltaTime);
+    //}
 
     private void ControllerSetUp()
     {
@@ -536,7 +536,6 @@ public class Movement : MonoBehaviour
 
     public IEnumerator StopMovement(float waitTime)
     {
-        Debug.Log("Stop movement");
         stopMovement = true;
         yield return new WaitForSeconds(waitTime);
         stopMovement = false;

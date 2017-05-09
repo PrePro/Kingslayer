@@ -22,7 +22,7 @@ public class NPStats : UnitStats
     void Update()
     {
         healthbar.fillAmount = currentHealth / maxHealth;
-
+        
         if(currentHealth <= 0 && Death == false)
         {
             Death = true;

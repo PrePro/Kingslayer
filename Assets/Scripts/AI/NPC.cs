@@ -9,19 +9,6 @@ using System;
 
 public class NPC : NPCBase
 {
-    
-
-    // Use this for initialization
-
-    /*// For prototype animation
-    [Header("Animation")]
-    [Tooltip("...")]
-    [SerializeField]
-    private Animator myAnimator;
-    public bool isFollow;
-    public bool isAttack;
-    */
-    // Update is called once per frame
     [Header("Death")]
     [Tooltip("This is where they go after they die")]
     public GameObject DeathWayPoint;

@@ -16,8 +16,6 @@ public class PlayerHead : MonoBehaviour {
         if (movement.isCrouching)
         {
             transform.position = new Vector3(Player.Position.x, Player.Position.y, Player.Position.z);
-
-
         }
         else
         {

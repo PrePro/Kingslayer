@@ -8,17 +8,23 @@ public class AI_Wander : AI_Base
     float timer;
     public float newtargetTimer;
 
+    //void Start()
+    //{
+    //    timer = newtargetTimer;
+    //}
+
     void NewTarget()
     {
+        Debug.Log("Wander");
         float myX = this.transform.position.x;
         float myZ = this.transform.position.z;
 
         float xPos = myX + UnityEngine.Random.Range(myX - 10, myX + 10);
-        float zPos = myZ + UnityEngine.Random.Range(myX - 10, myZ + 10);
-
+        float zPos = myZ + UnityEngine.Random.Range(myZ - 10, myZ + 10);
         target = new Vector3(xPos, transform.position.y, zPos);
         Debug.Log(target);
-        agent.SetDestination(target);
+        //Debug.Log(agent.speed); 
+        agent.SetDestination(target);   
     }
 
     public override float CalValue()

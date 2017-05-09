@@ -4,33 +4,30 @@ using UnityEngine;
 
 public class CameraSwitchTrigger : MonoBehaviour
 {
-    private float targetAngle = 0;
+    public float targetAngle = 0;
     public float rotationDegree;
-    public float rotationDegree2;
     private Vector3 offset;
     private const float rotationAmount = 1.5f; // Dont touch
-    public GameObject camera;
-    public GameObject player;
-    private int i;
+    public GameObject mCamera;
+    public int i = 0;
     // Use this for initialization
     void Start()
     {
-        offset = camera.transform.position - Player.Position;
+        offset = mCamera.transform.position - Player.Position;
     }
 
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player")
         {
-            player = col.gameObject;
-            i += 1;
-            if (i == 0)
+            if (i == 0) //&& mCamera.transform.rotation.y == -106
             {
                 targetAngle -= rotationDegree;
+                i += 1;
             }
-            else
+            else if(i == 1)
             {
-                targetAngle -= rotationDegree2;
+                targetAngle += rotationDegree;
                 i = 0;
             }
 
@@ -41,22 +38,29 @@ public class CameraSwitchTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(targetAngle);
+        //Debug.Log(mCamera.transform.eulerAngles.y);
+        if (targetAngle > 90)
+        {
+            targetAngle = 90;
+        }
+        else if (targetAngle < -90)
+        {
+            targetAngle = -90;
+        }
+        mCamera.transform.position = Player.Position + offset;
 
         if (targetAngle > 0)
         {
-            Debug.Log("a");
-            camera.transform.RotateAround(Player.Position, Vector3.up, -rotationAmount);
-            offset = transform.position - Player.Position;
+            mCamera.transform.RotateAround(Player.Position, Vector3.up, -rotationAmount);
+            offset = mCamera.transform.position - Player.Position;
 
             targetAngle -= rotationAmount;
         }
-
         else if (targetAngle < 0)
         {
-            //camera.transform.position = Player.Position + offset;
-            Debug.Log("b");
-            camera.transform.RotateAround(Player.Position, Vector3.up, rotationAmount);
-            offset = camera.transform.position - Player.Position;
+            mCamera.transform.RotateAround(Player.Position, Vector3.up, rotationAmount);
+            offset = mCamera.transform.position - Player.Position;
 
             targetAngle += rotationAmount;
         }

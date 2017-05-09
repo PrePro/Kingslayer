@@ -33,6 +33,9 @@ public class Main_Dialogue : MonoBehaviour
     private bool mDeleted = false;
     private int mIndex;
 
+    public GameObject QuestPopUp;
+    public GameObject MiniMapIcon;
+
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player")
@@ -51,7 +54,6 @@ public class Main_Dialogue : MonoBehaviour
             }
             else
             {
-                Debug.Log("More than one");
                 return;
             }
 
@@ -100,6 +102,15 @@ public class Main_Dialogue : MonoBehaviour
                     Destroy(mButtons[i].gameObject);
                 }
                 mDeleted = true;
+
+                if(QuestPopUp != null)
+                {
+                    QuestPopUp.SetActive(true);
+                }
+                if (MiniMapIcon != null)
+                {
+                    MiniMapIcon.SetActive(true);
+                }
             }
             if (Input.GetKeyDown(KeyCode.E))
             {

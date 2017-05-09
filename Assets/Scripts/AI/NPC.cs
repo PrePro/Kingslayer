@@ -21,6 +21,7 @@ public class NPC : NPCBase
     private float timer;
     bool mDeath;
     public GameObject foundImage;
+    public GameObject searchingImage;
     public ParticleSystem slash;
     int[] randomAnim = new int[] { 2, 9, 10, 11 };
 
@@ -95,6 +96,7 @@ public class NPC : NPCBase
                             StartCoroutine(RotateFind());
                         }
                         foundImage.SetActive(false);//put a yellow one. For Yash.
+                        searchingImage.SetActive(false);
                     }
 
                 }
@@ -112,6 +114,7 @@ public class NPC : NPCBase
                     agent.Resume();
                     agent.destination = currentTarget.position;
                     foundImage.SetActive(true);//put a yellow one. For Yash.
+                    searchingImage.SetActive(false);
                 }
                 break;
             case State.Patrolling:
@@ -140,6 +143,7 @@ public class NPC : NPCBase
                         agent.destination = patrolRoute[patrolIndex].position;
                     }
                     foundImage.SetActive(false);//put a yellow one. For Yash.
+                    searchingImage.SetActive(false);
                 }
                 break;
             case State.Searching:
@@ -157,6 +161,7 @@ public class NPC : NPCBase
                         agent.destination = currentTarget.position;
                     }
                     foundImage.SetActive(false);//put a yellow one. For Yash.
+                    searchingImage.SetActive(true);
                 }
                 break;
             case State.Dead:

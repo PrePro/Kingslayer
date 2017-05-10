@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class NPStats : UnitStats
 {
     public Image healthbar;
+    public ParticleSystem hitSpark;
     public bool Death = false;
     NPC npc;
     
@@ -36,10 +37,11 @@ public class NPStats : UnitStats
         if(Death == false)
         {
             currentHealth -= damage;
+            hitSpark.Play();
             npc.SetAnimation(NPCBase.AnimationState.HitFlinch);
         }
         // Set animation damage here
-
+        
         //StartCoroutine("turnON", 1);
 
     }

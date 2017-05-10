@@ -3133,6 +3133,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1346031402733480, guid: a368e860913a6e143b23a435bd6a0df6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a368e860913a6e143b23a435bd6a0df6, type: 2}
   m_IsPrefabParent: 0
@@ -10304,6 +10308,34 @@ Transform:
   m_Father: {fileID: 1239888307}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1217193824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1217193825}
+  m_Layer: 0
+  m_Name: Knights2Killzone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1217193825
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1217193824}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.7727513, y: 2.9470615, z: -15.373931}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1239888306
 GameObject:
   m_ObjectHideFlags: 0
@@ -10464,13 +10496,18 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114181380173972838, guid: 54bbd98b052352f47be36fddc1195eb1,
+        type: 2}
+      propertyPath: patrolRoute.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4345728864049126, guid: 54bbd98b052352f47be36fddc1195eb1, type: 2}
       propertyPath: m_LocalPosition.x
       value: -7.160594
       objectReference: {fileID: 0}
     - target: {fileID: 4345728864049126, guid: 54bbd98b052352f47be36fddc1195eb1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.82
+      value: 0.87
       objectReference: {fileID: 0}
     - target: {fileID: 4345728864049126, guid: 54bbd98b052352f47be36fddc1195eb1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -10495,6 +10532,17 @@ Prefab:
     - target: {fileID: 4345728864049126, guid: 54bbd98b052352f47be36fddc1195eb1, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114181380173972838, guid: 54bbd98b052352f47be36fddc1195eb1,
+        type: 2}
+      propertyPath: searchingImage
+      value: 
+      objectReference: {fileID: 1633026753155604, guid: 253e43044c4a2474391ca7cf8b1f5ed5,
+        type: 2}
+    - target: {fileID: 95287701663952254, guid: 54bbd98b052352f47be36fddc1195eb1,
+        type: 2}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54bbd98b052352f47be36fddc1195eb1, type: 2}
@@ -11379,6 +11427,7 @@ MonoBehaviour:
   MoralityForSaving: 10
   MultiAnim: 1
   foundImage: {fileID: 66401084}
+  searchingImage: {fileID: 0}
   slash: {fileID: 198586185697967140, guid: 94b5e5e2116446a49aee7ba584e5c56a, type: 2}
 --- !u!136 &1703064859
 CapsuleCollider:

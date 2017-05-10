@@ -42,7 +42,7 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &1101687135076050780
+--- !u!1101 &1101701710829093724
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -50,7 +50,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1102457334836836354}
+  m_DstState: {fileID: 1102484786572546888}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -73,7 +73,7 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 1101687135076050780}
+  - {fileID: 1101701710829093724}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -87,13 +87,13 @@ AnimatorState:
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
---- !u!1102 &1102457334836836354
+--- !u!1102 &1102484786572546888
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: idle_swordnShield
+  m_Name: great_sword_casting
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -105,7 +105,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: 7d341494a937c78419bb4a38e2b3b9c2, type: 3}
+  m_Motion: {fileID: 7400000, guid: a1ad85c19c3800643990930b384c86b4, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -117,7 +117,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: sword_and_shield_impact 2
-  m_Speed: 0.048
+  m_Speed: 0.06
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101085780092131498}
@@ -149,8 +149,8 @@ AnimatorStateMachine:
     m_State: {fileID: 1102660441728259884}
     m_Position: {x: 252, y: 144, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1102457334836836354}
-    m_Position: {x: 569, y: 106, z: 0}
+    m_State: {fileID: 1102484786572546888}
+    m_Position: {x: 628, y: 144, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

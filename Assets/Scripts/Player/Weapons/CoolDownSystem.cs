@@ -194,7 +194,7 @@ public class CoolDownSystem : MonoBehaviour
 
         if (swing)
         {
-            StartCoroutine("SwordSwingmove", swingTime);
+            StartCoroutine("SwordSwing", swingTime);
         }
         if (Input.GetAxisRaw("DpadH") != 0)
         {
@@ -302,9 +302,7 @@ public class CoolDownSystem : MonoBehaviour
                         myAnimator.SetTrigger("privoSlash");
                         //audio.PlayOneShot(slash, 5F);
                     }
-
                     skills[2].currentcooldown = 0;
-
                 }
 
             }
@@ -492,7 +490,6 @@ public class CoolDownSystem : MonoBehaviour
     }
     IEnumerator SwordSwing(float waitTime)
     {
-        swing = true;
         yield return new WaitForSeconds(waitTime);
         swing = false;
     }

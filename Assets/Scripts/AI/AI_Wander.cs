@@ -19,12 +19,11 @@ public class AI_Wander : AI_Base
         float myX = this.transform.position.x;
         float myZ = this.transform.position.z;
 
-        float xPos = myX + UnityEngine.Random.Range(myX - 10, myX + 10);
-        float zPos = myZ + UnityEngine.Random.Range(myZ - 10, myZ + 10);
+        float xPos = myX + Random.onUnitSphere.x * 20;
+        float zPos = myZ + Random.onUnitSphere.y * 20;
         target = new Vector3(xPos, transform.position.y, zPos);
-        Debug.Log(target);
-        //Debug.Log(agent.speed); 
-        agent.SetDestination(target);   
+        //Debug.Log(target);
+        agent.SetDestination(target);
     }
 
     public override float CalValue()
@@ -44,10 +43,14 @@ public class AI_Wander : AI_Base
     }
     public override void Enter()
     {
+        timer = newtargetTimer;
     }
 
     public override void Exit()
     {
+       //Destroy(Follow);
     }
+
+
 
 }

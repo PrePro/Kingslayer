@@ -106,6 +106,8 @@ public class NPC : NPCBase
                     SetAnimation(AnimationState.Attacking);
                     agent.Stop();
                     slash.Play();
+                    searchingImage.SetActive(false);
+                    foundImage.SetActive(false);
                 }
                 break;
             case State.Chasing:
@@ -454,7 +456,9 @@ public class NPC : NPCBase
                 }
                 else
                 {
+
                     agent.destination = patrolRoute[patrolIndex].position;
+                    SetAnimation(AnimationState.Walking);
                 }
 
             }

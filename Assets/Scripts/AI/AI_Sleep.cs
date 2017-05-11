@@ -5,6 +5,7 @@ using UnityEngine;
 public class AI_Sleep : AI_Base
 {
     public GameObject Target;
+    public GameObject ReturnPoint;
 
     public float sleep;
     private float val;
@@ -44,17 +45,17 @@ public class AI_Sleep : AI_Base
     public override void Run()
     {
 
-        Debug.Log(Vector3.Distance(this.transform.position, agent.destination));
+        //Debug.Log(Vector3.Distance(this.transform.position, agent.destination));
         if (Vector3.Distance(transform.position, agent.destination) <= 2f)
         {
             Debug.Log("Got home");
+            gameObject.transform.position = new Vector3(1000, 0, 1000);
             StartCoroutine("Disable", 5);
         }
     }
 
     public override void Enter()
     {
-        Debug.Log("Sleep");
         agent.SetDestination(Target.transform.position);
     }
 
@@ -66,7 +67,7 @@ public class AI_Sleep : AI_Base
     {
         sleep = 0;
         yield return new WaitForSeconds(waitTime);
-        gameObject.transform.position = Target.transform.position;
+        gameObject.transform.position = ReturnPoint.transform.position;
     }
 
-}
+    }

@@ -13,6 +13,7 @@ public class World_AIBrain : MonoBehaviour
     public float TimeAway;
     [Tooltip("Debugging Only")]
     public AI_Base current;
+    public static bool CanCal;
 
     void Start()
     {
@@ -36,14 +37,12 @@ public class World_AIBrain : MonoBehaviour
     //    }
     void RunLogic()
     {
-        Debug.Log(current);
         AI_Base MostDesired = null;
         float min = 0;
 
         timer += Time.deltaTime;
-        if (timer >= TimeAway)
+        if (timer >= TimeAway || CanCal == true) // ADD BOOL
         {
-            Debug.Log("Checker");
             foreach (var ai in AI_Behaviour)
             {
                 if (ai.CalValue() > min)
@@ -52,27 +51,25 @@ public class World_AIBrain : MonoBehaviour
                     MostDesired = ai;
                 }
             }
-        timer = 0;
-    }
+            timer = 0;
+        }
 
         if (MostDesired != null)
         {
-            if(current == MostDesired)
+            if (current == MostDesired)
             {
                 //Debug.Log("Current == MostDesired");
                 return;
             }
             else
             {
-                if(current != null)
+                if (current != null)
                 {
                     current.Exit();
                 }
                 current = MostDesired;
                 current.Enter();
             }
-
-            Debug.Log(MostDesired);
         }
 
         if (current != null)
@@ -84,6 +81,7 @@ public class World_AIBrain : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(CanCal);
         if (canRun == true)
         {
             RunLogic();

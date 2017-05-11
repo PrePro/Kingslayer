@@ -19,7 +19,7 @@ Material:
     - first:
         name: _BumpMap
       second:
-        m_Texture: {fileID: 2800000, guid: c533475003b28ac429727a798a7f5361, type: 3}
+        m_Texture: {fileID: 2800000, guid: f72348e57448e79438e9e1b227f8650a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -49,13 +49,13 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 92ba65ccd0766f34eb991a38226d8e89, type: 3}
+        m_Texture: {fileID: 2800000, guid: 017f4e951366b4246854b476a28e2869, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _OcclusionMap
       second:
-        m_Texture: {fileID: 2800000, guid: a29594dbb952ced4aaa688838d0e5532, type: 3}
+        m_Texture: {fileID: 2800000, guid: e8f05d62c0532aa449f62fcec5dd866b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -87,8 +87,14 @@ Material:
         name: _EmissionScaleUI
       second: 0
     - first:
+        name: _GlossMapScale
+      second: 1
+    - first:
         name: _Glossiness
-      second: 0.411
+      second: 0.5
+    - first:
+        name: _GlossyReflections
+      second: 1
     - first:
         name: _InvFade
       second: 1
@@ -101,6 +107,12 @@ Material:
     - first:
         name: _Parallax
       second: 0.02
+    - first:
+        name: _SmoothnessTextureChannel
+      second: 0
+    - first:
+        name: _SpecularHighlights
+      second: 1
     - first:
         name: _SrcBlend
       second: 1

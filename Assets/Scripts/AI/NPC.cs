@@ -447,6 +447,7 @@ public class NPC : NPCBase
                 if (ran >= 2) //80% change to stop and wait
                 {
                     agent.Stop();
+                    SetAnimation(AnimationState.Idle);
                     //YASH if you want to run an animation for the partrol do it here
                     int waitTime = UnityEngine.Random.Range(0, 11);
                     StartCoroutine(AIWait(waitTime));

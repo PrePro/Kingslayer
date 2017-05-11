@@ -80,10 +80,10 @@ public class CoolDownSystem : MonoBehaviour
     [Tooltip("Variables for bullets and swords")]
     public float bulletSpeed;
     //public float swingSpeed;
-    //public float swingTime;
+    public float swingTime;
 
 
-    //public bool swing = false;
+    public bool swing = false;
 
     private bool rightIsPressed = false;
     private bool leftIsPressed = false;
@@ -192,10 +192,10 @@ public class CoolDownSystem : MonoBehaviour
             }
         }
 
-        //if (swing)
-        //{
-        //    StartCoroutine("SwordSwingmove", swingTime);
-        //}
+        if (swing)
+        {
+            StartCoroutine("SwordSwingmove", swingTime);
+        }
         if (Input.GetAxisRaw("DpadH") != 0)
         {
             if (m_isAxisInUse == false)
@@ -296,6 +296,7 @@ public class CoolDownSystem : MonoBehaviour
                     //}
                     if (swordInHand.activeSelf)
                     {
+                        swing = true;
                         psSlash.Play();
                         Debug.Log("Slash in here/");
                         myAnimator.SetTrigger("privoSlash");
@@ -489,12 +490,12 @@ public class CoolDownSystem : MonoBehaviour
         swordInSheeth.SetActive(true);
         myAnimator.avatar = AswordInSheeth;
     }
-    //IEnumerator SwordSwing(float waitTime)
-    //{
-    //    swing = true;
-    //    yield return new WaitForSeconds(waitTime);
-    //    swing = false;
-    //}
+    IEnumerator SwordSwing(float waitTime)
+    {
+        swing = true;
+        yield return new WaitForSeconds(waitTime);
+        swing = false;
+    }
     //IEnumerator SwordSwingmove(float waitTime)
     //{
     //    //Debug.Log("Swing");

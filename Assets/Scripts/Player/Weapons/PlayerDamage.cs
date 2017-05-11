@@ -14,12 +14,12 @@ public class PlayerDamage : MonoBehaviour
             if (mRunning) return;
 
             mRunning = true;
-            //Debug.Log("Player hit enemy trigger");
-            // if(cdsystem.swing == true)
-            //{
+            Debug.Log("Player hit enemy trigger");
+            if (cdsystem.swing == true)
+            {
 
-            col.GetComponent<NPStats>().ReceiveDamage(damage);
-            // }
+                col.GetComponent<NPStats>().ReceiveDamage(damage);
+            }
         }
         if (col.tag == "Wizard")
         {

@@ -1185,6 +1185,11 @@ Prefab:
       propertyPath: dominantBehavior
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: searchingImage
+      value: 
+      objectReference: {fileID: 1438758219983058, guid: d7bd61ea44e997f479cff0b211684b50,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
   m_IsPrefabParent: 0
@@ -1436,6 +1441,11 @@ Prefab:
       propertyPath: attackSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: searchingImage
+      value: 
+      objectReference: {fileID: 1438758219983058, guid: d7bd61ea44e997f479cff0b211684b50,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
   m_IsPrefabParent: 0
@@ -2273,6 +2283,8 @@ MonoBehaviour:
     - Apples
     mbuttons: 3
     morality: 000000000000000000000000
+  QuestPopUp: {fileID: 0}
+  MiniMapIcon: {fileID: 0}
 --- !u!1 &755888910
 GameObject:
   m_ObjectHideFlags: 0
@@ -2881,11 +2893,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1012734983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19d5fb4b2d3a1746a65a0fc4a5a7026, type: 3}
+  m_Script: {fileID: 11500000, guid: 179c0bf21f24c2c4b87830c40c55a681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeAway: 2
-  current: {fileID: 0}
+  newtargetTimer: 5
 --- !u!114 &1012734992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2898,9 +2909,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1501172214}
-  sleep: 5
+  ReturnPoint: {fileID: 1957469301}
+  sleep: 0
   tweek: 1
-  TimeAway: 1
+  TimeAway: 5
   min: 0
   max: 10
 --- !u!114 &1012734993
@@ -2911,10 +2923,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1012734983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 179c0bf21f24c2c4b87830c40c55a681, type: 3}
+  m_Script: {fileID: 11500000, guid: e19d5fb4b2d3a1746a65a0fc4a5a7026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newtargetTimer: 2
+  TimeAway: 2
+  current: {fileID: 0}
 --- !u!1 &1053254855
 GameObject:
   m_ObjectHideFlags: 0
@@ -3853,6 +3866,11 @@ Prefab:
       propertyPath: DeathWayPoint
       value: 
       objectReference: {fileID: 1501172214}
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: searchingImage
+      value: 
+      objectReference: {fileID: 1438758219983058, guid: d7bd61ea44e997f479cff0b211684b50,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
   m_IsPrefabParent: 0
@@ -4466,49 +4484,30 @@ Prefab:
       propertyPath: m_RootOrder
       value: 25
       objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: patrolRoute.Array.data[0]
-      value: 
-      objectReference: {fileID: 892893432}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: patrolRoute.Array.data[1]
-      value: 
-      objectReference: {fileID: 1398626983}
     - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_Name
       value: EnemyMockup (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: dominantBehavior
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: attackSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: attackRange
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: unitClass
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: DeathWayPoint
-      value: 
-      objectReference: {fileID: 1501172214}
-    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: DeathTimer
-      value: 10
+      propertyPath: dominantBehavior
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: HasWaitTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: searchingImage
+      value: 
+      objectReference: {fileID: 1438758219983058, guid: d7bd61ea44e997f479cff0b211684b50,
+        type: 2}
     - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: currentState
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
@@ -5607,6 +5606,8 @@ MonoBehaviour:
     - Fruit
     mbuttons: 0
     morality: 000000000000000000000000
+  QuestPopUp: {fileID: 0}
+  MiniMapIcon: {fileID: 0}
 --- !u!1 &1829411354
 GameObject:
   m_ObjectHideFlags: 0
@@ -6257,6 +6258,34 @@ Transform:
   - {fileID: 275310546}
   m_Father: {fileID: 701268304}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1957469301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1957469302}
+  m_Layer: 0
+  m_Name: Sleep WayPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1957469302
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1957469301}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.7, y: 1.5, z: -28.8}
+  m_LocalScale: {x: 1.0026244, y: 1, z: 1.0026244}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1972938917
 GameObject:

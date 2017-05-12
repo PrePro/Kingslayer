@@ -2948,7 +2948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1552787219657242
 GameObject:
   m_ObjectHideFlags: 1
@@ -3086,7 +3086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1570584989494682
 GameObject:
   m_ObjectHideFlags: 1
@@ -8283,8 +8283,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1302781443591642}
-  m_LocalRotation: {x: -0, y: 0.77132225, z: -0, w: -0.63644487}
-  m_LocalPosition: {x: 22.91, y: -0.63, z: -6.64}
+  m_LocalRotation: {x: -0, y: 0.85431856, z: -0, w: -0.5197499}
+  m_LocalPosition: {x: 33.62, y: 58.55256, z: -450.63}
   m_LocalScale: {x: 1.2, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 4359662059745932}
@@ -8602,14 +8602,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1620698059064312}
-  m_LocalRotation: {x: 0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0.00014207035, y: -0.035422962, z: -0.6788352, w: 0.7334357}
   m_LocalPosition: {x: -0.918, y: -0.007, z: 0.018}
   m_LocalScale: {x: 0.11, y: 0.4, z: 0.1}
   m_Children:
   - {fileID: 4407386948068998}
   m_Father: {fileID: 4400367252859204}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.7450001, y: -2.993, z: -85.50001}
 --- !u!4 &4794263731544678
 Transform:
   m_ObjectHideFlags: 1
@@ -10394,7 +10394,7 @@ MonoBehaviour:
   dashTimeRight: 0.5
   doubleTapTimer: 1
   bulletSpeed: 500
-  swingTime: 0
+  swingTime: 1
   swing: 1
   AoeSphere: {fileID: 1955424394128712}
   ScaleRate: 1
@@ -10406,7 +10406,7 @@ MonoBehaviour:
   canAttack: 1
   skills:
   - name: Dash
-    cooldown: 3
+    cooldown: 1.5
     currentcooldown: 3
     CDImage: {fileID: 0}
   - name: Projectile

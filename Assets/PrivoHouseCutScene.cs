@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PrivoHouseCutScene : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class PrivoHouseCutScene : MonoBehaviour
     public bool houseCutsceneRunning = false;
     public Camera cinematicCamera;
     private GameObject cineDelete;
+    public GameObject questPopUp;
     
 
     // Use this for initialization
     void Start()
     {
+        questPopUp.gameObject.SetActive(false);
 
     }
 
@@ -60,6 +63,7 @@ public class PrivoHouseCutScene : MonoBehaviour
         Destroy(cineDelete);
         houseCutscene.EndCutscene();
         cinematicCamera.enabled = false;
+        questPopUp.gameObject.SetActive(true);
         //houseCutsceneRunning = true;
        
     }

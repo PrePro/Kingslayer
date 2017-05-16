@@ -10,21 +10,15 @@ using UnityEngine;
 
 public static class GameplayStatics
 {
-    public static bool IsFacing(Transform transform, Vector3 other, float accuracy = 0.95f)
+    public static bool IsFacing(Transform transform, Vector3 other, float accuracy = 0.9f)
     {
-        if (accuracy > 1.0f)
-        {
-            accuracy = 1.0f;
-        }
+        accuracy = (accuracy > 1.0f) ? 1.0f : accuracy;
         Vector3 dirToOther = Vector3.Normalize(other - transform.position);
-        if(Vector2.Dot(transform.forward, dirToOther) > accuracy)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+
+        float check = Vector3.Dot(transform.forward, dirToOther);
+        return check > accuracy;
+
+
     }
 
     public static bool IsWithinRange2D(Transform transform, Vector3 other, float range, float buffer = 0.0f)

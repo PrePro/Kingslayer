@@ -149,7 +149,7 @@ public class World_AI : MonoBehaviour
             mCooldown += Time.deltaTime;
         }
 
-        if(mCooldown >= SleepTimer && SleepCallOnce == false)
+        if (mCooldown >= SleepTimer && SleepCallOnce == false)
         {
             SleepCallOnce = true;
             SetState(State.Sleep);
@@ -176,7 +176,7 @@ public class World_AI : MonoBehaviour
     }
 
     IEnumerator Disable(float waitTime) // Move the object for sleep so it seems they disapper
-    { 
+    {
         gameObject.transform.position = new Vector3(1000, 0, 1000);
         yield return new WaitForSeconds(waitTime);
         mCooldown = 0;

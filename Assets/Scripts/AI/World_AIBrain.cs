@@ -81,7 +81,6 @@ public class World_AIBrain : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(CanCal);
         if (canRun == true)
         {
             RunLogic();

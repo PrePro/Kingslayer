@@ -73,7 +73,7 @@ public abstract class NPCBase : MonoBehaviour
     #region MemberVariables
     [Header("AI States")]
     [SerializeField]
-    protected UnitClass unitClass;
+    public UnitClass unitClass;
     [SerializeField]
     [Tooltip("The basic fallback behavior of the NPC: \nPassive units do not attack\nAggressive units search for enemies\nIdleDefencives units do not move but attack enemies in their radius\nPatrolDefencive units follow a patrol path until an enemy is found")]
     protected Behavior dominantBehavior;
@@ -94,7 +94,7 @@ public abstract class NPCBase : MonoBehaviour
     protected AnimationState currentAnimation;
 
     [Header("Pathing")]
-    protected Transform currentTarget;
+    public Transform currentTarget;
     [SerializeField]
     [Tooltip("If you want to create a patrolling guard, set up an array of transforms for the unit to move back and forth")]
     protected List<Transform> patrolRoute;
@@ -106,34 +106,19 @@ public abstract class NPCBase : MonoBehaviour
     [Tooltip("Distance the NPC needs to be to the current patrol point before moving to the next")]
     protected float patrolDistanceThreshold;
 
-    protected bool isTargetSeen;
-    [Header("Attacking")]
-    [SerializeField]
-    [Tooltip("This really shouldnt be touched unless new Enemy")]
-    protected float attackRange;
-    [Tooltip("How fast the enemy attacks")]
-    [SerializeField]
-    protected float attackSpeed;
+    public bool isTargetSeen;
 
-    protected Animator animator;
+    public Animator animator;
     protected Vector3 startPosition;
 
     [Header("ParticleSystem")]
     protected ParticleSystem enemySlash;
 
-    [Header("Archer")]
-    [Tooltip("bullet Object to be fired")]
-    [SerializeField]
-    protected GameObject Bullet;
-    [Tooltip("Where the bulllet is shot from")]
-    [SerializeField]
-    protected GameObject BulletTarget;
-    [Tooltip("How fast the archer attacks")]
-    [SerializeField]
-    protected float bulletSpeed;
-
     [SerializeField]
     protected GameObject DeathBox;
+
+    protected AI_KnightAttack KnightAttack;
+    protected AI_ArcherAttack ArcherAttack;
     protected World_AIBrain Brain;
     #endregion
     //======================================================================================================
@@ -159,6 +144,41 @@ public abstract class NPCBase : MonoBehaviour
         animator = GetComponent<Animator>();
         isTargetSeen = false;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+
+
+        switch (unitClass)
+        {
+            case UnitClass.Knight:
+                {
+                    KnightAttack = GetComponent<AI_KnightAttack>();
+                    if (KnightAttack == null)
+                    {
+                        Debug.Log("KnightAttack has no Script");
+                    }
+                }
+                break;
+            case UnitClass.Archer:
+                {
+                    ArcherAttack = GetComponent<AI_ArcherAttack>();
+                    if (ArcherAttack == null)
+                    {
+                        Debug.Log("ArcherAttack has no Script");
+                    }
+                }
+                break;
+            case UnitClass.WorldAI:
+                {
+                    Brain = GetComponent<World_AIBrain>();
+                    if (Brain == null)
+                    {
+                        Debug.Log("Brain has no Script");
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+
         switch (dominantBehavior)
         {
             case Behavior.Aggressive:
@@ -179,18 +199,10 @@ public abstract class NPCBase : MonoBehaviour
                 }
                 break;
             case Behavior.Passive:
-                { 
-                    if(unitClass == UnitClass.WorldAI)
+                {
+                    if (unitClass == UnitClass.WorldAI)
                     {
-                        Brain = GetComponent<World_AIBrain>();
-                        if(Brain == null)
-                        {
-                            Debug.Log("Brain has no Script");
-                        }
-                        else
-                        {
-                            Brain.TurnOnBrain();
-                        }
+                        Brain.TurnOnBrain();
                         SetState(State.Idle);
                         animator.SetInteger("AnimationState", (int)AnimationState.Idle);
                     }
@@ -216,7 +228,7 @@ public abstract class NPCBase : MonoBehaviour
     public abstract void SetAnimation(AnimationState animState);
     public abstract void UpdateAnimation();
     public abstract void ChaseTarget();
-    public abstract void AttackTarget();
+    //public abstract void AttackTarget();
     public abstract void Patrol();
     public abstract void Search();
     public abstract void HandleDebuff();

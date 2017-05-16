@@ -85,7 +85,7 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        if(isCrouching == true)
+        if (isCrouching == true)
         {
             //PlayerHead.transform.position.Set(Player.Position.x, Player.Position.y - 1, Player.Position.z);
         }
@@ -114,6 +114,7 @@ public class Movement : MonoBehaviour
                 //Debug.Log("Key Board");
                 PlayerMove();
                 //PMove();
+                //MovementWithMouse();
             }
 
         }
@@ -207,7 +208,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.Joystick1Button1) && mCooldown >= 0.8f && isRunning == false) //Set that to b
         {
             isCrouching = !isCrouching;
-            mCooldown = 0; 
+            mCooldown = 0;
             myAnimator.SetBool("privoCrouch", isCrouching);
         }
 
@@ -336,7 +337,7 @@ public class Movement : MonoBehaviour
             Debug.Log("Stop moving");
             target.transform.position = objectForward.transform.position;
             //psWalk.Play();
-            
+
             if (isRunning == false && isCrouching == false)
             {
                 currentSpeed = speed;
@@ -363,7 +364,7 @@ public class Movement : MonoBehaviour
         relativePosx = target.position.x - transform.position.x;
         relativePosz = target.position.z - transform.position.z;
 
-        // Look at the target objects postion if its 0.4 away 
+        //Look at the target objects postion if its 0.4 away
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {
             if (this.transform.rotation.x != relativePosx || this.transform.rotation.z != relativePosz)
@@ -405,6 +406,7 @@ public class Movement : MonoBehaviour
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
                 transform.Translate((Vector3.forward * Time.deltaTime * currentSpeed));
+
                 isWalking = true;
                 myAnimator.SetBool("privoWalk", isWalking);
             }
@@ -422,90 +424,54 @@ public class Movement : MonoBehaviour
 
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {
-            if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) // UP
+            if (isRunning == false && isCrouching == false)
             {
-                target.Translate(Vector3.forward * Time.deltaTime * currentSpeed * 4);
-                if (isRunning == false && isCrouching == false)
+                currentSpeed = speed;
+            }
+            else
+            {
+                if (isCrouching == true && isRunning == false)
                 {
-                    currentSpeed = speed;
+                    currentSpeed = crouchSpeed;
                 }
-                
-                else
+                if (isRunning == true && isCrouching == false)
                 {
-                    if(isCrouching == true && isRunning == false)
-                    {
-                        currentSpeed = crouchSpeed;
-                    }
-                    if (isRunning == true && isCrouching == false)
-                    {
-                        currentSpeed = runningSpeed;
-                    }
+                    currentSpeed = runningSpeed;
                 }
-
             }
 
-            if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W)) // Down
+            if (Input.GetKey(KeyCode.W))// && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S)
             {
-                target.Translate(Vector3.back * Time.deltaTime * currentSpeed * 4);
-
-                if (isRunning == false && isCrouching == false)
-                {
-                    currentSpeed = speed;
-                }
-                else
-                {
-                    if (isCrouching == true && isRunning == false)
-                    {
-                        currentSpeed = crouchSpeed;
-                    }
-                    if (isRunning == true && isCrouching == false)
-                    {
-                        currentSpeed = runningSpeed;
-                    }
-                }
-
+                target.position = transform.position + target.forward;
+            }
+            else if (Input.GetKey(KeyCode.S))// && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W)
+            {
+                target.position = transform.position + -target.forward;
+            }
+            else if (Input.GetKey(KeyCode.A))//&& !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)
+            {
+                target.position = transform.position + -target.right;
+            }
+            else if (Input.GetKey(KeyCode.D))// && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S)
+            {
+                target.position = transform.position + target.right;
             }
 
-            if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) // Right
+            if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
             {
-                target.Translate(Vector3.right * Time.deltaTime * currentSpeed * 4);
-                if (isRunning == false && isCrouching == false)
-                {
-                    currentSpeed = speed;
-                }
-                else
-                {
-                    if (isCrouching == true && isRunning == false)
-                    {
-                        currentSpeed = crouchSpeed;
-                    }
-                    if (isRunning == true && isCrouching == false)
-                    {
-                        currentSpeed = runningSpeed;
-                    }
-                }
-
+                target.position = transform.position + target.right + -target.forward;
             }
-
-            if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) // Left
+            if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
             {
-                target.Translate(Vector3.left * Time.deltaTime * currentSpeed * 4);
-                if (isRunning == false && isCrouching == false)
-                {
-                    currentSpeed = speed;
-                }
-                else
-                {
-                    if (isCrouching == true && isRunning == false)
-                    {
-                        currentSpeed = crouchSpeed;
-                    }
-                    if (isRunning == true && isCrouching == false)
-                    {
-                        currentSpeed = runningSpeed;
-                    }
-                }
-
+                target.position = transform.position + target.right + target.forward;
+            }
+            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S))
+            {
+                target.position = transform.position + -target.right + -target.forward;
+            }
+            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
+            {
+                target.position = transform.position + -target.right + target.forward;
             }
         }
 
@@ -531,6 +497,47 @@ public class Movement : MonoBehaviour
             }
 
         }
+
+    }
+
+    private void MovementWithMouse()
+    {
+        currentSpeed = 1;
+        if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
+        {
+            if (this.transform.rotation.x != relativePosx || this.transform.rotation.z != relativePosz)
+            {
+                Quaternion rotation = Quaternion.LookRotation(new Vector3(relativePosx, 0, relativePosz));
+                transform.rotation = rotation;
+            }
+        }
+
+        target.transform.rotation = gameCamera.transform.rotation;
+        target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y, 0);
+
+        if (Input.GetKey(KeyCode.W)) // Up
+        {
+            //transform.Translate(Vector3.forward * Time.deltaTime * currentSpeed * 4, target.transform);
+
+            target.Translate(Vector3.forward * currentSpeed * Time.deltaTime, target.transform);
+        }
+        if (Input.GetKey(KeyCode.S)) // Down
+        {
+            //transform.Translate(-Vector3.forward * Time.deltaTime * currentSpeed * 4, target.transform);
+            target.Translate(-Vector3.forward * currentSpeed * Time.deltaTime, target.transform);
+        }
+        if (Input.GetKey(KeyCode.A)) // Left
+        {
+            // transform.Translate(-Vector3.right * Time.deltaTime * currentSpeed * 4, target.transform);
+            target.Translate(-Vector3.right * currentSpeed * Time.deltaTime, target.transform);
+
+        }
+        if (Input.GetKey(KeyCode.D)) // Right
+        {
+            //transform.Translate(Vector3.right * Time.deltaTime * currentSpeed * 4, target.transform);
+            target.Translate(Vector3.right * currentSpeed * Time.deltaTime, target.transform);
+        }
+
 
     }
 

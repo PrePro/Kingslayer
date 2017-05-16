@@ -17,17 +17,15 @@ public class NPC : NPCBase
     [Tooltip("How much morality the player gets for letting the npc live\nShould be positive")]
     public int MoralityForSaving;
 
-    public bool MultiAnim;
-    private float timer;
     bool mDeath;
     public GameObject foundImage;
     public GameObject searchingImage;
     public ParticleSystem slash;
     int[] randomAnim = new int[] { 2, 9, 10, 11 };
 
+
     void Update()
     {
-        timer += Time.deltaTime;
         if (debuffState == Debuff.None)
         {
             if (stats.Death == false)
@@ -44,10 +42,6 @@ public class NPC : NPCBase
             HandleDebuff();
         }
     }
-
-    bool isAttacking = false;
-    bool isFacing = false;
-    bool isInRange = false;
     //======================================================================================================
     // Function to run specific behavior on state change 
     //======================================================================================================
@@ -103,11 +97,26 @@ public class NPC : NPCBase
                 break;
             case State.Attacking:
                 {
-                    SetAnimation(AnimationState.Attacking);
-                    agent.Stop();
-                    slash.Play();
-                    searchingImage.SetActive(false);
-                    foundImage.SetActive(false);
+                    switch (unitClass)
+                    {
+                        case UnitClass.Knight:
+                            {
+                                //SetAnimation(AnimationState.Attacking);
+                                //agent.Stop();
+                                //slash.Play();
+                                //searchingImage.SetActive(false);
+                                //foundImage.SetActive(false);
+                                KnightAttack.Enter();
+                            }
+                            break;
+                        case UnitClass.Archer:
+                            break;
+                        case UnitClass.WorldAI:
+                            break;
+                        default:
+                            break;
+                    }
+
                 }
                 break;
             case State.Chasing:
@@ -244,9 +253,10 @@ public class NPC : NPCBase
                 break;
             case Debuff.Rooted:
 
-                if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange) && isTargetSeen && dominantBehavior != Behavior.Passive)
+                if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, KnightAttack.attackRange) && isTargetSeen && dominantBehavior != Behavior.Passive)
                 {
-                    AttackTarget();
+                    //AttackTarget();
+                    KnightAttack.Run();
                 }
                 break;
             default:
@@ -275,7 +285,8 @@ public class NPC : NPCBase
                 break;
             case State.Attacking:
                 {
-                    AttackTarget();
+                    //AttackTarget();
+                    KnightAttack.Run();
                 }
                 break;
             case State.Chasing:
@@ -299,7 +310,7 @@ public class NPC : NPCBase
             SetAnimation(AnimationState.Walking);
 
             agent.SetDestination(DeathWayPoint.transform.position); // Make this a gameObject
-            
+
             if (Vector3.Distance(transform.position, agent.destination) <= 3f)
             {
                 Destroy(this.gameObject);
@@ -321,115 +332,103 @@ public class NPC : NPCBase
             agent.destination = currentTarget.position;
         }
 
-        if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange, 1.0f))
+        if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, KnightAttack.attackRange, 1.0f))
         {
             SetState(State.Attacking);
             //AttackTarget();
         }
     }
 
-    public override void AttackTarget()
-    {
-        if (stats.Death == false)
-        {
+    //public override void AttackTarget()
+    //{
+    //    if (stats.Death == false)
+    //    {
 
-            if (!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
-            {
-                isAttacking = false;
-                isFacing = false;
-                Vector3 target = currentTarget.position;
-                target.y = transform.position.y;
-                target = target - transform.position;
-                Vector3 newDir = Vector3.RotateTowards(transform.forward, target, agent.angularSpeed * Time.deltaTime, 0.0f);
-                transform.rotation = Quaternion.LookRotation(newDir);
-            }
-            else if (isInRange)
-            {
-                //Debug.Log("IsFacing");
-                isFacing = true;
-            }
-            else
-            {
-                isFacing = false;
-            }
+    //        if (!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
+    //        {
+    //            isAttacking = false;
+    //            isFacing = false;
+    //            Vector3 target = currentTarget.position;
+    //            target.y = transform.position.y;
+    //            target = target - transform.position;
+    //            Vector3 newDir = Vector3.RotateTowards(transform.forward, target, agent.angularSpeed * Time.deltaTime, 0.0f);
+    //            transform.rotation = Quaternion.LookRotation(newDir);
+    //        }
+    //        else if (isInRange)
+    //        {
+    //            //Debug.Log("IsFacing");
+    //            isFacing = true;
+    //        }
+    //        else
+    //        {
+    //            isFacing = false;
+    //        }
 
-            if (!GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange))
-            {
-                isAttacking = false;
-                isInRange = false;
-                if (!isTargetSeen)
-                {
-                    SetState(State.Searching);
-                }
-                else
-                {
-                    SetState(State.Chasing);
-                }
-            }
-            else
-            {
-                isInRange = true;
-            }
-            if (unitClass == UnitClass.Knight)
-            {
-                if (timer >= attackSpeed)
-                {
-                    //Debug.Log("isAttacking = " + isAttacking);
-                    //Debug.Log("isFacing = " + isFacing);
-                    //Debug.Log("isInRange = " + isInRange);
-                    isFacing = true;
-                    if (!isAttacking && isFacing && isInRange)
-                    {
-                        isAttacking = true;
-                        if (MultiAnim == true)
-                        {
-                            int RandomAnimation = randomAnim[UnityEngine.Random.Range(0, randomAnim.Length)];
-                            //Debug.Log(RandomAnimation);
-                            SetAnimation((AnimationState)RandomAnimation);
-                        }
-                        else
-                        {
-                            SetAnimation(AnimationState.Attacking);
-                        }
-                        timer = 0;
-                        isAttacking = false;
-                    }
-                }
-                else
-                {
-                    if (isFacing && isInRange)
-                        SetAnimation(AnimationState.Idle);
-                }
-            }
+    //        if (!GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange))
+    //        {
+    //            isAttacking = false;
+    //            isInRange = false;
+    //            if (!isTargetSeen)
+    //            {
+    //                SetState(State.Searching);
+    //            }
+    //            else
+    //            {
+    //                SetState(State.Chasing);
+    //            }
+    //        }
+    //        else
+    //        {
+    //            isInRange = true;
+    //        }
+    //        if (unitClass == UnitClass.Knight)
+    //        {
+    //            if (timer >= attackSpeed)
+    //            {
+    //                //Debug.Log("isAttacking = " + isAttacking);
+    //                //Debug.Log("isFacing = " + isFacing);
+    //                //Debug.Log("isInRange = " + isInRange);
+    //                isFacing = true;
+    //                if (!isAttacking && isFacing && isInRange)
+    //                {
+    //                    isAttacking = true;
+    //                    if (MultiAnim == true)
+    //                    {
+    //                        int RandomAnimation = randomAnim[UnityEngine.Random.Range(0, randomAnim.Length)];
+    //                        //Debug.Log(RandomAnimation);
+    //                        SetAnimation((AnimationState)RandomAnimation);
+    //                    }
+    //                    else
+    //                    {
+    //                        SetAnimation(AnimationState.Attacking);
+    //                    }
+    //                    timer = 0;
+    //                    isAttacking = false;
+    //                }
+    //            }
+    //            else
+    //            {
+    //                if (isFacing && isInRange)
+    //                    SetAnimation(AnimationState.Idle);
+    //            }
+    //        }
 
-            else
-            {
-                if (!isAttacking && isFacing && isInRange)
-                {
-                    Debug.Log("Archer Attack");
+    //        else
+    //        {
+    //            if (!isAttacking && isFacing && isInRange)
+    //            {
+    //                Debug.Log("Archer Attack");
 
-                    agent.Stop();
-                    isAttacking = true;
+    //                agent.Stop();
+    //                isAttacking = true;
 
-                    //SetAnimation(AnimationState.Attacking);
-                    Shoot();
-                }
-            }
-        }
-    }
+    //                //SetAnimation(AnimationState.Attacking);
+    //                Shoot();
+    //            }
+    //        }
+    //    }
+    //}
 
-    private void Shoot()
-    {
-        Vector3 firePosition = BulletTarget.transform.position;
-        GameObject bullet = GameObject.Instantiate(Bullet, firePosition, BulletTarget.transform.rotation) as GameObject;
-
-        if (bullet != null)
-        {
-            Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
-            Vector3 force = transform.forward * bulletSpeed;
-            rigidbody.AddForce(force);
-        }
-    }
     //======================================================================================================
     // Iterate throught array of patrol paths 
     //======================================================================================================

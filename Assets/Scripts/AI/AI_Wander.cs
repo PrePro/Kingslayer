@@ -15,7 +15,6 @@ public class AI_Wander : AI_Base
 
     void NewTarget()
     {
-        Debug.Log("Wander");
         float myX = this.transform.position.x;
         float myZ = this.transform.position.z;
 
@@ -48,7 +47,7 @@ public class AI_Wander : AI_Base
 
     public override void Exit()
     {
-       //Destroy(Follow);
+        //Destroy(Follow);
     }
 
 

@@ -227,7 +227,7 @@ public abstract class NPCBase : MonoBehaviour
     public abstract void SetState(State newState);
     public abstract void SetAnimation(AnimationState animState);
     public abstract void UpdateAnimation();
-    public abstract void ChaseTarget();
+    public abstract void ChaseTarget(float range);
     //public abstract void AttackTarget();
     public abstract void Patrol();
     public abstract void Search();

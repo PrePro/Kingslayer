@@ -54,10 +54,10 @@ public class Perception : MonoBehaviour
             }
             else
             {
-                //Debug.Log("behind");
+                Debug.Log("Target is in behind of this game object.");
                 return;
             }
-                var hits = Physics.RaycastAll(ray, sphereCollider.radius, obstructionLayer);
+            var hits = Physics.RaycastAll(ray, sphereCollider.radius, obstructionLayer);
             float targetDistance = Vector3.Distance(transform.position, other.transform.position);
             float barrierDistance = float.MaxValue;
             bool hitBarrier = hits.Length > 0;

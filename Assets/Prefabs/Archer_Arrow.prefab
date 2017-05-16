@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33092458221396904}
   - component: {fileID: 23897360867421648}
   - component: {fileID: 54463862885733790}
-  - component: {fileID: 114903008059046150}
   - component: {fileID: 114192317115432724}
   - component: {fileID: 136773811747573290}
+  - component: {fileID: 114059112035036018}
   m_Layer: 0
   m_Name: Archer_Arrow
   m_TagString: Untagged
@@ -98,6 +98,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114059112035036018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1315884258548092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8db257b9454f9746bd652487a040190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!114 &114192317115432724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,19 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b62dcec868d22e74d9620b16a0583570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 2
---- !u!114 &114903008059046150
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1315884258548092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 451d160b31ffc5645a41bda86f7e2a05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10000
+  time: 6
 --- !u!136 &136773811747573290
 CapsuleCollider:
   m_ObjectHideFlags: 1

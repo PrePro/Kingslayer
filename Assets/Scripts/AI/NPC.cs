@@ -26,6 +26,7 @@ public class NPC : NPCBase
 
     void Update()
     {
+        //Debug.Log(isTargetSeen);
         if (debuffState == Debuff.None)
         {
             if (stats.Death == false)
@@ -42,27 +43,6 @@ public class NPC : NPCBase
             HandleDebuff();
         }
     }
-    //======================================================================================================
-    // Function to run specific behavior on state change 
-    //======================================================================================================
-    IEnumerator RotateFind() // Turn enemy to find player
-    {
-        float totalTime = 0.0f;
-        while (totalTime < 5.0f)
-        {
-            //Debug.Log(totalTime);
-            totalTime += Time.deltaTime;
-            transform.Rotate(new Vector3(0, Time.deltaTime * 10, 0));
-        }
-        totalTime = 0.0f;
-        while (totalTime < 10.0f)
-        {
-            //Debug.Log(totalTime);
-            totalTime += Time.deltaTime;
-            transform.Rotate(new Vector3(0, Time.deltaTime * -10, 0));
-        }
-        yield return null;
-    }
 
     public override void SetState(State newState)
     {
@@ -77,6 +57,7 @@ public class NPC : NPCBase
                     if (unitClass == UnitClass.Archer)
                     {
 
+                        SetAnimation(AnimationState.Idle);
 
                     }
                     else
@@ -85,10 +66,10 @@ public class NPC : NPCBase
                         //agent.destination = transform.position;
 
                         SetAnimation(AnimationState.Idle);
-                        if (currentState == State.Searching)
-                        {
-                            StartCoroutine(RotateFind());
-                        }
+                        //if (currentState == State.Searching)
+                        //{
+                        //    StartCoroutine(RotateFind());
+                        //}
                         foundImage.SetActive(false);//put a yellow one. For Yash.
                         searchingImage.SetActive(false);
                     }
@@ -101,15 +82,14 @@ public class NPC : NPCBase
                     {
                         case UnitClass.Knight:
                             {
-                                //SetAnimation(AnimationState.Attacking);
-                                //agent.Stop();
-                                //slash.Play();
-                                //searchingImage.SetActive(false);
-                                //foundImage.SetActive(false);
                                 KnightAttack.Enter();
                             }
                             break;
                         case UnitClass.Archer:
+                            {
+                                Debug.Log("SET ATTACKING");
+                                ArcherAttack.Enter();
+                            }
                             break;
                         case UnitClass.WorldAI:
                             break;
@@ -121,11 +101,14 @@ public class NPC : NPCBase
                 break;
             case State.Chasing:
                 {
-                    SetAnimation(AnimationState.Walking);
-                    agent.Resume();
-                    agent.destination = currentTarget.position;
-                    foundImage.SetActive(true);//put a yellow one. For Yash.
-                    searchingImage.SetActive(false);
+                    if (unitClass != UnitClass.Archer)
+                    {
+                        SetAnimation(AnimationState.Walking);
+                        agent.Resume();
+                        agent.destination = currentTarget.position;
+                        foundImage.SetActive(true);//put a yellow one. For Yash.
+                        searchingImage.SetActive(false);
+                    }
                 }
                 break;
             case State.Patrolling:
@@ -253,10 +236,26 @@ public class NPC : NPCBase
                 break;
             case Debuff.Rooted:
 
-                if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, KnightAttack.attackRange) && isTargetSeen && dominantBehavior != Behavior.Passive)
+
+                switch (unitClass)
                 {
-                    //AttackTarget();
-                    KnightAttack.Run();
+                    case UnitClass.Knight:
+                        {
+                            if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, KnightAttack.attackRange) && isTargetSeen && dominantBehavior != Behavior.Passive)
+                            {
+                                KnightAttack.Run();
+                            }
+                        }
+                        break;
+                    case UnitClass.Archer:
+                        {
+                            Debug.Log("Archer Rooted");// Blind them
+                        }
+                        break;
+                    case UnitClass.WorldAI:
+                        break;
+                    default:
+                        break;
                 }
                 break;
             default:
@@ -286,12 +285,44 @@ public class NPC : NPCBase
             case State.Attacking:
                 {
                     //AttackTarget();
-                    KnightAttack.Run();
+                    switch (unitClass)
+                    {
+                        case UnitClass.Knight:
+                            {
+                                KnightAttack.Run();
+                            }
+                            break;
+                        case UnitClass.Archer:
+                            {
+                                ArcherAttack.Run();
+                            }
+                            break;
+                        case UnitClass.WorldAI:
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 break;
             case State.Chasing:
                 {
-                    ChaseTarget();
+                    switch (unitClass)
+                    {
+                        case UnitClass.Knight:
+                            {
+                                ChaseTarget(KnightAttack.attackRange);
+                            }
+                            break;
+                        case UnitClass.Archer:
+                            {
+
+                            }
+                            break;
+                        case UnitClass.WorldAI:
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 break;
             case State.Dead:
@@ -325,109 +356,19 @@ public class NPC : NPCBase
     //======================================================================================================
     // As long as the target is seen, update the target's new position 
     //======================================================================================================
-    public override void ChaseTarget()
+    public override void ChaseTarget(float range)
     {
         if (isTargetSeen)
         {
             agent.destination = currentTarget.position;
         }
 
-        if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, KnightAttack.attackRange, 1.0f))
+        if (GameplayStatics.IsWithinRange2D(transform, currentTarget.position, range, 1.0f))
         {
             SetState(State.Attacking);
             //AttackTarget();
         }
     }
-
-    //public override void AttackTarget()
-    //{
-    //    if (stats.Death == false)
-    //    {
-
-    //        if (!GameplayStatics.IsFacing(transform, currentTarget.position) && isInRange)
-    //        {
-    //            isAttacking = false;
-    //            isFacing = false;
-    //            Vector3 target = currentTarget.position;
-    //            target.y = transform.position.y;
-    //            target = target - transform.position;
-    //            Vector3 newDir = Vector3.RotateTowards(transform.forward, target, agent.angularSpeed * Time.deltaTime, 0.0f);
-    //            transform.rotation = Quaternion.LookRotation(newDir);
-    //        }
-    //        else if (isInRange)
-    //        {
-    //            //Debug.Log("IsFacing");
-    //            isFacing = true;
-    //        }
-    //        else
-    //        {
-    //            isFacing = false;
-    //        }
-
-    //        if (!GameplayStatics.IsWithinRange2D(transform, currentTarget.position, attackRange))
-    //        {
-    //            isAttacking = false;
-    //            isInRange = false;
-    //            if (!isTargetSeen)
-    //            {
-    //                SetState(State.Searching);
-    //            }
-    //            else
-    //            {
-    //                SetState(State.Chasing);
-    //            }
-    //        }
-    //        else
-    //        {
-    //            isInRange = true;
-    //        }
-    //        if (unitClass == UnitClass.Knight)
-    //        {
-    //            if (timer >= attackSpeed)
-    //            {
-    //                //Debug.Log("isAttacking = " + isAttacking);
-    //                //Debug.Log("isFacing = " + isFacing);
-    //                //Debug.Log("isInRange = " + isInRange);
-    //                isFacing = true;
-    //                if (!isAttacking && isFacing && isInRange)
-    //                {
-    //                    isAttacking = true;
-    //                    if (MultiAnim == true)
-    //                    {
-    //                        int RandomAnimation = randomAnim[UnityEngine.Random.Range(0, randomAnim.Length)];
-    //                        //Debug.Log(RandomAnimation);
-    //                        SetAnimation((AnimationState)RandomAnimation);
-    //                    }
-    //                    else
-    //                    {
-    //                        SetAnimation(AnimationState.Attacking);
-    //                    }
-    //                    timer = 0;
-    //                    isAttacking = false;
-    //                }
-    //            }
-    //            else
-    //            {
-    //                if (isFacing && isInRange)
-    //                    SetAnimation(AnimationState.Idle);
-    //            }
-    //        }
-
-    //        else
-    //        {
-    //            if (!isAttacking && isFacing && isInRange)
-    //            {
-    //                Debug.Log("Archer Attack");
-
-    //                agent.Stop();
-    //                isAttacking = true;
-
-    //                //SetAnimation(AnimationState.Attacking);
-    //                Shoot();
-    //            }
-    //        }
-    //    }
-    //}
 
     //======================================================================================================
     // Iterate throught array of patrol paths 
@@ -543,6 +484,14 @@ public class NPC : NPCBase
     {
         if (stats.Death == false)
         {
+            if (unitClass == UnitClass.Archer)
+            {
+                isTargetSeen = true;
+                currentTarget = foundObject.transform;
+                SetState(State.Attacking);
+                return;
+            }
+
             if (dominantBehavior != Behavior.Passive)
             {
                 currentTarget = foundObject.transform;
@@ -565,7 +514,6 @@ public class NPC : NPCBase
 
         if (unitClass == UnitClass.Archer)
         {
-            SetAnimation(AnimationState.Idle);
             SetState(State.Idle);
         }
         if (currentState == State.Chasing || currentState == State.Attacking)

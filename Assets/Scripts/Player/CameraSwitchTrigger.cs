@@ -6,12 +6,11 @@ public class CameraSwitchTrigger : MonoBehaviour
 {
     public float targetAngle = 0;
     public float rotationDegree;
-    private Vector3 offset;
+    static private Vector3 offset;
     private const float rotationAmount = 1.5f; // Dont touch
     public GameObject mCamera;
     static public bool turn = false;
 
-    int a;
 
     // Use this for initialization
     void Start()
@@ -28,7 +27,7 @@ public class CameraSwitchTrigger : MonoBehaviour
                 targetAngle -= rotationDegree;
                 turn = true;
             }
-            else if(turn == true)
+            else if (turn == true)
             {
                 targetAngle += rotationDegree;
                 turn = false;
@@ -38,11 +37,8 @@ public class CameraSwitchTrigger : MonoBehaviour
     }
 
 
-    // Update is called once per frame
     void Update()
     {
-        Debug.Log(turn + gameObject.name);
-        //Debug.Log(mCamera.transform.eulerAngles.y);
         if (targetAngle > 90)
         {
             targetAngle = 90;
@@ -52,12 +48,15 @@ public class CameraSwitchTrigger : MonoBehaviour
             targetAngle = -90;
         }
 
+        mCamera.transform.position = Player.Position + offset;
+
+
+
         if (targetAngle > 0)
         {
             mCamera.transform.RotateAround(Player.Position, Vector3.up, -rotationAmount);
             offset = mCamera.transform.position - Player.Position;
 
-            //mCamera.transform.position = Player.Position + offset;
             targetAngle -= rotationAmount;
         }
         else if (targetAngle < 0)
@@ -65,7 +64,6 @@ public class CameraSwitchTrigger : MonoBehaviour
             mCamera.transform.RotateAround(Player.Position, Vector3.up, rotationAmount);
             offset = mCamera.transform.position - Player.Position;
 
-            //mCamera.transform.position = Player.Position + offset;
             targetAngle += rotationAmount;
         }
     }

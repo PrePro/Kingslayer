@@ -13,6 +13,7 @@ public class NPStats : UnitStats
     public Image healthbar;
     public ParticleSystem hitSpark;
     public bool Death = false;
+    public bool tookDamage;
     NPC npc;
     
     void Start()
@@ -22,7 +23,10 @@ public class NPStats : UnitStats
 
     void Update()
     {
-        healthbar.fillAmount = currentHealth / maxHealth;
+        if(npc.canDie)
+        {
+            healthbar.fillAmount = currentHealth / maxHealth;
+        }
         
         if(currentHealth <= 0 && Death == false)
         {
@@ -36,6 +40,7 @@ public class NPStats : UnitStats
     {
         if(Death == false)
         {
+            StartCoroutine("TookDamage", 0.5f);
             currentHealth -= damage;
             hitSpark.Play();
             npc.SetAnimation(NPCBase.AnimationState.HitFlinch);
@@ -53,6 +58,12 @@ public class NPStats : UnitStats
         {
             currentHealth = maxHealth;
         }
+    }
+    IEnumerator TookDamage(float waitTime)
+    {
+        tookDamage = true;
+        yield return new WaitForSeconds(waitTime);
+        tookDamage = false;
     }
 
     /*IEnumerator turnON(float waitTime)

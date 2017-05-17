@@ -2,42 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_Death : MonoBehaviour
+public class AI_Death : AI_BaseAttack
 {
-
-    PlayerStats stats;
-    bool PlayerInTrigger;
+    public GameObject DeathBox;
     [Header("Death")]
-    [Tooltip("How much morality the player gets for killing the enemy\nShould be negative")]
-    public int MoralityForKilling;
+    [Tooltip("This is where they go after they die")]
+    public GameObject DeathWayPoint;
+    [Tooltip("How long they wait before they get up and walk away")]
+    public float DeathTimer;
+    [Tooltip("How much morality the player gets for letting the npc live\nShould be positive")]
+    public int MoralityForSaving;
 
-    void Update()
+    bool mDeath;
+
+
+    public override void Run()
     {
-        if(PlayerInTrigger == true)
+
+    }
+    public override void Enter()
+    {
+        DeathBox.SetActive(true);
+        StartCoroutine("Death", DeathTimer);
+    }
+    public override void Exit()
+    {
+
+    }
+
+    IEnumerator Death(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        PlayerStats stats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        stats.Morality += MoralityForSaving;
+        mDeath = true;
+    }
+
+    public void Death()
+    {
+        if (mDeath == true)
         {
-            if (Input.GetKey(KeyCode.E))
-            { 
-                stats.Morality += MoralityForKilling;
-                Destroy(transform.parent.gameObject);
+            agent.Resume();
+            npc.SetAnimation(NPCBase.AnimationState.Walking);
+           // SetAnimation(AnimationState.Walking);
+
+            agent.SetDestination(DeathWayPoint.transform.position); // Make this a gameObject
+
+            if (Vector3.Distance(transform.position, agent.destination) <= 3f)
+            {
+                Destroy(this.gameObject);
             }
         }
-    }
-
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.tag == "Player")
+        else
         {
-            stats = col.GetComponent<PlayerStats>();
-            PlayerInTrigger = true;
-        }
-    }
-
-    void OnTriggerExit(Collider col)
-    {
-        if (col.tag == "Player")
-        {
-            stats = col.GetComponent<PlayerStats>();
-            PlayerInTrigger = false;
+            agent.Stop();
         }
     }
 }

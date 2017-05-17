@@ -10,10 +10,14 @@ public class CameraSwitchTrigger : MonoBehaviour
     private const float rotationAmount = 1.5f; // Dont touch
     public GameObject mCamera;
     public int i = 0;
+
+    Quaternion y;
+    Quaternion y1;
     // Use this for initialization
     void Start()
     {
         offset = mCamera.transform.position - Player.Position;
+        y = mCamera.transform.rotation;
     }
 
     void OnTriggerEnter(Collider col)
@@ -38,7 +42,6 @@ public class CameraSwitchTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(targetAngle);
         //Debug.Log(mCamera.transform.eulerAngles.y);
         if (targetAngle > 90)
         {

@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class AI_KnightAttack : AI_BaseAttack
 {
-    public bool isFacing = false;
-    public bool isInRange = false;
-    public bool isReady = false;
-    public bool canTurn = true;
-
+    bool isFacing = false;
+    bool isInRange = false;
+    bool isReady = false;
+    bool canTurn = true;
+    public ParticleSystem slash;
     public int TurnSpeed;
     int[] randomAnim1 = new int[] { 2, 9, 10, 11 };
 
     float timer;
 
-    [Header("Attacking")]
     [SerializeField]
     [Tooltip("This really shouldnt be touched unless new Enemy")]
     public float attackRange;
@@ -43,7 +42,7 @@ public class AI_KnightAttack : AI_BaseAttack
     {
         npc.SetAnimation(NPCBase.AnimationState.Attacking);
         agent.Stop();
-        npc.slash.Play();
+        slash.Play();
         npc.searchingImage.SetActive(false);
         npc.foundImage.SetActive(false);
 

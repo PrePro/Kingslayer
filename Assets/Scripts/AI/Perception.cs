@@ -14,6 +14,7 @@ public class Perception : MonoBehaviour
     Movement movement;
     Ray ray;
     NPStats stats;
+    bool canSee;
     // Use this for initialization
     void Start()
     {
@@ -48,12 +49,18 @@ public class Perception : MonoBehaviour
             //transform.position = new Vector3(transform.position.x, 3, transform.position.z);
             direction = (other.gameObject.transform.position - transform.position).normalized;
             ray = new Ray(transform.position + direction, direction);
-            if (Vector3.Dot(direction, transform.forward) >= 0)
+            canSee = Vector3.Dot(direction, transform.forward) >= 0;
+            if (canSee)
             {
                 Debug.Log("Target is in front of this game object.");
             }
             else
             {
+                if(stats.tookDamage)
+                {
+                    npc.OnTargetFound(other.gameObject);
+                    Debug.Log("Took damage from behind");
+                }
                 Debug.Log("Target is in behind of this game object.");
                 return;
             }

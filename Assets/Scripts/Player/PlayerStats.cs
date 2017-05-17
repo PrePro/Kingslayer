@@ -16,9 +16,10 @@ public class PlayerStats : UnitStats
 
     public Vector3 startPosition;
     CoolDownSystem cd;
-
+    Movement movement;
     void Awake()
     {
+        movement = GetComponent<Movement>();
     }
 
     void Start()
@@ -78,12 +79,23 @@ public class PlayerStats : UnitStats
 
         if (currentHealth <= 0)
         {
-            SetHealth();
+            myAnimator.SetBool("privoDeath", true);
+            
+            StartCoroutine("DeathAnim", 3f);
+            movement.StartCoroutine("StopMovement", 3f);
             // Death animation
-            transform.position = startPosition;
             //SceneManager.LoadScene("MainMenu");
         }
     }
+    IEnumerator DeathAnim(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        SetHealth();
+        myAnimator.SetBool("privoDeath", false);
+        transform.position = startPosition;
+    }
+
+
 
     public override void ReceiveDamage(float damage)
     {

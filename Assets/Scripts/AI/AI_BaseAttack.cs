@@ -13,7 +13,7 @@ public abstract class AI_BaseAttack : MonoBehaviour
     protected NPStats stats;
     protected NPC npc;
 
-    void Start()
+    void Awake()
     {
         npc = GetComponent<NPC>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();

@@ -83,7 +83,12 @@ public abstract class NPCBase : MonoBehaviour
     protected UnityEngine.AI.NavMeshAgent agent;
     protected NPStats stats;
 
+    [SerializeField]
+    [Tooltip("Should be turned on if you want the npc to die")]
+    public bool canDie;
+
     //Debugging
+    [Header("Debugging")]
     [SerializeField]
     [Tooltip("For debugging purposes only, should not be edited unless for testing purposes")]
     protected State currentState;
@@ -92,34 +97,22 @@ public abstract class NPCBase : MonoBehaviour
     [SerializeField]
     [Tooltip("For debugging purposes only, should not be edited unless for testing purposes")]
     protected AnimationState currentAnimation;
-
-    [Header("Pathing")]
+    [HideInInspector]
     public Transform currentTarget;
-    [SerializeField]
-    [Tooltip("If you want to create a patrolling guard, set up an array of transforms for the unit to move back and forth")]
-    protected List<Transform> patrolRoute;
-    [Tooltip("Patrolling has a random chance to wait at points")]
-    [SerializeField]
-    protected bool HasWaitTime;
-    protected int patrolIndex;
-    [SerializeField]
-    [Tooltip("Distance the NPC needs to be to the current patrol point before moving to the next")]
-    protected float patrolDistanceThreshold;
-
+    [HideInInspector]
     public bool isTargetSeen;
-
+    [HideInInspector]
     public Animator animator;
     protected Vector3 startPosition;
 
     [Header("ParticleSystem")]
     protected ParticleSystem enemySlash;
-
-    [SerializeField]
-    protected GameObject DeathBox;
-
+    
     protected AI_KnightAttack KnightAttack;
     protected AI_ArcherAttack ArcherAttack;
+    protected AI_Patrol Patroler;
     protected World_AIBrain Brain;
+    protected AI_Death AI_mDeath;
     #endregion
     //======================================================================================================
     // Properties
@@ -145,12 +138,25 @@ public abstract class NPCBase : MonoBehaviour
         isTargetSeen = false;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
+        if(canDie)
+        {
+            AI_mDeath = GetComponent<AI_Death>();
+        }
 
         switch (unitClass)
         {
             case UnitClass.Knight:
                 {
                     KnightAttack = GetComponent<AI_KnightAttack>();
+                    if (dominantBehavior == Behavior.PatrolDefencive)
+                    {
+                        Patroler = GetComponent<AI_Patrol>();
+                        if (Patroler == null)
+                        {
+                            Debug.Log("Patroler has no Script");
+                        }
+                    }
+
                     if (KnightAttack == null)
                     {
                         Debug.Log("KnightAttack has no Script");
@@ -229,7 +235,6 @@ public abstract class NPCBase : MonoBehaviour
     public abstract void UpdateAnimation();
     public abstract void ChaseTarget(float range);
     //public abstract void AttackTarget();
-    public abstract void Patrol();
     public abstract void Search();
     public abstract void HandleDebuff();
     public abstract void OnTargetFound(GameObject foundObject);

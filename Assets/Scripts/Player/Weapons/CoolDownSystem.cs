@@ -24,7 +24,7 @@ public class CoolDownSystem : MonoBehaviour
     public ParticleSystem psDash;
     public ParticleSystem psSlash;
     public AudioClip slash;
-    AudioSource audio;
+    //AudioSource audio;
 
 
     public enum DashState
@@ -78,7 +78,6 @@ public class CoolDownSystem : MonoBehaviour
 
     [Header("Sword & Projectile")]
     [Tooltip("Variables for bullets and swords")]
-    public float bulletSpeed;
     //public float swingSpeed;
     public float swingTime;
 
@@ -139,7 +138,7 @@ public class CoolDownSystem : MonoBehaviour
         AoeScale = AoeSphere.transform.localScale; // Getting Scale of the Aoe to reset state later
         currentState = ProjectState.IsDone;
         stats = gameObject.GetComponent<PlayerStats>();
-        audio = GetComponent<AudioSource>();
+        //audio = GetComponent<AudioSource>();
         movement = GetComponent<Movement>();
     }
 
@@ -329,7 +328,7 @@ public class CoolDownSystem : MonoBehaviour
                 {
                     currentProjState = ProjectileMorality.Blast;
                 }
-                Shoot();
+                //Shoot();
                 skills[1].currentcooldown = 0;
                 currentState = ProjectState.IsDone;
             }
@@ -506,22 +505,6 @@ public class CoolDownSystem : MonoBehaviour
     //======================================================================================================
     // Private Member Functions 
     //======================================================================================================
-    #region Private Member Functions
-    private void Shoot()
-    {
-        Vector3 firePosition = BulletTarget.transform.position;
-        GameObject bullet = GameObject.Instantiate(Bullet, firePosition, BulletTarget.transform.rotation) as GameObject;
-
-        if (bullet != null)
-        {
-            Rigidbody rigidbody = bullet.GetComponent<Rigidbody>();
-            Vector3 force = transform.forward * bulletSpeed;
-            rigidbody.AddForce(force);
-        }
-    }
-
-
-    #endregion
 
 }
 

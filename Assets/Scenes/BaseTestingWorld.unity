@@ -1134,7 +1134,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 17.7
+      value: -3.9
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1142,23 +1142,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -26.59
+      value: -41.4
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.99998134
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.006105525
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_RootOrder
@@ -1192,7 +1192,19 @@ Prefab:
         type: 2}
     - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: canDie
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: currentState
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -539.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
@@ -2257,6 +2269,11 @@ Transform:
   m_Father: {fileID: 605643271}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &702837582 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1360075313952124, guid: 2dd98356bb60a1543bd976c68277d846,
+    type: 2}
+  m_PrefabInternal: {fileID: 1344056715}
 --- !u!1 &742527376 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 130552, guid: c68ec8add0222ea4b8684fb39947466c, type: 2}
@@ -2586,6 +2603,11 @@ Prefab:
         type: 2}
       propertyPath: rotationDegree
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 114711849223845478, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: currentHealth
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 81469465846731152, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
@@ -2945,7 +2967,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4855104700380962, guid: c1bb6a8f7f6293441b7d7b96f9a9a470, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -10.28648
+      value: 7.2
       objectReference: {fileID: 0}
     - target: {fileID: 4855104700380962, guid: c1bb6a8f7f6293441b7d7b96f9a9a470, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3005,6 +3027,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4518952018786738, guid: c1bb6a8f7f6293441b7d7b96f9a9a470, type: 2}
       propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1841525060739840, guid: c1bb6a8f7f6293441b7d7b96f9a9a470, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3951,11 +3977,20 @@ Prefab:
     - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: searchingImage
       value: 
-      objectReference: {fileID: 1438758219983058, guid: d7bd61ea44e997f479cff0b211684b50,
+      objectReference: {fileID: 1633026753155604, guid: 253e43044c4a2474391ca7cf8b1f5ed5,
         type: 2}
     - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: foundImage
+      value: 
+      objectReference: {fileID: 1529106968962296, guid: 32f67cbd7dc8b37419d166932de77fb7,
+        type: 2}
+    - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+      propertyPath: canDie
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
@@ -4544,7 +4579,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.93
+      value: 9.9
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.y
@@ -4643,14 +4678,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78507c7bc826b6d4aa3a5dab63d37aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFacing: 0
-  isInRange: 0
-  isReady: 0
-  canTurn: 1
+  slash: {fileID: 198586185697967140, guid: 94b5e5e2116446a49aee7ba584e5c56a, type: 2}
   TurnSpeed: 10
   attackRange: 5
   attackSpeed: 1
   MultiAnim: 0
+--- !u!114 &1487380000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1487379991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df7802ac738aae4eb64920e648b419e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeathBox: {fileID: 1622795918}
+  DeathWayPoint: {fileID: 1957469301}
+  DeathTimer: 5
+  MoralityForSaving: 10
 --- !u!1 &1501172214
 GameObject:
   m_ObjectHideFlags: 0
@@ -5096,6 +5143,62 @@ Transform:
   m_Father: {fileID: 1606398044}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1622795918 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1360075313952124, guid: 2dd98356bb60a1543bd976c68277d846,
+    type: 2}
+  m_PrefabInternal: {fileID: 325968417}
+--- !u!1 &1653505567 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
+  m_PrefabInternal: {fileID: 1344056715}
+--- !u!114 &1653505575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1653505567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be47517f28a09a4eb1d61caf04b00a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrolRoute:
+  - {fileID: 1949971716}
+  - {fileID: 826190066}
+  patrolDistanceThreshold: 3
+  HasWaitTime: 0
+--- !u!114 &1653505576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1653505567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78507c7bc826b6d4aa3a5dab63d37aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slash: {fileID: 0}
+  TurnSpeed: 10
+  attackRange: 5
+  attackSpeed: 1
+  MultiAnim: 0
+--- !u!114 &1653505577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1653505567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df7802ac738aae4eb64920e648b419e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeathBox: {fileID: 702837582}
+  DeathWayPoint: {fileID: 1957469301}
+  DeathTimer: 10
+  MoralityForSaving: 5
 --- !u!1 &1665647994
 GameObject:
   m_ObjectHideFlags: 0

@@ -67,9 +67,9 @@ public class WizardBoss : MonoBehaviour
             {
                 case Phase.Phase1:
                     amountToBeSpawned = 2;
-                    if (mHitCounter == Random.Range(2, 4))
+                    if (mHitCounter == Random.Range(2, 4)) // MAKE TP HERE
                     {
-                        AOE.gameObject.SetActive(true);
+                        AOE.gameObject.SetActive(true); 
                     }
                     break;
                 case Phase.Phase2:

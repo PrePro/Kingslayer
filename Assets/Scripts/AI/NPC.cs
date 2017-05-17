@@ -9,24 +9,12 @@ using System;
 
 public class NPC : NPCBase
 {
-    [Header("Death")]
-    [Tooltip("This is where they go after they die")]
-    public GameObject DeathWayPoint;
-    [Tooltip("How long they wait before they get up and walk away")]
-    public float DeathTimer;
-    [Tooltip("How much morality the player gets for letting the npc live\nShould be positive")]
-    public int MoralityForSaving;
-
-    bool mDeath;
+    [Header("Images")]
     public GameObject foundImage;
     public GameObject searchingImage;
-    public ParticleSystem slash;
-    int[] randomAnim = new int[] { 2, 9, 10, 11 };
-
 
     void Update()
     {
-        //Debug.Log(isTargetSeen);
         if (debuffState == Debuff.None)
         {
             if (stats.Death == false)
@@ -35,7 +23,7 @@ public class NPC : NPCBase
             }
             else
             {
-                Death();
+                AI_mDeath.Death();
             }
         }
         else
@@ -54,25 +42,14 @@ public class NPC : NPCBase
         {
             case State.Idle:
                 {
-                    if (unitClass == UnitClass.Archer)
-                    {
 
-                        SetAnimation(AnimationState.Idle);
+                    agent.Stop();
 
-                    }
-                    else
-                    {
-                        agent.Stop();
-                        //agent.destination = transform.position;
+                    SetAnimation(AnimationState.Idle);
 
-                        SetAnimation(AnimationState.Idle);
-                        //if (currentState == State.Searching)
-                        //{
-                        //    StartCoroutine(RotateFind());
-                        //}
-                        foundImage.SetActive(false);//put a yellow one. For Yash.
-                        searchingImage.SetActive(false);
-                    }
+                    foundImage.SetActive(false);//put a yellow one. For Yash.
+                    searchingImage.SetActive(false);
+
 
                 }
                 break;
@@ -113,31 +90,7 @@ public class NPC : NPCBase
                 break;
             case State.Patrolling:
                 {
-                    SetAnimation(AnimationState.Walking);
-                    agent.Resume();
-
-                    if (patrolRoute == null)
-                    {
-                        Debug.Log("Cannot patrol an empty patrol route");
-                        return;
-                    }
-                    var currIndex = patrolRoute.FindIndex(x => (x == currentTarget));
-                    if (currIndex == -1)
-                    {
-                        patrolIndex = 0;
-                        //Find closed point
-                        for (int i = 0; i < patrolRoute.Count; ++i)
-                        {
-                            if (Vector3.Distance(transform.position, patrolRoute[i].position) <
-                                Vector3.Distance(transform.position, patrolRoute[patrolIndex].position))
-                            {
-                                patrolIndex = i;
-                            }
-                        }
-                        agent.destination = patrolRoute[patrolIndex].position;
-                    }
-                    foundImage.SetActive(false);//put a yellow one. For Yash.
-                    searchingImage.SetActive(false);
+                    Patroler.Enter();
                 }
                 break;
             case State.Searching:
@@ -161,29 +114,15 @@ public class NPC : NPCBase
             case State.Dead:
                 {
                     SetAnimation(AnimationState.Dead);
-                    DeathBox.SetActive(true);
-                    StartCoroutine("Death", DeathTimer);
+                    AI_mDeath.Enter();
                 }
                 break;
         }
         previousState = currentState;
         currentState = newState;
     }
-    IEnumerator Death(float time)
-    {
-        yield return new WaitForSeconds(time);
 
-        PlayerStats stats = GameObject.Find("Player").GetComponent<PlayerStats>();
-        stats.Morality += MoralityForSaving;
-        mDeath = true;
-    }
 
-    IEnumerator AIWait(float time)
-    {
-        yield return new WaitForSeconds(time);
-        agent.destination = patrolRoute[patrolIndex].position;
-        agent.Resume();
-    }
     public IEnumerator RootAI(float time)
     {
         debuffState = Debuff.Rooted;
@@ -279,7 +218,7 @@ public class NPC : NPCBase
                 break;
             case State.Patrolling:
                 {
-                    Patrol();
+                    Patroler.Run();
                 }
                 break;
             case State.Attacking:
@@ -333,25 +272,6 @@ public class NPC : NPCBase
 
     }
 
-    void Death()
-    {
-        if (mDeath == true)
-        {
-            agent.Resume();
-            SetAnimation(AnimationState.Walking);
-
-            agent.SetDestination(DeathWayPoint.transform.position); // Make this a gameObject
-
-            if (Vector3.Distance(transform.position, agent.destination) <= 3f)
-            {
-                Destroy(this.gameObject);
-            }
-        }
-        else
-        {
-            agent.Stop();
-        }
-    }
 
     //======================================================================================================
     // As long as the target is seen, update the target's new position 
@@ -368,47 +288,6 @@ public class NPC : NPCBase
             SetState(State.Attacking);
             //AttackTarget();
         }
-    }
-
-    //======================================================================================================
-    // Iterate throught array of patrol paths 
-    //======================================================================================================
-    public override void Patrol()
-    {
-        if (Vector3.Distance(transform.position, patrolRoute[patrolIndex].position) <= patrolDistanceThreshold)
-        {
-            patrolIndex++;
-            if (patrolIndex >= patrolRoute.Count)
-            {
-                patrolIndex = 0;
-            }
-
-            if (HasWaitTime == true)  // Enemy Stop here to search 
-            {
-                int ran = UnityEngine.Random.Range(0, 11);
-                if (ran >= 2) //80% change to stop and wait
-                {
-                    agent.Stop();
-                    SetAnimation(AnimationState.Idle);
-                    //YASH if you want to run an animation for the partrol do it here
-                    int waitTime = UnityEngine.Random.Range(0, 11);
-                    StartCoroutine(AIWait(waitTime));
-                }
-                else
-                {
-
-                    agent.destination = patrolRoute[patrolIndex].position;
-                    SetAnimation(AnimationState.Walking);
-                }
-
-            }
-            else
-            {
-                agent.destination = patrolRoute[patrolIndex].position;
-            }
-
-        }
-
     }
 
     public override void Search()

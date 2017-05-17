@@ -9,30 +9,29 @@ public class CameraSwitchTrigger : MonoBehaviour
     private Vector3 offset;
     private const float rotationAmount = 1.5f; // Dont touch
     public GameObject mCamera;
-    public int i = 0;
+    static public bool turn = false;
 
-    Quaternion y;
-    Quaternion y1;
+    int a;
+
     // Use this for initialization
     void Start()
     {
         offset = mCamera.transform.position - Player.Position;
-        y = mCamera.transform.rotation;
     }
 
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player")
         {
-            if (i == 0) //&& mCamera.transform.rotation.y == -106
+            if (turn == false) //&& mCamera.transform.rotation.y == -106
             {
                 targetAngle -= rotationDegree;
-                i += 1;
+                turn = true;
             }
-            else if(i == 1)
+            else if(turn == true)
             {
                 targetAngle += rotationDegree;
-                i = 0;
+                turn = false;
             }
 
         }
@@ -42,6 +41,7 @@ public class CameraSwitchTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(turn + gameObject.name);
         //Debug.Log(mCamera.transform.eulerAngles.y);
         if (targetAngle > 90)
         {
@@ -51,13 +51,13 @@ public class CameraSwitchTrigger : MonoBehaviour
         {
             targetAngle = -90;
         }
-        mCamera.transform.position = Player.Position + offset;
 
         if (targetAngle > 0)
         {
             mCamera.transform.RotateAround(Player.Position, Vector3.up, -rotationAmount);
             offset = mCamera.transform.position - Player.Position;
 
+            //mCamera.transform.position = Player.Position + offset;
             targetAngle -= rotationAmount;
         }
         else if (targetAngle < 0)
@@ -65,6 +65,7 @@ public class CameraSwitchTrigger : MonoBehaviour
             mCamera.transform.RotateAround(Player.Position, Vector3.up, rotationAmount);
             offset = mCamera.transform.position - Player.Position;
 
+            //mCamera.transform.position = Player.Position + offset;
             targetAngle += rotationAmount;
         }
     }

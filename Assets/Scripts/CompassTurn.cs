@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class CompassTurn : MonoBehaviour
 {
-    bool isFacing = false;
     public GameObject Objective;
-    public GameObject MiniMap;
     public GameObject player;
     public Transform arrow;
-    public int Speed;
-
-    Vector3 view;
 
     void Start()
     {
@@ -37,10 +32,21 @@ public class CompassTurn : MonoBehaviour
     void PositionArrow()
     {
         Vector3 dir = player.transform.InverseTransformPoint(Objective.transform.position);
+        //Vector3 direction = Vector3.
+        //Vector3 vre = arrow.transform.eulerAngles;
+        //Vector3 re = Vector3.zero;
+        ////Fix player rotation for apply to el icon.
+        //re.z = ((-this.Target.rotation.eulerAngles.y) + vre.y);
+
+        //Quaternion q = Quaternion.Euler(re);
+        //rt.rotation = q;
+        //Vector3 dir = (Objective.transform.position - player.transform.position);
+        Debug.DrawLine(player.transform.position, dir, Color.red);
         float a = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
         a += 180;
         Debug.Log(a);
         arrow.localEulerAngles = new Vector3(0, 0, a);
+
             //transform.RotateAround(MiniMap.transform.position, Vector3.forward, Speed * Time.deltaTime);
 
     }

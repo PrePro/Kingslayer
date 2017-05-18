@@ -12,6 +12,7 @@ public class AI_Death : AI_BaseAttack
     public float DeathTimer;
     [Tooltip("How much morality the player gets for letting the npc live\nShould be positive")]
     public int MoralityForSaving;
+    public GameObject executeIcon;
 
     bool mDeath;
 
@@ -24,6 +25,7 @@ public class AI_Death : AI_BaseAttack
     {
         DeathBox.SetActive(true);
         StartCoroutine("Death", DeathTimer);
+        executeIcon.SetActive(true);
     }
     public override void Exit()
     {

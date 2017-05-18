@@ -11,12 +11,19 @@ public class PrivoHouseCutScene : MonoBehaviour
     public Camera cinematicCamera;
     private GameObject cineDelete;
     public GameObject questPopUp;
+    public GameObject HUD;
+    private GameObject[] UILayer;
+    public GameObject lumenIcon;
     
 
     // Use this for initialization
     void Start()
     {
         questPopUp.gameObject.SetActive(false);
+        HUD.gameObject.SetActive(false);
+        lumenIcon.gameObject.SetActive(false);
+        //UILayer = GameObject.FindGameObjectsWithTag("UI");
+       
 
     }
 
@@ -64,7 +71,9 @@ public class PrivoHouseCutScene : MonoBehaviour
         houseCutscene.EndCutscene();
         cinematicCamera.enabled = false;
         questPopUp.gameObject.SetActive(true);
+        HUD.gameObject.SetActive(true);
+        lumenIcon.gameObject.SetActive(true);
         //houseCutsceneRunning = true;
-       
+
     }
 }

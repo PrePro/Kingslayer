@@ -9,13 +9,19 @@ public class EnemyHealthbar : MonoBehaviour {
 	void Start () {
 
         m_Camera = Camera.main;
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        StartCoroutine(TurnOff());
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 
         transform.LookAt(transform.position + m_Camera.transform.rotation * Vector3.forward, m_Camera.transform.rotation * Vector3.up);
-
+    }
+    IEnumerator TurnOff()
+    {
+        yield return new WaitForSeconds(2f);
+        gameObject.SetActive(false);
     }
 }

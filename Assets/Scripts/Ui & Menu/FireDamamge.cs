@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireDamamge : MonoBehaviour
 {
-    public int damage;
+    public float damage;
     // Use this for initialization
     void Start()
     {
@@ -13,7 +13,7 @@ public class FireDamamge : MonoBehaviour
 
     // Update is called once per frame
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
         if (col.tag == "Player")
         {

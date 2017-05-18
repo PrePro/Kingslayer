@@ -30,7 +30,7 @@ public class tutorialHome : MonoBehaviour {
 	void Update () {
 		if(tutorialOver == true)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 tutorialImg.SetActive(false);
                 if (Time.timeScale != 1)

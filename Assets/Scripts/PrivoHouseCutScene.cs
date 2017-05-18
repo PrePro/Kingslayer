@@ -11,13 +11,15 @@ public class PrivoHouseCutScene : MonoBehaviour
     public Camera cinematicCamera;
     private GameObject cineDelete;
     public GameObject questPopUp;
-    
+    public GameObject HUD;
+    public GameObject lumenIcon;
 
     // Use this for initialization
     void Start()
     {
         questPopUp.gameObject.SetActive(false);
-
+        HUD.gameObject.SetActive(false);
+        lumenIcon.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -64,6 +66,8 @@ public class PrivoHouseCutScene : MonoBehaviour
         houseCutscene.EndCutscene();
         cinematicCamera.enabled = false;
         questPopUp.gameObject.SetActive(true);
+        HUD.gameObject.SetActive(true);
+        lumenIcon.gameObject.SetActive(true);
         //houseCutsceneRunning = true;
        
     }

@@ -19,6 +19,7 @@ public class NPStats : UnitStats
     void Start()
     {
         npc = this.gameObject.GetComponent<NPC>();
+        healthbar.gameObject.SetActive(false);
     }
 
     void Update()
@@ -44,6 +45,7 @@ public class NPStats : UnitStats
             currentHealth -= damage;
             hitSpark.Play();
             npc.SetAnimation(NPCBase.AnimationState.HitFlinch);
+            healthbar.gameObject.SetActive(true);
         }
         // Set animation damage here
         

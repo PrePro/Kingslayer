@@ -17,6 +17,7 @@ public class PlayerStats : UnitStats
     public Vector3 startPosition;
     CoolDownSystem cd;
     Movement movement;
+    public ParticleSystem privoHurt;
     void Awake()
     {
         movement = GetComponent<Movement>();
@@ -101,6 +102,7 @@ public class PlayerStats : UnitStats
     {
         myAnimator.SetTrigger("privoHurt");
         currentHealth -= damage;
+        privoHurt.Play();
     }
 
     public override void RecieveHealing(int hpHealed)

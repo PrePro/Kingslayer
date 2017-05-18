@@ -11,7 +11,9 @@ public class CameraFollowPlayer : MonoBehaviour
 {
     public GameObject player;
     private Vector3 offset;
-
+    private float targetAngle = 0;
+    public float rotationDegree;
+    private const float rotationAmount = 1.5f; // Dont touch
     void Start()
     {
         offset = transform.position - player.transform.position;
@@ -19,6 +21,31 @@ public class CameraFollowPlayer : MonoBehaviour
 
     void Update()
     {
-            transform.position = player.transform.position + offset;
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            targetAngle -= rotationDegree;
+        }
+        else if (Input.GetKeyDown(KeyCode.P))
+        {
+            targetAngle += rotationDegree;
+        }
+
+        transform.position = player.transform.position + offset;
+
+        if (targetAngle > 0)
+        {
+            transform.RotateAround(player.transform.position, Vector3.up, -rotationAmount);
+            offset = transform.position - player.transform.position;
+
+            targetAngle -= rotationAmount;
+        }
+
+        else if (targetAngle < 0)
+        {
+            transform.RotateAround(player.transform.position, Vector3.up, rotationAmount);
+            offset = transform.position - player.transform.position;
+
+            targetAngle += rotationAmount;
+        }
     }
 }

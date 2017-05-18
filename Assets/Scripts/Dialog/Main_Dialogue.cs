@@ -34,6 +34,7 @@ public class Main_Dialogue : MonoBehaviour
     private int mIndex;
 
     public GameObject QuestPopUp;
+    public GameObject PreviousQuest;
     public GameObject MiniMapIcon;
 
     void OnTriggerEnter(Collider col)
@@ -102,9 +103,9 @@ public class Main_Dialogue : MonoBehaviour
                     Destroy(mButtons[i].gameObject);
                 }
                 mDeleted = true;
-
                 if(QuestPopUp != null)
                 {
+                    PreviousQuest.SetActive(false);
                     QuestPopUp.SetActive(true);
                 }
                 if (MiniMapIcon != null)

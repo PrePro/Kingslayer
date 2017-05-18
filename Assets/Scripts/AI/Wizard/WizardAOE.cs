@@ -12,12 +12,9 @@ public class WizardAOE : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            Debug.Log("Player");
             col.GetComponent<PlayerStats>().ReceiveDamage(AOEDamage);
-            col.transform.position = new Vector3(col.transform.position.x, col.transform.position.y, col.transform.position.z - Push);
-            //Vector3 dir = (transform.position - col.transform.position);
-            //Debug.Log(dir);
-            //col.transform.position -= dir * Push;
+            Vector3 dir = (transform.position - col.transform.position).normalized;
+            col.transform.position -= dir * Push;
             gameObject.SetActive(false);
             Wizard.mHitCounter = 0;
         }

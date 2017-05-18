@@ -7,13 +7,16 @@ public class EnemyDamage : MonoBehaviour
     private bool canAttack = true;
     [Tooltip("How much damage does the enemy do")]
     public int damage;
+    private NPC npc;
     [Tooltip("How Long the Enemy will wait to do damage again")]
     public float parryTimer;
     private bool isParry;
+    public bool gotParry;
 
     void Start()
     {
         stats = GetComponentInParent<NPStats>();
+        npc = GetComponentInParent<NPC>();
     }
 
     void OnTriggerEnter(Collider col)
@@ -30,9 +33,8 @@ public class EnemyDamage : MonoBehaviour
 
         if (col.tag == "Parry")
         {
-            Debug.Log("Parry");
-            //npc.SetAnimation(NPCBase.AnimationState.ParryStagger);
             StartCoroutine(ParryTimer(parryTimer));
+            gotParry = true;
         }
     }
 

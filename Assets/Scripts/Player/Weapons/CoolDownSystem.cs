@@ -26,6 +26,12 @@ public class CoolDownSystem : MonoBehaviour
     public AudioClip slash;
     //AudioSource audio;
 
+    public enum PlayerState
+    {
+        SwordInHand,
+        SwordInSheeth
+    }
+
 
     public enum DashState
     {
@@ -100,6 +106,7 @@ public class CoolDownSystem : MonoBehaviour
     private ProjectState currentState;
     public AoeMorality AoeState;
     public ProjectileMorality currentProjState;
+    public PlayerState currentAnimState;
 
     [SerializeField]
     private bool canSmallDash;
@@ -127,8 +134,16 @@ public class CoolDownSystem : MonoBehaviour
     // GameObject Functions
     //======================================================================================================
     #region GameObject Functions
+        void Awake()
+    {
+        currentAnimState = PlayerState.SwordInSheeth;
+        reSheeth = true;
+        unSheeth = false;
+        myAnimator.SetBool("privoUnsheeth", unSheeth);
+        StartCoroutine(sheethDelay()); // Yash
+    }
     void Start()
-    { 
+    {
         //ps = GetComponent<ParticleSystem>();
         foreach (Skills x in skills)
         {
@@ -145,12 +160,12 @@ public class CoolDownSystem : MonoBehaviour
     IEnumerator Thing()
     {
         fake = true;
-        Debug.Log("Fuck");
+        //Debug.Log("Fuck");
         yield return new WaitForSeconds(myAnimator.GetCurrentAnimatorStateInfo(0).length);
         AoeSphere.SetActive(true);
         StartCoroutine("AoeTime", 0.5f);
         ps.Play();
-        Debug.Log("Duck");
+        //Debug.Log("Duck");
         fake = false;
     }
 
@@ -161,7 +176,7 @@ public class CoolDownSystem : MonoBehaviour
         if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("PrivoAOE"))
         {
             Debug.Log("AOE ANIM");
-            if(fake == false)
+            if (fake == false)
             {
                 StartCoroutine("Thing");
             }
@@ -210,17 +225,19 @@ public class CoolDownSystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) || m_isAxisInUse == true)
         {
-            stats.TurnOnAbility(1);
+            //stats.TurnOnAbility(1);
             if (swordInHand.activeSelf)
             {
+                currentAnimState = PlayerState.SwordInSheeth;
                 reSheeth = true;
                 unSheeth = false;
                 myAnimator.SetBool("privoUnsheeth", unSheeth);
                 StartCoroutine(sheethDelay()); // Yash
-                
+
             }
             else
             {
+                currentAnimState = PlayerState.SwordInHand;
                 myAnimator.avatar = AswordInHand;
                 unSheeth = true;
                 reSheeth = false;
@@ -230,7 +247,7 @@ public class CoolDownSystem : MonoBehaviour
                 swordInSheeth.SetActive(false);
             }
         }
-   
+
 
         if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.Joystick1Button4))
         {
@@ -269,23 +286,27 @@ public class CoolDownSystem : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0)) // Dash [0]
+        if(currentAnimState == PlayerState.SwordInHand)
         {
-            if (skills[0].currentcooldown >= skills[0].cooldown)
+            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0)) // Dash [0]
             {
-                if (currentDashState == DashState.NotDashing)
+                if (skills[0].currentcooldown >= skills[0].cooldown)
                 {
-                    StartCoroutine("Dashtime", dashTimeForward);
-                    skills[0].currentcooldown = 0;
+                    if (currentDashState == DashState.NotDashing)
+                    {
+                        StartCoroutine("Dashtime", dashTimeForward);
+                        skills[0].currentcooldown = 0;
+                    }
                 }
             }
         }
+
         if (canAttack == true)
         {
             if (Input.GetButton("Fire1") || Input.GetAxis("RightTrigger") == 1 && currentDashState == DashState.NotDashing) // Sword [2]LeftBumper
             {
                 if (skills[2].currentcooldown >= skills[2].cooldown)
-                { 
+                {
                     //swordInHand.SetActive(true);
                     //swordInSheeth.SetActive(false);
                     //myAnimator.avatar = Swiningamin;
@@ -383,7 +404,7 @@ public class CoolDownSystem : MonoBehaviour
                 {
                     myAnimator.SetTrigger("privoAOE");
                     StartCoroutine(movement.StopMovement(1f));
-                   
+
                     StartCoroutine("AOEWait", aoewaitTime);
                     //AoeSphere.SetActive(true);
                     AoeState = AoeMorality.Nothin;

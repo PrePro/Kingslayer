@@ -5,11 +5,11 @@ using UnityEngine;
 public class MinimapCam : MonoBehaviour {
     public GameObject player;
     public float CameraHeight;
-    private GameObject objective;
-    public GameObject objectiveMarker;
+    //private GameObject objective;
+    //public GameObject objectiveMarker;
 	// Use this for initialization
 	void Start () {
-        objective = GameObject.FindGameObjectWithTag("Objective");
+        //objective = GameObject.FindGameObjectWithTag("Objective");
     }
 	
 	// Update is called once per frame
@@ -17,7 +17,7 @@ public class MinimapCam : MonoBehaviour {
         Vector3 pos = player.transform.position;
         pos.y += CameraHeight;
         transform.position = pos;
-        findObjective();
+        //findObjective();
 	}
 
     void findObjective()

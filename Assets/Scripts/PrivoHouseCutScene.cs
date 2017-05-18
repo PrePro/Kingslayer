@@ -13,6 +13,7 @@ public class PrivoHouseCutScene : MonoBehaviour
     public GameObject questPopUp;
     public GameObject HUD;
     public GameObject lumenIcon;
+    public GameObject fire;
 
     // Use this for initialization
     void Start()
@@ -20,6 +21,7 @@ public class PrivoHouseCutScene : MonoBehaviour
         questPopUp.gameObject.SetActive(false);
         HUD.gameObject.SetActive(false);
         lumenIcon.gameObject.SetActive(false);
+        fire.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -60,7 +62,7 @@ public class PrivoHouseCutScene : MonoBehaviour
     IEnumerator CinematicHouse()
     {
         
-        yield return new WaitForSecondsRealtime(40f);
+        yield return new WaitForSecondsRealtime(35f);
         cineDelete = GameObject.FindGameObjectWithTag("CineStuff");
         Destroy(cineDelete);
         houseCutscene.EndCutscene();
@@ -68,7 +70,8 @@ public class PrivoHouseCutScene : MonoBehaviour
         questPopUp.gameObject.SetActive(true);
         HUD.gameObject.SetActive(true);
         lumenIcon.gameObject.SetActive(true);
+        fire.gameObject.SetActive(true);
         //houseCutsceneRunning = true;
-       
+
     }
 }

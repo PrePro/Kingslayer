@@ -31,6 +31,7 @@ public class EnemyDamage : MonoBehaviour
         if (col.tag == "Parry")
         {
             Debug.Log("Parry");
+            //npc.SetAnimation(NPCBase.AnimationState.ParryStagger);
             StartCoroutine(ParryTimer(parryTimer));
         }
     }

@@ -51,7 +51,9 @@ public abstract class NPCBase : MonoBehaviour
         Attack1,
         Attack2,
         Attack3,
-        HitFlinch
+        HitFlinch,
+        ParryStagger,
+        AOEKnockBack
     }
 
     protected enum Behavior

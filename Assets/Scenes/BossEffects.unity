@@ -4207,7 +4207,8 @@ Prefab:
       value: 
       objectReference: {fileID: 198586185697967140, guid: 1bc1b76b249e2914d9fc45184c320017,
         type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114464211593257734, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &830486602
@@ -11424,6 +11425,7 @@ MonoBehaviour:
   healthbar: {fileID: 1567474401}
   hitSpark: {fileID: 0}
   Death: 0
+  tookDamage: 0
 --- !u!195 &1703064857
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -11459,28 +11461,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitClass: 0
   dominantBehavior: 1
+  canDie: 0
   currentState: 0
   currentAnimation: 0
-  patrolRoute:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  HasWaitTime: 0
-  patrolDistanceThreshold: 3
-  attackRange: 5
-  attackSpeed: 1
-  Bullet: {fileID: 0}
-  BulletTarget: {fileID: 0}
-  bulletSpeed: 0
-  DeathBox: {fileID: 2037619027}
-  DeathWayPoint: {fileID: 0}
-  DeathTimer: 30
-  MoralityForSaving: 10
-  MultiAnim: 1
+  currentTarget: {fileID: 0}
+  isTargetSeen: 0
+  animator: {fileID: 0}
   foundImage: {fileID: 66401084}
   searchingImage: {fileID: 0}
-  slash: {fileID: 198586185697967140, guid: 94b5e5e2116446a49aee7ba584e5c56a, type: 2}
 --- !u!136 &1703064859
 CapsuleCollider:
   m_ObjectHideFlags: 0

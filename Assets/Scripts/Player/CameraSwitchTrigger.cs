@@ -6,43 +6,39 @@ public class CameraSwitchTrigger : MonoBehaviour
 {
     public float targetAngle = 0;
     public float rotationDegree;
-    private Vector3 offset;
+    static private Vector3 offset;
     private const float rotationAmount = 1.5f; // Dont touch
     public GameObject mCamera;
-    public int i = 0;
+    static public bool turn = false;
 
-    Quaternion y;
-    Quaternion y1;
+
     // Use this for initialization
     void Start()
     {
         offset = mCamera.transform.position - Player.Position;
-        y = mCamera.transform.rotation;
     }
 
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player")
         {
-            if (i == 0) //&& mCamera.transform.rotation.y == -106
+            if (turn == false) //&& mCamera.transform.rotation.y == -106
             {
                 targetAngle -= rotationDegree;
-                i += 1;
+                turn = true;
             }
-            else if(i == 1)
+            else if (turn == true)
             {
                 targetAngle += rotationDegree;
-                i = 0;
+                turn = false;
             }
 
         }
     }
 
 
-    // Update is called once per frame
     void Update()
     {
-        //Debug.Log(mCamera.transform.eulerAngles.y);
         if (targetAngle > 90)
         {
             targetAngle = 90;
@@ -51,7 +47,10 @@ public class CameraSwitchTrigger : MonoBehaviour
         {
             targetAngle = -90;
         }
+
         mCamera.transform.position = Player.Position + offset;
+
+
 
         if (targetAngle > 0)
         {

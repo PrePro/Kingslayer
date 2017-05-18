@@ -113,8 +113,11 @@ public class NPC : NPCBase
                 break;
             case State.Dead:
                 {
+
                     SetAnimation(AnimationState.Dead);
                     AI_mDeath.Enter();
+                    foundImage.SetActive(false);//put a yellow one. For Yash.
+                    searchingImage.SetActive(false);
                 }
                 break;
         }

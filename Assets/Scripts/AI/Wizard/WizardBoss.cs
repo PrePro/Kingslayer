@@ -13,7 +13,7 @@ public class WizardBoss : MonoBehaviour
     [Tooltip("Debugger dont use this")]
     public Phase CurrentPhase;
     int amountToBeSpawned;
-    [HideInInspector]
+    //[HideInInspector]
     public int mHitCounter;
     [HideInInspector]
     public bool spawnerdone = false;
@@ -67,21 +67,22 @@ public class WizardBoss : MonoBehaviour
             {
                 case Phase.Phase1:
                     amountToBeSpawned = 2;
-                    if (mHitCounter == Random.Range(2, 4)) // MAKE TP HERE
+                    if (mHitCounter == UnityEngine.Random.Range(2, 4)) // MAKE TP HERE
                     {
+                        Debug.Log("Apples");
                         AOE.gameObject.SetActive(true); 
                     }
                     break;
                 case Phase.Phase2:
                     amountToBeSpawned = 4;
-                    if (mHitCounter == Random.Range(2, 3))
+                    if (mHitCounter == UnityEngine.Random.Range(2, 3))
                     {
                         AOE.gameObject.SetActive(true);
                     }
                     break;
                 case Phase.Phase3:
                     amountToBeSpawned = 8;
-                    if (mHitCounter == Random.Range(1, 2))
+                    if (mHitCounter == UnityEngine.Random.Range(1, 2))
                     {
                         AOE.gameObject.SetActive(true);
                     }

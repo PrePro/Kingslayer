@@ -8,14 +8,16 @@ public class CompassTurn : MonoBehaviour
     public GameObject Objective;
     public GameObject MiniMap;
     public GameObject player;
+    public Transform arrow;
     public int Speed;
-    public float distance;
-    public float height;
-    public float damping;
-    public float rotDamp;
+
+    Vector3 view;
 
     void Start()
     {
+
+        //transform.rotation = player.transform.rotation;
+        //  view = player.transform.position - Objective.transform.position;
     }
 
 
@@ -23,20 +25,24 @@ public class CompassTurn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //PositionArrow();
+        PositionArrow();
+        //view = player.transform.position - Objective.transform.position;
+        //transform.rotation = Quaternion.LookRotation(view);
+        //Debug.DrawLine(player.transform.position, Objective.transform.position, Color.yellow);
+        //transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, view.z);
+        //transform.forward = direction;
     }
 
 
-    //void PositionArrow()
-    //{
-    //    isFacing = GameplayStatics.IsFacing(transform, Objective.transform.position);
-    //    if (isFacing)
-    //    {
-    //        Debug.Log("ISFACING");
-    //    }
-    //    transform.rotation.eulerAngles.y = Objective.transform.rotation.eulerAngles.y;
-    //    //transform.RotateAround(MiniMap.transform.position, Vector3.forward, Speed * Time.deltaTime);
+    void PositionArrow()
+    {
+        Vector3 dir = player.transform.InverseTransformPoint(Objective.transform.position);
+        float a = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+        a += 180;
+        Debug.Log(a);
+        arrow.localEulerAngles = new Vector3(0, 0, a);
+            //transform.RotateAround(MiniMap.transform.position, Vector3.forward, Speed * Time.deltaTime);
 
-    //}
+    }
 
 }

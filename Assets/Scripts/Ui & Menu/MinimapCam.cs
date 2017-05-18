@@ -22,10 +22,10 @@ public class MinimapCam : MonoBehaviour {
 
     void findObjective()
     {
-        Vector3 marker = player.transform.position - objective.transform.position;
-        Debug.Log(marker);
-        float distance = marker.sqrMagnitude;
-        Vector3 direction = marker / distance;
-        objectiveMarker.transform.rotation = Quaternion.Euler(marker);
+        //Vector3 marker = player.transform.position - objective.transform.position;
+        //Debug.Log(marker);
+        //float distance = marker.sqrMagnitude;
+        //Vector3 direction = marker / distance;
+        //objectiveMarker.transform.rotation = Quaternion.Euler(marker);
     }
 }

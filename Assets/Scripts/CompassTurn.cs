@@ -23,7 +23,7 @@ public class CompassTurn : MonoBehaviour
         PositionArrow();
         //view = player.transform.position - Objective.transform.position;
         //transform.rotation = Quaternion.LookRotation(view);
-        //Debug.DrawLine(player.transform.position, Objective.transform.position, Color.yellow);
+        Debug.DrawLine(player.transform.position, Objective.transform.position, Color.yellow);
         //transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, view.z);
         //transform.forward = direction;
     }
@@ -31,20 +31,11 @@ public class CompassTurn : MonoBehaviour
 
     void PositionArrow()
     {
-        Vector3 dir = player.transform.InverseTransformPoint(Objective.transform.position);
-        //Vector3 direction = Vector3.
-        //Vector3 vre = arrow.transform.eulerAngles;
-        //Vector3 re = Vector3.zero;
-        ////Fix player rotation for apply to el icon.
-        //re.z = ((-this.Target.rotation.eulerAngles.y) + vre.y);
-
-        //Quaternion q = Quaternion.Euler(re);
-        //rt.rotation = q;
-        //Vector3 dir = (Objective.transform.position - player.transform.position);
+        //Vector3 dir = player.transform.InverseTransformPoint(Objective.transform.position);
+        Vector3 dir = (Objective.transform.position - player.transform.position);
         Debug.DrawLine(player.transform.position, dir, Color.red);
-        float a = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+        float a = Mathf.Atan2(dir.x, -dir.z) * Mathf.Rad2Deg;
         a += 180;
-        Debug.Log(a);
         arrow.localEulerAngles = new Vector3(0, 0, a);
 
             //transform.RotateAround(MiniMap.transform.position, Vector3.forward, Speed * Time.deltaTime);

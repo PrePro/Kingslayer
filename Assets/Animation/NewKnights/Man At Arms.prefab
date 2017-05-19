@@ -606,7 +606,6 @@ GameObject:
   - component: {fileID: 114646387723681036}
   - component: {fileID: 114050950035418458}
   - component: {fileID: 114121859903831884}
-  - component: {fileID: 114701313502913078}
   m_Layer: 0
   m_Name: Man At Arms
   m_TagString: Enemy
@@ -2649,7 +2648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathBox: {fileID: 1449519442110356}
   DeathWayPoint: {fileID: 0}
-  DeathTimer: 30
+  DeathTimer: 10
   MoralityForSaving: 10
   executeIcon: {fileID: 1509826605443094}
 --- !u!114 &114051252634404302
@@ -2859,22 +2858,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114701313502913078
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1317695390912736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0df7802ac738aae4eb64920e648b419e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeathBox: {fileID: 1449519442110356}
-  DeathWayPoint: {fileID: 0}
-  DeathTimer: 0
-  MoralityForSaving: 0
-  executeIcon: {fileID: 0}
 --- !u!114 &114745716080551478
 MonoBehaviour:
   m_ObjectHideFlags: 1

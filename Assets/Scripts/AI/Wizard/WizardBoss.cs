@@ -18,6 +18,7 @@ public class WizardBoss : MonoBehaviour
     [HideInInspector]
     public bool spawnerdone = false;
     public bool turnOnWizard = false;
+    public float particleAdj;
 
     [Tooltip("Phase 1 time before the trap destroys")]
     public float P1Timer;
@@ -69,6 +70,7 @@ public class WizardBoss : MonoBehaviour
                     amountToBeSpawned = 2;
                     if (mHitCounter == Random.Range(2, 4)) // MAKE TP HERE
                     {
+                        StartCoroutine("ParticleTimer", particleAdj);
                         AOE.gameObject.SetActive(true); 
                     }
                     break;
@@ -76,6 +78,7 @@ public class WizardBoss : MonoBehaviour
                     amountToBeSpawned = 4;
                     if (mHitCounter == Random.Range(2, 3))
                     {
+                        StartCoroutine("ParticleTimer", particleAdj);
                         AOE.gameObject.SetActive(true);
                     }
                     break;
@@ -83,6 +86,7 @@ public class WizardBoss : MonoBehaviour
                     amountToBeSpawned = 8;
                     if (mHitCounter == Random.Range(1, 2))
                     {
+                        StartCoroutine("ParticleTimer", particleAdj);
                         AOE.gameObject.SetActive(true);
                     }
                     break;
@@ -103,6 +107,12 @@ public class WizardBoss : MonoBehaviour
             }
         }
        
+    }
+
+    IEnumerator ParticleTimer(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        // PUT STUFF HERE
     }
 
     void GetHealthPercent()

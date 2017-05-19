@@ -53,6 +53,7 @@ public class Movement : MonoBehaviour
     public bool isRunning;
     public bool isWalking;
     public bool isCrouching;
+    public bool CanCrouch = false;
     private float mCooldown;
 
     public GameObject PlayerHead;
@@ -204,14 +205,15 @@ public class Movement : MonoBehaviour
             mCooldown = 0;
             myAnimator.SetBool("privoRun", isRunning);
         }
-
-        if (Input.GetKey(KeyCode.Joystick1Button1) && mCooldown >= 0.8f && isRunning == false) //Set that to b
+        if (CanCrouch)
         {
-            isCrouching = !isCrouching;
-            mCooldown = 0;
-            myAnimator.SetBool("privoCrouch", isCrouching);
+            if (Input.GetKey(KeyCode.Joystick1Button1) && mCooldown >= 0.8f && isRunning == false) //Set that to b
+            {
+                isCrouching = !isCrouching;
+                mCooldown = 0;
+                myAnimator.SetBool("privoCrouch", isCrouching);
+            }
         }
-
 
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {
@@ -229,6 +231,7 @@ public class Movement : MonoBehaviour
                 //psWalk.Stop();
             }
         }
+      
         //Target rotates around camera
         target.transform.rotation = gameCamera.transform.rotation;
         target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y, 0);
@@ -394,12 +397,16 @@ public class Movement : MonoBehaviour
             myAnimator.SetBool("privoRun", isRunning);//Added for sprint animation. 
         }
 
-        if (Input.GetKey(KeyCode.X) && mCooldown >= 0.8f && isRunning == false)
+        if(CanCrouch)
         {
-            isCrouching = !isCrouching;
-            mCooldown = 0;
-            myAnimator.SetBool("privoCrouch", isCrouching);
+            if (Input.GetKey(KeyCode.X) && mCooldown >= 0.8f && isRunning == false)
+            {
+                isCrouching = !isCrouching;
+                mCooldown = 0;
+                myAnimator.SetBool("privoCrouch", isCrouching);
+            }
         }
+
 
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {

@@ -14,6 +14,7 @@ public class NPStats : UnitStats
     public ParticleSystem hitSpark;
     public bool Death = false;
     public bool tookDamage;
+    public bool HitAoe;
     NPC npc;
     
     void Start()
@@ -24,6 +25,7 @@ public class NPStats : UnitStats
 
     void Update()
     {
+        Debug.Log(HitAoe);
         if(npc.canDie)
         {
             healthbar.fillAmount = currentHealth / maxHealth;
@@ -34,7 +36,8 @@ public class NPStats : UnitStats
             Death = true;
             npc.SetState(NPCBase.State.Dead);
         }
-        
+
+
     }
 
     public override void ReceiveDamage(float damage)
@@ -44,7 +47,10 @@ public class NPStats : UnitStats
             StartCoroutine("TookDamage", 0.5f);
             currentHealth -= damage;
             hitSpark.Play();
-            npc.SetAnimation(NPCBase.AnimationState.HitFlinch);
+            if(!HitAoe)
+            {
+                npc.SetAnimation(NPCBase.AnimationState.HitFlinch);
+            }
             healthbar.gameObject.SetActive(true);
         }
         // Set animation damage here

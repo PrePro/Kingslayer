@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AI_KnightAttack : AI_BaseAttack
 {
+    EnemyDamage damage;
     bool isFacing = false;
     bool isInRange = false;
     bool isReady = false;
@@ -21,6 +22,16 @@ public class AI_KnightAttack : AI_BaseAttack
     [SerializeField]
     protected float attackSpeed;
     public bool MultiAnim;
+
+    void Start()
+    {
+        damage = GetComponentInChildren<EnemyDamage>();
+        if (damage == null)
+        {
+            Debug.Log("NULL");
+        }
+
+    }
 
     public override void Run()
     {
@@ -127,7 +138,21 @@ public class AI_KnightAttack : AI_BaseAttack
         }
         else
         {
-            npc.SetAnimation(NPCBase.AnimationState.Idle);
+            if(damage.gotParry)
+            {
+                npc.SetAnimation(NPCBase.AnimationState.ParryStagger);
+                damage.gotParry = false;
+            }
+            if (stats.HitAoe)
+            {
+                //Debug.Log("Got hit aoe");
+                npc.SetAnimation(NPCBase.AnimationState.AOEKnockBack);
+                stats.HitAoe = false;
+            }
+            else
+            {
+                npc.SetAnimation(NPCBase.AnimationState.Idle);
+            }
 
         }
     }

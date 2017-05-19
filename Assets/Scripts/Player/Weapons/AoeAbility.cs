@@ -9,8 +9,9 @@ public class AoeAbility : MonoBehaviour
     private CoolDownSystem cdsystem;
     private PlayerStats stats;
     private NPC npc;
+    private NPStats npcstats;
     private bool running;
-
+    Rigidbody r;
 
     void Update()
     {
@@ -18,27 +19,52 @@ public class AoeAbility : MonoBehaviour
         stats = GameObject.Find("Player").GetComponent<PlayerStats>();
     }
 
+    //IEnumerator PushBack(float waitTime, Vector3 dir)
+    //{
+    //    r.AddForce(dir * Push);
+    //    yield return new WaitForSeconds(waitTime);
+    //    Debug.Log("Set back 0");
+    //    r.velocity = Vector3.zero;
+
+    //}
+
     void OnTriggerEnter(Collider col)
     {
+        r = col.GetComponentInParent<Rigidbody>();
         if (col.tag == "Enemy")
         {
+            npc = col.GetComponent<NPC>();
+            if (npcstats == null)
+            {
+                npc = col.GetComponentInParent<NPC>();
+            }
+
+            npcstats = col.GetComponent<NPStats>();
+            if(npcstats== null)
+            {
+                npcstats = col.GetComponentInParent<NPStats>();
+            }
+
             if (cdsystem.AoeState == CoolDownSystem.AoeMorality.Stun)
             {
                 npc.startStunAI(2f);
-                Debug.Log("Stun");
-                //Added stun enemy here
             }
             else if(cdsystem.AoeState == CoolDownSystem.AoeMorality.KnockBack)
             {
                 Debug.Log("KnockBack");
-                col.GetComponent<NPStats>().ReceiveDamage(damage);
-                Vector3 dir = (transform.position - col.transform.position).normalized;
-                col.transform.position -= dir * Push;
+
+                npcstats.HitAoe = true;
+                npcstats.ReceiveDamage(damage);
+
+                npc.PushBack(transform.position);
+
             }
             else if(cdsystem.AoeState == CoolDownSystem.AoeMorality.Steal)
             {
                 Debug.Log("Steal");
-                col.GetComponent<NPStats>().ReceiveDamage(5);
+
+                npcstats.HitAoe = true;
+                npcstats.ReceiveDamage(damage);
                 stats.RecieveHealing(5);
             }
         }

@@ -99,7 +99,7 @@ public class NPC : NPCBase
                     agent.Resume();
                     if (dominantBehavior == Behavior.IdleDefencive)
                     {
-                        Debug.Log("IdleDefencive");
+                        //Debug.Log("IdleDefencive");
                         agent.destination = startPosition;
 
                     }
@@ -145,6 +145,21 @@ public class NPC : NPCBase
         StartCoroutine(RootAI(time));
     }
 
+    IEnumerator PushBack(float waitTime, Vector3 dir)
+    {
+        mRigidbody.AddForce(dir * 5000);
+        yield return new WaitForSeconds(waitTime);
+        Debug.Log("Set back 0");
+        mRigidbody.velocity = Vector3.zero;
+
+    }
+
+    public void PushBack(Vector3 pos)
+    {
+        Vector3 dir = (transform.position - pos).normalized;
+
+        StartCoroutine(PushBack(1f, dir));
+    }
 
     public IEnumerator StunAI(float time)
     {
@@ -397,7 +412,7 @@ public class NPC : NPCBase
         }
         if (currentState == State.Chasing || currentState == State.Attacking)
         {
-            Debug.Log("Searching");
+            //Debug.Log("Searching");
             SetState(State.Searching);
         }
 

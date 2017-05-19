@@ -5,7 +5,6 @@ using UnityEngine;
 public class AI_Food : AI_Base
 {
     public GameObject Target;
-    public GameObject ReturnPoint;
 
     public float Food;
     private float val;
@@ -33,21 +32,20 @@ public class AI_Food : AI_Base
     {
         distance = Vector3.Distance(Target.transform.position, this.transform.position);
 
-        float sleepFactor = Mathf.Clamp01(Food / 50f);
+        float foodFactor = Mathf.Clamp01(Food / 50f);
         float distanceFactor = Mathf.Clamp01(distance / 50f);
 
-        return (Mathf.InverseLerp(min, max, (tweek * (sleepFactor / distanceFactor))));
+        return (Mathf.InverseLerp(min, max, (tweek * (foodFactor / distanceFactor))));
     }
 
     public override void Run()
     {
 
         //Debug.Log(Vector3.Distance(this.transform.position, agent.destination));
-        if (Vector3.Distance(transform.position, agent.destination) <= 2f)
+        if (Vector3.Distance(transform.position, agent.destination) <= 3f)
         {
             Debug.Log("Got home");
-            gameObject.transform.position = new Vector3(1000, 0, 1000);
-            StartCoroutine("Disable", 5);
+            StartCoroutine("Disable", 3f);
         }
     }
 
@@ -62,9 +60,8 @@ public class AI_Food : AI_Base
 
     IEnumerator Disable(float waitTime) // Move the object for sleep so it seems they disapper
     {
-        Food = 0;
         yield return new WaitForSeconds(waitTime);
-        gameObject.transform.position = ReturnPoint.transform.position;
+        Food = 0;
     }
 
 }

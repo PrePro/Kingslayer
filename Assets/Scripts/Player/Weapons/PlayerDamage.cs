@@ -15,14 +15,13 @@ public class PlayerDamage : MonoBehaviour
             if (mRunning) return;
 
             mRunning = true;
-            Debug.Log("Player hit enemy trigger");
+            //Debug.Log("Player hit enemy trigger");
             if (cdsystem.swing == true)
             {
 
                 stats = col.GetComponent<NPStats>();
                 if(stats == null)
                 {
-                    Debug.Log("Stats == null");
                     stats = col.GetComponentInParent<NPStats>();
                 }
                 if(stats != null)

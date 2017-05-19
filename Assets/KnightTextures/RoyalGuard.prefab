@@ -319,6 +319,8 @@ GameObject:
   - component: {fileID: 114244304571195854}
   - component: {fileID: 95230289870649620}
   - component: {fileID: 114778593797261860}
+  - component: {fileID: 114572271969929054}
+  - component: {fileID: 54900785130905946}
   m_Layer: 0
   m_Name: RoyalGuard
   m_TagString: Enemy
@@ -2539,6 +2541,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1775005923188260}
   m_Mesh: {fileID: 4300000, guid: 07b197b493c982c4a8bbfcc8318a81a3, type: 3}
+--- !u!54 &54900785130905946
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1221722850117014}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!95 &95230289870649620
 Animator:
   serializedVersion: 3
@@ -2616,6 +2633,7 @@ MonoBehaviour:
   hitSpark: {fileID: 198561081806017688}
   Death: 0
   tookDamage: 0
+  HitAoe: 0
 --- !u!114 &114378771656846008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2702,6 +2720,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a415c84800a941843b6ae46bbd3809ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114572271969929054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1221722850117014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df7802ac738aae4eb64920e648b419e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeathBox: {fileID: 0}
+  DeathWayPoint: {fileID: 0}
+  DeathTimer: 10
+  MoralityForSaving: 0
+  executeIcon: {fileID: 0}
 --- !u!114 &114579477549690674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2864,7 +2898,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1353433628000660}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2

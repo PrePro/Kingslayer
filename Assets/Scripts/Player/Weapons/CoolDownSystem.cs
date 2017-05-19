@@ -175,7 +175,7 @@ public class CoolDownSystem : MonoBehaviour
 
         if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("PrivoAOE"))
         {
-            Debug.Log("AOE ANIM");
+            //Debug.Log("AOE ANIM");
             if (fake == false)
             {
                 StartCoroutine("Thing");
@@ -260,27 +260,6 @@ public class CoolDownSystem : MonoBehaviour
             AoeSphere.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f); //Expand the Aoe Ability
 
         }
-
-        //if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_leftrightslash_sheeth"))
-
-        //{
-        //    print("IDLE IS PLAYING");
-
-        //}
-        //if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_leftrightslash_sheeth"))
-        //{
-        //    // Avoid any reload.
-        //    InMyState = true;
-        //}
-        //else if (InMyState)
-        //{
-        //    Debug.Log("IS DONE");
-        //    InMyState = false;
-        //    swordInHand.SetActive(false);
-        //    swordInSheeth.SetActive(true);
-        //    myAnimator.avatar = walkingamin;
-        //}
-
     }
 
 
@@ -318,7 +297,7 @@ public class CoolDownSystem : MonoBehaviour
                     {
                         swing = true;
                         psSlash.Play();
-                        Debug.Log("Slash in here/");
+                        //Debug.Log("Slash in here/");
                         myAnimator.SetTrigger("privoSlash");
                         //audio.PlayOneShot(slash, 5F);
                     }
@@ -328,32 +307,32 @@ public class CoolDownSystem : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Fire1") && currentState == ProjectState.CanShoot)
-        {
-            if (skills[1].currentcooldown >= skills[1].cooldown && ProjIsAvailable == true) // Projectile [1]
-            {
-                // Set animation here
-                if (stats.moralityPorj == 0)  //Stun
-                {
-                    currentProjState = ProjectileMorality.Stun;
-                }
+        //if (Input.GetButton("Fire1") && currentState == ProjectState.CanShoot)
+        //{
+        //    if (skills[1].currentcooldown >= skills[1].cooldown && ProjIsAvailable == true) // Projectile [1]
+        //    {
+        //        // Set animation here
+        //        if (stats.moralityPorj == 0)  //Stun
+        //        {
+        //            currentProjState = ProjectileMorality.Stun;
+        //        }
 
-                if (stats.moralityPorj == 50) //Debuff
+        //        if (stats.moralityPorj == 50) //Debuff
 
-                {
-                    currentProjState = ProjectileMorality.Debuff;
+        //        {
+        //            currentProjState = ProjectileMorality.Debuff;
 
-                }
+        //        }
 
-                if (stats.moralityPorj == 100) //Damage & Damage
-                {
-                    currentProjState = ProjectileMorality.Blast;
-                }
-                //Shoot();
-                skills[1].currentcooldown = 0;
-                currentState = ProjectState.IsDone;
-            }
-        }
+        //        if (stats.moralityPorj == 100) //Damage & Damage
+        //        {
+        //            currentProjState = ProjectileMorality.Blast;
+        //        }
+        //        //Shoot();
+        //        skills[1].currentcooldown = 0;
+        //        currentState = ProjectState.IsDone;
+        //    }
+        //}
 
         #region Dash Left/Right
         if (canSmallDash)
@@ -406,28 +385,21 @@ public class CoolDownSystem : MonoBehaviour
                     StartCoroutine(movement.StopMovement(1f));
 
                     StartCoroutine("AOEWait", aoewaitTime);
-                    //AoeSphere.SetActive(true);
+
                     AoeState = AoeMorality.Nothin;
-                    if (stats.moralityAoe == 0) //Stun
+                    if (stats.Morality < -66) //Stun
                     {
-                        // Added stun enemy here
-                        //AoeSphere.SetActive(true);
                         AoeState = AoeMorality.Stun;
-                        //StartCoroutine("AoeTime", 0.5f);
                         skills[5].currentcooldown = 0;
                     }
-                    else if (stats.moralityAoe == 50) //Knock Back + Damage
+                    else if (stats.Morality >= -67 && stats.Morality <= 65) //Knock Back + Damage
                     {
-                        //AoeSphere.SetActive(true);
                         AoeState = AoeMorality.KnockBack;
-                        //StartCoroutine("AoeTime", 0.5f);
                         skills[5].currentcooldown = 0;
                     }
-                    if (stats.moralityAoe == 100) // Heal Steal
+                    if (stats.Morality >= 66) // Heal Steal
                     {
-                        //AoeSphere.SetActive(true);
                         AoeState = AoeMorality.Steal;
-                        //StartCoroutine("AoeTime", 0.5f);
                         skills[5].currentcooldown = 0;
                     }
 

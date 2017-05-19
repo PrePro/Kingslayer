@@ -115,6 +115,7 @@ public abstract class NPCBase : MonoBehaviour
     protected AI_Patrol Patroler;
     protected World_AIBrain Brain;
     protected AI_Death AI_mDeath;
+    protected Rigidbody mRigidbody;
     #endregion
     //======================================================================================================
     // Properties
@@ -134,6 +135,7 @@ public abstract class NPCBase : MonoBehaviour
     #region GameObject Functions
     void Start()
     {
+        mRigidbody = GetComponent<Rigidbody>();
         stats = GetComponent<NPStats>();
         startPosition = transform.position;
         animator = GetComponent<Animator>();

@@ -231,6 +231,7 @@ public class Movement : MonoBehaviour
                 //psWalk.Stop();
             }
         }
+      
         //Target rotates around camera
         target.transform.rotation = gameCamera.transform.rotation;
         target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y, 0);

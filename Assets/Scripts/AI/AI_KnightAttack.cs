@@ -143,6 +143,12 @@ public class AI_KnightAttack : AI_BaseAttack
                 npc.SetAnimation(NPCBase.AnimationState.ParryStagger);
                 damage.gotParry = false;
             }
+            if (stats.HitAoe)
+            {
+                //Debug.Log("Got hit aoe");
+                npc.SetAnimation(NPCBase.AnimationState.AOEKnockBack);
+                stats.HitAoe = false;
+            }
             else
             {
                 npc.SetAnimation(NPCBase.AnimationState.Idle);

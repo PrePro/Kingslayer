@@ -37,7 +37,7 @@ public class Perception : MonoBehaviour
         }
         else
         {
-            Debug.Log("Perception is turned off");
+            //Debug.Log("Perception is turned off");
         }
     }
 
@@ -52,16 +52,16 @@ public class Perception : MonoBehaviour
             canSee = Vector3.Dot(direction, transform.forward) >= 0;
             if (canSee)
             {
-                Debug.Log("Target is in front of this game object.");
+                //Debug.Log("Target is in front of this game object.");
             }
             else
             {
                 if(stats.tookDamage)
                 {
                     npc.OnTargetFound(other.gameObject);
-                    Debug.Log("Took damage from behind");
+                    //Debug.Log("Took damage from behind");
                 }
-                Debug.Log("Target is in behind of this game object.");
+                //Debug.Log("Target is in behind of this game object.");
                 return;
             }
             var hits = Physics.RaycastAll(ray, sphereCollider.radius, obstructionLayer);

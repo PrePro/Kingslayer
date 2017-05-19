@@ -14,6 +14,5 @@ public class PlayerBoolean : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(a);
     }
 }

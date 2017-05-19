@@ -12,8 +12,6 @@ public class AI_Sleep : AI_Base
     public float tweek;
     public float TimeAway;
 
-    public float min;
-    public float max;
 
     float distance;
     float timer;
@@ -34,18 +32,12 @@ public class AI_Sleep : AI_Base
         distance = Vector3.Distance(Target.transform.position, this.transform.position);
 
         float sleepFactor = Mathf.Clamp01(sleep / 50f);
-        //Debug.Log("SleepF : " + sleepFactor);
         float distanceFactor = Mathf.Clamp01(distance / 50f);
-        //Debug.Log("DistanceF : " + distanceFactor);
-        //Debug.Log(Mathf.InverseLerp(min, max, (tweek * (sleepFactor / distanceFactor))));
-
-        return (Mathf.InverseLerp(min, max, (tweek * (sleepFactor / distanceFactor))));
+        return (Mathf.InverseLerp(0, 10, (tweek * (sleepFactor / distanceFactor))));
     }
 
     public override void Run()
     {
-
-        //Debug.Log(Vector3.Distance(this.transform.position, agent.destination));
         if (Vector3.Distance(transform.position, agent.destination) <= 2f)
         {
             Debug.Log("Got home");

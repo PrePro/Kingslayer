@@ -11,8 +11,6 @@ public class AI_Food : AI_Base
     public float tweek;
     public float TimeAway;
 
-    public float min;
-    public float max;
 
     float distance;
     float timer;
@@ -35,7 +33,7 @@ public class AI_Food : AI_Base
         float foodFactor = Mathf.Clamp01(Food / 50f);
         float distanceFactor = Mathf.Clamp01(distance / 50f);
 
-        return (Mathf.InverseLerp(min, max, (tweek * (foodFactor / distanceFactor))));
+        return (Mathf.InverseLerp(0, 10, (tweek * (foodFactor / distanceFactor))));
     }
 
     public override void Run()

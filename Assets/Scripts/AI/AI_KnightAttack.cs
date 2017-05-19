@@ -22,6 +22,7 @@ public class AI_KnightAttack : AI_BaseAttack
     [SerializeField]
     protected float attackSpeed;
     public bool MultiAnim;
+    public ParticleSystem hitspark;
 
     void Start()
     {
@@ -142,6 +143,7 @@ public class AI_KnightAttack : AI_BaseAttack
             if(damage.gotParry)
             {
                 //Debug.Log("GOT ANIM");
+                hitspark.Play();
                 npc.SetAnimation(NPCBase.AnimationState.ParryStagger);
                 damage.gotParry = false;
             }

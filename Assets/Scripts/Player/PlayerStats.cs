@@ -5,8 +5,8 @@ public class PlayerStats : UnitStats
 {
     public int Morality;
 
-    public int moralityAoe; // 0 is bad / 100 is good
-    public int moralityPorj;
+    //public int moralityAoe; // 0 is bad / 100 is good
+    //public int moralityPorj;
 
     public float HealthTime;
     public int HealthingAmount;
@@ -26,8 +26,8 @@ public class PlayerStats : UnitStats
     void Start()
     {
         Morality = PlayerPrefs.GetInt("Morality", 0);
-        moralityAoe = PlayerPrefs.GetInt("moralityAoe", 0);
-        moralityPorj = PlayerPrefs.GetInt("moralityPorj", 0);
+        //moralityAoe = PlayerPrefs.GetInt("moralityAoe", 0);
+        //moralityPorj = PlayerPrefs.GetInt("moralityPorj", 0);
         cd = GetComponent<CoolDownSystem>();
 
         myAnimator = GetComponent<Animator>();
@@ -38,25 +38,25 @@ public class PlayerStats : UnitStats
     void OnDestroy()
     {
         PlayerPrefs.SetInt("Morality", Morality);
-        PlayerPrefs.SetInt("MoralityAoe", moralityAoe);
-        PlayerPrefs.SetInt("MoralityPorj", moralityPorj);
+        //PlayerPrefs.SetInt("MoralityAoe", moralityAoe);
+        //PlayerPrefs.SetInt("MoralityPorj", moralityPorj);
     }
 
-   public void TurnOnAbility(int i) // 1 is aoe 2 proj
-    {
-        if (i == 1)
-        {
-            moralityAoe = Morality;
-            Morality = 0;
-            cd.AoeIsAvailable = true;
-        }
-        else if (i == 2)
-        {
-            moralityPorj = Morality;
-            Morality = 0;
-            cd.ProjIsAvailable = true;
-        }
-    }
+   //public void TurnOnAbility(int i) // 1 is aoe 2 proj
+   // {
+   //     if (i == 1)
+   //     {
+   //         moralityAoe = Morality;
+   //         Morality = 0;
+   //         cd.AoeIsAvailable = true;
+   //     }
+   //     else if (i == 2)
+   //     {
+   //         moralityPorj = Morality;
+   //         Morality = 0;
+   //         cd.ProjIsAvailable = true;
+   //     }
+   // }
 
     void MoralityUpdater()
     {
@@ -82,8 +82,8 @@ public class PlayerStats : UnitStats
         {
             myAnimator.SetBool("privoDeath", true);
             
-            StartCoroutine("DeathAnim", 3f);
-            movement.StartCoroutine("StopMovement", 3f);
+            StartCoroutine("DeathAnim", 2.4f);
+            movement.StartCoroutine("StopMovement", 2.4f);
             // Death animation
             //SceneManager.LoadScene("MainMenu");
         }
@@ -92,8 +92,8 @@ public class PlayerStats : UnitStats
     {
         yield return new WaitForSeconds(waitTime);
         SetHealth();
-        myAnimator.SetBool("privoDeath", false);
         transform.position = startPosition;
+        myAnimator.SetBool("privoDeath", false);
     }
 
 

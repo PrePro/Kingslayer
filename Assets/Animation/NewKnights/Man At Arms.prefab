@@ -605,6 +605,7 @@ GameObject:
   - component: {fileID: 95370986951104344}
   - component: {fileID: 114646387723681036}
   - component: {fileID: 114050950035418458}
+  - component: {fileID: 114121859903831884}
   m_Layer: 0
   m_Name: Man At Arms
   m_TagString: Enemy
@@ -1713,9 +1714,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1317695390912736}
-  m_LocalRotation: {x: -0, y: 0.20246854, z: -0, w: 0.9792888}
-  m_LocalPosition: {x: -91.2, y: 50.05, z: 116.36}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalRotation: {x: -0, y: -0.4585145, z: -0, w: 0.888687}
+  m_LocalPosition: {x: 25.32, y: 0.09333293, z: -18.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4434316960730668}
   - {fileID: 4406469203932198}
@@ -1723,7 +1724,7 @@ Transform:
   - {fileID: 4037974650550132}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -49.853, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -232.305, z: 0}
 --- !u!4 &4271881962172840
 Transform:
   m_ObjectHideFlags: 1
@@ -2647,7 +2648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathBox: {fileID: 1449519442110356}
   DeathWayPoint: {fileID: 0}
-  DeathTimer: 30
+  DeathTimer: 10
   MoralityForSaving: 10
   executeIcon: {fileID: 1509826605443094}
 --- !u!114 &114051252634404302
@@ -2661,6 +2662,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a46f7d63fe08674fbbf461efbbbef6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114121859903831884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1317695390912736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db27ca5af1f88c64cb231f0e7438103e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoralityForKilling: 0
 --- !u!114 &114172683486792764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2723,6 +2736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   parryTimer: 1
+  gotParry: 0
 --- !u!114 &114451509357643520
 MonoBehaviour:
   m_ObjectHideFlags: 1

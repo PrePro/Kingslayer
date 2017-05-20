@@ -36,6 +36,8 @@ public class Main_Dialogue : MonoBehaviour
     public GameObject QuestPopUp;
     public GameObject PreviousQuest;
     public GameObject MiniMapIcon;
+    public bool NextQuest;
+    public CompassTurn compass;
 
     void OnTriggerEnter(Collider col)
     {
@@ -103,15 +105,26 @@ public class Main_Dialogue : MonoBehaviour
                     Destroy(mButtons[i].gameObject);
                 }
                 mDeleted = true;
+                if (NextQuest)
+                {
+                    if(compass != null)
+                    {
+                        compass.GotoNextObjective();
+                    }
+                }
                 if(QuestPopUp != null)
                 {
-                    PreviousQuest.SetActive(false);
+                    if(PreviousQuest != null)
+                    {
+                        PreviousQuest.SetActive(false);
+                    }
                     QuestPopUp.SetActive(true);
                 }
                 if (MiniMapIcon != null)
                 {
                     MiniMapIcon.SetActive(true);
                 }
+
             }
             if (Input.GetKeyDown(KeyCode.E))
             {

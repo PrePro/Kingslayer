@@ -6,11 +6,15 @@ public class DrunkCutscene : MonoBehaviour {
     public QuickCutsceneController drunkCutscene;
     public bool drunkCutsceneRunning = false;
     public Camera cinematicCamera;
+    public GameObject gameUI;
+    private GameObject cineDelete;
+    public GameObject realDrunk;
 
     // Use this for initialization
     void Start()
     {
-
+        gameUI.SetActive(false);
+        realDrunk.SetActive(false);
     }
 
     // Update is called once per frame
@@ -31,12 +35,14 @@ public class DrunkCutscene : MonoBehaviour {
     IEnumerator CinematicHouse()
     {
 
-        yield return new WaitForSecondsRealtime(10f);
-        //cineDelete = GameObject.FindGameObjectWithTag("CineStuff");
-        //Destroy(cineDelete);
+        yield return new WaitForSecondsRealtime(13.6f);
+        cineDelete = GameObject.FindGameObjectWithTag("CineStuff");
+        Destroy(cineDelete);
         drunkCutscene.EndCutscene();
         cinematicCamera.enabled = false;
         drunkCutsceneRunning = true;
+        gameUI.SetActive(true);
+        realDrunk.SetActive(true);
 
     }
 }

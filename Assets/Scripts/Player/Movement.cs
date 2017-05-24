@@ -142,20 +142,61 @@ public class Movement : MonoBehaviour
 
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.ForwardDash)
         {
-            transform.Translate((Vector3.forward * Time.deltaTime * dashSpeedForward));
+            switch (coolDownSystem.dashDirection)
+            {
+                case CoolDownSystem.DashDirection.None:
+                    {
+
+                    }
+                    break;
+                case CoolDownSystem.DashDirection.Forward:
+                    {
+                        transform.Translate(Vector3.forward * Time.deltaTime * dashSpeedForward, target.transform);
+                    }
+                    break;
+                case CoolDownSystem.DashDirection.Left:
+                    {
+                        transform.Translate(Vector3.left * Time.deltaTime * dashSpeedForward, target.transform);
+                    }
+                    break;
+                case CoolDownSystem.DashDirection.Right:
+                    {
+                        transform.Translate(Vector3.right * Time.deltaTime * dashSpeedForward, target.transform);
+                    }
+                    break;
+                case CoolDownSystem.DashDirection.Back:
+                    {
+                        transform.Translate(Vector3.back * Time.deltaTime * dashSpeedForward, target.transform);
+                    }
+                    break;
+                case CoolDownSystem.DashDirection.ForwardLeft:
+                    {
+                        transform.Translate((Vector3.forward + Vector3.left) * Time.deltaTime * dashSpeedForward, target.transform);
+                    }
+                    break;
+                case CoolDownSystem.DashDirection.ForwadRight:
+                    {
+                        transform.Translate((Vector3.forward + Vector3.right) * Time.deltaTime * dashSpeedForward, target.transform);
+                    }
+                    break;
+                case CoolDownSystem.DashDirection.BackLeft:
+                    {
+                        transform.Translate((Vector3.back + Vector3.left) * Time.deltaTime * dashSpeedForward, target.transform);
+                    }
+                    break;
+                case CoolDownSystem.DashDirection.BackRight:
+                    {
+                        transform.Translate((Vector3.back + Vector3.right) * Time.deltaTime * dashSpeedForward, target.transform);
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+
             target.transform.position = objectForward.transform.position;
         }
     }
-
-    //void PMove()
-    //{
-    //    var moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-    //    Debug.Log(moveDirection);
-    //    moveDirection = Camera.main.transform.TransformDirection(moveDirection);
-    //    moveDirection.y = 0;
-
-    //    rigidbody.AddForce(rigidbody.position + moveDirection * speed * Time.deltaTime);
-    //}
 
     private void ControllerSetUp()
     {

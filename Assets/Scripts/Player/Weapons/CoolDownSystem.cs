@@ -10,6 +10,7 @@ using UnityEngine.UI;
 
 public class CoolDownSystem : MonoBehaviour
 {
+
     public GameObject swordInHand;
     public GameObject swordInSheeth;
     public Avatar AswordInHand;
@@ -25,6 +26,19 @@ public class CoolDownSystem : MonoBehaviour
     public ParticleSystem psSlash;
     public AudioClip slash;
     //AudioSource audio;
+
+    public enum DashDirection
+    {
+        None,
+        Forward,
+        Left,
+        Right,
+        Back,
+        ForwardLeft,
+        ForwadRight,
+        BackLeft,
+        BackRight
+    }
 
     public enum PlayerState
     {
@@ -104,6 +118,7 @@ public class CoolDownSystem : MonoBehaviour
     [HideInInspector]
     public DashState currentDashState;
     private ProjectState currentState;
+    public DashDirection dashDirection;
     public AoeMorality AoeState;
     public ProjectileMorality currentProjState;
     public PlayerState currentAnimState;
@@ -277,7 +292,9 @@ public class CoolDownSystem : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(currentAnimState == PlayerState.SwordInHand)
+
+
+        if (currentAnimState == PlayerState.SwordInHand)
         {
             if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Joystick1Button0)) // Dash [0]
             {
@@ -285,6 +302,41 @@ public class CoolDownSystem : MonoBehaviour
                 {
                     if (currentDashState == DashState.NotDashing)
                     {
+
+                        if (Input.GetKey(KeyCode.W))// && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S)
+                        {
+                            dashDirection = DashDirection.Forward;
+                        }
+                        else if (Input.GetKey(KeyCode.S))// && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W)
+                        {
+                            dashDirection = DashDirection.Back;
+                        }
+                        else if (Input.GetKey(KeyCode.A))//&& !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)
+                        {
+                            dashDirection = DashDirection.Left;
+                        }
+                        else if (Input.GetKey(KeyCode.D))// && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S)
+                        {
+                            dashDirection = DashDirection.Right;
+                        }
+
+                        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
+                        {
+                            dashDirection = DashDirection.BackRight;
+                        }
+                        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
+                        {
+                            dashDirection = DashDirection.ForwadRight;
+                        }
+                        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S))
+                        {
+                            dashDirection = DashDirection.BackLeft;
+                        }
+                        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
+                        {
+                            dashDirection = DashDirection.ForwardLeft;
+                        }
+
                         StartCoroutine("Dashtime", dashTimeForward);
                         skills[0].currentcooldown = 0;
                     }
@@ -424,6 +476,7 @@ public class CoolDownSystem : MonoBehaviour
         psDash.Play();
         currentDashState = DashState.ForwardDash;
         yield return new WaitForSeconds(waitTime);
+        dashDirection = DashDirection.None;
         currentDashState = DashState.NotDashing;
     }
 

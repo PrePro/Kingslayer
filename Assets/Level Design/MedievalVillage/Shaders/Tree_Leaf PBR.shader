@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 // Shader created with Shader Forge v1.27 
@@ -107,7 +109,7 @@ Shader "PolyPixel/Tree_Leaf PBR" {
                 float node_9976 = sin(((o.vertexColor.b*3.141592654)+node_5637.g));
                 v.vertex.xyz += (((normalize((v.normal+float3(1,0.5,0.5)))*o.vertexColor.r)*node_9976)*node_9976*_WindIntensity);
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
+                o.pos = UnityObjectToClipPos(v.vertex );
                 return o;
             }
             void frag(
@@ -278,7 +280,7 @@ Shader "PolyPixel/Tree_Leaf PBR" {
                 v.vertex.xyz += (((normalize((v.normal+float3(1,0.5,0.5)))*o.vertexColor.r)*node_9976)*node_9976*_WindIntensity);
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
                 float3 lightColor = _LightColor0.rgb;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
+                o.pos = UnityObjectToClipPos(v.vertex );
                 UNITY_TRANSFER_FOG(o,o.pos);
                 TRANSFER_VERTEX_TO_FRAGMENT(o)
                 return o;
@@ -460,7 +462,7 @@ Shader "PolyPixel/Tree_Leaf PBR" {
                 v.vertex.xyz += (((normalize((v.normal+float3(1,0.5,0.5)))*o.vertexColor.r)*node_9976)*node_9976*_WindIntensity);
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
                 float3 lightColor = _LightColor0.rgb;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
+                o.pos = UnityObjectToClipPos(v.vertex );
                 UNITY_TRANSFER_FOG(o,o.pos);
                 TRANSFER_VERTEX_TO_FRAGMENT(o)
                 return o;
@@ -580,7 +582,7 @@ Shader "PolyPixel/Tree_Leaf PBR" {
                 float node_9976 = sin(((o.vertexColor.b*3.141592654)+node_5637.g));
                 v.vertex.xyz += (((normalize((v.normal+float3(1,0.5,0.5)))*o.vertexColor.r)*node_9976)*node_9976*_WindIntensity);
                 o.posWorld = mul(unity_ObjectToWorld, v.vertex);
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex );
+                o.pos = UnityObjectToClipPos(v.vertex );
                 TRANSFER_SHADOW_CASTER(o)
                 return o;
             }

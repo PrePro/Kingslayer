@@ -26,8 +26,9 @@ public class CompassTurn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         PositionArrow();
-        Debug.DrawLine(player.transform.position, Objective[i].transform.position, Color.yellow);
+        Debug.Log(Objective[0].name);
     }
 
 
@@ -35,7 +36,7 @@ public class CompassTurn : MonoBehaviour
     {
         //Vector3 dir = player.transform.InverseTransformPoint(Objective.transform.position);
         Vector3 dir = (Objective[i].transform.position - player.transform.position);
-        Debug.DrawLine(player.transform.position, dir, Color.red);
+        //Debug.DrawLine(player.transform.position, dir, Color.red);
         float a = Mathf.Atan2(dir.x, -dir.z) * Mathf.Rad2Deg;
         a += 180;
         arrow.localEulerAngles = new Vector3(0, 0, a);
@@ -43,5 +44,7 @@ public class CompassTurn : MonoBehaviour
             //transform.RotateAround(MiniMap.transform.position, Vector3.forward, Speed * Time.deltaTime);
 
     }
+
+
 
 }

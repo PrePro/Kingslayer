@@ -20,6 +20,7 @@ public class Main_Dialogue : MonoBehaviour
     public Image PlayerBox;
     public Canvas SwordInHandText;
     public Button[] mButtons;
+    public Canvas GameUI;
 
     [Header("Main Text")]
     [Tooltip("If you need help ask Casey >.<")]
@@ -165,6 +166,7 @@ public class Main_Dialogue : MonoBehaviour
                 if (!dialog.gameObject.activeSelf && !endTextActive)
                 {
                     dialog.gameObject.SetActive(true);
+                    GameUI.gameObject.SetActive(false);
                     if (holder)
                     {
                         playerImage.gameObject.SetActive(true);
@@ -188,6 +190,7 @@ public class Main_Dialogue : MonoBehaviour
             {
                 SwordInHandText.gameObject.SetActive(false);
             }
+            GameUI.gameObject.SetActive(true);
             dialog.gameObject.SetActive(false);
             playerStats.DialogActive--;
         }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class WizardBoss : MonoBehaviour
 {
     public GameObject mTraps;
+    [Tooltip("Make Size 3")]
+    public GameObject[] TelportPoints;
     WizardAOE AOE;
     public float mCurrentHealth;
     public float MaxHealth;
@@ -70,6 +72,7 @@ public class WizardBoss : MonoBehaviour
                     amountToBeSpawned = 2;
                     if (mHitCounter == Random.Range(2, 4)) // MAKE TP HERE
                     {
+                        transform.position = TelportPoints[0].transform.position;
                         StartCoroutine("ParticleTimer", particleAdj);
                         AOE.gameObject.SetActive(true); 
                     }
@@ -78,6 +81,7 @@ public class WizardBoss : MonoBehaviour
                     amountToBeSpawned = 4;
                     if (mHitCounter == Random.Range(2, 3))
                     {
+                        transform.position = TelportPoints[1].transform.position;
                         StartCoroutine("ParticleTimer", particleAdj);
                         AOE.gameObject.SetActive(true);
                     }
@@ -86,6 +90,7 @@ public class WizardBoss : MonoBehaviour
                     amountToBeSpawned = 8;
                     if (mHitCounter == Random.Range(1, 2))
                     {
+                        transform.position = TelportPoints[2].transform.position;
                         StartCoroutine("ParticleTimer", particleAdj);
                         AOE.gameObject.SetActive(true);
                     }

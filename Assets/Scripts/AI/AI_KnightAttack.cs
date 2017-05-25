@@ -5,10 +5,10 @@ using UnityEngine;
 public class AI_KnightAttack : AI_BaseAttack
 {
     EnemyDamage damage;
-    bool isFacing = false;
-    bool isInRange = false;
-    bool isReady = false;
-    bool canTurn = true;
+    public bool isFacing = false;
+    public bool isInRange = false;
+    public bool isReady = false;
+    public bool canTurn = true;
     public ParticleSystem slash;
     public int TurnSpeed;
     int[] randomAnim1 = new int[] { 2, 9, 10, 11 };
@@ -73,6 +73,7 @@ public class AI_KnightAttack : AI_BaseAttack
         }
 
         isInRange = GameplayStatics.IsWithinRange2D(transform, npc.currentTarget.position, attackRange);
+
         isFacing = GameplayStatics.IsFacing(transform, npc.currentTarget.position);
 
         if (isFacing)

@@ -7,7 +7,13 @@ AnimatorController:
   m_PrefabInternal: {fileID: 0}
   m_Name: Marketplace_Child12
   serializedVersion: 5
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: AnimationState
+    m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1083,7 +1089,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102706685969812112}
-    m_Position: {x: -1152, y: 276, z: 0}
+    m_Position: {x: -1176, y: 288, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102250025129407444}
     m_Position: {x: -840, y: 204, z: 0}
@@ -1165,7 +1171,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: -1140, y: 228, z: 0}
   m_ExitPosition: {x: -540, y: 228, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 1102706685969812112}
+  m_DefaultState: {fileID: 1102250025129407444}
 --- !u!1109 &1109294351472213140
 AnimatorTransition:
   m_ObjectHideFlags: 3

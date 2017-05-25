@@ -42,12 +42,15 @@ public class NPC : NPCBase
         {
             case State.Idle:
                 {
+
                     agent.Stop();
 
                     SetAnimation(AnimationState.Idle);
 
                     foundImage.SetActive(false);//put a yellow one. For Yash.
                     searchingImage.SetActive(false);
+
+
                 }
                 break;
             case State.Attacking:

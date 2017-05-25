@@ -20,11 +20,7 @@ public class NPStats : UnitStats
     void Start()
     {
         npc = this.gameObject.GetComponent<NPC>();
-
-        if (npc.canDie)
-        {
-            healthbar.gameObject.SetActive(false);
-        }
+        healthbar.gameObject.SetActive(false);
     }
 
     void Update()

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class PrivoHouseCutScene : MonoBehaviour
 {
-
+    public GameObject player;
+    public GameObject CinematicPlayer;
     public QuickCutsceneController houseCutscene;
     public bool houseCutsceneRunning = false;
     public Camera cinematicCamera;
@@ -18,6 +19,8 @@ public class PrivoHouseCutScene : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        CinematicPlayer.SetActive(true);
+        player.SetActive(false);
         questPopUp.gameObject.SetActive(false);
         HUD.gameObject.SetActive(false);
         lumenIcon.gameObject.SetActive(false);
@@ -63,6 +66,8 @@ public class PrivoHouseCutScene : MonoBehaviour
     {
         
         yield return new WaitForSecondsRealtime(35f);
+        player.SetActive(true);
+        CinematicPlayer.SetActive(false);
         cineDelete = GameObject.FindGameObjectWithTag("CineStuff");
         Destroy(cineDelete);
         houseCutscene.EndCutscene();
@@ -71,6 +76,7 @@ public class PrivoHouseCutScene : MonoBehaviour
         HUD.gameObject.SetActive(true);
         lumenIcon.gameObject.SetActive(true);
         fire.gameObject.SetActive(true);
+        
         //houseCutsceneRunning = true;
 
     }

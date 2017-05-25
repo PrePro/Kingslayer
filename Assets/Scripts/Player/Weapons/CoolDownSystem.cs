@@ -172,18 +172,6 @@ public class CoolDownSystem : MonoBehaviour
 
     void Update()
     {
-        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_leftright"))
-        {
-            movement.stopMovement = true;
-        }
-        else if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_Right_Left_Slash"))
-        {
-            movement.stopMovement = true;
-        }
-        else
-        {
-            movement.stopMovement = false;
-        }
 
         if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("PrivoAOE"))
         {
@@ -298,11 +286,17 @@ public class CoolDownSystem : MonoBehaviour
             {
                 if (skills[2].currentcooldown >= skills[2].cooldown)
                 {
+                    //swordInHand.SetActive(true);
+                    //swordInSheeth.SetActive(false);
+                    //myAnimator.avatar = Swiningamin;
+                    //if(swordInHand.activeSelf)
+                    //{
+                    //    //Than you can swing
+                    //}
                     if (swordInHand.activeSelf)
                     {
                         swing = true;
                         psSlash.Play();
-                        //StartCoroutine(movement.StopMovement(1.3f));
                         //Debug.Log("Slash in here/");
                         myAnimator.SetTrigger("privoSlash");
                         //audio.PlayOneShot(slash, 5F);
@@ -385,7 +379,7 @@ public class CoolDownSystem : MonoBehaviour
             if (skills[5].currentcooldown >= skills[5].cooldown && AoeIsAvailable == true) //Push Back AOE
 
             {
-                if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Joystick1Button2)) // AOE [5]
+                if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Joystick1Button2)) // AOE [5]
                 {
                     myAnimator.SetTrigger("privoAOE");
                     StartCoroutine(movement.StopMovement(1f));

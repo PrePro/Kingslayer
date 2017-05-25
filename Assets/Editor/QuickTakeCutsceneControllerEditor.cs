@@ -307,7 +307,6 @@ public class QuickTakeCutsceneControllerEditor : Editor {
 				{
 					Handles.color = Color.yellow;
 					
-					if(q.curveChoice[i] == true)
 					{			
 						Undo.RecordObject(q.cutsceneMidPoints[i+1], "Move");
 						q.cutsceneMidPoints[i+1].position = Handles.FreeMoveHandle(q.cutsceneMidPoints[i+1].position, Quaternion.identity,

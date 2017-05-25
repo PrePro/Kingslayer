@@ -9,12 +9,7 @@ public class ToBaseTesting : MonoBehaviour
 
     void Start()
     {
-        //if(ToBaseTesting.TurnOn)
-        //{
-        //    //spawn player at location
-        //    //player.tranform.location = gameObject;
-        //    ToBaseTesting.TurnOn = false;
-        //}
+
     }
 
     void OnTriggerEnter()

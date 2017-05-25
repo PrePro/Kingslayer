@@ -39,6 +39,7 @@ public class Main_Dialogue : MonoBehaviour
     private bool holder = true;
     private bool walkinswordout;
     private bool isAway;
+    public bool isCalledOnce;
 
     public GameObject QuestPopUp;
     public GameObject PreviousQuest;
@@ -49,6 +50,7 @@ public class Main_Dialogue : MonoBehaviour
     {
         if (col.tag == "Player")
         {
+            isCalledOnce = true;
             cdSystem = col.GetComponent<CoolDownSystem>();
             if (running)// Makes sure Trigger is called once 
             {
@@ -78,6 +80,11 @@ public class Main_Dialogue : MonoBehaviour
 
     }
 
+    void OnTriggerStay()
+    {
+        Debug.Log("Autra Sucks");
+    }
+
     void Start()
 
     {
@@ -91,30 +98,34 @@ public class Main_Dialogue : MonoBehaviour
 
     void Update()
     {
-        if (cdSystem != null)
+        if(isCalledOnce)
         {
-            if (cdSystem.currentAnimState == CoolDownSystem.PlayerState.SwordInSheeth)
+            if (cdSystem != null)
             {
-                running = true;
-                if (SwordInHandText != null && SwordInHandText.gameObject.activeSelf)
+                if (cdSystem.currentAnimState == CoolDownSystem.PlayerState.SwordInSheeth)
                 {
-                    SwordInHandText.gameObject.SetActive(false);
-                }
-            }
-            else
-            {
-                if (dialog.gameObject.activeSelf || Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1"))
-                {
-                    running = false;
-                    isAway = true;
-                    dialog.gameObject.SetActive(false);
-                    if (SwordInHandText != null)
+                    running = true;
+                    if (SwordInHandText != null && SwordInHandText.gameObject.activeSelf)
                     {
-                        SwordInHandText.gameObject.SetActive(true);
+                        SwordInHandText.gameObject.SetActive(false);
+                    }
+                }
+                else
+                {
+                    if (dialog.gameObject.activeSelf || Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1"))
+                    {
+                        running = false;
+                        isAway = true;
+                        dialog.gameObject.SetActive(false);
+                        if (SwordInHandText != null)
+                        {
+                            SwordInHandText.gameObject.SetActive(true);
+                        }
                     }
                 }
             }
         }
+       
 
 
         if (running)
@@ -185,6 +196,7 @@ public class Main_Dialogue : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            isCalledOnce = false;
             isAway = true;
             if (SwordInHandText != null)
             {

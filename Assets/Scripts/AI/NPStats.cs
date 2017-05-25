@@ -25,7 +25,6 @@ public class NPStats : UnitStats
 
     void Update()
     {
-        Debug.Log(HitAoe);
         if(npc.canDie)
         {
             healthbar.fillAmount = currentHealth / maxHealth;

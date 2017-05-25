@@ -144,7 +144,7 @@ public class NPC : NPCBase
 
     IEnumerator PushBack(float waitTime, Vector3 dir)
     {
-        mRigidbody.AddForce(dir * 5000);
+        mRigidbody.AddForce(dir * 1000);
         yield return new WaitForSeconds(waitTime);
         Debug.Log("Set back 0");
         mRigidbody.velocity = Vector3.zero;

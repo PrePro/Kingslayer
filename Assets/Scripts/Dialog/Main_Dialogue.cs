@@ -17,7 +17,10 @@ public class Main_Dialogue : MonoBehaviour
     [Tooltip("The text the npc will say when you talk to him again")]
     public Text endText;
     [Tooltip("How many buttons you have in the canvas (Max 3)")]
+    public Image PlayerBox;
+    public Canvas SwordInHandText;
     public Button[] mButtons;
+    public Canvas GameUI;
 
     [Header("Main Text")]
     [Tooltip("If you need help ask Casey >.<")]
@@ -32,20 +35,24 @@ public class Main_Dialogue : MonoBehaviour
     private bool mEndTalk = false;
     private bool mDeleted = false;
     private int mIndex;
+    private bool endTextActive;
+    private bool holder = true;
+    private bool walkinswordout;
+    private bool isAway;
 
     public GameObject QuestPopUp;
     public GameObject PreviousQuest;
     public GameObject MiniMapIcon;
-    public bool NextQuest;
-    public CompassTurn compass;
+    private CoolDownSystem cdSystem;
 
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player")
         {
+            cdSystem = col.GetComponent<CoolDownSystem>();
             if (running)// Makes sure Trigger is called once 
             {
-                Debug.Log("Running");
+                //Debug.Log("Running");
                 return;
             }
             playerStats = col.gameObject.GetComponent<PlayerStats>(); // Gets stats for player to change morality
@@ -66,9 +73,9 @@ public class Main_Dialogue : MonoBehaviour
                 GetFirstChildren(mIndex);
             }
         }
-      
 
-       
+
+
     }
 
     void Start()
@@ -84,13 +91,39 @@ public class Main_Dialogue : MonoBehaviour
 
     void Update()
     {
+        if (cdSystem != null)
+        {
+            if (cdSystem.currentAnimState == CoolDownSystem.PlayerState.SwordInSheeth)
+            {
+                running = true;
+                if (SwordInHandText != null && SwordInHandText.gameObject.activeSelf)
+                {
+                    SwordInHandText.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                if (dialog.gameObject.activeSelf || Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1"))
+                {
+                    running = false;
+                    isAway = true;
+                    dialog.gameObject.SetActive(false);
+                    if (SwordInHandText != null)
+                    {
+                        SwordInHandText.gameObject.SetActive(true);
+                    }
+                }
+            }
+        }
+
+
         if (running)
         {
             for (int i = 0; i < mNpcText.Capacity - 1; i++)
             {
                 if (mNpcText[i].mbuttons != mNpcText[i + 1].canvas.Length)
                 {
-                    Debug.Log("YOU FUCKING aDSFAFDKGA");
+                    Debug.Log("You have set somthing up wrong");
                 }
             }
             if (mEndTalk && !mDeleted) //Deletion
@@ -105,36 +138,41 @@ public class Main_Dialogue : MonoBehaviour
                     Destroy(mButtons[i].gameObject);
                 }
                 mDeleted = true;
-                if (NextQuest)
+                if (QuestPopUp != null)
                 {
-                    if(compass != null)
-                    {
-                        compass.GotoNextObjective();
-                    }
-                }
-                if(QuestPopUp != null)
-                {
-                    if(PreviousQuest != null)
-                    {
-                        PreviousQuest.SetActive(false);
-                    }
+                    PreviousQuest.SetActive(false);
                     QuestPopUp.SetActive(true);
                 }
                 if (MiniMapIcon != null)
                 {
                     MiniMapIcon.SetActive(true);
                 }
+            }
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1"))
+            {
+                if (endTextActive)
+                {
+                    PlayerBox.gameObject.SetActive(false);
+                    //Debug.Log("END");
+                    holder = false;
+                    dialog.gameObject.SetActive(false);
+                    endTextActive = false;
+                    //Destroy(dialog.gameObject);
 
+                }
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
-
-                if (!dialog.gameObject.activeSelf)
-
+                if (!dialog.gameObject.activeSelf && !endTextActive)
                 {
                     dialog.gameObject.SetActive(true);
-                    playerImage.gameObject.SetActive(true);
-                    playerName.gameObject.SetActive(true);
+                    GameUI.gameObject.SetActive(false);
+                    if (holder)
+                    {
+                        playerImage.gameObject.SetActive(true);
+                        playerName.gameObject.SetActive(true);
+                    }
+
                     mNpcText[0].Person.gameObject.SetActive(true);
                     mNpcText[0].name.gameObject.SetActive(true);
                 }
@@ -147,6 +185,12 @@ public class Main_Dialogue : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            isAway = true;
+            if (SwordInHandText != null)
+            {
+                SwordInHandText.gameObject.SetActive(false);
+            }
+            GameUI.gameObject.SetActive(true);
             dialog.gameObject.SetActive(false);
             playerStats.DialogActive--;
         }
@@ -158,8 +202,14 @@ public class Main_Dialogue : MonoBehaviour
     void TextUpdater(Text[] text) //Scrolls through the text in canvas
     {
         if (!mEndTalk)
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1"))
             {
+                if (isAway)
+                {
+                    Debug.Log("AWAY");
+                    isAway = false;
+                    return;
+                }
                 if (mHolder != text.Length)
                 {
                     if (mHolder - 1 != -1)
@@ -241,12 +291,14 @@ public class Main_Dialogue : MonoBehaviour
             playerImage.gameObject.SetActive(false);
             playerName.gameObject.SetActive(false);
             endText.gameObject.SetActive(true);
+            endTextActive = true;
+
         }
         else
         {
             mHolder = 1;
 
-            Debug.Log(mList[mIndex].name);
+            //Debug.Log(mList[mIndex].name);
             mList[mIndex].SetActive(false);
             mNpcText[mIndex].Person.gameObject.SetActive(false);
             mNpcText[mIndex].name.gameObject.SetActive(false);

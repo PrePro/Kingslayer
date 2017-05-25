@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_Seek : AI_Base {
+public class AI_Seek : AI_Base
+{
 
     public GameObject Player;
     CoolDownSystem CdSystem;
@@ -55,16 +56,16 @@ public class AI_Seek : AI_Base {
 
     public override void Run()
     {
-        Vector3 d = (Player.transform.position - transform.position);
+        //Vector3 d = (Player.transform.position - transform.position);
 
-        if(distance >= 2)
+        if (distance >= 2)
         {
             Vector3 target = Player.transform.position;
             target.y = transform.position.y;
             target = target - transform.position;
             Vector3 newDir = Vector3.RotateTowards(transform.forward, target, TurnSpeed * Time.deltaTime, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDir);
-            agent.Stop();
+            agent.isStopped = true;
         }
 
 
@@ -79,6 +80,6 @@ public class AI_Seek : AI_Base {
     public override void Exit()
     {
         agent.speed = speed;
-        agent.Resume();
+        agent.isStopped = false;
     }
 }

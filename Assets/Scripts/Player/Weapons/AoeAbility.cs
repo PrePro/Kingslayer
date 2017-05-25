@@ -11,7 +11,7 @@ public class AoeAbility : MonoBehaviour
     private NPC npc;
     private NPStats npcstats;
     private bool running;
-    Rigidbody r;
+    //Rigidbody r;
 
     void Update()
     {
@@ -28,19 +28,28 @@ public class AoeAbility : MonoBehaviour
 
     //}
 
+    void OnTriggerExit()
+    {
+        //npc = null;
+    }
+
     void OnTriggerEnter(Collider col)
     {
-        r = col.GetComponentInParent<Rigidbody>();
+        //r = col.GetComponentInParent<Rigidbody>();
         if (col.tag == "Enemy")
         {
             npc = col.GetComponent<NPC>();
+            if (npc == null)
+            {
+                npc = col.GetComponentInParent<NPC>();
+            }
             if (npcstats == null)
             {
                 npc = col.GetComponentInParent<NPC>();
             }
 
             npcstats = col.GetComponent<NPStats>();
-            if(npcstats== null)
+            if (npcstats == null)
             {
                 npcstats = col.GetComponentInParent<NPStats>();
             }
@@ -49,7 +58,7 @@ public class AoeAbility : MonoBehaviour
             {
                 npc.startStunAI(2f);
             }
-            else if(cdsystem.AoeState == CoolDownSystem.AoeMorality.KnockBack)
+            else if (cdsystem.AoeState == CoolDownSystem.AoeMorality.KnockBack)
             {
                 Debug.Log("KnockBack");
 
@@ -59,7 +68,7 @@ public class AoeAbility : MonoBehaviour
                 npc.PushBack(transform.position);
 
             }
-            else if(cdsystem.AoeState == CoolDownSystem.AoeMorality.Steal)
+            else if (cdsystem.AoeState == CoolDownSystem.AoeMorality.Steal)
             {
                 Debug.Log("Steal");
 

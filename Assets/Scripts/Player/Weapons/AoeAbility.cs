@@ -28,12 +28,22 @@ public class AoeAbility : MonoBehaviour
 
     //}
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerExit(Collider col)
+    {
+        npc = null;
+    }
+
+
+        void OnTriggerEnter(Collider col)
     {
         r = col.GetComponentInParent<Rigidbody>();
         if (col.tag == "Enemy")
         {
             npc = col.GetComponent<NPC>();
+            if(npc == null)
+            {
+                npc = col.GetComponentInParent<NPC>();
+            }
             if (npcstats == null)
             {
                 npc = col.GetComponentInParent<NPC>();

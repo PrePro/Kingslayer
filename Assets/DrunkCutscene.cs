@@ -9,12 +9,14 @@ public class DrunkCutscene : MonoBehaviour {
     public GameObject gameUI;
     private GameObject cineDelete;
     public GameObject realDrunk;
+    public GameObject gate;
 
     // Use this for initialization
     void Start()
     {
         gameUI.SetActive(false);
         realDrunk.SetActive(false);
+        gate.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,6 +45,6 @@ public class DrunkCutscene : MonoBehaviour {
         drunkCutsceneRunning = true;
         gameUI.SetActive(true);
         realDrunk.SetActive(true);
-
+        gate.SetActive(true);
     }
 }

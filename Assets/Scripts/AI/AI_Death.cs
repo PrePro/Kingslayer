@@ -45,9 +45,9 @@ public class AI_Death : AI_BaseAttack
     {
         if (mDeath == true)
         {
-            agent.Resume();
+            agent.isStopped = false;
             npc.SetAnimation(NPCBase.AnimationState.Walking);
-           // SetAnimation(AnimationState.Walking);
+            // SetAnimation(AnimationState.Walking);
 
             agent.SetDestination(DeathWayPoint.transform.position); // Make this a gameObject
 
@@ -58,7 +58,7 @@ public class AI_Death : AI_BaseAttack
         }
         else
         {
-            agent.Stop();
+            agent.isStopped = true;
         }
     }
 }

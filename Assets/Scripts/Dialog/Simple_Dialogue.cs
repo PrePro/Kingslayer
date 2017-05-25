@@ -16,7 +16,6 @@ public class Simple_Dialogue : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             Collid = true;
-            if (Input.GetKeyDown(KeyCode.E))
                 if (dialog.isActiveAndEnabled == false)
                 {
                     dialog.gameObject.SetActive(true);

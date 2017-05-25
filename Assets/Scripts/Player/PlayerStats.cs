@@ -15,7 +15,7 @@ public class PlayerStats : UnitStats
     private Animator myAnimator;
 
     public Vector3 startPosition;
-    CoolDownSystem cd;
+    //  CoolDownSystem cd;
     Movement movement;
     public ParticleSystem privoHurt;
     void Awake()
@@ -28,7 +28,7 @@ public class PlayerStats : UnitStats
         Morality = PlayerPrefs.GetInt("Morality", 0);
         //moralityAoe = PlayerPrefs.GetInt("moralityAoe", 0);
         //moralityPorj = PlayerPrefs.GetInt("moralityPorj", 0);
-        cd = GetComponent<CoolDownSystem>();
+        //cd = GetComponent<CoolDownSystem>();
 
         myAnimator = GetComponent<Animator>();
         startPosition = transform.position;

@@ -37,7 +37,7 @@ public class AI_ArcherAttack : AI_BaseAttack
         Debug.Log("Enter");
         timer = attackSpeed;
         npc.SetAnimation(NPCBase.AnimationState.Attacking);
-        agent.Stop();
+        agent.isStopped = true;
     }
 
     public override void Exit()

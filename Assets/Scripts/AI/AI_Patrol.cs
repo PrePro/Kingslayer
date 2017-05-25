@@ -31,7 +31,7 @@ public class AI_Patrol : AI_BaseAttack
             Debug.Log("FUCK YOU");
         }
         npc.SetAnimation(NPCBase.AnimationState.Walking);
-        agent.Resume();
+        agent.isStopped = false;
 
         if (patrolRoute == null)
         {
@@ -66,7 +66,7 @@ public class AI_Patrol : AI_BaseAttack
     {
         yield return new WaitForSeconds(time);
         agent.destination = patrolRoute[patrolIndex].position;
-        agent.Resume();
+        agent.isStopped = false;
     }
 
     public void Patrol()
@@ -84,7 +84,7 @@ public class AI_Patrol : AI_BaseAttack
                 int ran = UnityEngine.Random.Range(0, 11);
                 if (ran >= 2) //80% change to stop and wait
                 {
-                    agent.Stop();
+                    agent.isStopped = true;
                     //SetAnimation(AnimationState.Idle);
                     npc.SetAnimation(NPCBase.AnimationState.Idle);
                     //YASH if you want to run an animation for the partrol do it here

@@ -168,7 +168,7 @@ namespace QuickCutscene.Utils {
 					break;
 					
 				case NavAgentActions.Stop:
-					currentNavAgent.Stop();
+					currentNavAgent.isStopped = true;
 					break;
 					
 				case NavAgentActions.Warp:

@@ -43,7 +43,7 @@ public class NPC : NPCBase
             case State.Idle:
                 {
 
-                    agent.Stop();
+                    agent.isStopped = true;
 
                     SetAnimation(AnimationState.Idle);
 
@@ -81,7 +81,7 @@ public class NPC : NPCBase
                     if (unitClass != UnitClass.Archer)
                     {
                         SetAnimation(AnimationState.Walking);
-                        agent.Resume();
+                        agent.isStopped = false;
                         agent.destination = currentTarget.position;
                         foundImage.SetActive(true);//put a yellow one. For Yash.
                         searchingImage.SetActive(false);
@@ -96,7 +96,7 @@ public class NPC : NPCBase
             case State.Searching:
                 {
                     SetAnimation(AnimationState.Walking);
-                    agent.Resume();
+                    agent.isStopped = false;
                     if (dominantBehavior == Behavior.IdleDefencive)
                     {
                         //Debug.Log("IdleDefencive");
@@ -186,7 +186,8 @@ public class NPC : NPCBase
         switch (debuffState)
         {
             case Debuff.Stunned:
-                agent.Stop();
+                //agent.Stop();
+                agent.isStopped = true;
                 break;
             case Debuff.Rooted:
 

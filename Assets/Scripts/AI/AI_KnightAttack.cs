@@ -39,7 +39,7 @@ public class AI_KnightAttack : AI_BaseAttack
         if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("sword_and_shield_slash"))
         {
             Debug.Log("ATTACKING");
-            agent.Stop();
+            agent.isStopped = true;
             canTurn = false;
         }
         else
@@ -53,7 +53,7 @@ public class AI_KnightAttack : AI_BaseAttack
     public override void Enter()
     {
         npc.SetAnimation(NPCBase.AnimationState.Attacking);
-        agent.Stop();
+        agent.isStopped = true;
         slash.Play();
         npc.searchingImage.SetActive(false);
         npc.foundImage.SetActive(false);
@@ -100,7 +100,7 @@ public class AI_KnightAttack : AI_BaseAttack
         {
             if (isInRange)
             {
-                if(canTurn)
+                if (canTurn)
                 {
                     Vector3 target = npc.currentTarget.position;
                     target.y = transform.position.y;
@@ -141,7 +141,7 @@ public class AI_KnightAttack : AI_BaseAttack
         else
         {
             //Debug.Log(damage.gotParry);
-            if(damage.gotParry)
+            if (damage.gotParry)
             {
                 //Debug.Log("GOT ANIM");
                 hitspark.Play();

@@ -28,7 +28,7 @@ public class CompassTurn : MonoBehaviour
     {
 
         PositionArrow();
-        Debug.Log(Objective[0].name);
+        //Debug.Log(Objective[0].name);
     }
 
 

@@ -82,7 +82,6 @@ public class Main_Dialogue : MonoBehaviour
 
     void OnTriggerStay()
     {
-        Debug.Log("Autra Sucks");
     }
 
     void Start()

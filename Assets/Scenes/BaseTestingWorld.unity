@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -86,7 +86,8 @@ LightmapSettings:
     m_PVRFilteringAtrousColorSigma: 1
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: f7b85aeb576f0e845a81e75932bb4c39,
+    type: 2}
   m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
@@ -195,7 +196,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 188008, guid: 4b65e1aa46001b84eacd7299e024b81d, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114206278550880940, guid: 4b65e1aa46001b84eacd7299e024b81d,
         type: 2}
@@ -1957,6 +1958,7 @@ MonoBehaviour:
     - im bad3
     mbuttons: 3
     morality: 0100000000000000ffffffff
+  isCalledOnce: 0
   QuestPopUp: {fileID: 0}
   PreviousQuest: {fileID: 0}
   MiniMapIcon: {fileID: 0}
@@ -3534,6 +3536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mTraps: {fileID: 1123809750049284, guid: 36557ff948b00194691e7794bc6c91f5, type: 2}
+  TelportPoints: []
   mCurrentHealth: 100
   MaxHealth: 100
   HealthPercent: 0
@@ -4478,6 +4481,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78507c7bc826b6d4aa3a5dab63d37aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFacing: 0
+  isInRange: 0
+  isReady: 0
+  canTurn: 1
   slash: {fileID: 198586185697967140, guid: 94b5e5e2116446a49aee7ba584e5c56a, type: 2}
   TurnSpeed: 10
   attackRange: 5
@@ -5057,6 +5064,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78507c7bc826b6d4aa3a5dab63d37aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFacing: 0
+  isInRange: 0
+  isReady: 0
+  canTurn: 1
   slash: {fileID: 0}
   TurnSpeed: 10
   attackRange: 5

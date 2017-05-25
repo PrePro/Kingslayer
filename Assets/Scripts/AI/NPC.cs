@@ -17,14 +17,22 @@ public class NPC : NPCBase
     {
         if (debuffState == Debuff.None)
         {
-            if (stats.Death == false)
+            if(dominantBehavior != Behavior.Passive)
             {
-                RunBehavior();
+                if (stats.Death == false)
+                {
+                    RunBehavior();
+                }
+                else
+                {
+                    AI_mDeath.Death();
+                }
             }
             else
             {
-                AI_mDeath.Death();
+                RunBehavior();
             }
+
         }
         else
         {

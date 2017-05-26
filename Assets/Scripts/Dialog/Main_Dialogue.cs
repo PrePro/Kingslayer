@@ -45,6 +45,9 @@ public class Main_Dialogue : MonoBehaviour
     public GameObject PreviousQuest;
     public GameObject MiniMapIcon;
     private CoolDownSystem cdSystem;
+    private Movement movement;
+    public int Xbox_holder;
+    public bool Caller = false;
 
     void OnTriggerEnter(Collider col)
     {
@@ -52,6 +55,8 @@ public class Main_Dialogue : MonoBehaviour
         {
             isCalledOnce = true;
             cdSystem = col.GetComponent<CoolDownSystem>();
+            movement = col.GetComponent<Movement>();
+
             if (running)// Makes sure Trigger is called once 
             {
                 //Debug.Log("Running");
@@ -97,7 +102,7 @@ public class Main_Dialogue : MonoBehaviour
 
     void Update()
     {
-        if(isCalledOnce)
+        if (isCalledOnce)
         {
             if (cdSystem != null)
             {
@@ -124,11 +129,43 @@ public class Main_Dialogue : MonoBehaviour
                 }
             }
         }
-       
-
 
         if (running)
         {
+
+            if (movement.mController == Movement.Controller.Xbox_One_Controller && dialog.gameObject.activeSelf)
+            {
+
+                Debug.Log("Xbox Controller");
+                if (Input.GetKeyDown(KeyCode.Y))
+                {
+                    if (Xbox_holder + 1 > 2)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        Xbox_holder += 1;
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.H))
+                {
+                    if (Xbox_holder - 1 < 0)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        Xbox_holder -= 1;
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    ButtonClick(Xbox_holder);
+                }
+            }
+
+
             for (int i = 0; i < mNpcText.Capacity - 1; i++)
             {
                 if (mNpcText[i].mbuttons != mNpcText[i + 1].canvas.Length)
@@ -275,6 +312,12 @@ public class Main_Dialogue : MonoBehaviour
     #region ButtonClicks
     public void ButtonClick(int buttonIndex)
     {
+        if (movement.mController == Movement.Controller.Xbox_One_Controller)
+        {
+            Xbox_holder = 0;
+        }
+
+        Debug.Log(buttonIndex);
         switch (buttonIndex)
 
         {

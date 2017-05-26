@@ -280,7 +280,22 @@ public class CoolDownSystem : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (canAttack == true)
+        {
+            if (Input.GetKey(KeyCode.LeftControl) && currentDashState == DashState.NotDashing) // Sword [2]LeftBumper
+            {
+                if (skills[6].currentcooldown >= skills[6].cooldown)
+                {
+                    if (swordInHand.activeSelf)
+                    {
+                        //psSlash.Play();
+                        myAnimator.SetTrigger("privoStab");
+                    }
+                    skills[6].currentcooldown = 0;
+                }
 
+            }
+        }
 
         if (currentAnimState == PlayerState.SwordInHand)
         {
@@ -338,6 +353,7 @@ public class CoolDownSystem : MonoBehaviour
             {
                 if (skills[2].currentcooldown >= skills[2].cooldown)
                 {
+                    Debug.Log("Swing");
                     //swordInHand.SetActive(true);
                     //swordInSheeth.SetActive(false);
                     //myAnimator.avatar = Swiningamin;
@@ -358,6 +374,7 @@ public class CoolDownSystem : MonoBehaviour
 
             }
         }
+       
 
         //if (Input.GetButton("Fire1") && currentState == ProjectState.CanShoot)
         //{

@@ -103,12 +103,12 @@ public class Movement : MonoBehaviour
 
             if (mController == Controller.Xbox_One_Controller)
             {
-                Debug.Log("Controller");
+                //Debug.Log("Controller");
                 ControllerMovement();
             }
             else if (mController == Controller.PS4_Controller)
             {
-                Debug.Log("PS4");
+                //Debug.Log("PS4");
             }
             else
             {
@@ -211,7 +211,7 @@ public class Movement : MonoBehaviour
             }
             if (names[x].Length == 33)
             {
-                print("XBOX ONE CONTROLLER IS CONNECTED");
+                //print("XBOX ONE CONTROLLER IS CONNECTED");
                 //set a controller bool to true
 
                 mController = Controller.Xbox_One_Controller;
@@ -282,7 +282,7 @@ public class Movement : MonoBehaviour
         {
             if (y >= 0 && y != 0)
             {
-                Debug.Log("UP");
+                //Debug.Log("UP");
                 if (isRunning == false && isCrouching == false)
                 {
                     currentSpeed = speed;
@@ -307,7 +307,7 @@ public class Movement : MonoBehaviour
             // Moves the targets 
             if (x >= 0 && x != 0)
             {
-                Debug.Log("RIGHT");
+               // Debug.Log("RIGHT");
                 if (isRunning == false && isCrouching == false)
                 {
                     currentSpeed = speed;
@@ -331,7 +331,7 @@ public class Movement : MonoBehaviour
             // Moves the targets 
             if (y <= 0 && y != 0)
             {
-                Debug.Log("DOWN");
+               // Debug.Log("DOWN");
 
                 if (isRunning == false && isCrouching == false)
                 {
@@ -378,7 +378,7 @@ public class Movement : MonoBehaviour
         // Reset
         if (x == 0 && y == 0)
         {
-            Debug.Log("Stop moving");
+            //Debug.Log("Stop moving");
             target.transform.position = objectForward.transform.position;
             //psWalk.Play();
 

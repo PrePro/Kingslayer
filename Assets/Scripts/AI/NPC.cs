@@ -105,7 +105,7 @@ public class NPC : NPCBase
                 {
                     SetAnimation(AnimationState.Walking);
                     agent.isStopped = false;
-                    if (dominantBehavior == Behavior.IdleDefencive)
+                    if (dominantBehavior == Behavior.IdleDefencive || dominantBehavior == Behavior.IdleAggressive)
                     {
                         //Debug.Log("IdleDefencive");
                         agent.destination = startPosition;
@@ -328,6 +328,16 @@ public class NPC : NPCBase
                 case Behavior.IdleDefencive:
                     {
                         SetState(State.Idle);
+                    }
+                    break;
+                case Behavior.IdleAggressive:
+                    {
+                        SetState(State.Idle);
+                    }
+                    break;
+                case Behavior.PatrolAggressive:
+                    {
+                        SetState(State.Patrolling);
                     }
                     break;
                 case Behavior.PatrolDefencive:

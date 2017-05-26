@@ -15,6 +15,9 @@ public class Perception : MonoBehaviour
     Ray ray;
     NPStats stats;
     bool canSee;
+    bool HasSeen;
+    CoolDownSystem cd;
+
     // Use this for initialization
     void Start()
     {
@@ -47,6 +50,28 @@ public class Perception : MonoBehaviour
         {
             //PlayerHead.transform.position = other.gameObject.transform.position;
             //transform.position = new Vector3(transform.position.x, 3, transform.position.z);
+            //Debug.Log("Target is in front of this game object.");
+            if (npc.dominantBehavior == NPCBase.Behavior.IdleDefencive || npc.dominantBehavior == NPCBase.Behavior.PatrolDefencive)
+            {
+                //CoolDownSystem cd = other.GetComponent<CoolDownSystem>();
+                if (cd.currentAnimState == CoolDownSystem.PlayerState.SwordInHand)
+                {
+                    HasSeen = true;
+                }
+                else
+                {
+                    if(HasSeen)
+                    {
+                        Debug.Log("Has Seen");
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+            }
+            
+
             direction = (other.gameObject.transform.position - transform.position).normalized;
             ray = new Ray(transform.position + direction, direction);
             canSee = Vector3.Dot(direction, transform.forward) >= 0;
@@ -76,6 +101,7 @@ public class Perception : MonoBehaviour
                     barrierDistance = hit.distance;
                 }
             }
+
             if (!hitBarrier)
             {
                 npc.OnTargetFound(other.gameObject);
@@ -95,7 +121,11 @@ public class Perception : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            movement = other.GetComponent<Movement>();
+            if (npc.dominantBehavior == NPCBase.Behavior.IdleDefencive || npc.dominantBehavior == NPCBase.Behavior.PatrolDefencive)
+            {
+                cd = other.GetComponent<CoolDownSystem>();
+            }
+                movement = other.GetComponent<Movement>();
         }
     }
 

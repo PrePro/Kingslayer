@@ -56,12 +56,14 @@ public abstract class NPCBase : MonoBehaviour
         AOEKnockBack
     }
 
-    protected enum Behavior
+    public enum Behavior
     {
         Passive,  //Passive walk around cant be killed 
         Aggressive,
         IdleDefencive,
-        PatrolDefencive
+        PatrolDefencive,
+        IdleAggressive,
+        PatrolAggressive
     }
     public enum UnitClass
     {
@@ -78,7 +80,7 @@ public abstract class NPCBase : MonoBehaviour
     public UnitClass unitClass;
     [SerializeField]
     [Tooltip("The basic fallback behavior of the NPC: \nPassive units do not attack\nAggressive units search for enemies\nIdleDefencives units do not move but attack enemies in their radius\nPatrolDefencive units follow a patrol path until an enemy is found")]
-    protected Behavior dominantBehavior;
+    public Behavior dominantBehavior;
     //[SerializeField]
     //[Tooltip("Set the faction of the NPC to determine whether the unit is allied, neutral, or and enemy")]
     //protected Faction faction;
@@ -204,6 +206,17 @@ public abstract class NPCBase : MonoBehaviour
                 }
                 break;
             case Behavior.PatrolDefencive:
+                {
+                    SetState(State.Patrolling);
+                }
+                break;
+            case Behavior.IdleAggressive:
+                {
+                    SetState(State.Idle);
+                    animator.SetInteger("AnimationState", (int)AnimationState.Idle);
+                }
+                break;
+            case Behavior.PatrolAggressive:
                 {
                     SetState(State.Patrolling);
                 }

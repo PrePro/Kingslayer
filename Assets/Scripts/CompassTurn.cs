@@ -26,8 +26,15 @@ public class CompassTurn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        PositionArrow();
+        if(Objective.Length == 0)
+        {
+            Debug.Log("Compass has 0 Objectives");
+            return;
+        }
+        else
+        {
+            PositionArrow();
+        }
         //Debug.Log(Objective[0].name);
     }
 

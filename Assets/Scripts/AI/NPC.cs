@@ -361,7 +361,7 @@ public class NPC : NPCBase
         AnimationState currAnim = (AnimationState)animator.GetInteger("AnimationState");
         if (currentAnimation == AnimationState.Attacking && currAnim == AnimationState.Attacking) //|| currAnim == AnimationState.Attack1 || currAnim == AnimationState.Attack2 || currAnim == AnimationState.Attack3
         {
-            Debug.Log("Fkc");
+            
             animator.SetInteger("AnimationState", 0);
             //animator.SetInteger("AnimationState", (int)currentAnimation);
         }

@@ -15,6 +15,7 @@ public class PlayerStats : UnitStats
     private Animator myAnimator;
 
     public Vector3 startPosition;
+    public bool isDead;
     //  CoolDownSystem cd;
     Movement movement;
     public ParticleSystem privoHurt;
@@ -80,19 +81,21 @@ public class PlayerStats : UnitStats
 
         if (currentHealth <= 0)
         {
+            isDead = true;
             myAnimator.SetBool("privoDeath", true);
-            
             StartCoroutine("DeathAnim", 2.4f);
             movement.StartCoroutine("StopMovement", 2.4f);
             // Death animation
             //SceneManager.LoadScene("MainMenu");
         }
+
     }
     IEnumerator DeathAnim(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         SetHealth();
         transform.position = startPosition;
+        isDead = false;
         myAnimator.SetBool("privoDeath", false);
     }
 

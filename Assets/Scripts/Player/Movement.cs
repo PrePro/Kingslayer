@@ -188,7 +188,11 @@ public class Movement : MonoBehaviour
                     {
                         transform.Translate((Vector3.back + Vector3.right) * Time.deltaTime * dashSpeedForward, target.transform);
                     }
-
+                    break;
+                case CoolDownSystem.DashDirection.Controller:
+                    {
+                        transform.Translate((Vector3.forward * Time.deltaTime * dashSpeedForward));
+                    }
                     break;
                 default:
                     break;

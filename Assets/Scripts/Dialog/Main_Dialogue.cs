@@ -46,8 +46,12 @@ public class Main_Dialogue : MonoBehaviour
     public GameObject MiniMapIcon;
     private CoolDownSystem cdSystem;
     private Movement movement;
-    public int Xbox_holder;
+    private int Xbox_holder;
     public bool Caller = false;
+    private bool axisInUse = false;
+    public bool UpdateObjective;
+    public CompassTurn CPTurn;
+
 
     void OnTriggerEnter(Collider col)
     {
@@ -85,10 +89,6 @@ public class Main_Dialogue : MonoBehaviour
 
     }
 
-    void OnTriggerStay()
-    {
-    }
-
     void Start()
 
     {
@@ -116,7 +116,7 @@ public class Main_Dialogue : MonoBehaviour
                 }
                 else
                 {
-                    if (dialog.gameObject.activeSelf || Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1"))
+                    if (dialog.gameObject.activeSelf || Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1") || Input.GetKeyDown(KeyCode.JoystickButton3))
                     {
                         running = false;
                         isAway = true;
@@ -135,33 +135,49 @@ public class Main_Dialogue : MonoBehaviour
 
             if (movement.mController == Movement.Controller.Xbox_One_Controller && dialog.gameObject.activeSelf)
             {
-
                 Debug.Log("Xbox Controller");
-                if (Input.GetKeyDown(KeyCode.Y))
+                if (Input.GetAxisRaw("DpadV") == 0)
                 {
-                    if (Xbox_holder + 1 > 2)
+                    axisInUse = false;
+                }
+
+                    if (Input.GetAxisRaw("DpadV") == -1)
+                {
+                    if (axisInUse == false)
                     {
-                        return;
-                    }
-                    else
-                    {
-                        Xbox_holder += 1;
+                        axisInUse = true;
+                        if (Xbox_holder + 1 > 2)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            Xbox_holder += 1;
+                        }
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.H))
+                if (Input.GetAxisRaw("DpadV") == 1)
                 {
-                    if (Xbox_holder - 1 < 0)
+                    if (axisInUse == false)
                     {
-                        return;
-                    }
-                    else
-                    {
-                        Xbox_holder -= 1;
+                        axisInUse = true;
+                        if (Xbox_holder - 1 < 0)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            Xbox_holder -= 1;
+                        }
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.G))
+                if (Input.GetKeyDown(KeyCode.JoystickButton1))
                 {
-                    ButtonClick(Xbox_holder);
+                    if(dialog.gameObject.activeSelf)
+                    {
+                        ButtonClick(Xbox_holder);
+                    }
+                    
                 }
             }
 
@@ -190,12 +206,19 @@ public class Main_Dialogue : MonoBehaviour
                     PreviousQuest.SetActive(false);
                     QuestPopUp.SetActive(true);
                 }
+                if(UpdateObjective)
+                {
+                    if (CPTurn != null)
+                    {
+                        CPTurn.GotoNextObjective();
+                    }
+                }
                 if (MiniMapIcon != null)
                 {
                     MiniMapIcon.SetActive(true);
                 }
             }
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1"))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetButton("Fire1"))
             {
                 if (endTextActive)
                 {
@@ -208,7 +231,7 @@ public class Main_Dialogue : MonoBehaviour
 
                 }
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3))
             {
                 if (!dialog.gameObject.activeSelf && !endTextActive)
                 {
@@ -250,7 +273,7 @@ public class Main_Dialogue : MonoBehaviour
     void TextUpdater(Text[] text) //Scrolls through the text in canvas
     {
         if (!mEndTalk)
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1"))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1") || Input.GetKeyDown(KeyCode.JoystickButton3))
             {
                 if (isAway)
                 {
@@ -305,8 +328,6 @@ public class Main_Dialogue : MonoBehaviour
     {
         children = mNpcText[mIndex + 1].canvas[i].GetComponentsInChildren<Text>(true); // Putting the Children into array
         foreach (Text text in children) ; //Needs to be here if the text is disabled
-
-
     }
 
     #region ButtonClicks
@@ -315,6 +336,10 @@ public class Main_Dialogue : MonoBehaviour
         if (movement.mController == Movement.Controller.Xbox_One_Controller)
         {
             Xbox_holder = 0;
+            if(mEndTalk)
+            {
+                return;
+            }
         }
 
         Debug.Log(buttonIndex);

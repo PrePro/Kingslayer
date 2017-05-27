@@ -48,6 +48,7 @@ public class NPStats : UnitStats
             hitSpark.Play();
             if(!HitAoe)
             {
+                Debug.Log("Hit");
                 npc.SetAnimation(NPCBase.AnimationState.HitFlinch);
             }
             healthbar.gameObject.SetActive(true);

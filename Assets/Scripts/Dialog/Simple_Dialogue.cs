@@ -48,7 +48,7 @@ public class Simple_Dialogue : MonoBehaviour
 
     void TextUpdater()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3))
         {
             Debug.Log(text.Length);
             if (holder != text.Length)

@@ -12,15 +12,18 @@ public class NPC : NPCBase
     [Header("Images")]
     public GameObject foundImage;
     public GameObject searchingImage;
+    private bool playerDead;
 
     void Update()
     {
+        Debug.Log(playerDead);
         if (debuffState == Debuff.None)
         {
             if(dominantBehavior != Behavior.Passive)
             {
                 if (stats.Death == false)
                 {
+                    playerDead = Player.isDead;
                     RunBehavior();
                 }
                 else
@@ -113,7 +116,14 @@ public class NPC : NPCBase
                     }
                     else
                     {
-                        agent.destination = currentTarget.position;
+                        if(playerDead)
+                        {
+                            SetState(State.Idle);
+                        }
+                        else
+                        {
+                            agent.destination = currentTarget.position;
+                        }
                     }
                     foundImage.SetActive(false);//put a yellow one. For Yash.
                     searchingImage.SetActive(true);
@@ -361,7 +371,7 @@ public class NPC : NPCBase
         AnimationState currAnim = (AnimationState)animator.GetInteger("AnimationState");
         if (currentAnimation == AnimationState.Attacking && currAnim == AnimationState.Attacking) //|| currAnim == AnimationState.Attack1 || currAnim == AnimationState.Attack2 || currAnim == AnimationState.Attack3
         {
-            Debug.Log("Fkc");
+            
             animator.SetInteger("AnimationState", 0);
             //animator.SetInteger("AnimationState", (int)currentAnimation);
         }
@@ -431,7 +441,7 @@ public class NPC : NPCBase
         }
         if (currentState == State.Chasing || currentState == State.Attacking)
         {
-            //Debug.Log("Searching");
+           // Debug.Log("Searching");
             SetState(State.Searching);
         }
 

@@ -46,9 +46,12 @@ public class Main_Dialogue : MonoBehaviour
     public GameObject MiniMapIcon;
     private CoolDownSystem cdSystem;
     private Movement movement;
-    public int Xbox_holder;
+    private int Xbox_holder;
     public bool Caller = false;
     private bool axisInUse = false;
+    public bool UpdateObjective;
+    public CompassTurn CPTurn;
+
 
     void OnTriggerEnter(Collider col)
     {
@@ -84,10 +87,6 @@ public class Main_Dialogue : MonoBehaviour
 
 
 
-    }
-
-    void OnTriggerStay()
-    {
     }
 
     void Start()
@@ -207,6 +206,13 @@ public class Main_Dialogue : MonoBehaviour
                     PreviousQuest.SetActive(false);
                     QuestPopUp.SetActive(true);
                 }
+                if(UpdateObjective)
+                {
+                    if (CPTurn != null)
+                    {
+                        CPTurn.GotoNextObjective();
+                    }
+                }
                 if (MiniMapIcon != null)
                 {
                     MiniMapIcon.SetActive(true);
@@ -322,8 +328,6 @@ public class Main_Dialogue : MonoBehaviour
     {
         children = mNpcText[mIndex + 1].canvas[i].GetComponentsInChildren<Text>(true); // Putting the Children into array
         foreach (Text text in children) ; //Needs to be here if the text is disabled
-
-
     }
 
     #region ButtonClicks
@@ -332,6 +336,10 @@ public class Main_Dialogue : MonoBehaviour
         if (movement.mController == Movement.Controller.Xbox_One_Controller)
         {
             Xbox_holder = 0;
+            if(mEndTalk)
+            {
+                return;
+            }
         }
 
         Debug.Log(buttonIndex);

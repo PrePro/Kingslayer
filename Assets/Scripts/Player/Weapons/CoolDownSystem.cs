@@ -262,6 +262,7 @@ public class CoolDownSystem : MonoBehaviour
         {
             if (m_isAxisInUse == false)
             {
+                Debug.Log("DPAD");
                 // Call your event function here.
                 m_isAxisInUse = true;
             }
@@ -277,12 +278,16 @@ public class CoolDownSystem : MonoBehaviour
             SwitchAnimators();
         }
 
-
-        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.Joystick1Button4))
+        if(currentAnimState == PlayerState.SwordInHand)
         {
-            Debug.Log("PARRY");
-            StartCoroutine(ParryDelay(parryWaitTime));
+            if (Input.GetMouseButton(1) || Input.GetAxis("LeftTrigger") == 1)
+            {
+                Debug.Log("PARRY");
+
+                StartCoroutine(ParryDelay(parryWaitTime));
+            }
         }
+
         if (AoeExpand)
         {
 
@@ -296,10 +301,11 @@ public class CoolDownSystem : MonoBehaviour
     {
         if (canAttack == true)
         {
-            if (Input.GetKey(KeyCode.LeftControl) && currentDashState == DashState.NotDashing) // Sword [2]LeftBumper
+            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton5) && currentDashState == DashState.NotDashing) // Sword [2]LeftBumper
             {
                 if (skills[6].currentcooldown >= skills[6].cooldown)
                 {
+                    Debug.Log("Stab");
                     if (swordInHand.activeSelf)
                     {
                         //psSlash.Play();
@@ -467,7 +473,7 @@ public class CoolDownSystem : MonoBehaviour
             if (skills[5].currentcooldown >= skills[5].cooldown && AoeIsAvailable == true) //Push Back AOE
 
             {
-                if (Input.GetKey(KeyCode.Alpha3)) // AOE [5]
+                if (Input.GetKey(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4)) // AOE [5]
                 {
                     myAnimator.SetTrigger("privoAOE");
                     StartCoroutine(movement.StopMovement(1f));

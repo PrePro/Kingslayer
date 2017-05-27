@@ -15,7 +15,7 @@ public class AI_DeathBox : MonoBehaviour
     {
         if(PlayerInTrigger == true)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3))
             { 
                 stats.Morality += MoralityForKilling;
                 Destroy(transform.parent.gameObject);

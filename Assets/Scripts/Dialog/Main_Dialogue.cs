@@ -116,7 +116,7 @@ public class Main_Dialogue : MonoBehaviour
                 }
                 else
                 {
-                    if (dialog.gameObject.activeSelf || Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1"))
+                    if (dialog.gameObject.activeSelf || Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1") || Input.GetKeyDown(KeyCode.JoystickButton3))
                     {
                         running = false;
                         isAway = true;
@@ -135,9 +135,8 @@ public class Main_Dialogue : MonoBehaviour
 
             if (movement.mController == Movement.Controller.Xbox_One_Controller && dialog.gameObject.activeSelf)
             {
-
                 Debug.Log("Xbox Controller");
-                if (Input.GetKeyDown(KeyCode.Y))
+                if (Input.GetAxisRaw("DpadV") == -1)
                 {
                     if (Xbox_holder + 1 > 2)
                     {
@@ -148,7 +147,7 @@ public class Main_Dialogue : MonoBehaviour
                         Xbox_holder += 1;
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.H))
+                if (Input.GetAxisRaw("DpadV") == 1)
                 {
                     if (Xbox_holder - 1 < 0)
                     {
@@ -159,7 +158,7 @@ public class Main_Dialogue : MonoBehaviour
                         Xbox_holder -= 1;
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.G))
+                if (Input.GetKeyDown(KeyCode.JoystickButton0))
                 {
                     ButtonClick(Xbox_holder);
                 }
@@ -195,7 +194,7 @@ public class Main_Dialogue : MonoBehaviour
                     MiniMapIcon.SetActive(true);
                 }
             }
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1"))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetButton("Fire1"))
             {
                 if (endTextActive)
                 {
@@ -208,7 +207,7 @@ public class Main_Dialogue : MonoBehaviour
 
                 }
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3))
             {
                 if (!dialog.gameObject.activeSelf && !endTextActive)
                 {
@@ -250,7 +249,7 @@ public class Main_Dialogue : MonoBehaviour
     void TextUpdater(Text[] text) //Scrolls through the text in canvas
     {
         if (!mEndTalk)
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1"))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Fire1") || Input.GetKeyDown(KeyCode.JoystickButton3))
             {
                 if (isAway)
                 {

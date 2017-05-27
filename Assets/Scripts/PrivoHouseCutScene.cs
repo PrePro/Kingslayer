@@ -20,7 +20,7 @@ public class PrivoHouseCutScene : MonoBehaviour
     void Start()
     {
         CinematicPlayer.SetActive(true);
-        player.SetActive(false);
+        //player.SetActive(false);
         questPopUp.gameObject.SetActive(false);
         HUD.gameObject.SetActive(false);
         lumenIcon.gameObject.SetActive(false);
@@ -65,8 +65,8 @@ public class PrivoHouseCutScene : MonoBehaviour
     IEnumerator CinematicHouse()
     {
         
-        yield return new WaitForSecondsRealtime(35f);
-        player.SetActive(true);
+        yield return new WaitForSecondsRealtime(34f);
+        //player.SetActive(true);
         CinematicPlayer.SetActive(false);
         cineDelete = GameObject.FindGameObjectWithTag("CineStuff");
         Destroy(cineDelete);

@@ -42,6 +42,7 @@ public class Perception : MonoBehaviour
         {
             //Debug.Log("Perception is turned off");
         }
+        
     }
 
     public void OnTriggerStay(Collider other)

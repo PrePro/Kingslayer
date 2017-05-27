@@ -332,6 +332,10 @@ public class Main_Dialogue : MonoBehaviour
         if (movement.mController == Movement.Controller.Xbox_One_Controller)
         {
             Xbox_holder = 0;
+            if(mEndTalk)
+            {
+                return;
+            }
         }
 
         Debug.Log(buttonIndex);

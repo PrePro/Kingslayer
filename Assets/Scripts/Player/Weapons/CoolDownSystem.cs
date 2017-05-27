@@ -37,7 +37,8 @@ public class CoolDownSystem : MonoBehaviour
         ForwardLeft,
         ForwadRight,
         BackLeft,
-        BackRight
+        BackRight,
+        Controller
     }
 
     public enum PlayerState
@@ -132,6 +133,7 @@ public class CoolDownSystem : MonoBehaviour
     private PlayerStats stats;
     private Movement movement;
     bool InMyState;
+    private float time;
 
     [Header("Parry")]
     [Tooltip("Parry stuff")]
@@ -155,6 +157,7 @@ public class CoolDownSystem : MonoBehaviour
         reSheeth = true;
         unSheeth = false;
         myAnimator.SetBool("privoUnsheeth", unSheeth);
+        myAnimator.SetBool("privoResheeth", reSheeth);
         StartCoroutine(sheethDelay()); // Yash
     }
     void Start()
@@ -172,6 +175,36 @@ public class CoolDownSystem : MonoBehaviour
         movement = GetComponent<Movement>();
     }
 
+    void SwitchAnimators()
+    {
+        if(time >= 1.5f)
+        {
+            if (swordInHand.activeSelf)
+            {
+                currentAnimState = PlayerState.SwordInSheeth;
+                reSheeth = true;
+                unSheeth = false;
+                myAnimator.SetBool("privoUnsheeth", unSheeth);
+                myAnimator.SetBool("privoResheeth", reSheeth);
+                StartCoroutine(sheethDelay());
+
+            }
+            else
+            {
+                currentAnimState = PlayerState.SwordInHand;
+                myAnimator.avatar = AswordInHand;
+                unSheeth = true;
+                reSheeth = false;
+                myAnimator.SetBool("privoUnsheeth", unSheeth);
+                myAnimator.SetBool("privoResheeth", reSheeth);
+                swordInHand.SetActive(true);
+                swordInSheeth.SetActive(false);
+            }
+            time = 0;
+        }
+       
+    }
+
     IEnumerator Thing()
     {
         fake = true;
@@ -187,7 +220,7 @@ public class CoolDownSystem : MonoBehaviour
 
     void Update()
     {
-
+        time += Time.deltaTime;
         if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("PrivoAOE"))
         {
             //Debug.Log("AOE ANIM");
@@ -229,6 +262,7 @@ public class CoolDownSystem : MonoBehaviour
         {
             if (m_isAxisInUse == false)
             {
+                Debug.Log("DPAD");
                 // Call your event function here.
                 m_isAxisInUse = true;
             }
@@ -238,37 +272,22 @@ public class CoolDownSystem : MonoBehaviour
             m_isAxisInUse = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.R) || m_isAxisInUse == true)
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton2))
         {
-            //stats.TurnOnAbility(1);
-            if (swordInHand.activeSelf)
-            {
-                currentAnimState = PlayerState.SwordInSheeth;
-                reSheeth = true;
-                unSheeth = false;
-                myAnimator.SetBool("privoUnsheeth", unSheeth);
-                StartCoroutine(sheethDelay()); // Yash
+            Debug.Log("TSAD");
+            SwitchAnimators();
+        }
 
-            }
-            else
+        if(currentAnimState == PlayerState.SwordInHand)
+        {
+            if (Input.GetMouseButton(1) || Input.GetAxis("LeftTrigger") == 1)
             {
-                currentAnimState = PlayerState.SwordInHand;
-                myAnimator.avatar = AswordInHand;
-                unSheeth = true;
-                reSheeth = false;
-                myAnimator.SetBool("privoUnsheeth", unSheeth);
-                myAnimator.SetBool("privoResheeth", reSheeth);
-                swordInHand.SetActive(true);
-                swordInSheeth.SetActive(false);
+                Debug.Log("PARRY");
+
+                StartCoroutine(ParryDelay(parryWaitTime));
             }
         }
 
-
-        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.Joystick1Button4))
-        {
-            Debug.Log("PARRY");
-            StartCoroutine(ParryDelay(parryWaitTime));
-        }
         if (AoeExpand)
         {
 
@@ -282,10 +301,11 @@ public class CoolDownSystem : MonoBehaviour
     {
         if (canAttack == true)
         {
-            if (Input.GetKey(KeyCode.LeftControl) && currentDashState == DashState.NotDashing) // Sword [2]LeftBumper
+            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton5) && currentDashState == DashState.NotDashing) // Sword [2]LeftBumper
             {
                 if (skills[6].currentcooldown >= skills[6].cooldown)
                 {
+                    Debug.Log("Stab");
                     if (swordInHand.activeSelf)
                     {
                         //psSlash.Play();
@@ -303,9 +323,14 @@ public class CoolDownSystem : MonoBehaviour
             {
                 if (skills[0].currentcooldown >= skills[0].cooldown)
                 {
+                    Debug.Log("Dash");
+                    if(movement.mController == Movement.Controller.Xbox_One_Controller)
+                    {
+                        dashDirection = DashDirection.Controller;
+                    }
+
                     if (currentDashState == DashState.NotDashing)
                     {
-
                         if (Input.GetKey(KeyCode.W))// && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S)
                         {
                             dashDirection = DashDirection.Forward;
@@ -448,7 +473,7 @@ public class CoolDownSystem : MonoBehaviour
             if (skills[5].currentcooldown >= skills[5].cooldown && AoeIsAvailable == true) //Push Back AOE
 
             {
-                if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Joystick1Button2)) // AOE [5]
+                if (Input.GetKey(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4)) // AOE [5]
                 {
                     myAnimator.SetTrigger("privoAOE");
                     StartCoroutine(movement.StopMovement(1f));

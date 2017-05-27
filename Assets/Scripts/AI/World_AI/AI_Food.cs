@@ -42,7 +42,6 @@ public class AI_Food : AI_Base
         //Debug.Log(Vector3.Distance(this.transform.position, agent.destination));
         if (Vector3.Distance(transform.position, agent.destination) <= 3f)
         {
-            Debug.Log("Got home");
             StartCoroutine("Disable", 3f);
         }
     }

@@ -48,6 +48,7 @@ public class Main_Dialogue : MonoBehaviour
     private Movement movement;
     public int Xbox_holder;
     public bool Caller = false;
+    private bool axisInUse = false;
 
     void OnTriggerEnter(Collider col)
     {
@@ -136,31 +137,48 @@ public class Main_Dialogue : MonoBehaviour
             if (movement.mController == Movement.Controller.Xbox_One_Controller && dialog.gameObject.activeSelf)
             {
                 Debug.Log("Xbox Controller");
-                if (Input.GetAxisRaw("DpadV") == -1)
+                if (Input.GetAxisRaw("DpadV") == 0)
                 {
-                    if (Xbox_holder + 1 > 2)
+                    axisInUse = false;
+                }
+
+                    if (Input.GetAxisRaw("DpadV") == -1)
+                {
+                    if (axisInUse == false)
                     {
-                        return;
-                    }
-                    else
-                    {
-                        Xbox_holder += 1;
+                        axisInUse = true;
+                        if (Xbox_holder + 1 > 2)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            Xbox_holder += 1;
+                        }
                     }
                 }
                 if (Input.GetAxisRaw("DpadV") == 1)
                 {
-                    if (Xbox_holder - 1 < 0)
+                    if (axisInUse == false)
                     {
-                        return;
-                    }
-                    else
-                    {
-                        Xbox_holder -= 1;
+                        axisInUse = true;
+                        if (Xbox_holder - 1 < 0)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            Xbox_holder -= 1;
+                        }
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.JoystickButton0))
+                if (Input.GetKeyDown(KeyCode.JoystickButton1))
                 {
-                    ButtonClick(Xbox_holder);
+                    if(dialog.gameObject.activeSelf)
+                    {
+                        ButtonClick(Xbox_holder);
+                    }
+                    
                 }
             }
 

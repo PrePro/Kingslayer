@@ -274,7 +274,6 @@ public class CoolDownSystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton2))
         {
-            Debug.Log("TSAD");
             SwitchAnimators();
         }
 
@@ -309,7 +308,7 @@ public class CoolDownSystem : MonoBehaviour
                     if (swordInHand.activeSelf)
                     {
                         //psSlash.Play();
-                        myAnimator.SetTrigger("privoStab");
+                        myAnimator.SetTrigger("PrivoStab");
                     }
                     skills[6].currentcooldown = 0;
                 }

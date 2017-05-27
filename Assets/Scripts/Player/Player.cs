@@ -1,19 +1,27 @@
-﻿//======================================================================================================
-// Player.cs
-// Description: Singleton Player object, only one should exist in game
-// Place to store relevant data of player that can be accessed globally by any other object
-// Author: Reynald Brassard
-//======================================================================================================
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 
 public class Player : MonoBehaviour
 {
+    private PlayerStats stats;
+    void Awake()
+    {
+        stats = GetComponent<PlayerStats>();
+        if(stats == null)
+        {
+            Debug.Log("ASDA");
+        }
+    }
+    void Update()
+    {
+        isDead = stats.isDead;
+    }
 
     private Player() { }
 
     static Player instance;
+    static public bool isDead;
     static public Player Instance
     {
         get
@@ -30,5 +38,8 @@ public class Player : MonoBehaviour
     {
         get { return Instance.transform.position; }
     }
-
+    public static bool DeathState
+    {
+        get { return Instance.stats.isDead; }
+    }
 }

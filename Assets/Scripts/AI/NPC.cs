@@ -13,6 +13,7 @@ public class NPC : NPCBase
     public GameObject foundImage;
     public GameObject searchingImage;
     private bool playerDead;
+    public float KnockBackAOE;
 
     void Update()
     {
@@ -165,7 +166,7 @@ public class NPC : NPCBase
 
     IEnumerator PushBack(float waitTime, Vector3 dir)
     {
-        mRigidbody.AddForce(dir * 1000);
+        mRigidbody.AddForce(dir * KnockBackAOE);
         yield return new WaitForSeconds(waitTime);
         Debug.Log("Set back 0");
         mRigidbody.velocity = Vector3.zero;

@@ -16,7 +16,6 @@ public class NPC : NPCBase
 
     void Update()
     {
-        Debug.Log(playerDead);
         if (debuffState == Debuff.None)
         {
             if(dominantBehavior != Behavior.Passive)

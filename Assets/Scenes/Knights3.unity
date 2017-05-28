@@ -467,6 +467,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114635787318804704, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: skills.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4711483559800280, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
       propertyPath: m_LocalPosition.x
       value: 2.75
@@ -577,6 +582,26 @@ Prefab:
     - target: {fileID: 4031181874243884, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 312.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 114228113833122090, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: mController
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114635787318804704, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: skills.Array.data[6].name
+      value: AOE
+      objectReference: {fileID: 0}
+    - target: {fileID: 114635787318804704, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: skills.Array.data[6].cooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114635787318804704, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: skills.Array.data[6].currentcooldown
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}

@@ -307,8 +307,6 @@ public class CoolDownSystem : MonoBehaviour
                     Debug.Log("Stab");
                     if (swordInHand.activeSelf)
                     {
-                        //myAnimator.SetTrigger("privoStab");
-                        //psSlash.Play();
                         myAnimator.SetTrigger("privoStab");
                     }
                     skills[6].currentcooldown = 0;

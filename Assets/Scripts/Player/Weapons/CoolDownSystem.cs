@@ -307,7 +307,9 @@ public class CoolDownSystem : MonoBehaviour
                     Debug.Log("Stab");
                     if (swordInHand.activeSelf)
                     {
+                        swing = true;
                         myAnimator.SetTrigger("privoStab");
+
                     }
                     skills[6].currentcooldown = 0;
                 }
@@ -389,16 +391,20 @@ public class CoolDownSystem : MonoBehaviour
                     {
                         swing = true;
                         psSlash.Play();
-                        //Debug.Log("Slash in here/");
+                        //GameObject.Find("Player").GetComponent<Movement>().enabled = false;
+                       //Debug.Log("Slash in here/");
                         myAnimator.SetTrigger("privoSlash");
                         //audio.PlayOneShot(slash, 5F);
                     }
                     skills[2].currentcooldown = 0;
                 }
+                else
+                {
+                    //GameObject.Find("Player").GetComponent<Movement>().enabled = true;
+                }
 
             }
         }
-       
 
         //if (Input.GetButton("Fire1") && currentState == ProjectState.CanShoot)
         //{

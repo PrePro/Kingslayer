@@ -43,13 +43,13 @@ public class NPStats : UnitStats
     {
         if(Death == false)
         {
-            npc.SetAnimation(NPCBase.AnimationState.HitFlinch);
             StartCoroutine("TookDamage", 0.5f);
             currentHealth -= damage;
             hitSpark.Play();
             if(!HitAoe)
             {
-                //npc.SetAnimation(NPCBase.AnimationState.HitFlinch);
+                Debug.Log("Hit");
+                npc.SetAnimation(NPCBase.AnimationState.HitFlinch);
             }
             healthbar.gameObject.SetActive(true);
         }

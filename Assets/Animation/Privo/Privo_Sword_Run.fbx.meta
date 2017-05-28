@@ -1,0 +1,734 @@
+fileFormatVersion: 2
+guid: 35c91f9d2bb1bf64f881626335564521
+timeCreated: 1495927264
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ALL_GEO
+    100002: Body
+    100004: COGCTRL
+    100006: Head
+    100008: Head1
+    100010: HeadCTRL
+    100012: IK_Group
+    100014: ikHandle2
+    100016: ikHandle2 1
+    100018: ikHandle3
+    100020: ikHandle3 1
+    100022: ikHandle4
+    100024: ikHandle4 1
+    100026: L_BallCTRL
+    100028: L_ClavicleCTRL
+    100030: L_ElbowCTRL
+    100032: L_FootCTRL
+    100034: L_HeelCTRL
+    100036: L_IKGroup
+    100038: L_Index1CTRL
+    100040: L_Index2CTRL
+    100042: L_Index3CTRL
+    100044: L_KneeCTRL
+    100046: L_Middle1CTRL
+    100048: L_Middle2CTRL
+    100050: L_Middle3CTRL
+    100052: L_Pinky1CTRL
+    100054: L_Pinky2CTRL
+    100056: L_Pinky3CTRL
+    100058: L_Point1CTRL
+    100060: L_Point2CTRL
+    100062: L_Point3CTRL
+    100064: L_ShoulderCTRL
+    100066: L_Thumb1CTRL
+    100068: L_Thumb1CTRLGRP
+    100070: L_Thumb2CTRL
+    100072: L_Thumb2CTRLGRP
+    100074: L_Thumb3CTRL
+    100076: L_Thumb3CTRLGRP
+    100078: L_ToeCTRL
+    100080: L_WristCTRL
+    100082: Main_CTRL
+    100084: NeckCTRL
+    100086: //RootNode
+    100088: Privo_Rig_SwordInHand:HeadendJNT
+    100090: Privo_Rig_SwordInHand:HeadJNT
+    100092: Privo_Rig_SwordInHand:L_AnkleJNT
+    100094: Privo_Rig_SwordInHand:L_BallJNT
+    100096: Privo_Rig_SwordInHand:L_ClavicleJNT
+    100098: Privo_Rig_SwordInHand:L_ElbowJNT
+    100100: Privo_Rig_SwordInHand:L_EyeJNT
+    100102: Privo_Rig_SwordInHand:L_HipJNT
+    100104: Privo_Rig_SwordInHand:L_Index1JNT
+    100106: Privo_Rig_SwordInHand:L_Index2JNT
+    100108: Privo_Rig_SwordInHand:L_Index3JNT
+    100110: Privo_Rig_SwordInHand:L_IndexendJNT
+    100112: Privo_Rig_SwordInHand:L_KneeJNT
+    100114: Privo_Rig_SwordInHand:L_Middle1JNT
+    100116: Privo_Rig_SwordInHand:L_Middle2JNT
+    100118: Privo_Rig_SwordInHand:L_Middle3JNT
+    100120: Privo_Rig_SwordInHand:L_MiddleendJNT
+    100122: Privo_Rig_SwordInHand:L_Pinky1JNT
+    100124: Privo_Rig_SwordInHand:L_Pinky2JNT
+    100126: Privo_Rig_SwordInHand:L_Pinky3JNT
+    100128: Privo_Rig_SwordInHand:L_PinkyendJNT
+    100130: Privo_Rig_SwordInHand:L_Point1JNT
+    100132: Privo_Rig_SwordInHand:L_Point2JNT
+    100134: Privo_Rig_SwordInHand:L_Point3JNT
+    100136: Privo_Rig_SwordInHand:L_PointendJNT
+    100138: Privo_Rig_SwordInHand:L_ShoulderJNT
+    100140: Privo_Rig_SwordInHand:L_Thumb1JNT
+    100142: Privo_Rig_SwordInHand:L_Thumb2JNT
+    100144: Privo_Rig_SwordInHand:L_Thumb3JNT
+    100146: Privo_Rig_SwordInHand:L_ThumbendJNT
+    100148: Privo_Rig_SwordInHand:L_ToeJNT
+    100150: Privo_Rig_SwordInHand:L_TwistJNT
+    100152: Privo_Rig_SwordInHand:L_WristJNT
+    100154: Privo_Rig_SwordInHand:NeckJNT
+    100156: Privo_Rig_SwordInHand:R_AnkleJNT
+    100158: Privo_Rig_SwordInHand:R_BallJNT
+    100160: Privo_Rig_SwordInHand:R_ClavicleJNT
+    100162: Privo_Rig_SwordInHand:R_ElbowJNT
+    100164: Privo_Rig_SwordInHand:R_EyeJNT
+    100166: Privo_Rig_SwordInHand:R_HipJNT
+    100168: Privo_Rig_SwordInHand:R_Index1JNT
+    100170: Privo_Rig_SwordInHand:R_Index2JNT
+    100172: Privo_Rig_SwordInHand:R_Index3JNT
+    100174: Privo_Rig_SwordInHand:R_IndexendJNT
+    100176: Privo_Rig_SwordInHand:R_KneeJNT
+    100178: Privo_Rig_SwordInHand:R_Middle1JNT
+    100180: Privo_Rig_SwordInHand:R_Middle2JNT
+    100182: Privo_Rig_SwordInHand:R_Middle3JNT
+    100184: Privo_Rig_SwordInHand:R_MiddleendJNT
+    100186: Privo_Rig_SwordInHand:R_Pinky1JNT
+    100188: Privo_Rig_SwordInHand:R_Pinky2JNT
+    100190: Privo_Rig_SwordInHand:R_Pinky3JNT
+    100192: Privo_Rig_SwordInHand:R_PinkyendJNT
+    100194: Privo_Rig_SwordInHand:R_Point1JNT
+    100196: Privo_Rig_SwordInHand:R_Point2JNT
+    100198: Privo_Rig_SwordInHand:R_Point3JNT
+    100200: Privo_Rig_SwordInHand:R_PointendJNT
+    100202: Privo_Rig_SwordInHand:R_ShoulderJNT
+    100204: Privo_Rig_SwordInHand:R_Thumb1JNT
+    100206: Privo_Rig_SwordInHand:R_Thumb2JNT
+    100208: Privo_Rig_SwordInHand:R_Thumb3JNT
+    100210: Privo_Rig_SwordInHand:R_ThumbendJNT
+    100212: Privo_Rig_SwordInHand:R_ToeJNT
+    100214: Privo_Rig_SwordInHand:R_TwistJNT
+    100216: Privo_Rig_SwordInHand:R_WristJNT
+    100218: Privo_Rig_SwordInHand:RootJNT
+    100220: Privo_Rig_SwordInHand:Shieth1JNT
+    100222: Privo_Rig_SwordInHand:Shieth2JNT
+    100224: Privo_Rig_SwordInHand:Spine1JNT
+    100226: Privo_Rig_SwordInHand:Spine2JNT
+    100228: Privo_Rig_SwordInHand:Spine3JNT
+    100230: Privo_Rig_SwordInHand:SwardMiddleJNT
+    100232: Privo_Rig_SwordInHand:SwordEndJNT
+    100234: Privo_Rig_SwordInHand:SwordStartJNT
+    100236: R_BallCTRL
+    100238: R_ClavicleCTRL
+    100240: R_ElbowCTRL
+    100242: R_FootCTRL
+    100244: R_HeelCTRL
+    100246: R_Index1CTRL
+    100248: R_Index2CTRL
+    100250: R_Index3CTRL
+    100252: R_KneeCTRL
+    100254: R_Middle1CTRL
+    100256: R_Middle2CTRL
+    100258: R_Middle3CTRL
+    100260: R_Pinky1CTRL
+    100262: R_Pinky2CTRL
+    100264: R_Pinky3CTRL
+    100266: R_Point1CTRL
+    100268: R_Point2CTRL
+    100270: R_Point3CTRL
+    100272: R_ShoulderCTRL
+    100274: R_Thumb1CTRL
+    100276: R_Thumb1CTRLGRP
+    100278: R_Thumb2CTRL
+    100280: R_Thumb2CTRLGRP
+    100282: R_Thumb3CTRL
+    100284: R_Thumb3CTRLGRP
+    100286: R_ToeCTRL
+    100288: R_WristCTRL
+    100290: Shieth1CTRL
+    100292: Shieth2CTRL
+    100294: Spine1CTRL
+    100296: Spine2CTRL
+    100298: Spine3CTRL
+    100300: Sword1
+    100302: Sword_BladeCTRL
+    100304: sword_holder
+    100306: Sword_MainCTRL
+    100308: Sword_MiddleCTRL
+    400000: ALL_GEO
+    400002: Body
+    400004: COGCTRL
+    400006: Head
+    400008: Head1
+    400010: HeadCTRL
+    400012: IK_Group
+    400014: ikHandle2
+    400016: ikHandle2 1
+    400018: ikHandle3
+    400020: ikHandle3 1
+    400022: ikHandle4
+    400024: ikHandle4 1
+    400026: L_BallCTRL
+    400028: L_ClavicleCTRL
+    400030: L_ElbowCTRL
+    400032: L_FootCTRL
+    400034: L_HeelCTRL
+    400036: L_IKGroup
+    400038: L_Index1CTRL
+    400040: L_Index2CTRL
+    400042: L_Index3CTRL
+    400044: L_KneeCTRL
+    400046: L_Middle1CTRL
+    400048: L_Middle2CTRL
+    400050: L_Middle3CTRL
+    400052: L_Pinky1CTRL
+    400054: L_Pinky2CTRL
+    400056: L_Pinky3CTRL
+    400058: L_Point1CTRL
+    400060: L_Point2CTRL
+    400062: L_Point3CTRL
+    400064: L_ShoulderCTRL
+    400066: L_Thumb1CTRL
+    400068: L_Thumb1CTRLGRP
+    400070: L_Thumb2CTRL
+    400072: L_Thumb2CTRLGRP
+    400074: L_Thumb3CTRL
+    400076: L_Thumb3CTRLGRP
+    400078: L_ToeCTRL
+    400080: L_WristCTRL
+    400082: Main_CTRL
+    400084: NeckCTRL
+    400086: //RootNode
+    400088: Privo_Rig_SwordInHand:HeadendJNT
+    400090: Privo_Rig_SwordInHand:HeadJNT
+    400092: Privo_Rig_SwordInHand:L_AnkleJNT
+    400094: Privo_Rig_SwordInHand:L_BallJNT
+    400096: Privo_Rig_SwordInHand:L_ClavicleJNT
+    400098: Privo_Rig_SwordInHand:L_ElbowJNT
+    400100: Privo_Rig_SwordInHand:L_EyeJNT
+    400102: Privo_Rig_SwordInHand:L_HipJNT
+    400104: Privo_Rig_SwordInHand:L_Index1JNT
+    400106: Privo_Rig_SwordInHand:L_Index2JNT
+    400108: Privo_Rig_SwordInHand:L_Index3JNT
+    400110: Privo_Rig_SwordInHand:L_IndexendJNT
+    400112: Privo_Rig_SwordInHand:L_KneeJNT
+    400114: Privo_Rig_SwordInHand:L_Middle1JNT
+    400116: Privo_Rig_SwordInHand:L_Middle2JNT
+    400118: Privo_Rig_SwordInHand:L_Middle3JNT
+    400120: Privo_Rig_SwordInHand:L_MiddleendJNT
+    400122: Privo_Rig_SwordInHand:L_Pinky1JNT
+    400124: Privo_Rig_SwordInHand:L_Pinky2JNT
+    400126: Privo_Rig_SwordInHand:L_Pinky3JNT
+    400128: Privo_Rig_SwordInHand:L_PinkyendJNT
+    400130: Privo_Rig_SwordInHand:L_Point1JNT
+    400132: Privo_Rig_SwordInHand:L_Point2JNT
+    400134: Privo_Rig_SwordInHand:L_Point3JNT
+    400136: Privo_Rig_SwordInHand:L_PointendJNT
+    400138: Privo_Rig_SwordInHand:L_ShoulderJNT
+    400140: Privo_Rig_SwordInHand:L_Thumb1JNT
+    400142: Privo_Rig_SwordInHand:L_Thumb2JNT
+    400144: Privo_Rig_SwordInHand:L_Thumb3JNT
+    400146: Privo_Rig_SwordInHand:L_ThumbendJNT
+    400148: Privo_Rig_SwordInHand:L_ToeJNT
+    400150: Privo_Rig_SwordInHand:L_TwistJNT
+    400152: Privo_Rig_SwordInHand:L_WristJNT
+    400154: Privo_Rig_SwordInHand:NeckJNT
+    400156: Privo_Rig_SwordInHand:R_AnkleJNT
+    400158: Privo_Rig_SwordInHand:R_BallJNT
+    400160: Privo_Rig_SwordInHand:R_ClavicleJNT
+    400162: Privo_Rig_SwordInHand:R_ElbowJNT
+    400164: Privo_Rig_SwordInHand:R_EyeJNT
+    400166: Privo_Rig_SwordInHand:R_HipJNT
+    400168: Privo_Rig_SwordInHand:R_Index1JNT
+    400170: Privo_Rig_SwordInHand:R_Index2JNT
+    400172: Privo_Rig_SwordInHand:R_Index3JNT
+    400174: Privo_Rig_SwordInHand:R_IndexendJNT
+    400176: Privo_Rig_SwordInHand:R_KneeJNT
+    400178: Privo_Rig_SwordInHand:R_Middle1JNT
+    400180: Privo_Rig_SwordInHand:R_Middle2JNT
+    400182: Privo_Rig_SwordInHand:R_Middle3JNT
+    400184: Privo_Rig_SwordInHand:R_MiddleendJNT
+    400186: Privo_Rig_SwordInHand:R_Pinky1JNT
+    400188: Privo_Rig_SwordInHand:R_Pinky2JNT
+    400190: Privo_Rig_SwordInHand:R_Pinky3JNT
+    400192: Privo_Rig_SwordInHand:R_PinkyendJNT
+    400194: Privo_Rig_SwordInHand:R_Point1JNT
+    400196: Privo_Rig_SwordInHand:R_Point2JNT
+    400198: Privo_Rig_SwordInHand:R_Point3JNT
+    400200: Privo_Rig_SwordInHand:R_PointendJNT
+    400202: Privo_Rig_SwordInHand:R_ShoulderJNT
+    400204: Privo_Rig_SwordInHand:R_Thumb1JNT
+    400206: Privo_Rig_SwordInHand:R_Thumb2JNT
+    400208: Privo_Rig_SwordInHand:R_Thumb3JNT
+    400210: Privo_Rig_SwordInHand:R_ThumbendJNT
+    400212: Privo_Rig_SwordInHand:R_ToeJNT
+    400214: Privo_Rig_SwordInHand:R_TwistJNT
+    400216: Privo_Rig_SwordInHand:R_WristJNT
+    400218: Privo_Rig_SwordInHand:RootJNT
+    400220: Privo_Rig_SwordInHand:Shieth1JNT
+    400222: Privo_Rig_SwordInHand:Shieth2JNT
+    400224: Privo_Rig_SwordInHand:Spine1JNT
+    400226: Privo_Rig_SwordInHand:Spine2JNT
+    400228: Privo_Rig_SwordInHand:Spine3JNT
+    400230: Privo_Rig_SwordInHand:SwardMiddleJNT
+    400232: Privo_Rig_SwordInHand:SwordEndJNT
+    400234: Privo_Rig_SwordInHand:SwordStartJNT
+    400236: R_BallCTRL
+    400238: R_ClavicleCTRL
+    400240: R_ElbowCTRL
+    400242: R_FootCTRL
+    400244: R_HeelCTRL
+    400246: R_Index1CTRL
+    400248: R_Index2CTRL
+    400250: R_Index3CTRL
+    400252: R_KneeCTRL
+    400254: R_Middle1CTRL
+    400256: R_Middle2CTRL
+    400258: R_Middle3CTRL
+    400260: R_Pinky1CTRL
+    400262: R_Pinky2CTRL
+    400264: R_Pinky3CTRL
+    400266: R_Point1CTRL
+    400268: R_Point2CTRL
+    400270: R_Point3CTRL
+    400272: R_ShoulderCTRL
+    400274: R_Thumb1CTRL
+    400276: R_Thumb1CTRLGRP
+    400278: R_Thumb2CTRL
+    400280: R_Thumb2CTRLGRP
+    400282: R_Thumb3CTRL
+    400284: R_Thumb3CTRLGRP
+    400286: R_ToeCTRL
+    400288: R_WristCTRL
+    400290: Shieth1CTRL
+    400292: Shieth2CTRL
+    400294: Spine1CTRL
+    400296: Spine2CTRL
+    400298: Spine3CTRL
+    400300: Sword1
+    400302: Sword_BladeCTRL
+    400304: sword_holder
+    400306: Sword_MainCTRL
+    400308: Sword_MiddleCTRL
+    4300000: Sword1
+    4300002: sword_holder
+    4300004: Head1
+    7400000: Privo_Sword_Run
+    9500000: //RootNode
+    13700000: Head1
+    13700002: Sword1
+    13700004: sword_holder
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Privo_Sword_Run
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 18
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ALL_GEO
+        weight: 1
+      - path: ALL_GEO/Body
+        weight: 1
+      - path: ALL_GEO/Body/Head
+        weight: 1
+      - path: ALL_GEO/Sword1
+        weight: 1
+      - path: Head1
+        weight: 1
+      - path: IK_Group
+        weight: 1
+      - path: IK_Group/L_IKGroup
+        weight: 1
+      - path: IK_Group/L_IKGroup/ikHandle2 1
+        weight: 1
+      - path: IK_Group/L_IKGroup/ikHandle3 1
+        weight: 1
+      - path: IK_Group/L_IKGroup/ikHandle4 1
+        weight: 1
+      - path: ikHandle2
+        weight: 1
+      - path: ikHandle3
+        weight: 1
+      - path: ikHandle4
+        weight: 1
+      - path: Main_CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Index1CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Index1CTRL/L_Index2CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Index1CTRL/L_Index2CTRL/L_Index3CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Middle1CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Middle1CTRL/L_Middle2CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Middle1CTRL/L_Middle2CTRL/L_Middle3CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Pinky1CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Pinky1CTRL/L_Pinky2CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Pinky1CTRL/L_Pinky2CTRL/L_Pinky3CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Point1CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Point1CTRL/L_Point2CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Point1CTRL/L_Point2CTRL/L_Point3CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Thumb1CTRLGRP
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Thumb1CTRLGRP/L_Thumb1CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Thumb1CTRLGRP/L_Thumb1CTRL/L_Thumb2CTRLGRP
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Thumb1CTRLGRP/L_Thumb1CTRL/L_Thumb2CTRLGRP/L_Thumb2CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Thumb1CTRLGRP/L_Thumb1CTRL/L_Thumb2CTRLGRP/L_Thumb2CTRL/L_Thumb3CTRLGRP
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/L_ClavicleCTRL/L_ShoulderCTRL/L_ElbowCTRL/L_WristCTRL/L_Thumb1CTRLGRP/L_Thumb1CTRL/L_Thumb2CTRLGRP/L_Thumb2CTRL/L_Thumb3CTRLGRP/L_Thumb3CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/NeckCTRL/HeadCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Index1CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Index1CTRL/R_Index2CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Index1CTRL/R_Index2CTRL/R_Index3CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Middle1CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Middle1CTRL/R_Middle2CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Middle1CTRL/R_Middle2CTRL/R_Middle3CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Pinky1CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Pinky1CTRL/R_Pinky2CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Pinky1CTRL/R_Pinky2CTRL/R_Pinky3CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Point1CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Point1CTRL/R_Point2CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Point1CTRL/R_Point2CTRL/R_Point3CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Thumb1CTRLGRP
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Thumb1CTRLGRP/R_Thumb1CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Thumb1CTRLGRP/R_Thumb1CTRL/R_Thumb2CTRLGRP
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Thumb1CTRLGRP/R_Thumb1CTRL/R_Thumb2CTRLGRP/R_Thumb2CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Thumb1CTRLGRP/R_Thumb1CTRL/R_Thumb2CTRLGRP/R_Thumb2CTRL/R_Thumb3CTRLGRP
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/R_Thumb1CTRLGRP/R_Thumb1CTRL/R_Thumb2CTRLGRP/R_Thumb2CTRL/R_Thumb3CTRLGRP/R_Thumb3CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/Sword_MainCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/Sword_MainCTRL/Sword_MiddleCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/R_ClavicleCTRL/R_ShoulderCTRL/R_ElbowCTRL/R_WristCTRL/Sword_MainCTRL/Sword_MiddleCTRL/Sword_BladeCTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/Shieth1CTRL
+        weight: 1
+      - path: Main_CTRL/COGCTRL/Spine1CTRL/Spine2CTRL/Spine3CTRL/Shieth1CTRL/Shieth2CTRL
+        weight: 1
+      - path: Main_CTRL/L_FootCTRL
+        weight: 1
+      - path: Main_CTRL/L_FootCTRL/L_ToeCTRL
+        weight: 1
+      - path: Main_CTRL/L_FootCTRL/L_ToeCTRL/L_BallCTRL
+        weight: 1
+      - path: Main_CTRL/L_FootCTRL/L_ToeCTRL/L_BallCTRL/L_HeelCTRL
+        weight: 1
+      - path: Main_CTRL/L_KneeCTRL
+        weight: 1
+      - path: Main_CTRL/R_FootCTRL
+        weight: 1
+      - path: Main_CTRL/R_FootCTRL/R_ToeCTRL
+        weight: 1
+      - path: Main_CTRL/R_FootCTRL/R_ToeCTRL/R_BallCTRL
+        weight: 1
+      - path: Main_CTRL/R_FootCTRL/R_ToeCTRL/R_BallCTRL/R_HeelCTRL
+        weight: 1
+      - path: Main_CTRL/R_KneeCTRL
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:L_HipJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:L_HipJNT/Privo_Rig_SwordInHand:L_KneeJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:L_HipJNT/Privo_Rig_SwordInHand:L_KneeJNT/Privo_Rig_SwordInHand:L_AnkleJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:L_HipJNT/Privo_Rig_SwordInHand:L_KneeJNT/Privo_Rig_SwordInHand:L_AnkleJNT/Privo_Rig_SwordInHand:L_BallJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:L_HipJNT/Privo_Rig_SwordInHand:L_KneeJNT/Privo_Rig_SwordInHand:L_AnkleJNT/Privo_Rig_SwordInHand:L_BallJNT/Privo_Rig_SwordInHand:L_ToeJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:R_HipJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:R_HipJNT/Privo_Rig_SwordInHand:R_KneeJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:R_HipJNT/Privo_Rig_SwordInHand:R_KneeJNT/Privo_Rig_SwordInHand:R_AnkleJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:R_HipJNT/Privo_Rig_SwordInHand:R_KneeJNT/Privo_Rig_SwordInHand:R_AnkleJNT/Privo_Rig_SwordInHand:R_BallJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:R_HipJNT/Privo_Rig_SwordInHand:R_KneeJNT/Privo_Rig_SwordInHand:R_AnkleJNT/Privo_Rig_SwordInHand:R_BallJNT/Privo_Rig_SwordInHand:R_ToeJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_TwistJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Index1JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Index1JNT/Privo_Rig_SwordInHand:L_Index2JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Index1JNT/Privo_Rig_SwordInHand:L_Index2JNT/Privo_Rig_SwordInHand:L_Index3JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Index1JNT/Privo_Rig_SwordInHand:L_Index2JNT/Privo_Rig_SwordInHand:L_Index3JNT/Privo_Rig_SwordInHand:L_IndexendJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Middle1JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Middle1JNT/Privo_Rig_SwordInHand:L_Middle2JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Middle1JNT/Privo_Rig_SwordInHand:L_Middle2JNT/Privo_Rig_SwordInHand:L_Middle3JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Middle1JNT/Privo_Rig_SwordInHand:L_Middle2JNT/Privo_Rig_SwordInHand:L_Middle3JNT/Privo_Rig_SwordInHand:L_MiddleendJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Pinky1JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Pinky1JNT/Privo_Rig_SwordInHand:L_Pinky2JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Pinky1JNT/Privo_Rig_SwordInHand:L_Pinky2JNT/Privo_Rig_SwordInHand:L_Pinky3JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Pinky1JNT/Privo_Rig_SwordInHand:L_Pinky2JNT/Privo_Rig_SwordInHand:L_Pinky3JNT/Privo_Rig_SwordInHand:L_PinkyendJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Point1JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Point1JNT/Privo_Rig_SwordInHand:L_Point2JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Point1JNT/Privo_Rig_SwordInHand:L_Point2JNT/Privo_Rig_SwordInHand:L_Point3JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Point1JNT/Privo_Rig_SwordInHand:L_Point2JNT/Privo_Rig_SwordInHand:L_Point3JNT/Privo_Rig_SwordInHand:L_PointendJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Thumb1JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Thumb1JNT/Privo_Rig_SwordInHand:L_Thumb2JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Thumb1JNT/Privo_Rig_SwordInHand:L_Thumb2JNT/Privo_Rig_SwordInHand:L_Thumb3JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:L_ClavicleJNT/Privo_Rig_SwordInHand:L_ShoulderJNT/Privo_Rig_SwordInHand:L_ElbowJNT/Privo_Rig_SwordInHand:L_WristJNT/Privo_Rig_SwordInHand:L_Thumb1JNT/Privo_Rig_SwordInHand:L_Thumb2JNT/Privo_Rig_SwordInHand:L_Thumb3JNT/Privo_Rig_SwordInHand:L_ThumbendJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:NeckJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:NeckJNT/Privo_Rig_SwordInHand:HeadJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:NeckJNT/Privo_Rig_SwordInHand:HeadJNT/Privo_Rig_SwordInHand:HeadendJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:NeckJNT/Privo_Rig_SwordInHand:HeadJNT/Privo_Rig_SwordInHand:L_EyeJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:NeckJNT/Privo_Rig_SwordInHand:HeadJNT/Privo_Rig_SwordInHand:R_EyeJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_TwistJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Index1JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Index1JNT/Privo_Rig_SwordInHand:R_Index2JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Index1JNT/Privo_Rig_SwordInHand:R_Index2JNT/Privo_Rig_SwordInHand:R_Index3JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Index1JNT/Privo_Rig_SwordInHand:R_Index2JNT/Privo_Rig_SwordInHand:R_Index3JNT/Privo_Rig_SwordInHand:R_IndexendJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Middle1JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Middle1JNT/Privo_Rig_SwordInHand:R_Middle2JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Middle1JNT/Privo_Rig_SwordInHand:R_Middle2JNT/Privo_Rig_SwordInHand:R_Middle3JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Middle1JNT/Privo_Rig_SwordInHand:R_Middle2JNT/Privo_Rig_SwordInHand:R_Middle3JNT/Privo_Rig_SwordInHand:R_MiddleendJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Pinky1JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Pinky1JNT/Privo_Rig_SwordInHand:R_Pinky2JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Pinky1JNT/Privo_Rig_SwordInHand:R_Pinky2JNT/Privo_Rig_SwordInHand:R_Pinky3JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Pinky1JNT/Privo_Rig_SwordInHand:R_Pinky2JNT/Privo_Rig_SwordInHand:R_Pinky3JNT/Privo_Rig_SwordInHand:R_PinkyendJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Point1JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Point1JNT/Privo_Rig_SwordInHand:R_Point2JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Point1JNT/Privo_Rig_SwordInHand:R_Point2JNT/Privo_Rig_SwordInHand:R_Point3JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Point1JNT/Privo_Rig_SwordInHand:R_Point2JNT/Privo_Rig_SwordInHand:R_Point3JNT/Privo_Rig_SwordInHand:R_PointendJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Thumb1JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Thumb1JNT/Privo_Rig_SwordInHand:R_Thumb2JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Thumb1JNT/Privo_Rig_SwordInHand:R_Thumb2JNT/Privo_Rig_SwordInHand:R_Thumb3JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:R_Thumb1JNT/Privo_Rig_SwordInHand:R_Thumb2JNT/Privo_Rig_SwordInHand:R_Thumb3JNT/Privo_Rig_SwordInHand:R_ThumbendJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:SwordStartJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:SwordStartJNT/Privo_Rig_SwordInHand:SwardMiddleJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:R_ClavicleJNT/Privo_Rig_SwordInHand:R_ShoulderJNT/Privo_Rig_SwordInHand:R_ElbowJNT/Privo_Rig_SwordInHand:R_WristJNT/Privo_Rig_SwordInHand:SwordStartJNT/Privo_Rig_SwordInHand:SwardMiddleJNT/Privo_Rig_SwordInHand:SwordEndJNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:Shieth1JNT
+        weight: 1
+      - path: Privo_Rig_SwordInHand:RootJNT/Privo_Rig_SwordInHand:Spine1JNT/Privo_Rig_SwordInHand:Spine2JNT/Privo_Rig_SwordInHand:Spine3JNT/Privo_Rig_SwordInHand:Shieth1JNT/Privo_Rig_SwordInHand:Shieth2JNT
+        weight: 1
+      - path: sword_holder
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 82c0d58dd3619e2408a5ba14c51e7604,
+    type: 3}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

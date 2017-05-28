@@ -13,6 +13,7 @@ public class NPC : NPCBase
     public GameObject foundImage;
     public GameObject searchingImage;
     private bool playerDead;
+    public float KnockBackAOE;
 
     void Update()
     {
@@ -164,7 +165,7 @@ public class NPC : NPCBase
 
     IEnumerator PushBack(float waitTime, Vector3 dir)
     {
-        mRigidbody.AddForce(dir * 1000);
+        mRigidbody.AddForce(dir * KnockBackAOE);
         yield return new WaitForSeconds(waitTime);
         Debug.Log("Set back 0");
         mRigidbody.velocity = Vector3.zero;
@@ -370,7 +371,7 @@ public class NPC : NPCBase
         AnimationState currAnim = (AnimationState)animator.GetInteger("AnimationState");
         if (currentAnimation == AnimationState.Attacking && currAnim == AnimationState.Attacking) //|| currAnim == AnimationState.Attack1 || currAnim == AnimationState.Attack2 || currAnim == AnimationState.Attack3
         {
-            Debug.Log("Fkc");
+            
             animator.SetInteger("AnimationState", 0);
             //animator.SetInteger("AnimationState", (int)currentAnimation);
         }

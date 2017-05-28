@@ -307,6 +307,7 @@ public class CoolDownSystem : MonoBehaviour
                     Debug.Log("Stab");
                     if (swordInHand.activeSelf)
                     {
+                        //myAnimator.SetTrigger("privoStab");
                         //psSlash.Play();
                         myAnimator.SetTrigger("privoStab");
                     }
@@ -323,7 +324,8 @@ public class CoolDownSystem : MonoBehaviour
                 if (skills[0].currentcooldown >= skills[0].cooldown)
                 {
                     Debug.Log("Dash");
-                    if(movement.mController == Movement.Controller.Xbox_One_Controller)
+                    //myAnimator.SetBool("privoDash", true);
+                    if (movement.mController == Movement.Controller.Xbox_One_Controller)
                     {
                         dashDirection = DashDirection.Controller;
                     }

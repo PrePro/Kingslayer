@@ -156,7 +156,7 @@ public class AI_KnightAttack : AI_BaseAttack
             }
             else
             {
-                npc.SetAnimation(NPCBase.AnimationState.Idle);
+                npc.SetAnimation(NPCBase.AnimationState.Walking);
             }
 
         }

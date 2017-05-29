@@ -208,6 +208,7 @@ public abstract class NPCBase : MonoBehaviour
             case Behavior.PatrolDefencive:
                 {
                     SetState(State.Patrolling);
+                    animator.SetInteger("AnimationState", (int)AnimationState.Walking);
                 }
                 break;
             case Behavior.IdleAggressive:
@@ -219,6 +220,7 @@ public abstract class NPCBase : MonoBehaviour
             case Behavior.PatrolAggressive:
                 {
                     SetState(State.Patrolling);
+                    animator.SetInteger("AnimationState", (int)AnimationState.Walking);
                 }
                 break;
             case Behavior.Passive:

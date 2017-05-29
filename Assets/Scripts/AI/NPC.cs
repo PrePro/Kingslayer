@@ -53,15 +53,10 @@ public class NPC : NPCBase
         {
             case State.Idle:
                 {
-
                     agent.isStopped = true;
-
                     SetAnimation(AnimationState.Idle);
-
                     foundImage.SetActive(false);//put a yellow one. For Yash.
                     searchingImage.SetActive(false);
-
-
                 }
                 break;
             case State.Attacking:
@@ -89,8 +84,10 @@ public class NPC : NPCBase
                 break;
             case State.Chasing:
                 {
+                    SetAnimation(AnimationState.Walking);
                     if (unitClass != UnitClass.Archer)
                     {
+                        Debug.Log("Wtf");
                         SetAnimation(AnimationState.Walking);
                         agent.isStopped = false;
                         agent.destination = currentTarget.position;
@@ -102,6 +99,7 @@ public class NPC : NPCBase
             case State.Patrolling:
                 {
                     Patroler.Enter();
+                    SetAnimation(AnimationState.Walking);
                 }
                 break;
             case State.Searching:
@@ -284,6 +282,7 @@ public class NPC : NPCBase
                         case UnitClass.Knight:
                             {
                                 ChaseTarget(KnightAttack.attackRange);
+
                             }
                             break;
                         case UnitClass.Archer:
@@ -372,7 +371,7 @@ public class NPC : NPCBase
         if (currentAnimation == AnimationState.Attacking && currAnim == AnimationState.Attacking) //|| currAnim == AnimationState.Attack1 || currAnim == AnimationState.Attack2 || currAnim == AnimationState.Attack3
         {
             
-            animator.SetInteger("AnimationState", 0);
+            //animator.SetInteger("AnimationState", 0);
             //animator.SetInteger("AnimationState", (int)currentAnimation);
         }
 

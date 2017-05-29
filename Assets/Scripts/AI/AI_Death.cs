@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AI_Death : AI_BaseAttack
 {
@@ -12,6 +13,7 @@ public class AI_Death : AI_BaseAttack
     public float DeathTimer;
     [Tooltip("How much morality the player gets for letting the npc live\nShould be positive")]
     public int MoralityForSaving;
+    public Image executeBar;
     public GameObject executeIcon;
 
     bool mDeath;
@@ -34,11 +36,18 @@ public class AI_Death : AI_BaseAttack
 
     IEnumerator Death(float time)
     {
-        yield return new WaitForSeconds(time);
-
+        while (time > 0)
+        {
+            executeBar.fillAmount = time / DeathTimer;
+            time -= .1f;
+            //Debug.Log(time);
+            yield return new WaitForSeconds(.1f);
+        }
+        executeIcon.gameObject.SetActive(false);
         PlayerStats stats = GameObject.Find("Player").GetComponent<PlayerStats>();
         stats.Morality += MoralityForSaving;
         mDeath = true;
+
     }
 
     public void Death()

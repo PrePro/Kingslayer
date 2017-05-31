@@ -87,7 +87,6 @@ public class NPC : NPCBase
                     SetAnimation(AnimationState.Walking);
                     if (unitClass != UnitClass.Archer)
                     {
-                        Debug.Log("Wtf");
                         SetAnimation(AnimationState.Walking);
                         agent.isStopped = false;
                         agent.destination = currentTarget.position;

@@ -307,6 +307,7 @@ public class CoolDownSystem : MonoBehaviour
                     Debug.Log("Stab");
                     if (swordInHand.activeSelf)
                     {
+                        StartCoroutine(movement.StopMovement(.5f));
                         swing = true;
                         myAnimator.SetTrigger("privoStab");
 
@@ -392,7 +393,8 @@ public class CoolDownSystem : MonoBehaviour
                         swing = true;
                         psSlash.Play();
                         //GameObject.Find("Player").GetComponent<Movement>().enabled = false;
-                       //Debug.Log("Slash in here/");
+                        //Debug.Log("Slash in here/");
+                        //StartCoroutine(movement.StopMovement(.3f));
                         myAnimator.SetTrigger("privoSlash");
                         //audio.PlayOneShot(slash, 5F);
                     }
@@ -481,7 +483,7 @@ public class CoolDownSystem : MonoBehaviour
                 if (Input.GetKey(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4)) // AOE [5]
                 {
                     myAnimator.SetTrigger("privoAOE");
-                    StartCoroutine(movement.StopMovement(1f));
+                    //StartCoroutine(movement.StopMovement(.6f));
 
                     StartCoroutine("AOEWait", aoewaitTime);
 

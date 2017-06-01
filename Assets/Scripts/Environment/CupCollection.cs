@@ -19,7 +19,7 @@ public class CupCollection : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            if (Input.GetKeyDown("e"))
+            if (Input.GetKeyDown("joystick button 3") || Input.GetKeyDown("e"))
             {
                 cupCount += 1;
                 CupParticle.Play();

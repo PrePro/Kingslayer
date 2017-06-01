@@ -37,7 +37,7 @@ public class DrunkCutscene : MonoBehaviour {
     IEnumerator CinematicHouse()
     {
 
-        yield return new WaitForSecondsRealtime(17.6f);
+        yield return new WaitForSecondsRealtime(13.6f);
         cineDelete = GameObject.FindGameObjectWithTag("CineStuff");
         Destroy(cineDelete);
         drunkCutscene.EndCutscene();

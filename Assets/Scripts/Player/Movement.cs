@@ -112,6 +112,8 @@ public class Movement : MonoBehaviour
             }
             else
             {
+
+                Debug.Log("KEy");
                 PlayerMove();
             }
         }
@@ -266,7 +268,12 @@ public class Movement : MonoBehaviour
         {
             //Player wants to move make them move 
             if (x != 0 || y != 0)
-            {
+             {
+                if (playerperception.LookAtEnemy)
+                {
+                    return;
+                }
+
                 transform.Translate((Vector3.forward * Time.deltaTime * currentSpeed));
                 isWalking = true;
                 myAnimator.SetBool("privoWalk", isWalking);
@@ -289,6 +296,7 @@ public class Movement : MonoBehaviour
             if (y >= 0 && y != 0)
             {
                 //Debug.Log("UP");
+
                 if (isRunning == false && isCrouching == false)
                 {
                     currentSpeed = speed;

@@ -53,7 +53,14 @@ public abstract class NPCBase : MonoBehaviour
         Attack3,
         HitFlinch,
         ParryStagger,
-        AOEKnockBack
+        AOEKnockBack,
+        Flee,
+        Food,
+        Patrol,
+        Seek,
+        Sleep,
+        Wander,
+        Work
     }
 
     public enum Behavior

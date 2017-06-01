@@ -181,6 +181,7 @@ public class CoolDownSystem : MonoBehaviour
         {
             if (swordInHand.activeSelf)
             {
+                StartCoroutine(movement.StopMovement(1f));
                 currentAnimState = PlayerState.SwordInSheeth;
                 reSheeth = true;
                 unSheeth = false;
@@ -191,6 +192,7 @@ public class CoolDownSystem : MonoBehaviour
             }
             else
             {
+                StartCoroutine(movement.StopMovement(1f));
                 currentAnimState = PlayerState.SwordInHand;
                 myAnimator.avatar = AswordInHand;
                 unSheeth = true;
@@ -221,7 +223,7 @@ public class CoolDownSystem : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("PrivoAOE"))
+        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Privo_AOE"))
         {
             //Debug.Log("AOE ANIM");
             if (fake == false)
@@ -289,9 +291,7 @@ public class CoolDownSystem : MonoBehaviour
 
         if (AoeExpand)
         {
-
             AoeSphere.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f); //Expand the Aoe Ability
-
         }
     }
 
@@ -478,14 +478,13 @@ public class CoolDownSystem : MonoBehaviour
         if (canAttack == true)
         {
             if (skills[5].currentcooldown >= skills[5].cooldown && AoeIsAvailable == true) //Push Back AOE
-
             {
                 if (Input.GetKey(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4)) // AOE [5]
                 {
                     myAnimator.SetTrigger("privoAOE");
                     //StartCoroutine(movement.StopMovement(.6f));
 
-                    StartCoroutine("AOEWait", aoewaitTime);
+                    //StartCoroutine("AOEWait", aoewaitTime);
 
                     AoeState = AoeMorality.Nothin;
                     if (stats.Morality < -66) //Stun
@@ -523,10 +522,10 @@ public class CoolDownSystem : MonoBehaviour
         currentDashState = DashState.NotDashing;
     }
 
-    IEnumerator AOEWait(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-    }
+    //IEnumerator AOEWait(float waitTime)
+    //{
+    //    yield return new WaitForSeconds(waitTime);
+    //}
 
 
     IEnumerator AoeTime(float waitTime)

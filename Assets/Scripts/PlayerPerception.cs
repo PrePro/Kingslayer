@@ -8,9 +8,11 @@ public class PlayerPerception : MonoBehaviour
     [SerializeField]
     public List<GameObject> list;
     private Movement movement;
+    [SerializeField]
     public bool LookAtEnemy;
-    public float timer;
+    private float timer;
     public float CoolDown;
+    public int index;
 
     void Start()
     {
@@ -23,10 +25,27 @@ public class PlayerPerception : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
+
         if (list.Capacity != 0)
         {
-            //Debug.Log(list[0].name);
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                if(index + 1 < list.Count)
+                {
+                    index += 1;
+                }
+            
+            }
+
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                if (index - 1 >= 0)
+                {
+                    index -= 1;
+                }
+            }
         }
+
         if (timer >= CoolDown)
         {
             if (Input.GetKeyDown(KeyCode.X) && list.Count != 0)
@@ -37,21 +56,12 @@ public class PlayerPerception : MonoBehaviour
 
         }
 
-        //if (Input.GetKeyUp(KeyCode.X))
-        //{
-        //    LookAtEnemy = !LookAtEnemy;
-        //}
-
         if (LookAtEnemy)
         {
-            Player.transform.position = list[0].transform.position;
-            //movement.stopMovement = true;
-            //Player.transform.LookAt(list[0].transform.position);
+            Player.transform.position = list[index].transform.position;
+
         }
-        else
-        {
-            //movement.stopMovement = false;
-        }
+
 
     }
 
@@ -73,6 +83,10 @@ public class PlayerPerception : MonoBehaviour
             if (list.Contains(col.gameObject))
             {
                 list.Remove(col.gameObject);
+                if(index > list.Count)
+                {
+                    index -= 1;
+                }
             }
         }
     }

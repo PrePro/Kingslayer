@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class AI_Sleep : AI_Base
 {
+    [Tooltip("the place where they want to sleep")]
     public GameObject Target;
+    [Tooltip("The return point when they are done sleeping")]
     public GameObject ReturnPoint;
 
-    public float sleep;
-    private float val;
-    public float tweek;
-    public float TimeAway;
 
+    private float val;
+    [Tooltip("tweek value example 2 will make the npc want to sleep double")]
+    public float tweek;
+    [Tooltip("how long the npc will sleep for")]
+    public float TimeAway;
+    [Header("Debugging")]
+    public float sleep;
 
     float distance;
     float timer;

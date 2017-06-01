@@ -22,6 +22,7 @@ public class PlayerStats : UnitStats
     void Awake()
     {
         movement = GetComponent<Movement>();
+        startPosition = transform.position; 
     }
 
     void Start()
@@ -32,7 +33,6 @@ public class PlayerStats : UnitStats
         //cd = GetComponent<CoolDownSystem>();
 
         myAnimator = GetComponent<Animator>();
-        startPosition = transform.position;
         StartCoroutine(Regeneration());
     }
 
@@ -84,7 +84,7 @@ public class PlayerStats : UnitStats
             isDead = true;
             myAnimator.SetBool("privoDeath", true);
             StartCoroutine("DeathAnim", 2.4f);
-            movement.StartCoroutine("StopMovement", 2.4f);
+            //movement.StartCoroutine("StopMovement", 2.4f);
             // Death animation
             //SceneManager.LoadScene("MainMenu");
         }
@@ -93,10 +93,10 @@ public class PlayerStats : UnitStats
     IEnumerator DeathAnim(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        myAnimator.SetBool("privoDeath", false);
+        isDead = false;
         SetHealth();
         transform.position = startPosition;
-        isDead = false;
-        myAnimator.SetBool("privoDeath", false);
     }
 
 

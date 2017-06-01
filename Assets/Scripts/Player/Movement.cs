@@ -112,7 +112,6 @@ public class Movement : MonoBehaviour
             }
             else
             {
-
                 Debug.Log("KEy");
                 PlayerMove();
             }

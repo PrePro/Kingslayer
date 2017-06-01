@@ -14,7 +14,7 @@ public class PlayerPerception : MonoBehaviour
     private float timer2;
     public float CoolDown;
     private int index;
-    private bool axisInUse = false;
+
     public Transform theParent;
     //public Vector3 NewPos;
 
@@ -29,7 +29,7 @@ public class PlayerPerception : MonoBehaviour
         {
             timer2 += Time.deltaTime;
         }
-        
+
         if (CoolDown + 1 > timer)
         {
             timer += Time.deltaTime;
@@ -45,7 +45,6 @@ public class PlayerPerception : MonoBehaviour
                 StartCoroutine(lookatenemy(0.1f));
                 timer = 0;
             }
-
         }
 
         if (LookAtEnemy)
@@ -60,7 +59,7 @@ public class PlayerPerception : MonoBehaviour
                 var lookPos = list[index].transform.position - transform.position;
                 lookPos.y = 0;
                 var rotation = Quaternion.LookRotation(lookPos);
-                theParent.transform.rotation = Quaternion.Slerp(transform.rotation, rotation,  100 * Time.deltaTime);
+                theParent.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 100 * Time.deltaTime);
             }
 
         }
@@ -106,7 +105,7 @@ public class PlayerPerception : MonoBehaviour
                     }
                 }
             }
-            
+
             else if (x <= -0.5)
             {
                 if (timer2 >= 0.3)

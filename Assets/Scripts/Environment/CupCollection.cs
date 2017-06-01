@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CupCollection : MonoBehaviour
 {
-
     public ParticleSystem CupParticle;
     public static int cupCount = 0;
 
@@ -13,16 +12,20 @@ public class CupCollection : MonoBehaviour
 	}
 	
 	void Update ()
-    {	
-	}
-
-    void OnTriggerEnter(Collider col)
+    {
+    }
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    void OnTriggerStay(Collider col)
     {
         if (col.tag == "Player")
         {
-            cupCount += 1;
-            CupParticle.Play();
-            Destroy(gameObject);
+            if (Input.GetKeyDown("e"))
+            {
+                cupCount += 1;
+                CupParticle.Play();
+                Destroy(gameObject);
+            }
         }
     }
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 }

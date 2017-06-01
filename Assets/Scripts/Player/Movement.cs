@@ -57,6 +57,7 @@ public class Movement : MonoBehaviour
     private float mCooldown;
 
     public GameObject PlayerHead;
+    public PlayerPerception playerperception;
     //private Rigidbody rigidbody;
 
 
@@ -100,10 +101,9 @@ public class Movement : MonoBehaviour
         ControllerSetUp();
         if (stopMovement == false)
         {
-
             if (mController == Controller.Xbox_One_Controller)
             {
-                //Debug.Log("Controller");
+                Debug.Log("Controller");
                 ControllerMovement();
             }
             else if (mController == Controller.PS4_Controller)
@@ -112,12 +112,12 @@ public class Movement : MonoBehaviour
             }
             else
             {
-                //Debug.Log("Key Board");
                 PlayerMove();
-                //PMove();
-                //MovementWithMouse();
             }
-
+        }
+        else
+        {
+            myAnimator.SetBool("privoWalk", false);
         }
     }
     #endregion
@@ -205,11 +205,12 @@ public class Movement : MonoBehaviour
     private void ControllerSetUp()
     {
         string[] names = Input.GetJoystickNames();
+
         for (int x = 0; x < names.Length; x++)
         {
             if (names[x].Length == 19)
             {
-                print("PS4 CONTROLLER IS CONNECTED");
+                //print("PS4 CONTROLLER IS CONNECTED");
                 mController = Controller.PS4_Controller;
 
             }
@@ -222,6 +223,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
+                Debug.Log("KeyBoard");
                 mController = Controller.KeyBoard;
             }
         }
@@ -455,6 +457,11 @@ public class Movement : MonoBehaviour
 
         if (coolDownSystem.currentDashState == CoolDownSystem.DashState.NotDashing)
         {
+            if (playerperception.LookAtEnemy)
+            {
+                return;
+            }
+
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
                 transform.Translate((Vector3.forward * Time.deltaTime * currentSpeed));

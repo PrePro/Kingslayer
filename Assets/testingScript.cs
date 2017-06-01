@@ -21,7 +21,7 @@ public class testingScript : MonoBehaviour {
     private bool UIUP = false;
     CoolDownSystem.PlayerState playerState;     // Use this for initialization
 
-    CoolDownSystem nCD = new CoolDownSystem();
+    //CoolDownSystem nCD = new CoolDownSystem();
     void Start ()
     {
         options.gameObject.SetActive(false);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AI_Seek : AI_Base
 {
-
+    [Tooltip("Add the player here")]
     public GameObject Player;
     CoolDownSystem CdSystem;
 
@@ -12,7 +12,9 @@ public class AI_Seek : AI_Base
     bool SwordIn;
 
     float speed;
+    [Tooltip("running speed")]
     public float RunSpeed;
+    [Tooltip("Turn speed")]
     public float TurnSpeed;
 
     void Awake()

@@ -103,7 +103,6 @@ public class Movement : MonoBehaviour
         {
             if (mController == Controller.Xbox_One_Controller)
             {
-                Debug.Log("Controller");
                 ControllerMovement();
             }
             else if (mController == Controller.PS4_Controller)
@@ -112,8 +111,6 @@ public class Movement : MonoBehaviour
             }
             else
             {
-
-                Debug.Log("KEy");
                 PlayerMove();
             }
         }

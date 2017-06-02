@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AI_Flee : AI_Base
 {
+    [Tooltip("Add the player here")]
     public GameObject Player;
     CoolDownSystem CdSystem;
 
@@ -11,6 +12,7 @@ public class AI_Flee : AI_Base
     bool swordOut;
 
     float speed;
+    [Tooltip("running speed")]
     public float RunSpeed;
 
     void Awake()

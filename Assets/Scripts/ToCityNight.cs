@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ToCityNight : MonoBehaviour {
+public class ToCityNight : MonoBehaviour
+{
 
     // Use this for initialization
     void Start()
     {
 
     }
-    void OnTriggerEnter()
+
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("help");
-        SceneManager.LoadScene("CityNight");
+        if (other.tag == "Player")
+        {
+            Debug.Log("help");
+            SceneManager.LoadScene("CityNight");
+        }
     }
     // Update is called once per frame
     void Update()

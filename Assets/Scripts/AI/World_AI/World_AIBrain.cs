@@ -11,6 +11,7 @@ public class World_AIBrain : MonoBehaviour
 
     [Tooltip("How long until the next Value check")]
     public float TimeAway;
+    [Header("Debugging")]
     [Tooltip("Debugging Only")]
     public AI_Base current;
     public static bool CanCal;

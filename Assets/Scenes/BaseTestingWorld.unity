@@ -1393,7 +1393,7 @@ Prefab:
         type: 2}
     - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: canDie
@@ -3378,7 +3378,7 @@ Prefab:
         type: 2}
     - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: canDie
@@ -3486,7 +3486,7 @@ Prefab:
     - target: {fileID: 114711849223845478, guid: 5c380116f18d9cd49875ec3dc6008800,
         type: 2}
       propertyPath: currentHealth
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114810054532792434, guid: 5c380116f18d9cd49875ec3dc6008800,
         type: 2}
@@ -3608,7 +3608,7 @@ Prefab:
     - target: {fileID: 23027797050113262, guid: 5c380116f18d9cd49875ec3dc6008800,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1955424394128712, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
       propertyPath: m_TagString
@@ -3944,6 +3944,34 @@ RectTransform:
 GameObject:
   m_PrefabParentObject: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
   m_PrefabInternal: {fileID: 1479885214}
+--- !u!114 &1012734984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1012734983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8578284cc1ff22944af3fa93cbcf807a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  RunSpeed: 0
+--- !u!114 &1012734985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1012734983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b41b403c90b3704a8495d71fcdba031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  tweek: 0
+  FoodTime: 0
+  Food: 0
 --- !u!114 &1012734991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3969,9 +3997,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 1501172214}
   ReturnPoint: {fileID: 1957469301}
-  sleep: 0
   tweek: 1
   TimeAway: 5
+  sleep: 0
 --- !u!114 &1012734993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3985,6 +4013,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeAway: 2
   current: {fileID: 0}
+--- !u!114 &1012734994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1012734983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96a3049e7ec8ce46a304a27d2c8c07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1602255246}
+  RunSpeed: 0
+  TurnSpeed: 0
 --- !u!1001 &1023785838
 Prefab:
   m_ObjectHideFlags: 0
@@ -6361,7 +6403,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 9.9
+      value: -11.72
       objectReference: {fileID: 0}
     - target: {fileID: 454046, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6418,7 +6460,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
@@ -8649,7 +8691,7 @@ Prefab:
         type: 2}
     - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11415726, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: canDie

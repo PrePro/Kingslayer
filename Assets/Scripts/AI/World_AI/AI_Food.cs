@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class AI_Food : AI_Base
 {
+    [Tooltip("The place where the npc will go eat")]
     public GameObject Target;
 
-    public float Food;
     private float val;
+    [Tooltip("tweek value example 2 will make the npc want to sleep double")]
     public float tweek;
-    public float TimeAway;
-
+    [Tooltip("How long untill food is added")]
+    public float FoodTime;
+    [Header("Debugging")]
+    public float Food;
 
     float distance;
     float timer;
@@ -19,7 +22,7 @@ public class AI_Food : AI_Base
     {
         timer += Time.deltaTime;
 
-        if (timer >= TimeAway)
+        if (timer >= FoodTime)
         {
             Food += 1;
             timer = 0;

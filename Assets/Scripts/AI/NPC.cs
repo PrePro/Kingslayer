@@ -19,7 +19,7 @@ public class NPC : NPCBase
     {
         if (debuffState == Debuff.None)
         {
-            if(dominantBehavior != Behavior.Passive)
+            if (dominantBehavior != Behavior.Passive)
             {
                 if (stats.Death == false)
                 {
@@ -110,10 +110,11 @@ public class NPC : NPCBase
                         //Debug.Log("IdleDefencive");
                         agent.destination = startPosition;
 
+
                     }
                     else
                     {
-                        if(playerDead)
+                        if (playerDead)
                         {
                             SetState(State.Idle);
                         }
@@ -335,6 +336,7 @@ public class NPC : NPCBase
                     break;
                 case Behavior.IdleDefencive:
                     {
+                        transform.rotation = startRotation;
                         SetState(State.Idle);
                     }
                     break;
@@ -350,6 +352,7 @@ public class NPC : NPCBase
                     break;
                 case Behavior.PatrolDefencive:
                     {
+                        transform.rotation = startRotation;
                         SetState(State.Patrolling);
                     }
                     break;
@@ -369,7 +372,7 @@ public class NPC : NPCBase
         AnimationState currAnim = (AnimationState)animator.GetInteger("AnimationState");
         if (currentAnimation == AnimationState.Attacking && currAnim == AnimationState.Attacking) //|| currAnim == AnimationState.Attack1 || currAnim == AnimationState.Attack2 || currAnim == AnimationState.Attack3
         {
-            
+
             //animator.SetInteger("AnimationState", 0);
             //animator.SetInteger("AnimationState", (int)currentAnimation);
         }
@@ -439,7 +442,7 @@ public class NPC : NPCBase
         }
         if (currentState == State.Chasing || currentState == State.Attacking)
         {
-           // Debug.Log("Searching");
+            // Debug.Log("Searching");
             SetState(State.Searching);
         }
 

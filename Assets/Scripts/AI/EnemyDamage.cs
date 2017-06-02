@@ -4,7 +4,9 @@ using System.Collections;
 public class EnemyDamage : MonoBehaviour
 {
     private NPStats stats;
+    private NPC npc;
     private bool canAttack = true;
+    private bool AttackState = false;
     [Tooltip("How much damage does the enemy do")]
     public int damage;
     [Tooltip("How Long the Enemy will wait to do damage again")]
@@ -15,18 +17,25 @@ public class EnemyDamage : MonoBehaviour
     void Start()
     {
         stats = GetComponentInParent<NPStats>();
+        npc = GetComponentInParent<NPC>();
     }
 
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player")
         {
-            if (canAttack == true && stats.Death == false)
+            if(stats.Death == false)
+            {
+                return;
+            }
+           
+            if (canAttack && AttackState)
             {
                 if (isParry == false)
-                col.GetComponent<PlayerStats>().ReceiveDamage(damage);
+                    col.GetComponent<PlayerStats>().ReceiveDamage(damage);
                 StartCoroutine("damageTime", 1f);
             }
+         
         }
 
         if (col.tag == "Parry")
@@ -34,6 +43,19 @@ public class EnemyDamage : MonoBehaviour
             StartCoroutine(ParryTimer(parryTimer));
             gotParry = true;
         }
+    }
+
+    void Update()
+    {
+        if (npc.CurrentState == NPCBase.State.Attacking)
+        {
+            AttackState = true;
+        }
+        else
+        {
+            AttackState = false;
+        }
+
     }
 
     IEnumerator damageTime(float waitTime)

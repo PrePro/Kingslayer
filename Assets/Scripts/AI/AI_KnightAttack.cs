@@ -36,9 +36,24 @@ public class AI_KnightAttack : AI_BaseAttack
 
     public override void Run()
     {
-        if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("sword_and_shield_slash"))
+        int a = npc.animator.GetInteger("AnimationState");
+        if(a == 2)
         {
-            Debug.Log("ATTACKING");
+            agent.isStopped = true;
+            canTurn = false;
+        }
+        else if(a == 9)
+        {
+            agent.isStopped = true;
+            canTurn = false;
+        }
+        else if (a == 10)
+        {
+            agent.isStopped = true;
+            canTurn = false;
+        }
+        else if (a == 11)
+        {
             agent.isStopped = true;
             canTurn = false;
         }
@@ -46,6 +61,18 @@ public class AI_KnightAttack : AI_BaseAttack
         {
             canTurn = true;
         }
+
+        //if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("sword_and_shield_slash"))
+        //{
+        //    Debug.Log("ATTACKING");
+        //    agent.isStopped = true;
+        //    canTurn = false;
+        //}
+        //else
+        //{
+        //    canTurn = true;
+        //}
+
         timer += Time.deltaTime;
         KAttackTarget();
     }
@@ -156,7 +183,14 @@ public class AI_KnightAttack : AI_BaseAttack
             }
             else
             {
-                npc.SetAnimation(NPCBase.AnimationState.Walking);
+                if(agent.isStopped)
+                {
+                    npc.SetAnimation(NPCBase.AnimationState.Idle);
+                }
+                else
+                {
+                    npc.SetAnimation(NPCBase.AnimationState.Walking);
+                }
             }
 
         }

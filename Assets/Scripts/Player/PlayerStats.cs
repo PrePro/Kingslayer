@@ -84,7 +84,7 @@ public class PlayerStats : UnitStats
             isDead = true;
             myAnimator.SetBool("privoDeath", true);
             StartCoroutine("DeathAnim", 2.4f);
-            //movement.StartCoroutine("StopMovement", 2.4f);
+            movement.StartCoroutine("StopMovement", 2.4f);
             // Death animation
             //SceneManager.LoadScene("MainMenu");
         }

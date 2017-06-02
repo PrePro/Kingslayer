@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ToCityNight : MonoBehaviour {
+public class ToCityNight : MonoBehaviour
+{
 
     // Use this for initialization
     void Start()
     {
 
     }
-    void OnTriggerEnter(GameObject other)
+
+    void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {

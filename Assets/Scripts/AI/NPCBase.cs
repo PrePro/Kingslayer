@@ -115,6 +115,7 @@ public abstract class NPCBase : MonoBehaviour
     [HideInInspector]
     public Animator animator;
     protected Vector3 startPosition;
+    protected Quaternion startRotation;
 
     [Header("ParticleSystem")]
     protected ParticleSystem enemySlash;
@@ -147,6 +148,7 @@ public abstract class NPCBase : MonoBehaviour
         mRigidbody = GetComponent<Rigidbody>();
         stats = GetComponent<NPStats>();
         startPosition = transform.position;
+        startRotation = transform.rotation;
         animator = GetComponent<Animator>();
         isTargetSeen = false;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();

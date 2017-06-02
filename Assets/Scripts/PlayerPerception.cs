@@ -13,7 +13,7 @@ public class PlayerPerception : MonoBehaviour
     private float timer;
     private float timer2;
     public float CoolDown;
-    private int index;
+    public   int index;
 
     public Transform theParent;
     //public Vector3 NewPos;
@@ -96,7 +96,7 @@ public class PlayerPerception : MonoBehaviour
         {
             if (x >= 0.5)
             {
-                if (timer2 >= 0.3)
+                if (timer2 >= 0.2)
                 {
                     if (index + 1 < list.Count)
                     {
@@ -108,7 +108,7 @@ public class PlayerPerception : MonoBehaviour
 
             else if (x <= -0.5)
             {
-                if (timer2 >= 0.3)
+                if (timer2 >= 0.2)
                 {
                     if (index - 1 >= 0)
                     {

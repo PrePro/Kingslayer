@@ -281,14 +281,14 @@ public class CoolDownSystem : MonoBehaviour
             m_isAxisInUse = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton2))
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetAxis("LeftTrigger") == 1)
         {
             SwitchAnimators();
         }
 
         if(currentAnimState == PlayerState.SwordInHand)
         {
-            if (Input.GetMouseButton(1) || Input.GetAxis("LeftTrigger") == 1)
+            if (Input.GetMouseButton(1) || Input.GetAxis("RightTrigger") == 1)
             {
                 Debug.Log("PARRY");
 
@@ -307,7 +307,7 @@ public class CoolDownSystem : MonoBehaviour
     {
         if (canAttack == true)
         {
-            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton5) && currentDashState == DashState.NotDashing) // Sword [2]LeftBumper
+            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3) && currentDashState == DashState.NotDashing) // Sword [2]LeftBumper
             {
                 if (skills[6].currentcooldown >= skills[6].cooldown)
                 {
@@ -382,8 +382,8 @@ public class CoolDownSystem : MonoBehaviour
         }
 
         if (canAttack == true)
-        {
-            if (Input.GetButton("Fire1") || Input.GetAxis("RightTrigger") == 1 && currentDashState == DashState.NotDashing) // Sword [2]LeftBumper
+        { // Input.GetAxis("RightTrigger") == 1
+            if (Input.GetButton("Fire1") || Input.GetKeyDown(KeyCode.JoystickButton2) && currentDashState == DashState.NotDashing) // Sword [2]LeftBumper
             {
                 if (skills[2].currentcooldown >= skills[2].cooldown)
                 {
@@ -486,7 +486,7 @@ public class CoolDownSystem : MonoBehaviour
         {
             if (skills[5].currentcooldown >= skills[5].cooldown && AoeIsAvailable == true) //Push Back AOE
             {
-                if (Input.GetKey(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4)) // AOE [5]
+                if (Input.GetKey(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton1)) // AOE [5]
                 {
                     myAnimator.SetTrigger("privoAOE");
                     //StartCoroutine(movement.StopMovement(.6f));

@@ -65,7 +65,7 @@ public class PrivoHouseCutScene : MonoBehaviour
     IEnumerator CinematicHouse()
     {
         
-        yield return new WaitForSecondsRealtime(34f);
+        yield return new WaitForSecondsRealtime(27f);
         player.SetActive(true);
         CinematicPlayer.SetActive(false);
         cineDelete = GameObject.FindGameObjectWithTag("CineStuff");

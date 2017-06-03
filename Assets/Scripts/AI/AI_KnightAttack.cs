@@ -36,31 +36,31 @@ public class AI_KnightAttack : AI_BaseAttack
 
     public override void Run()
     {
-        int a = npc.animator.GetInteger("AnimationState");
-        if(a == 2)
-        {
-            agent.isStopped = true;
-            canTurn = false;
-        }
-        else if(a == 9)
-        {
-            agent.isStopped = true;
-            canTurn = false;
-        }
-        else if (a == 10)
-        {
-            agent.isStopped = true;
-            canTurn = false;
-        }
-        else if (a == 11)
-        {
-            agent.isStopped = true;
-            canTurn = false;
-        }
-        else
-        {
-            canTurn = true;
-        }
+        //int a = npc.animator.GetInteger("AnimationState");
+        //if(a == 2)
+        //{
+        //    agent.isStopped = true;
+        //    canTurn = false;
+        //}
+        //else if(a == 9)
+        //{
+        //    agent.isStopped = true;
+        //    canTurn = false;
+        //}
+        //else if (a == 10)
+        //{
+        //    agent.isStopped = true;
+        //    canTurn = false;
+        //}
+        //else if (a == 11)
+        //{
+        //    agent.isStopped = true;
+        //    canTurn = false;
+        //}
+        //else
+        //{
+        //    canTurn = true;
+        //}
 
         //if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("sword_and_shield_slash"))
         //{
@@ -72,9 +72,66 @@ public class AI_KnightAttack : AI_BaseAttack
         //{
         //    canTurn = true;
         //}
-
+        checkAnimation();
         timer += Time.deltaTime;
         KAttackTarget();
+    }
+
+    void checkAnimation()
+    {
+        if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("sword_and_shield_slash"))
+        {
+            agent.isStopped = true;
+            canTurn = false;
+        }
+        else if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("Sword_and_shield_slash 2"))
+        {
+            agent.isStopped = true;
+            canTurn = false;
+        }
+        else if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("Sword_and_shield_slash 3"))
+        {
+            agent.isStopped = true;
+            canTurn = false;
+        }
+        else if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("Great_Sword_Slash"))
+        {
+            agent.isStopped = true;
+            canTurn = false;
+        }
+        else if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("Great_Sword_Slash 2"))
+        {
+            agent.isStopped = true;
+            canTurn = false;
+        }
+        else if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("Great_Sword_Slash 3"))
+        {
+            agent.isStopped = true;
+            canTurn = false;
+        }
+        else if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("Low Spin Attack"))
+        {
+            Debug.Log("Low Spin Attack");
+            agent.isStopped = true;
+            canTurn = false;
+        }
+        else  if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("Spin Slash"))
+        {
+            Debug.Log("Spin Slash");
+            agent.isStopped = true;
+            canTurn = false;
+        }
+        else if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("Jump Attack"))
+        {
+            Debug.Log("Jump Attack");
+            agent.isStopped = true;
+            canTurn = false;
+        }
+        else
+        {
+            Debug.Log("Else");
+            canTurn = true;
+        }
     }
 
     public override void Enter()
@@ -171,7 +228,10 @@ public class AI_KnightAttack : AI_BaseAttack
             if (damage.gotParry)
             {
                 //Debug.Log("GOT ANIM");
-                hitspark.Play();
+                if(hitspark != null)
+                {
+                    hitspark.Play();
+                }
                 npc.SetAnimation(NPCBase.AnimationState.ParryStagger);
                 damage.gotParry = false;
             }

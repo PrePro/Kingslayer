@@ -25,7 +25,14 @@ public class CoolDownSystem : MonoBehaviour
     public ParticleSystem psDash;
     public ParticleSystem psSlash;
     public AudioClip slash;
-    //AudioSource audio;
+    public AudioClip slash2;
+    public AudioClip parry;
+    public AudioClip stab;
+
+    AudioSource audioattack;
+    AudioSource audioparry;
+    
+
 
     public enum DashDirection
     {

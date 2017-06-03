@@ -142,7 +142,7 @@ public class Main_Dialogue : MonoBehaviour
                     axisInUse = false;
                 }
 
-                    if (Input.GetAxisRaw("DpadV") == -1)
+                if (Input.GetAxisRaw("DpadV") == -1)
                 {
                     if (axisInUse == false)
                     {
@@ -174,11 +174,11 @@ public class Main_Dialogue : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.JoystickButton1))
                 {
-                    if(dialog.gameObject.activeSelf && ButtonsAreUp)
+                    if (dialog.gameObject.activeSelf && ButtonsAreUp)
                     {
                         ButtonClick(Xbox_holder);
                     }
-                    
+
                 }
             }
 
@@ -207,7 +207,7 @@ public class Main_Dialogue : MonoBehaviour
                     PreviousQuest.SetActive(false);
                     QuestPopUp.SetActive(true);
                 }
-                if(UpdateObjective)
+                if (UpdateObjective)
                 {
                     if (CPTurn != null)
                     {
@@ -224,7 +224,6 @@ public class Main_Dialogue : MonoBehaviour
                 if (endTextActive)
                 {
                     PlayerBox.gameObject.SetActive(false);
-                    //Debug.Log("END");
                     holder = false;
                     dialog.gameObject.SetActive(false);
                     endTextActive = false;
@@ -338,7 +337,7 @@ public class Main_Dialogue : MonoBehaviour
         if (movement.mController == Movement.Controller.Xbox_One_Controller)
         {
             Xbox_holder = 0;
-            if(mEndTalk)
+            if (mEndTalk)
             {
                 return;
             }

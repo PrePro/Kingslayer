@@ -245,11 +245,21 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Joystick1Button8) && mCooldown >= 0.8f && isCrouching == false)
+        if (coolDownSystem.currentAnimState == CoolDownSystem.PlayerState.SwordInSheeth)
         {
-            isRunning = !isRunning;
-            mCooldown = 0;
-            myAnimator.SetBool("privoRun", isRunning);
+
+            if (Input.GetKey(KeyCode.Joystick1Button0) && isCrouching == false) //Input.GetKey(KeyCode.Joystick1Button8
+            {
+                isRunning = true;
+                //mCooldown = 0;
+                myAnimator.SetBool("privoRun", isRunning);
+            }
+            if (Input.GetKeyUp(KeyCode.Joystick1Button0) && isCrouching == false) //Input.GetKey(KeyCode.Joystick1Button8
+            {
+                isRunning = false;
+                //mCooldown = 0;
+                myAnimator.SetBool("privoRun", isRunning);
+            }
         }
         if (CanCrouch)
         {
@@ -265,7 +275,7 @@ public class Movement : MonoBehaviour
         {
             //Player wants to move make them move 
             if (x != 0 || y != 0)
-             {
+            {
                 if (playerperception.LookAtEnemy)
                 {
                     return;
@@ -282,7 +292,7 @@ public class Movement : MonoBehaviour
                 //psWalk.Stop();
             }
         }
-      
+
         //Target rotates around camera
         target.transform.rotation = gameCamera.transform.rotation;
         target.transform.eulerAngles = new Vector3(0, target.transform.eulerAngles.y, 0);
@@ -318,7 +328,7 @@ public class Movement : MonoBehaviour
             // Moves the targets 
             if (x >= 0 && x != 0)
             {
-               // Debug.Log("RIGHT");
+                // Debug.Log("RIGHT");
                 if (isRunning == false && isCrouching == false)
                 {
                     currentSpeed = speed;
@@ -342,7 +352,7 @@ public class Movement : MonoBehaviour
             // Moves the targets 
             if (y <= 0 && y != 0)
             {
-               // Debug.Log("DOWN");
+                // Debug.Log("DOWN");
 
                 if (isRunning == false && isCrouching == false)
                 {
@@ -449,7 +459,7 @@ public class Movement : MonoBehaviour
             myAnimator.SetBool("privoRun", isRunning);//Added for sprint animation. 
         }
 
-        if(CanCrouch)
+        if (CanCrouch)
         {
             if (Input.GetKey(KeyCode.X) && mCooldown >= 0.8f && isRunning == false)
             {

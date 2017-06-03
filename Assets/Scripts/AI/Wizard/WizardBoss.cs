@@ -21,6 +21,7 @@ public class WizardBoss : MonoBehaviour
     public bool spawnerdone = false;
     public bool turnOnWizard = false;
     public float particleAdj;
+    private Animator myAnimator;
 
     [Tooltip("Phase 1 time before the trap destroys")]
     public float P1Timer;
@@ -45,6 +46,7 @@ public class WizardBoss : MonoBehaviour
     {
         AOE = transform.GetComponentInChildren<WizardAOE>();
         AOE.gameObject.SetActive(false);
+        //myAnimator.SetTrigger("WizardIdle");
     }
 
 
@@ -53,6 +55,7 @@ public class WizardBoss : MonoBehaviour
         Debug.Log("Taken Damage");
         mCurrentHealth -= damage;
         mHitCounter++;
+        myAnimator.SetTrigger("WizardHit");
 
     }
     void SpawnTraps()
@@ -92,10 +95,12 @@ public class WizardBoss : MonoBehaviour
                     {
                         transform.position = TelportPoints[2].transform.position;
                         StartCoroutine("ParticleTimer", particleAdj);
+                        myAnimator.SetTrigger("WizardAOE");
                         AOE.gameObject.SetActive(true);
                     }
                     break;
                 case Phase.Killed:
+                    myAnimator.SetTrigger("WizardDeath");
                     spawnerdone = true;
                     Debug.Log("Wizard is Dead");
                     break;

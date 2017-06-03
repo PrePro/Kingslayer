@@ -2936,6 +2936,7 @@ MonoBehaviour:
   PreviousQuest: {fileID: 0}
   MiniMapIcon: {fileID: 0}
   Caller: 0
+  ButtonsAreUp: 0
   UpdateObjective: 1
   CPTurn: {fileID: 1445655173}
 --- !u!1 &756774805
@@ -3486,7 +3487,7 @@ Prefab:
     - target: {fileID: 114711849223845478, guid: 5c380116f18d9cd49875ec3dc6008800,
         type: 2}
       propertyPath: currentHealth
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114810054532792434, guid: 5c380116f18d9cd49875ec3dc6008800,
         type: 2}
@@ -3613,6 +3614,10 @@ Prefab:
     - target: {fileID: 1955424394128712, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302781443591642, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 81469465846731152, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
@@ -6460,7 +6465,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 110500, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd98356bb60a1543bd976c68277d846, type: 2}
@@ -7778,6 +7783,22 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.y
       value: -44
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217747367188916, guid: ca3e476317ab0654e98855dff6e3e161, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783163847537218, guid: ca3e476317ab0654e98855dff6e3e161, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274978405809044, guid: ca3e476317ab0654e98855dff6e3e161, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753160353471312, guid: ca3e476317ab0654e98855dff6e3e161, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca3e476317ab0654e98855dff6e3e161, type: 2}
@@ -9666,7 +9687,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2035797027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.3, y: 1, z: 13.5}
+  m_LocalPosition: {x: -28.05, y: 1, z: 13.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10010,7 +10031,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2112755895}
   m_LocalRotation: {x: -0, y: 0.9603177, z: -0, w: 0.2789085}
-  m_LocalPosition: {x: -9.3, y: 1.767808, z: 6.7}
+  m_LocalPosition: {x: -29.7, y: 1.767808, z: 24}
   m_LocalScale: {x: 2.1677954, y: 2.3484454, z: 2.3484452}
   m_Children: []
   m_Father: {fileID: 0}

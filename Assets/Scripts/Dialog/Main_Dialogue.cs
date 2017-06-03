@@ -49,6 +49,7 @@ public class Main_Dialogue : MonoBehaviour
     private int Xbox_holder;
     public bool Caller = false;
     private bool axisInUse = false;
+    public bool ButtonsAreUp = false;
     public bool UpdateObjective;
     public CompassTurn CPTurn;
 
@@ -173,7 +174,7 @@ public class Main_Dialogue : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.JoystickButton1))
                 {
-                    if(dialog.gameObject.activeSelf)
+                    if(dialog.gameObject.activeSelf && ButtonsAreUp)
                     {
                         ButtonClick(Xbox_holder);
                     }
@@ -295,6 +296,7 @@ public class Main_Dialogue : MonoBehaviour
                 {
                     for (int i = 0; i < mNpcText[mIndex].mbuttons; i++)
                     {
+                        ButtonsAreUp = true;
                         mButtons[i].gameObject.SetActive(true);
                     }
                 }
@@ -365,6 +367,7 @@ public class Main_Dialogue : MonoBehaviour
             mNpcText[mIndex].canvas[buttonIndex].gameObject.SetActive(false);
             foreach (Button b in mButtons)
             {
+                ButtonsAreUp = false;
                 b.gameObject.SetActive(false);
             }
             playerImage.gameObject.SetActive(false);
@@ -402,6 +405,7 @@ public class Main_Dialogue : MonoBehaviour
             }
             foreach (Button b in mButtons)
             {
+                ButtonsAreUp = false;
                 b.gameObject.SetActive(false);
             }
 

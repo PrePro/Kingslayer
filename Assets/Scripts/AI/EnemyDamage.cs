@@ -24,8 +24,9 @@ public class EnemyDamage : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            if(stats.Death == false)
+            if(stats.Death == true)
             {
+                Debug.Log("ASd");
                 return;
             }
            

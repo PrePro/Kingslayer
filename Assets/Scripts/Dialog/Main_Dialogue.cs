@@ -52,7 +52,7 @@ public class Main_Dialogue : MonoBehaviour
     public bool ButtonsAreUp = false;
     public bool UpdateObjective;
     public CompassTurn CPTurn;
-
+    private Color mButtonsColor;
 
     void OnTriggerEnter(Collider col)
     {
@@ -91,8 +91,8 @@ public class Main_Dialogue : MonoBehaviour
     }
 
     void Start()
-
     {
+        mButtonsColor = mButtons[0].GetComponent<Image>().color;
         mList = new List<GameObject>();
         for (int i = 0; i < mNpcText[mIndex].mbuttons; ++i)
         {
@@ -100,9 +100,18 @@ public class Main_Dialogue : MonoBehaviour
         }
     }
 
+    void ClearButtonColor()
+    {
+        foreach (Button button in mButtons)
+        {
+            button.GetComponent<Image>().color = mButtonsColor;
+        }
+    }
+
 
     void Update()
     {
+
         if (isCalledOnce)
         {
             if (cdSystem != null)
@@ -141,7 +150,7 @@ public class Main_Dialogue : MonoBehaviour
                 {
                     axisInUse = false;
                 }
-
+              
                 if (Input.GetAxisRaw("DpadV") == -1)
                 {
                     if (axisInUse == false)
@@ -153,7 +162,12 @@ public class Main_Dialogue : MonoBehaviour
                         }
                         else
                         {
-                            Xbox_holder += 1;
+                            if (ButtonsAreUp)
+                            {
+                                Xbox_holder += 1;
+                                mButtons[Xbox_holder].GetComponent<Image>().color = Color.red;
+                                mButtons[Xbox_holder - 1].GetComponent<Image>().color = mButtonsColor;
+                            }
                         }
                     }
                 }
@@ -168,7 +182,12 @@ public class Main_Dialogue : MonoBehaviour
                         }
                         else
                         {
-                            Xbox_holder -= 1;
+                            if (ButtonsAreUp)
+                            {
+                                Xbox_holder -= 1;
+                                mButtons[Xbox_holder].GetComponent<Image>().color = Color.red;
+                                mButtons[Xbox_holder + 1].GetComponent<Image>().color = mButtonsColor;
+                            } 
                         }
                     }
                 }
@@ -296,6 +315,7 @@ public class Main_Dialogue : MonoBehaviour
                     for (int i = 0; i < mNpcText[mIndex].mbuttons; i++)
                     {
                         ButtonsAreUp = true;
+                        mButtons[0].GetComponent<Image>().color = Color.red;
                         mButtons[i].gameObject.SetActive(true);
                     }
                 }
@@ -364,6 +384,10 @@ public class Main_Dialogue : MonoBehaviour
         {
             mEndTalk = true;
             mNpcText[mIndex].canvas[buttonIndex].gameObject.SetActive(false);
+            if(movement.mController == Movement.Controller.Xbox_One_Controller)
+            {
+                ClearButtonColor();
+            }
             foreach (Button b in mButtons)
             {
                 ButtonsAreUp = false;
@@ -401,6 +425,10 @@ public class Main_Dialogue : MonoBehaviour
             for (int i = 0; i < mNpcText[mIndex].mbuttons; ++i)
             {
                 mButtons[i].GetComponentInChildren<Text>().text = mNpcText[mIndex].buttonText[i];
+            }
+            if (movement.mController == Movement.Controller.Xbox_One_Controller)
+            {
+                ClearButtonColor();
             }
             foreach (Button b in mButtons)
             {

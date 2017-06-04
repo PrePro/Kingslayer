@@ -285,7 +285,7 @@ public abstract class NPCBase : MonoBehaviour
 
     public void OnDrawGizmos()
     {
-        DrawPerceptionGizmo();
+        //DrawPerceptionGizmo();
         DrawBehaviorGizmo();
     }
 
@@ -312,10 +312,10 @@ public abstract class NPCBase : MonoBehaviour
                 Gizmos.color = Color.magenta;
                 break;
             case State.Idle:
-                Gizmos.color = Color.green;
+                //Gizmos.color = Color.green;
                 break;
             default:
-                Gizmos.color = Color.green;
+                //Gizmos.color = Color.green;
                 break;
         }
 
@@ -323,9 +323,9 @@ public abstract class NPCBase : MonoBehaviour
     }
 
     //shows perspective radius
-    void DrawPerceptionGizmo()
-    {
+    //void DrawPerceptionGizmo()
+    //{
 
-    }
+    //}
 
 }

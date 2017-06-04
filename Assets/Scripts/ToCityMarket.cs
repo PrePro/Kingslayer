@@ -13,7 +13,7 @@ public class ToCityMarket : MonoBehaviour {
     void OnTriggerEnter()
     {
         Debug.Log("help");
-        SceneManager.LoadScene("City");
+        SceneManager.LoadScene("CityNight");
     }
     // Update is called once per frame
     void Update()

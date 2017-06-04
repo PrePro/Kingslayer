@@ -49,6 +49,7 @@ public class CameraSwitchMenu : MonoBehaviour
     private bool FirstOption = true;
     private bool Levelseletion = false;
     private bool Options = false;
+    private int BackHolder;
 
     private void ControllerSetUp()
     {
@@ -115,9 +116,9 @@ public class CameraSwitchMenu : MonoBehaviour
             FirstOption = true;
             levelSelectOff();
             optionSelectOff();
-            Xbox_holder = 0;
+            Xbox_holder = BackHolder;
         }
-        if(FirstOption)
+        if (FirstOption)
         {
             ControllerSupport();
         }
@@ -264,6 +265,7 @@ public class CameraSwitchMenu : MonoBehaviour
             {
                 if (Xbox_holder == 0)
                 {
+                    BackHolder = 0;
                     Xbox_holder = 0;
                     levelSelect();
                     optionSelectOff();
@@ -272,6 +274,7 @@ public class CameraSwitchMenu : MonoBehaviour
                 }
                 else if (Xbox_holder == 1)
                 {
+                    BackHolder = 1;
                     Xbox_holder = 0;
                     optionSelectOn();
                     levelSelectOff();

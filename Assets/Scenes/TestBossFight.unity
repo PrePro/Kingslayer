@@ -163,6 +163,30 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 0.66761446
       objectReference: {fileID: 0}
+    - target: {fileID: 114635787318804704, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: aoewaitTime
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 114635787318804704, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: ScaleRate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198180331173257494, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: randomSeed
+      value: -2026780090
+      objectReference: {fileID: 0}
+    - target: {fileID: 198180331173257494, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: lengthInSec
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481442408512698, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
   m_IsPrefabParent: 0
@@ -308,7 +332,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -65715240
+  randomSeed: -1164774377
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3652,7 +3676,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -347813245
+  randomSeed: -2005498054
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6761,7 +6785,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 771173033}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -7001,7 +7025,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1163825298
+  randomSeed: -1079162560
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7444,7 +7468,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 4
     enabled: 1
-    type: 12
+    type: 4
     angle: 25
     length: 5
     boxX: 1
@@ -10399,6 +10423,36 @@ Prefab:
       propertyPath: m_Name
       value: Trap (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4680459358515580, guid: 36557ff948b00194691e7794bc6c91f5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 18.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4680459358515580, guid: 36557ff948b00194691e7794bc6c91f5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4680459358515580, guid: 36557ff948b00194691e7794bc6c91f5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -16.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994976733341812, guid: 36557ff948b00194691e7794bc6c91f5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994976733341812, guid: 36557ff948b00194691e7794bc6c91f5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198663047651534358, guid: 36557ff948b00194691e7794bc6c91f5,
+        type: 2}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198663047651534358, guid: 36557ff948b00194691e7794bc6c91f5,
+        type: 2}
+      propertyPath: randomSeed
+      value: -1114013559
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36557ff948b00194691e7794bc6c91f5, type: 2}
   m_IsPrefabParent: 0
@@ -10427,13 +10481,13 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1845799993}
-  m_LocalRotation: {x: 0.6405098, y: -0.3276733, z: 0.31632093, w: 0.61831915}
-  m_LocalPosition: {x: -0.7, y: -0.78, z: -0}
+  m_LocalRotation: {x: 0.6405105, y: -0.32767403, z: 0.31632075, w: 0.6183181}
+  m_LocalPosition: {x: -4.2, y: 2.3, z: 5.2}
   m_LocalScale: {x: 0.053785227, y: 0.053718694, z: 0.050020542}
   m_Children: []
   m_Father: {fileID: 420018580}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 92.01999, y: -0.000015258789, z: 54.186996}
+  m_LocalEulerAnglesHint: {x: 92.01999, y: 0, z: 54.186996}
 --- !u!199 &1845799995
 ParticleSystemRenderer:
   serializedVersion: 3
@@ -10544,7 +10598,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -431021919
+  randomSeed: -1102041335
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10634,7 +10688,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0.2784314, b: 0.03529412, a: 1}
+      maxColor: {r: 0.11329279, g: 0, b: 0.27843142, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10696,7 +10750,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 50
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -10987,7 +11041,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 4
     enabled: 1
-    type: 11
+    type: 10
     angle: 25
     length: 5
     boxX: 1
@@ -13755,7 +13809,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 401915825
+  randomSeed: -649467178
   InitialModule:
     serializedVersion: 3
     enabled: 1

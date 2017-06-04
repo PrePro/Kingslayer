@@ -19,10 +19,12 @@ public class PlayerStats : UnitStats
     //  CoolDownSystem cd;
     Movement movement;
     public ParticleSystem privoHurt;
+    private GameObject deathScreen;
     void Awake()
     {
         movement = GetComponent<Movement>();
-        startPosition = transform.position; 
+        startPosition = transform.position;
+        deathScreen = GameObject.FindGameObjectWithTag("DeathScreen");
     }
 
     void Start()
@@ -33,6 +35,7 @@ public class PlayerStats : UnitStats
         //cd = GetComponent<CoolDownSystem>();
 
         myAnimator = GetComponent<Animator>();
+        deathScreen.SetActive(false);
         StartCoroutine(Regeneration());
     }
 
@@ -83,7 +86,8 @@ public class PlayerStats : UnitStats
         {
             isDead = true;
             myAnimator.SetBool("privoDeath", true);
-            StartCoroutine("DeathAnim", 2.4f);
+            deathScreen.SetActive(true);
+            StartCoroutine("DeathAnim", 4.4f);
             movement.StartCoroutine("StopMovement", 2.4f);
             // Death animation
             //SceneManager.LoadScene("MainMenu");
@@ -97,6 +101,7 @@ public class PlayerStats : UnitStats
         isDead = false;
         SetHealth();
         transform.position = startPosition;
+        deathScreen.SetActive(false);
     }
 
 

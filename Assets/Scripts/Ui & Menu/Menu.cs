@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    public Canvas pauseScreen;
     public Slider volumeSlider;
     public AudioSource volumeAudio;
     void Start()
@@ -58,14 +57,6 @@ public class Menu : MonoBehaviour
     public void LoadMainMenuNew()
     {
         SceneManager.LoadScene("Forge");
-    }
-
-    
-    public void UnPause()
-    {
-        Debug.Log("Test");
-        pauseScreen.gameObject.SetActive(false);
-        Time.timeScale = 1;
     }
 
     public void VolumeControl()

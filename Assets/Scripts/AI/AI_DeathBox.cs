@@ -15,27 +15,18 @@ public class AI_DeathBox : MonoBehaviour
     [Header("Death")]
     [Tooltip("How much morality the player gets for killing the enemy\nShould be negative")]
     public int MoralityForKilling;
-    public int MoralityForSaving;
-    private bool isSaved = false;
 
     void Update()
     {
         if(PlayerInTrigger == true)
         {
-            if (Input.GetKey(KeyCode.C) || Input.GetKeyDown(KeyCode.JoystickButton5) && !isSaved) // kill
+            if (Input.GetKey(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3))
             {
-                Debug.Log("Kill");
-                //PrivoAnimator.SetTrigger("Execute");
-                stats.Morality -= MoralityForKilling;
+                audioexecute.PlayDelayed(1f);
+                PrivoAnimator.SetTrigger("Execute");
+                stats.Morality += MoralityForKilling;
                 Destroy(transform.parent.gameObject);
-            }
-            if (Input.GetKey(KeyCode.Z) || Input.GetKeyDown(KeyCode.JoystickButton4) && !isSaved) // Let them live
-            {
-                Debug.Log("Save");
-                //PrivoAnimator.SetTrigger("Execute");
-                stats.Morality += MoralityForSaving;
-                isSaved = true;
-                //Destroy(transform.parent.gameObject);
+
             }
         }
     }
@@ -53,6 +44,7 @@ public class AI_DeathBox : MonoBehaviour
     {
         if (col.tag == "Player")
         {
+            stats = col.GetComponent<PlayerStats>();
             PlayerInTrigger = false;
         }
     }

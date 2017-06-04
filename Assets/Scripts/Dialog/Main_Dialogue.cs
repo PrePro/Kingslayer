@@ -32,7 +32,8 @@ public class Main_Dialogue : MonoBehaviour
     private bool running;
     private Text[] children;
     private int mHolder;
-    private bool mEndTalk = false;
+    [HideInInspector]
+    public bool mEndTalk = false;
     private bool mDeleted = false;
     private int mIndex;
     private bool endTextActive;

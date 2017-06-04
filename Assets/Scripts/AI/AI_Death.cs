@@ -11,8 +11,6 @@ public class AI_Death : AI_BaseAttack
     public GameObject DeathWayPoint;
     [Tooltip("How long they wait before they get up and walk away")]
     public float DeathTimer;
-    [Tooltip("How much morality the player gets for letting the npc live\nShould be positive")]
-    public int MoralityForSaving;
     public Image executeBar;
     public GameObject executeIcon;
 
@@ -44,8 +42,8 @@ public class AI_Death : AI_BaseAttack
             yield return new WaitForSeconds(.1f);
         }
         executeIcon.gameObject.SetActive(false);
-        PlayerStats stats = GameObject.Find("Player").GetComponent<PlayerStats>();
-        stats.Morality += MoralityForSaving;
+        DeathBox.SetActive(false);
+        //stats.Morality += MoralityForSaving;
         mDeath = true;
 
     }

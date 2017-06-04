@@ -45,7 +45,6 @@ public class Main_Dialogue : MonoBehaviour
     public GameObject PreviousQuest;
     public GameObject MiniMapIcon;
     private CoolDownSystem cdSystem;
-    private Movement movement;
     private int Xbox_holder;
     public bool Caller = false;
     private bool axisInUse = false;
@@ -60,7 +59,6 @@ public class Main_Dialogue : MonoBehaviour
         {
             isCalledOnce = true;
             cdSystem = col.GetComponent<CoolDownSystem>();
-            movement = col.GetComponent<Movement>();
 
             if (running)// Makes sure Trigger is called once 
             {
@@ -143,7 +141,7 @@ public class Main_Dialogue : MonoBehaviour
         if (running)
         {
 
-            if (movement.mController == Movement.Controller.Xbox_One_Controller && dialog.gameObject.activeSelf)
+            if (Player.ControllerState == Player.Controller.Xbox_One_Controller && dialog.gameObject.activeSelf)
             {
                 Debug.Log("Xbox Controller");
                 if (Input.GetAxisRaw("DpadV") == 0)
@@ -354,7 +352,7 @@ public class Main_Dialogue : MonoBehaviour
     #region ButtonClicks
     public void ButtonClick(int buttonIndex)
     {
-        if (movement.mController == Movement.Controller.Xbox_One_Controller)
+        if (Player.ControllerState == Player.Controller.Xbox_One_Controller)
         {
             Xbox_holder = 0;
             if (mEndTalk)
@@ -384,7 +382,7 @@ public class Main_Dialogue : MonoBehaviour
         {
             mEndTalk = true;
             mNpcText[mIndex].canvas[buttonIndex].gameObject.SetActive(false);
-            if(movement.mController == Movement.Controller.Xbox_One_Controller)
+            if(Player.ControllerState == Player.Controller.Xbox_One_Controller)
             {
                 ClearButtonColor();
             }
@@ -426,7 +424,7 @@ public class Main_Dialogue : MonoBehaviour
             {
                 mButtons[i].GetComponentInChildren<Text>().text = mNpcText[mIndex].buttonText[i];
             }
-            if (movement.mController == Movement.Controller.Xbox_One_Controller)
+            if (Player.ControllerState == Player.Controller.Xbox_One_Controller)
             {
                 ClearButtonColor();
             }

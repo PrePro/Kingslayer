@@ -16,7 +16,7 @@ public class PlayerStats : UnitStats
 
     public Vector3 startPosition;
     public bool isDead;
-    //  CoolDownSystem cd;
+    CoolDownSystem cd;
     Movement movement;
     public ParticleSystem privoHurt;
     private GameObject deathScreen;
@@ -32,7 +32,7 @@ public class PlayerStats : UnitStats
         Morality = PlayerPrefs.GetInt("Morality", 0);
         //moralityAoe = PlayerPrefs.GetInt("moralityAoe", 0);
         //moralityPorj = PlayerPrefs.GetInt("moralityPorj", 0);
-        //cd = GetComponent<CoolDownSystem>();
+        cd = GetComponent<CoolDownSystem>();
 
         myAnimator = GetComponent<Animator>();
         deathScreen.SetActive(false);
@@ -46,21 +46,13 @@ public class PlayerStats : UnitStats
         //PlayerPrefs.SetInt("MoralityPorj", moralityPorj);
     }
 
-   //public void TurnOnAbility(int i) // 1 is aoe 2 proj
-   // {
-   //     if (i == 1)
-   //     {
-   //         moralityAoe = Morality;
-   //         Morality = 0;
-   //         cd.AoeIsAvailable = true;
-   //     }
-   //     else if (i == 2)
-   //     {
-   //         moralityPorj = Morality;
-   //         Morality = 0;
-   //         cd.ProjIsAvailable = true;
-   //     }
-   // }
+    public void TurnOnAbility(int i) // 1 is aoe 2 proj
+    {
+        if (i == 1)
+        {
+            cd.AoeIsAvailable = true;
+        }
+    }
 
     void MoralityUpdater()
     {

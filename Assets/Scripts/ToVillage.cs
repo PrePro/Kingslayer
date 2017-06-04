@@ -9,10 +9,13 @@ public class ToVillage : MonoBehaviour {
 	void Start () {
 		
 	}
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("help");
-        SceneManager.LoadScene("Village1.1");
+        if (other.tag == "Player")
+        {
+            Debug.Log("help");
+            SceneManager.LoadScene("Village1.1");
+        }
     }
     // Update is called once per frame
     void Update () {

@@ -10,10 +10,13 @@ public class ToCityMarket : MonoBehaviour {
     {
 
     }
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("help");
-        SceneManager.LoadScene("CityNight");
+        if (other.tag == "Player")
+        {
+            Debug.Log("help");
+            SceneManager.LoadScene("CityNight");
+        }
     }
     // Update is called once per frame
     void Update()

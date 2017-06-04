@@ -10,10 +10,13 @@ public class ToCitySlums : MonoBehaviour {
     {
 
     }
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("help");
-        SceneManager.LoadScene("CitySlum");
+        if (other.tag == "Player")
+        {
+            Debug.Log("help");
+            SceneManager.LoadScene("CitySlum");
+        }
     }
     // Update is called once per frame
     void Update()

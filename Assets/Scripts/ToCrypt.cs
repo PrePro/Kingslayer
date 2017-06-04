@@ -13,11 +13,13 @@ public class ToCrypt : MonoBehaviour {
             Debug.Log("Didnt get animator (ToCrypt)");
         }*/
 	}
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-       
+        if (other.tag == "Player")
+        {
             Debug.Log("Didnt get animator (ToCrypt)");
             SceneManager.LoadScene("Crypt");
+        }
         
        
     }

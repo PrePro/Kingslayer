@@ -14,11 +14,14 @@ public class NextLevel : MonoBehaviour
 
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        transScreen.SetActive(true);
+        if (other.tag == "Player")
+        {
+            transScreen.SetActive(true);
         StartCoroutine(movement.StopMovement(1f));
         StartCoroutine("fade");
+    }
     }
     
     void Update()

@@ -14,6 +14,7 @@ public class CupCollection : MonoBehaviour
     public GameObject enemy4;
     public GameObject enemy5;
     public GameObject enemy6;
+    private bool timetoend;
 
     void Start ()
     {
@@ -35,6 +36,10 @@ public class CupCollection : MonoBehaviour
             gate.SetActive(true);
             StartCoroutine("GateOpen");
         }
+        if(timetoend == true)
+        {
+            Destroy(gameObject);
+        }
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void OnTriggerStay(Collider col)
@@ -52,7 +57,6 @@ public class CupCollection : MonoBehaviour
 
     IEnumerator GateOpen()
     {
-        
         yield return new WaitForSeconds(1.5f);
         gateCam.enabled = false;
         enemy2.SetActive(true);
@@ -60,7 +64,7 @@ public class CupCollection : MonoBehaviour
         enemy4.SetActive(true);
         enemy5.SetActive(true);
         enemy6.SetActive(true);
-        Destroy(gameObject);
+        timetoend = true;
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 }

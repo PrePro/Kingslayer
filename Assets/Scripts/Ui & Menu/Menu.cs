@@ -63,6 +63,7 @@ public class Menu : MonoBehaviour
     
     public void UnPause()
     {
+        Debug.Log("Test");
         pauseScreen.gameObject.SetActive(false);
         Time.timeScale = 1;
     }

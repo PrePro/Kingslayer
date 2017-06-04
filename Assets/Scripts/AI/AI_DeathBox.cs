@@ -8,6 +8,8 @@ public class AI_DeathBox : MonoBehaviour
     public AudioClip execute;
     public Animator PrivoAnimator;
 
+    AudioSource audioexecute;
+
     PlayerStats stats;
     bool PlayerInTrigger;
     [Header("Death")]

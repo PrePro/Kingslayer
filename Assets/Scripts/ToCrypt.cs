@@ -4,25 +4,34 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ToCrypt : MonoBehaviour {
-    private Animator myAnimator;
-	// Use this for initialization
-	void Start () {
-        /*myAnimator = GetComponent<Animator>();
-        if(myAnimator == null)
-        {
-            Debug.Log("Didnt get animator (ToCrypt)");
-        }*/
-	}
-    void OnTriggerEnter()
+    public GameObject transScreen;
+    public Movement movement;
+
+    // Use this for initialization
+    void Start ()
     {
-       
-            Debug.Log("Didnt get animator (ToCrypt)");
-            SceneManager.LoadScene("Crypt");
+        transScreen.SetActive(false);
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            transScreen.SetActive(true);
+            StartCoroutine(movement.StopMovement(1f));
+            StartCoroutine("fade");
+        }
         
        
     }
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
+
+    IEnumerator fade()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("Crypt");
+    }
 }

@@ -18,7 +18,7 @@ public class testingScript : MonoBehaviour {
     public Player privo;
     public Canvas options;
     public Animator privoAnim;
-    private bool UIUP = false;
+
     CoolDownSystem.PlayerState playerState;     // Use this for initialization
 
     //CoolDownSystem nCD = new CoolDownSystem();

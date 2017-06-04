@@ -10,6 +10,7 @@ public class WizardBoss : MonoBehaviour
     WizardAOE AOE;
     public float mCurrentHealth;
     public float MaxHealth;
+    public ParticleSystem psImpact;
     [HideInInspector]
     public float HealthPercent;
     [Tooltip("Debugger dont use this")]
@@ -35,6 +36,7 @@ public class WizardBoss : MonoBehaviour
     [Tooltip("Max Spawn size for the room example 10")]
     public int MaxSpawn;
     public enum Phase
+
     {
         Phase1, // Phase 1. 100%-75% HP
         Phase2, // Phase 2. 75%-50% HP
@@ -46,6 +48,7 @@ public class WizardBoss : MonoBehaviour
     {
         AOE = transform.GetComponentInChildren<WizardAOE>();
         AOE.gameObject.SetActive(false);
+        myAnimator = GetComponent<Animator>();
         //myAnimator.SetTrigger("WizardIdle");
     }
 
@@ -56,6 +59,7 @@ public class WizardBoss : MonoBehaviour
         mCurrentHealth -= damage;
         mHitCounter++;
         myAnimator.SetTrigger("WizardHit");
+        psImpact.Play();
 
     }
     void SpawnTraps()

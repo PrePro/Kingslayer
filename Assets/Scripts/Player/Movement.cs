@@ -60,15 +60,6 @@ public class Movement : MonoBehaviour
     public PlayerPerception playerperception;
     //private Rigidbody rigidbody;
 
-
-    public enum Controller
-    {
-        KeyBoard,
-        Xbox_One_Controller,
-        PS4_Controller
-    }
-
-    public Controller mController;
     #endregion
 
     //======================================================================================================
@@ -97,15 +88,14 @@ public class Movement : MonoBehaviour
         {
             mCooldown += Time.deltaTime;
         }
-
-        ControllerSetUp();
+        
         if (stopMovement == false)
         {
-            if (mController == Controller.Xbox_One_Controller)
+            if (Player.ControllerState == Player.Controller.Xbox_One_Controller)
             {
                 ControllerMovement();
             }
-            else if (mController == Controller.PS4_Controller)
+            else if (Player.ControllerState == Player.Controller.PS4_Controller)
             {
                 //Debug.Log("PS4");
             }
@@ -198,33 +188,6 @@ public class Movement : MonoBehaviour
             }
 
             target.transform.position = objectForward.transform.position;
-        }
-    }
-
-    private void ControllerSetUp()
-    {
-        string[] names = Input.GetJoystickNames();
-
-        for (int x = 0; x < names.Length; x++)
-        {
-            if (names[x].Length == 19)
-            {
-                //print("PS4 CONTROLLER IS CONNECTED");
-                mController = Controller.PS4_Controller;
-
-            }
-            if (names[x].Length == 33)
-            {
-                //print("XBOX ONE CONTROLLER IS CONNECTED");
-                //set a controller bool to true
-
-                mController = Controller.Xbox_One_Controller;
-            }
-            else
-            {
-                Debug.Log("KeyBoard");
-                mController = Controller.KeyBoard;
-            }
         }
     }
 

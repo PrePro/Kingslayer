@@ -6,11 +6,14 @@ using UnityEngine.SceneManagement;
 public class ToVillage : MonoBehaviour
     {
     public GameObject transScreen;
+    public GameObject gate;
+    private GameObject gateGuard;
     public Movement movement;
     // Use this for initialization
     void Start ()
     {
         transScreen.SetActive(false);
+        gateGuard = GameObject.FindGameObjectWithTag("CineStuff");
     }
     void OnTriggerEnter(Collider other)
     {
@@ -22,7 +25,13 @@ public class ToVillage : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void Update () {
+    void Update ()
+    {
+        gateGuard = GameObject.FindGameObjectWithTag("CineStuff");
+        if (gateGuard == null)
+        {
+            gate.SetActive(false);
+        }
 	}
     IEnumerator fade()
     {

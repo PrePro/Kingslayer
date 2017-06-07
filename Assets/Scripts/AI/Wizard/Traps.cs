@@ -9,6 +9,7 @@ public class Traps : MonoBehaviour
     Movement player;
     PlayerStats playerstats;
     WizardBoss Wizard;
+    public ParticleSystem psTrap;
     bool playerEnter;
     float timer;
     [Tooltip("How long it will take before the trap picks a new direction")]
@@ -60,11 +61,17 @@ public class Traps : MonoBehaviour
             }
         }
     }
+    void Awake()
+    {
+        //WizardBase = GameObject.Find("Wizard");
+        WizardBase = GameObject.FindGameObjectWithTag("Wizard");
+    }
     void Start()
     {
-        WizardBase = GameObject.Find("Wizard");
+
         Wizard = WizardBase.GetComponent<WizardBoss>();
         nav = gameObject.GetComponent<NavMeshAgent>();
+        psTrap.Play();
         StartCoroutine("DestroyTraps");
         StartCoroutine("DelayDamage");
     }
@@ -88,16 +95,12 @@ public class Traps : MonoBehaviour
                     break;
             }
         }
-
-        if (Wizard.CurrentPhase != WizardBoss.Phase.Phase1)
-        {
             timer += Time.deltaTime;
             if (timer >= newtargetTimer)
             {
                 NewTarget();
                 timer = 0;
             }
-        }
 
     }
 

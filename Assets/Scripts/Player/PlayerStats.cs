@@ -14,7 +14,7 @@ public class PlayerStats : UnitStats
     public int DialogActive = 0;
     private Animator myAnimator;
 
-    public Vector3 startPosition;
+    public GameObject startPosition;
     public bool isDead;
     CoolDownSystem cd;
     Movement movement;
@@ -23,7 +23,7 @@ public class PlayerStats : UnitStats
     void Awake()
     {
         movement = GetComponent<Movement>();
-        startPosition = transform.position;
+        //startPosition.transform.position = transform.position;
         deathScreen = GameObject.FindGameObjectWithTag("DeathScreen");
     }
 
@@ -92,7 +92,7 @@ public class PlayerStats : UnitStats
         myAnimator.SetBool("privoDeath", false);
         isDead = false;
         SetHealth();
-        transform.position = startPosition;
+        transform.position = startPosition.transform.position;
         deathScreen.SetActive(false);
     }
 

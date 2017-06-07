@@ -61,9 +61,14 @@ public class Traps : MonoBehaviour
             }
         }
     }
+    void Awake()
+    {
+        //WizardBase = GameObject.Find("Wizard");
+        WizardBase = GameObject.FindGameObjectWithTag("Wizard");
+    }
     void Start()
     {
-        WizardBase = GameObject.Find("Wizard");
+
         Wizard = WizardBase.GetComponent<WizardBoss>();
         nav = gameObject.GetComponent<NavMeshAgent>();
         psTrap.Play();
@@ -90,16 +95,12 @@ public class Traps : MonoBehaviour
                     break;
             }
         }
-
-        if (Wizard.CurrentPhase != WizardBoss.Phase.Phase1)
-        {
             timer += Time.deltaTime;
             if (timer >= newtargetTimer)
             {
                 NewTarget();
                 timer = 0;
             }
-        }
 
     }
 

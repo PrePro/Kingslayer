@@ -34,7 +34,7 @@ public class CameraSwitchMenu : MonoBehaviour
     public GameObject resTexture;
     public GameObject bgImage2;
     // Use this for initialization
-
+    public Color color; 
 
     public enum Controller
     {
@@ -223,7 +223,7 @@ public class CameraSwitchMenu : MonoBehaviour
         if (mController == Controller.Xbox_One_Controller)
         {
             Debug.Log("Xbox Controller");
-            ObjectsList[Xbox_holder].GetComponent<Image>().color = Color.yellow;
+            ObjectsList[Xbox_holder].GetComponent<Image>().color = color;
             if (Input.GetAxisRaw("DpadV") == 0)
             {
                 axisInUse = false;
@@ -293,7 +293,7 @@ public class CameraSwitchMenu : MonoBehaviour
     {
         if (mController == Controller.Xbox_One_Controller)
         {
-            LevelsList[Xbox_holder].GetComponent<Image>().color = Color.yellow;
+            LevelsList[Xbox_holder].GetComponent<Image>().color = color;
             if (Input.GetAxisRaw("DpadV") == 0)
             {
                 axisInUse = false;

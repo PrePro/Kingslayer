@@ -16,7 +16,6 @@ public class WizardAOE : MonoBehaviour
             Vector3 dir = (transform.position - col.transform.position).normalized;
             col.transform.position -= dir * Push;
             gameObject.SetActive(false);
-            Wizard.mHitCounter = 0;
         }
     }
     void Start()

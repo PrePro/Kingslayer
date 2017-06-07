@@ -4,18 +4,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ToCitySlums : MonoBehaviour {
+    public GameObject transScreen;
+    public Movement movement;
 
     // Use this for initialization
     void Start()
     {
+        transScreen.SetActive(false);
 
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            Debug.Log("help");
-            SceneManager.LoadScene("CitySlum");
+            transScreen.SetActive(true);
+            StartCoroutine(movement.StopMovement(1f));
+            StartCoroutine("fade");
+           
         }
     }
     // Update is called once per frame
@@ -23,4 +28,11 @@ public class ToCitySlums : MonoBehaviour {
     {
 
     }
+
+    IEnumerator fade()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("CitySlum");
+    }
+
 }

@@ -333,7 +333,7 @@ public class CoolDownSystem : MonoBehaviour
                 {
                     Debug.Log("Dash");
                     //myAnimator.SetBool("privoDash", true);
-                    if (movement.mController == Movement.Controller.Xbox_One_Controller)
+                    if (Player.ControllerState == Player.Controller.Xbox_One_Controller)
                     {
                         dashDirection = DashDirection.Controller;
                     }

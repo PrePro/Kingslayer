@@ -8,6 +8,8 @@ public class AI_DeathBox : MonoBehaviour
     public AudioClip execute;
     public Animator PrivoAnimator;
 
+    AudioSource audioexecute;
+
     PlayerStats stats;
     bool PlayerInTrigger;
     [Header("Death")]
@@ -18,11 +20,13 @@ public class AI_DeathBox : MonoBehaviour
     {
         if(PlayerInTrigger == true)
         {
-            if (Input.GetKey(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3))
+            if (Input.GetKey(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton5))
             {
+                //audioexecute.PlayDelayed(1f);
                 PrivoAnimator.SetTrigger("Execute");
                 stats.Morality += MoralityForKilling;
                 Destroy(transform.parent.gameObject);
+
             }
         }
     }

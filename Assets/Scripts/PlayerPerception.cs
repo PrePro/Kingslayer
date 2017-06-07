@@ -7,7 +7,6 @@ public class PlayerPerception : MonoBehaviour
     public GameObject Target;
     [HideInInspector]
     public List<GameObject> list;
-    private Movement movement;
     [HideInInspector]
     public bool LookAtEnemy;
     private float timer;
@@ -17,12 +16,6 @@ public class PlayerPerception : MonoBehaviour
 
     public Transform theParent;
     //public Vector3 NewPos;
-
-    void Start()
-    {
-        movement = GetComponentInParent<Movement>();
-    }
-
     void Update()
     {
         if (0.5 > timer2)
@@ -49,7 +42,7 @@ public class PlayerPerception : MonoBehaviour
 
         if (LookAtEnemy)
         {
-            if (movement.mController == Movement.Controller.KeyBoard)
+            if (Player.ControllerState == Player.Controller.KeyBoard)
             {
                 Target.transform.position = list[index].transform.position;
             }

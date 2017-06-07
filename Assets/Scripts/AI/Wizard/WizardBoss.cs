@@ -11,6 +11,9 @@ public class WizardBoss : MonoBehaviour
     public float mCurrentHealth;
     public float MaxHealth;
     public ParticleSystem psImpact;
+    public ParticleSystem psDeath;
+    public ParticleSystem psAOE;
+    public ParticleSystem psTrap;
     [HideInInspector]
     public float HealthPercent;
     [Tooltip("Debugger dont use this")]
@@ -66,6 +69,9 @@ public class WizardBoss : MonoBehaviour
     {
         Vector3 position = new Vector3(Random.Range(MinSpawn, MaxSpawn), 1, Random.Range(MinSpawn, MaxSpawn));
         Instantiate(mTraps, position, Quaternion.identity);
+        myAnimator.SetTrigger("WizardTrap");
+        
+
     }
 
     void Update()
@@ -105,6 +111,7 @@ public class WizardBoss : MonoBehaviour
                     break;
                 case Phase.Killed:
                     myAnimator.SetTrigger("WizardDeath");
+                    psDeath.Play();
                     spawnerdone = true;
                     Debug.Log("Wizard is Dead");
                     break;

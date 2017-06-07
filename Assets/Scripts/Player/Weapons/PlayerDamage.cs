@@ -32,7 +32,10 @@ public class PlayerDamage : MonoBehaviour
         }
         if (col.tag == "Wizard")
         {
-            col.GetComponent<WizardBoss>().ReceiveDamage(damage);
+            if (cdsystem.swing == true)
+            {
+                col.GetComponent<WizardBoss>().ReceiveDamage(damage);
+            }
         }
 
     }

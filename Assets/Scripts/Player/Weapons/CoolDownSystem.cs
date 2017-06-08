@@ -389,7 +389,7 @@ public class CoolDownSystem : MonoBehaviour
                 {
                     Debug.Log("Swing");
                     swing = true;
-                    //audio.PlayOneShot(slash, 5F);
+                    
                     //swordInHand.SetActive(true);
                     //swordInSheeth.SetActive(false);
                     //myAnimator.avatar = Swiningamin;
@@ -405,7 +405,7 @@ public class CoolDownSystem : MonoBehaviour
                         //Debug.Log("Slash in here/");
                         //StartCoroutine(movement.StopMovement(.3f));
                         myAnimator.SetTrigger("privoSlash");
-                        
+                        //audio.PlayOneShot(slash, 5F);
                     }
                     skills[2].currentcooldown = 0;
                 }

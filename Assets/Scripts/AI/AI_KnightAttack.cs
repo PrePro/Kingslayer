@@ -12,7 +12,7 @@ public class AI_KnightAttack : AI_BaseAttack
     public ParticleSystem slash;
     public int TurnSpeed;
     int[] randomAnim1 = new int[] { 2, 9, 10, 11 };
-
+    public AudioSource ParrySound;
     float timer;
 
     [SerializeField]
@@ -230,6 +230,7 @@ public class AI_KnightAttack : AI_BaseAttack
                 //Debug.Log("GOT ANIM");
                 if(hitspark != null)
                 {
+                    ParrySound.PlayDelayed(0.1f);
                     hitspark.Play();
                 }
                 npc.SetAnimation(NPCBase.AnimationState.ParryStagger);

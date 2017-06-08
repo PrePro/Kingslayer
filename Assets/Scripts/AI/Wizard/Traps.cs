@@ -95,27 +95,42 @@ public class Traps : MonoBehaviour
                     break;
             }
         }
-            timer += Time.deltaTime;
-            if (timer >= newtargetTimer)
-            {
-                NewTarget();
-                timer = 0;
-            }
+        timer += Time.deltaTime;
+        if (timer >= newtargetTimer)
+        {
+            CalPath();
+            timer = 0;
+        }
 
     }
-
-    void NewTarget()
+    void CalPath()
     {
-        float myX = gameObject.transform.position.x;
-        float myZ = gameObject.transform.position.z;
-
-        float xPos = myX + Random.Range(myX - 10, myX + 10);
-        float zPos = myZ + Random.Range(myZ - 10, myZ + 10);
-
-        target = new Vector3(xPos, transform.position.y, zPos);
+        NewTarget();
 
         nav.speed = speed;
         nav.SetDestination(target);
+    }
+    void NewTarget()
+    {
+
+        float myX = gameObject.transform.position.x;
+        float myZ = gameObject.transform.position.z;
+
+        float xPos = myX + Random.Range(myX - 1, myX + 1);
+        float zPos = myZ + Random.Range(myZ - 1, myZ + 1);
+
+        NavMeshPath path = new NavMeshPath();
+        nav.CalculatePath(target, path);
+
+        if (path.status == NavMeshPathStatus.PathPartial)
+        {
+            Debug.Log("Path was not reachable");
+            target = new Vector3(Wizard.transform.position.x, transform.position.y, Wizard.transform.position.z);
+        }
+        else
+        {
+            target = new Vector3(xPos, transform.position.y, zPos);
+        }
     }
 
     IEnumerator DestroyTraps()

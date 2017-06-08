@@ -60,7 +60,8 @@ public abstract class NPCBase : MonoBehaviour
         Seek,
         Sleep,
         Wander,
-        Work
+        Work,
+        Execute
     }
 
     public enum Behavior

@@ -15,6 +15,7 @@ public class NPStats : UnitStats
     public bool Death = false;
     public bool tookDamage;
     public bool HitAoe;
+    public AudioSource takeDamageSound;
     NPC npc;
     
     void Start()
@@ -43,6 +44,7 @@ public class NPStats : UnitStats
     {
         if(Death == false)
         {
+            takeDamageSound.PlayDelayed(0.01f);
             StartCoroutine("TookDamage", 0.5f);
             currentHealth -= damage;
             hitSpark.Play();

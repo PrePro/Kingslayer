@@ -76,8 +76,7 @@ public class PrivoHouseCutScene : MonoBehaviour
         HUD.gameObject.SetActive(true);
         lumenIcon.gameObject.SetActive(true);
         fire.gameObject.SetActive(true);
-        
-        //houseCutsceneRunning = true;
+        houseCutsceneRunning = true;
 
     }
 }

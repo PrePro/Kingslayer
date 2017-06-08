@@ -6,6 +6,8 @@ public class BossTrigger : MonoBehaviour {
     private GameObject respawnPoint;
     public GameObject newSpawn;
     private bool itsDone = false;
+    public AudioSource BossFightMusic;
+    public GameObject Music;
     WizardBoss wiz;
 	// Use this for initialization
 	void Start () {
@@ -22,6 +24,8 @@ public class BossTrigger : MonoBehaviour {
         Debug.Log("Up in here");
         if(other.tag == "Player" && itsDone == false)
         {
+            Music.SetActive(false);
+            BossFightMusic.PlayDelayed(0.1f);
             wiz.turnOnWizard = true;
             Debug.Log("Down in here");
             respawnPoint.transform.position = newSpawn.transform.position;

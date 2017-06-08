@@ -14,6 +14,9 @@ public class CupCollection : MonoBehaviour
     public GameObject enemy4;
     public GameObject enemy5;
     public GameObject enemy6;
+    //public GameObject respawnPoint;
+   // private GameObject startPoint;
+
     private bool timetoend;
 
     void Start ()
@@ -32,7 +35,7 @@ public class CupCollection : MonoBehaviour
     {
         if (gateCam.enabled == true)
         {
-            enemy1.SetActive(true);
+            //enemy1.SetActive(true);
             gate.SetActive(true);
             StartCoroutine("GateOpen");
         }
@@ -47,7 +50,7 @@ public class CupCollection : MonoBehaviour
         if (col.tag == "Player")
         {
             if (Input.GetKeyDown("joystick button 3") || Input.GetKeyDown("e"))
-            {
+            { 
                 cupCount += 1;
                 CupParticle.Play();
                 gateCam.enabled = true;

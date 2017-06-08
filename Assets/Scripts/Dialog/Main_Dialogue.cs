@@ -53,6 +53,7 @@ public class Main_Dialogue : MonoBehaviour
     public bool UpdateObjective;
     public CompassTurn CPTurn;
     private Color mButtonsColor;
+    public Color selectedColor;
 
     void OnTriggerEnter(Collider col)
     {
@@ -164,7 +165,7 @@ public class Main_Dialogue : MonoBehaviour
                             if (ButtonsAreUp)
                             {
                                 Xbox_holder += 1;
-                                mButtons[Xbox_holder].GetComponent<Image>().color = Color.red;
+                                mButtons[Xbox_holder].GetComponent<Image>().color = selectedColor;
                                 mButtons[Xbox_holder - 1].GetComponent<Image>().color = mButtonsColor;
                             }
                         }
@@ -184,7 +185,7 @@ public class Main_Dialogue : MonoBehaviour
                             if (ButtonsAreUp)
                             {
                                 Xbox_holder -= 1;
-                                mButtons[Xbox_holder].GetComponent<Image>().color = Color.red;
+                                mButtons[Xbox_holder].GetComponent<Image>().color = selectedColor;
                                 mButtons[Xbox_holder + 1].GetComponent<Image>().color = mButtonsColor;
                             } 
                         }
@@ -314,7 +315,7 @@ public class Main_Dialogue : MonoBehaviour
                     for (int i = 0; i < mNpcText[mIndex].mbuttons; i++)
                     {
                         ButtonsAreUp = true;
-                        mButtons[0].GetComponent<Image>().color = Color.red;
+                        mButtons[0].GetComponent<Image>().color = selectedColor;
                         mButtons[i].gameObject.SetActive(true);
                     }
                 }

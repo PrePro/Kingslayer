@@ -24,13 +24,12 @@ public class CoolDownSystem : MonoBehaviour
     public ParticleSystem ps;
     public ParticleSystem psDash;
     public ParticleSystem psSlash;
-    public AudioClip slash;
-    public AudioClip slash2;
-    public AudioClip parry;
-    public AudioClip stab;
+    public AudioSource slash;
+    public AudioSource slash2;
+    public AudioSource parry;
+    public AudioSource stab;
 
-    AudioSource audioattack;
-    AudioSource audioparry;
+
     
 
 
@@ -316,6 +315,7 @@ public class CoolDownSystem : MonoBehaviour
                     {
                         StartCoroutine(movement.StopMovement(.5f));
                         swing = true;
+                        stab.PlayDelayed(0.01f);
                         myAnimator.SetTrigger("privoStab");
 
                     }
@@ -401,6 +401,7 @@ public class CoolDownSystem : MonoBehaviour
                     {
                         swing = true;
                         psSlash.Play();
+                        slash.PlayDelayed(0.2f);
                         //GameObject.Find("Player").GetComponent<Movement>().enabled = false;
                         //Debug.Log("Slash in here/");
                         //StartCoroutine(movement.StopMovement(.3f));
@@ -574,6 +575,7 @@ public class CoolDownSystem : MonoBehaviour
     }
     IEnumerator ParryDelay(float waitTime)
     {
+        parry.PlayDelayed(0.01f);
         isParry = true;
         Blocker.SetActive(true);
         myAnimator.SetBool("privoParry", true);

@@ -7,30 +7,47 @@ public class AI_DeathBox : MonoBehaviour
 
     public AudioClip execute;
     public Animator PrivoAnimator;
-
-    AudioSource audioexecute;
-
+    public AudioSource Execution;
+    NPC npc;
     PlayerStats stats;
     bool PlayerInTrigger;
     [Header("Death")]
     [Tooltip("How much morality the player gets for killing the enemy\nShould be negative")]
     public int MoralityForKilling;
+    private bool Called = false;
+    void Start()
+    {
+        npc = GetComponentInParent<NPC>();
+    }
 
     void Update()
     {
         if(PlayerInTrigger == true)
         {
-            if (Input.GetKey(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton5))
+            if (Input.GetKey(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton5) && !Called)
             {
-                //audioexecute.PlayDelayed(1f);
+                Execution.PlayDelayed(0.5f);
                 PrivoAnimator.SetTrigger("Execute");
                 stats.Morality += MoralityForKilling;
-                Destroy(transform.parent.gameObject);
+                StartCoroutine("Death", 2f);
+                Called = true;
+
+
+                //Destroy(transform.parent.gameObject);
 
             }
         }
     }
-    
+
+    IEnumerator Death(float waitTime)
+    {
+        Debug.Log("a");
+        npc.SetAnimation(NPCBase.AnimationState.Execute);
+        yield return new WaitForSeconds(waitTime);
+        Destroy(transform.parent.gameObject);
+
+    }
+
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player")

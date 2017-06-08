@@ -28,9 +28,9 @@ public class CoolDownSystem : MonoBehaviour
     public AudioSource slash2;
     public AudioSource parry;
     public AudioSource stab;
+    public AudioSource Sheathe;
+    public AudioSource DashSound;
 
-
-    
 
 
     public enum DashDirection
@@ -187,6 +187,7 @@ public class CoolDownSystem : MonoBehaviour
         {
             if (swordInHand.activeSelf)
             {
+                Sheathe.PlayDelayed(0.1f);
                 StartCoroutine(movement.StopMovement(1f));
                 currentAnimState = PlayerState.SwordInSheeth;
                 reSheeth = true;
@@ -198,6 +199,7 @@ public class CoolDownSystem : MonoBehaviour
             }
             else
             {
+                Sheathe.PlayDelayed(0.1f);
                 StartCoroutine(movement.StopMovement(1f));
                 currentAnimState = PlayerState.SwordInHand;
                 myAnimator.avatar = AswordInHand;
@@ -373,7 +375,7 @@ public class CoolDownSystem : MonoBehaviour
                         {
                             dashDirection = DashDirection.ForwardLeft;
                         }
-
+                        DashSound.PlayDelayed(0.01f);
                         StartCoroutine("Dashtime", dashTimeForward);
                         skills[0].currentcooldown = 0;
                     }

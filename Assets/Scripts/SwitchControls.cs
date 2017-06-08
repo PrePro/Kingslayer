@@ -7,6 +7,7 @@ public class SwitchControls : MonoBehaviour
     public CoolDownSystem player;
     public GameObject unsheathControls;
     public GameObject sheathControls;
+    public GameObject ControlPrompt;
     private bool PressButton;
     // Use this for initialization
 
@@ -32,8 +33,13 @@ public class SwitchControls : MonoBehaviour
 
         if (PressButton)
         {
+            ControlPrompt.SetActive(true);
             unsheathControls.SetActive(false);
             sheathControls.SetActive(false);
+        }
+        else
+        {
+            ControlPrompt.SetActive(false);
         }
     }
 }

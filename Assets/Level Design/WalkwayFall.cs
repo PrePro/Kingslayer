@@ -12,6 +12,7 @@ public class WalkwayFall : MonoBehaviour {
         coll = GetComponent<Collider>();
         coll.isTrigger = true;
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

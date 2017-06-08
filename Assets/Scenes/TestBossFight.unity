@@ -298,6 +298,16 @@ Prefab:
       propertyPath: PlayerDamaged
       value: 
       objectReference: {fileID: 247003837}
+    - target: {fileID: 114635787318804704, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: Sheathe
+      value: 
+      objectReference: {fileID: 1102713895}
+    - target: {fileID: 114635787318804704, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: DashSound
+      value: 
+      objectReference: {fileID: 1332518033}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
   m_IsPrefabParent: 0
@@ -668,7 +678,7 @@ MonoBehaviour:
   theParent: {fileID: 0}
 --- !u!82 &728379038 stripped
 AudioSource:
-  m_PrefabParentObject: {fileID: 82270470038476220, guid: 70929bbc54b6fcb4f92fa649b233465d,
+  m_PrefabParentObject: {fileID: 82111332608755966, guid: 70929bbc54b6fcb4f92fa649b233465d,
     type: 2}
   m_PrefabInternal: {fileID: 917256730}
 --- !u!82 &777815155 stripped
@@ -875,6 +885,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 42.149002, y: -171.649, z: -149.79701}
+--- !u!82 &1102713895 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82315756953042688, guid: 70929bbc54b6fcb4f92fa649b233465d,
+    type: 2}
+  m_PrefabInternal: {fileID: 917256730}
 --- !u!1001 &1185292859
 Prefab:
   m_ObjectHideFlags: 0
@@ -977,6 +992,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9baeb92dc32bc94aafdae1d44e2bcfb, type: 2}
   m_IsPrefabParent: 0
+--- !u!82 &1332518033 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82270470038476220, guid: 70929bbc54b6fcb4f92fa649b233465d,
+    type: 2}
+  m_PrefabInternal: {fileID: 917256730}
 --- !u!1 &1419766276 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1423963331888274, guid: 5c380116f18d9cd49875ec3dc6008800,

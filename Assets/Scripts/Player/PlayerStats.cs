@@ -13,11 +13,13 @@ public class PlayerStats : UnitStats
     [HideInInspector]
     public int DialogActive = 0;
     private Animator myAnimator;
-
+    public AudioClip YouDied;
+    public AudioSource audiodeath;
     public GameObject startPosition;
     public bool isDead;
     CoolDownSystem cd;
     Movement movement;
+    public bool deathSound = true;
     public ParticleSystem privoHurt;
     private GameObject deathScreen;
     void Awake()
@@ -76,6 +78,12 @@ public class PlayerStats : UnitStats
 
         if (currentHealth <= 0)
         {
+            if (deathSound == true)
+            {
+                audiodeath.Play();
+                deathSound = false;
+
+            }
             isDead = true;
             myAnimator.SetBool("privoDeath", true);
             deathScreen.SetActive(true);
@@ -91,6 +99,7 @@ public class PlayerStats : UnitStats
         yield return new WaitForSeconds(waitTime);
         myAnimator.SetBool("privoDeath", false);
         isDead = false;
+        deathSound = true;
         SetHealth();
         transform.position = startPosition.transform.position;
         deathScreen.SetActive(false);

@@ -30,7 +30,7 @@ public class AI_DeathBox : MonoBehaviour
             }
         }
     }
-
+    
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Player")

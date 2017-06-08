@@ -7,6 +7,7 @@ public class SpawnEnemiesB : MonoBehaviour
 
     public GameObject combatA;
     public GameObject stealthB;
+    public GameObject blockersA;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class SpawnEnemiesB : MonoBehaviour
         {
             Debug.Log("Enter B");
             stealthB.SetActive(true);
+            blockersA.SetActive(true);
             Destroy(combatA);
             Destroy(this.gameObject);
         }

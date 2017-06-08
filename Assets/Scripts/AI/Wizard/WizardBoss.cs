@@ -72,8 +72,31 @@ public class WizardBoss : MonoBehaviour
         Vector3 position = new Vector3(Random.Range(MinSpawn, MaxSpawn), 1, Random.Range(MinSpawn, MaxSpawn));
         Instantiate(mTraps, position, Quaternion.identity);
         myAnimator.SetTrigger("WizardTrap");
-        
+    }
 
+
+    /*
+        A min =
+        A max =
+        T min = 
+        T max = 
+        amountspawn = how many traps are spawned
+    */
+    void RunPhase(int Amin, int Amax, int Tmin, int Tmax, int amountspawn)
+    {
+        amountToBeSpawned = amountspawn;
+        if (mHitAOE == Random.Range(Amin, Amax)) // AOE
+        {
+            myAnimator.SetTrigger("WizardAOE");
+            psAOE.Play();
+            StartCoroutine("ParticleTimer", particleAdj);
+            mHitAOE = 0;
+        }
+        else if (mHitCounter == Random.Range(Tmin, Tmax)) // TP
+        {
+            transform.position = TelportPoints[0].transform.position;
+            mHitCounter = 0;
+        }
     }
 
     void Update()
@@ -84,47 +107,14 @@ public class WizardBoss : MonoBehaviour
             switch (CurrentPhase)
             {
                 case Phase.Phase1:
-                    amountToBeSpawned = 2;
-                    if (mHitAOE == Random.Range(5, 8)) // AOE
-                    {
-                        AOE.gameObject.SetActive(true);
-                        StartCoroutine("ParticleTimer", particleAdj);
-                        mHitAOE = 0;
-                    }
-                    else if (mHitCounter == Random.Range(6, 9)) // TP
-                    {
-                        transform.position = TelportPoints[0].transform.position;
-                        mHitCounter = 0;
-                    }
+                    RunPhase(5,6, 9,10, 5);
                         break;
                 case Phase.Phase2:
-                    amountToBeSpawned = 4;
-                    if (mHitAOE == Random.Range(5, 8)) // AOE
-                    {
-                        AOE.gameObject.SetActive(true);
-                        StartCoroutine("ParticleTimer", particleAdj);
-                        mHitAOE = 0;
-                    }
-                    else if (mHitCounter == Random.Range(6, 9)) // TP
-                    {
-                        transform.position = TelportPoints[1].transform.position;
-                        mHitCounter = 0;
-                    }
-                    break;
+                    RunPhase(5, 6, 9, 10, 10); 
+                        break;
                 case Phase.Phase3:
-                    amountToBeSpawned = 8;
-                    if (mHitAOE == Random.Range(5, 8)) // AOE
-                    {
-                        AOE.gameObject.SetActive(true);
-                        StartCoroutine("ParticleTimer", particleAdj);
-                        mHitAOE = 0;
-                    }
-                    else if (mHitCounter == Random.Range(6, 9)) // TP
-                    {
-                        transform.position = TelportPoints[2].transform.position;
-                        mHitCounter = 0;
-                    }
-                    break;
+                    RunPhase(5, 6, 9, 10, 15);
+                        break;
                 case Phase.Killed:
                     myAnimator.SetTrigger("WizardDeath");
                     psDeath.Play();
@@ -149,6 +139,7 @@ public class WizardBoss : MonoBehaviour
     IEnumerator ParticleTimer(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        AOE.gameObject.SetActive(true);
         // PUT STUFF HERE
     }
 

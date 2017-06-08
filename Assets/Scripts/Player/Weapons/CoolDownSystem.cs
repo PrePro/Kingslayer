@@ -388,6 +388,8 @@ public class CoolDownSystem : MonoBehaviour
                 if (skills[2].currentcooldown >= skills[2].cooldown)
                 {
                     Debug.Log("Swing");
+                    swing = true;
+                    
                     //swordInHand.SetActive(true);
                     //swordInSheeth.SetActive(false);
                     //myAnimator.avatar = Swiningamin;

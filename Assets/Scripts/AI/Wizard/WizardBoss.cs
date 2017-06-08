@@ -35,10 +35,6 @@ public class WizardBoss : MonoBehaviour
     [Tooltip("Phase 3 time before the trap destroys")]
     public float P3Timer;
 
-    [Tooltip("Min Spawn size for the room example -10")]
-    public int MinSpawn;
-    [Tooltip("Max Spawn size for the room example 10")]
-    public int MaxSpawn;
     public enum Phase
 
     {
@@ -69,7 +65,13 @@ public class WizardBoss : MonoBehaviour
     }
     void SpawnTraps()
     {
-        Vector3 position = new Vector3(Random.Range(MinSpawn, MaxSpawn), 1, Random.Range(MinSpawn, MaxSpawn));
+        float minX = transform.position.x;
+        float minZ = transform.position.z;
+
+        minX += (Random.Range(-10, 20));
+        minZ += (Random.Range(-10, 20));
+
+        Vector3 position = new Vector3(minX, transform.position.y, minZ);
         Instantiate(mTraps, position, Quaternion.identity);
         myAnimator.SetTrigger("WizardTrap");
     }

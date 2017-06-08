@@ -21,10 +21,19 @@ public class CryptCheck02 : MonoBehaviour {
         {
             gate.SetActive(false);
         }
+        else
+        {
+            //
+        }
         mainKnight2 = GameObject.FindGameObjectWithTag("CryptMainKnight3");
-        if(mainKnight2 == null)
+
+        if (mainKnight2 == null)
         {
             gate2.SetActive(false);
+        }
+        else
+        {
+            //
         }
 
     }

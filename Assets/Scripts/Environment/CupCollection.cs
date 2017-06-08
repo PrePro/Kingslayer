@@ -8,49 +8,50 @@ public class CupCollection : MonoBehaviour
     public ParticleSystem CupParticle;
     public static int cupCount = 0;
     public GameObject gate;
-    public GameObject enemy1;
-    public GameObject enemy2;
-    public GameObject enemy3;
-    public GameObject enemy4;
-    public GameObject enemy5;
-    public GameObject enemy6;
-    //public GameObject respawnPoint;
-   // private GameObject startPoint;
+    public GameObject[] enemy;
+
+    private bool CallOnce = false;
+
+    public GameObject respawnPoint;
+    public GameObject startPoint; // the on the player
 
     private bool timetoend;
 
     void Start ()
     {
+        //timetoend = false;
         gateCam.enabled = false;
         gate.SetActive(false);
-        enemy1.SetActive(false);
-        enemy2.SetActive(false);
-        enemy3.SetActive(false);
-        enemy4.SetActive(false);
-        enemy5.SetActive(false);
-        enemy6.SetActive(false);
+        foreach(GameObject Enemy in enemy)
+        {
+            Enemy.SetActive(false);
+        }
+
     }
 	
 	void Update ()
     {
-        if (gateCam.enabled == true)
+        if (gateCam.enabled == true && !CallOnce)
         {
-            //enemy1.SetActive(true);
-            gate.SetActive(true);
+            Debug.Log("Called");
             StartCoroutine("GateOpen");
+            CallOnce = true;
         }
-        if(timetoend == true)
+        if (timetoend == true)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
+     
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void OnTriggerStay(Collider col)
     {
         if (col.tag == "Player")
         {
-            if (Input.GetKeyDown("joystick button 3") || Input.GetKeyDown("e"))
-            { 
+            if (Input.GetKeyDown("joystick button 3") || Input.GetKeyDown(KeyCode.E))
+            {
+                CallOnce = false;
+                startPoint.transform.position = respawnPoint.transform.position;
                 cupCount += 1;
                 CupParticle.Play();
                 gateCam.enabled = true;
@@ -60,13 +61,16 @@ public class CupCollection : MonoBehaviour
 
     IEnumerator GateOpen()
     {
+        enemy[0].SetActive(true);
+        gate.SetActive(true);
         yield return new WaitForSeconds(1.5f);
+
         gateCam.enabled = false;
-        enemy2.SetActive(true);
-        enemy3.SetActive(true);
-        enemy4.SetActive(true);
-        enemy5.SetActive(true);
-        enemy6.SetActive(true);
+        for (int i = 1; i < enemy.Length; i++)
+        {
+            enemy[i].SetActive(true);
+        }
+
         timetoend = true;
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------

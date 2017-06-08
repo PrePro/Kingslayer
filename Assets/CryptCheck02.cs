@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CryptCheck02 : MonoBehaviour {
     private GameObject mainKnight;
+    private GameObject mainKnight2;
     public GameObject gate;
+    public GameObject gate2;
     private bool manDown;
 
     // Use this for initialization
@@ -18,6 +20,11 @@ public class CryptCheck02 : MonoBehaviour {
         if (mainKnight == null)
         {
             gate.SetActive(false);
+        }
+        mainKnight2 = GameObject.FindGameObjectWithTag("CryptMainKnight3");
+        if(mainKnight2 == null)
+        {
+            gate2.SetActive(false);
         }
 
     }

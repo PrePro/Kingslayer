@@ -30,7 +30,7 @@ public class PrivoHouseCutScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (houseCutscene.playingCutscene == false && houseCutsceneRunning == false)
+        if (houseCutscene.playingCutscene == false && houseCutsceneRunning == false )
         {
             houseCutscene.ActivateCutscene();
             StartCoroutine(CinematicHouse());

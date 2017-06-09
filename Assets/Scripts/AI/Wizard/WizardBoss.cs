@@ -143,6 +143,7 @@ public class WizardBoss : MonoBehaviour
     IEnumerator ParticleTimer(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        StartCoroutine(AOE.ExpandTime(0.5f));
         AOE.gameObject.SetActive(true);
         // PUT STUFF HERE
     }

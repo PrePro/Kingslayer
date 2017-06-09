@@ -27,6 +27,7 @@ public class WizardBoss : MonoBehaviour
     public bool turnOnWizard = false;
     public float particleAdj;
     private Animator myAnimator;
+    public AudioSource AOESound;
 
     [Tooltip("Phase 1 time before the trap destroys")]
     public float P1Timer;
@@ -90,6 +91,7 @@ public class WizardBoss : MonoBehaviour
         if (mHitAOE == Random.Range(Amin, Amax)) // AOE
         {
             myAnimator.SetTrigger("WizardAOE");
+            AOESound.PlayDelayed(0.1f);
             psAOE.Play();
             StartCoroutine("ParticleTimer", particleAdj);
             mHitAOE = 0;

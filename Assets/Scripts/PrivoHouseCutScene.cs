@@ -10,7 +10,7 @@ public class PrivoHouseCutScene : MonoBehaviour
     public QuickCutsceneController houseCutscene;
     public bool houseCutsceneRunning = false;
     public Camera cinematicCamera;
-    private GameObject cineDelete;
+    public GameObject cineDelete;
     public GameObject questPopUp;
     public GameObject HUD;
     public GameObject lumenIcon;
@@ -68,7 +68,6 @@ public class PrivoHouseCutScene : MonoBehaviour
         yield return new WaitForSecondsRealtime(27f);
         player.SetActive(true);
         CinematicPlayer.SetActive(false);
-        cineDelete = GameObject.FindGameObjectWithTag("CineStuff");
         Destroy(cineDelete);
         houseCutscene.EndCutscene();
         cinematicCamera.enabled = false;

@@ -15,6 +15,8 @@ public class AI_DeathBox : MonoBehaviour
     [Tooltip("How much morality the player gets for killing the enemy\nShould be negative")]
     public int MoralityForKilling;
     private bool Called = false;
+    public GameObject Doll;
+    public GameObject Ragdoll;
     void Start()
     {
         npc = GetComponentInParent<NPC>();
@@ -29,7 +31,7 @@ public class AI_DeathBox : MonoBehaviour
                 Execution.PlayDelayed(0.5f);
                 PrivoAnimator.SetTrigger("Execute");
                 stats.Morality += MoralityForKilling;
-                StartCoroutine("Death", 2f);
+                StartCoroutine("Death", 0.1f);
                 Called = true;
 
 
@@ -44,6 +46,9 @@ public class AI_DeathBox : MonoBehaviour
         Debug.Log("a");
         npc.SetAnimation(NPCBase.AnimationState.Execute);
         yield return new WaitForSeconds(waitTime);
+        //Ragdoll.SetActive(true);
+        Instantiate(Ragdoll, transform.position + transform.forward, transform.rotation);
+        //Doll.SetActive(false);
         Destroy(transform.parent.gameObject);
 
     }

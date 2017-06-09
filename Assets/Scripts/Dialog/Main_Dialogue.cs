@@ -35,7 +35,7 @@ public class Main_Dialogue : MonoBehaviour
     [HideInInspector]
     public bool mEndTalk = false;
     private bool mDeleted = false;
-    private int mIndex;
+    public int mIndex;
     private bool endTextActive;
     private bool holder = true;
     private bool walkinswordout;
@@ -81,6 +81,7 @@ public class Main_Dialogue : MonoBehaviour
 
             if (!mDeleted)
             {
+                Debug.Log("FILL");
                 FillmList();
                 GetFirstChildren(mIndex);
             }
@@ -336,7 +337,6 @@ public class Main_Dialogue : MonoBehaviour
     }
 
     void GetFirstChildren(int i)
-
     {
         for (int j = 0; j < mNpcText[i].canvas.Length; j++)
         {
@@ -345,6 +345,7 @@ public class Main_Dialogue : MonoBehaviour
             foreach (Text text in children) ; //Needs to be here if the text is disabled
         }
     }
+
     void GetChildrenMult(int i)
     {
         children = mNpcText[mIndex + 1].canvas[i].GetComponentsInChildren<Text>(true); // Putting the Children into array

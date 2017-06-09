@@ -7,6 +7,7 @@ public class AfterBroker : MonoBehaviour
     public Main_Dialogue MD;
     public GameObject StairOne;
     public GameObject StairTwo;
+    public GameObject enemyGroup;
     private bool CallOnce = false;
 
     void Update()
@@ -15,6 +16,7 @@ public class AfterBroker : MonoBehaviour
         {
             StairOne.SetActive(true);
             StairTwo.SetActive(false);
+            enemyGroup.SetActive(true);
             CallOnce = true;
         }
     }

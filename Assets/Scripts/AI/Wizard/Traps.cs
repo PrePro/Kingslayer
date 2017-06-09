@@ -113,11 +113,11 @@ public class Traps : MonoBehaviour
     void NewTarget()
     {
 
-        float myX = gameObject.transform.position.x;
-        float myZ = gameObject.transform.position.z;
+        float minX = gameObject.transform.position.x;
+        float minZ = gameObject.transform.position.z;
 
-        float xPos = myX + Random.Range(myX - 1, myX + 1);
-        float zPos = myZ + Random.Range(myZ - 1, myZ + 1);
+        minX += (Random.Range(-20, 20));
+        minZ += (Random.Range(-20, 20));
 
         NavMeshPath path = new NavMeshPath();
         nav.CalculatePath(target, path);
@@ -129,7 +129,7 @@ public class Traps : MonoBehaviour
         }
         else
         {
-            target = new Vector3(xPos, transform.position.y, zPos);
+            target = new Vector3(minX, transform.position.y, minZ);
         }
     }
 

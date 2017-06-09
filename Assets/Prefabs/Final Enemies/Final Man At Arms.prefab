@@ -645,8 +645,7 @@ GameObject:
   - component: {fileID: 95120042255458396}
   - component: {fileID: 114891274167012764}
   - component: {fileID: 114946014714053334}
-  - component: {fileID: 114607816400405814}
-  - component: {fileID: 54640028339329012}
+  - component: {fileID: 54528764351222552}
   m_Layer: 0
   m_Name: Final Man At Arms
   m_TagString: Enemy
@@ -1577,8 +1576,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054116200671978}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.00000008940696, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: -1.64, z: -0.26}
   m_LocalScale: {x: 7.395854, y: 7.395847, z: 7.3958473}
   m_Children: []
   m_Father: {fileID: 4119319856855982}
@@ -1717,9 +1716,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1399882306770156}
-  m_LocalRotation: {x: -0, y: -0.9235206, z: -0, w: -0.3835487}
-  m_LocalPosition: {x: -13.56, y: 39.33, z: -88.02}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalRotation: {x: -0, y: -0.72244984, z: -0, w: 0.69142336}
+  m_LocalPosition: {x: 17.924255, y: 0.29333496, z: -15.019662}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4178661532839084}
   - {fileID: 4648084454440024}
@@ -1728,7 +1727,7 @@ Transform:
   - {fileID: 4915146155922872}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -225.107, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -270.237, z: 0}
 --- !u!4 &4143470781042662
 Transform:
   m_ObjectHideFlags: 1
@@ -1778,7 +1777,7 @@ Transform:
   m_GameObject: {fileID: 1668612094928138}
   m_LocalRotation: {x: -0, y: 0.016869007, z: -0, w: 0.9998577}
   m_LocalPosition: {x: 0.0000015459, y: -0.000009536743, z: -0.0000048457}
-  m_LocalScale: {x: 2.2322593, y: 2.2322607, z: 2.2322607}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4119319856855982}
   m_RootOrder: 0
@@ -2712,7 +2711,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1399882306770156}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54640028339329012
+--- !u!54 &54528764351222552
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3024,7 +3023,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   execute: {fileID: 8300000, guid: 99c5a610e6a699444b7aa6b833f361af, type: 3}
   PrivoAnimator: {fileID: 0}
+  Execution: {fileID: 0}
   MoralityForKilling: -10
+  Doll: {fileID: 1146933610025050}
+  Ragdoll: {fileID: 1783193800818362, guid: d7c0acb14de02b140bac730fe008a474, type: 2}
 --- !u!114 &114578509009139466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3044,20 +3046,7 @@ MonoBehaviour:
   Death: 0
   tookDamage: 0
   HitAoe: 0
---- !u!114 &114607816400405814
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1399882306770156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db27ca5af1f88c64cb231f0e7438103e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  execute: {fileID: 8300000, guid: 99c5a610e6a699444b7aa6b833f361af, type: 3}
-  PrivoAnimator: {fileID: 0}
-  MoralityForKilling: -10
+  takeDamageSound: {fileID: 0}
 --- !u!114 &114615312526163776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3155,6 +3144,7 @@ MonoBehaviour:
   canTurn: 1
   slash: {fileID: 198240564188034838}
   TurnSpeed: 1
+  ParrySound: {fileID: 0}
   attackRange: 5
   attackSpeed: 1
   MultiAnim: 1
@@ -3197,6 +3187,7 @@ MonoBehaviour:
   DeathTimer: 30
   executeBar: {fileID: 114337930401458062}
   executeIcon: {fileID: 1475388990449466}
+  Ragdoll: {fileID: 0}
 --- !u!135 &135380916923455250
 SphereCollider:
   m_ObjectHideFlags: 1

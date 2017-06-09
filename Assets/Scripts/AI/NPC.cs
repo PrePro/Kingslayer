@@ -110,7 +110,6 @@ public class NPC : NPCBase
                         //Debug.Log("IdleDefencive");
                         agent.destination = startPosition;
 
-
                     }
                     else
                     {

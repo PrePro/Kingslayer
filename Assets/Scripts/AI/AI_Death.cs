@@ -13,6 +13,7 @@ public class AI_Death : AI_BaseAttack
     public float DeathTimer;
     public Image executeBar;
     public GameObject executeIcon;
+    public GameObject Ragdoll;
 
     bool mDeath;
 
@@ -60,6 +61,7 @@ public class AI_Death : AI_BaseAttack
 
             if (Vector3.Distance(transform.position, agent.destination) <= 3f)
             {
+                
                 Destroy(this.gameObject);
             }
         }

@@ -5,8 +5,9 @@ using UnityEngine;
 public class WizardAOE : MonoBehaviour
 {
     public int Push;
-    WizardBoss Wizard;
     public int AOEDamage;
+    public float ExpandAmount;
+    private bool Expand = false;
 
     void OnTriggerEnter(Collider col)
     {
@@ -20,6 +21,21 @@ public class WizardAOE : MonoBehaviour
     }
     void Start()
     {
-        Wizard = transform.parent.gameObject.GetComponent<WizardBoss>();
+    }
+
+    void Update()
+    {
+        if(Expand)
+        {
+            transform.localScale += new Vector3(ExpandAmount, ExpandAmount, ExpandAmount);
+        }
+    }
+
+    public IEnumerator ExpandTime(float waitTime)
+    {
+        Expand = true;
+        yield return new WaitForSeconds(waitTime);
+        Expand = false;
+        gameObject.SetActive(false);
     }
 }

@@ -49,9 +49,9 @@ public class PlayerPerception : MonoBehaviour
             else
             {
                 Debug.Log("Controller loook at");
-                var lookPos = list[index].transform.position - transform.position;
+                Vector3 lookPos = list[index].transform.position - transform.position;
                 lookPos.y = 0;
-                var rotation = Quaternion.LookRotation(lookPos);
+                Quaternion rotation = Quaternion.LookRotation(lookPos);
                 theParent.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 100 * Time.deltaTime);
             }
 

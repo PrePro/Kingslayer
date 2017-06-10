@@ -23,6 +23,8 @@ public class PlayerStats : UnitStats
     public AudioSource PlayerDamaged;
     public ParticleSystem privoHurt;
     private GameObject deathScreen;
+    private bool CalledDeathOnce = false;
+
     void Awake()
     {
         movement = GetComponent<Movement>();
@@ -77,14 +79,15 @@ public class PlayerStats : UnitStats
             currentHealth--;
         }
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !CalledDeathOnce)
         {
+            CalledDeathOnce = true;
             if (deathSound == true)
             {
                 audiodeath.Play();
                 deathSound = false;
-
             }
+            Debug.Log("Called Death");
             isDead = true;
             myAnimator.SetBool("privoDeath", true);
             deathScreen.SetActive(true);
@@ -95,14 +98,15 @@ public class PlayerStats : UnitStats
         }
 
     }
+
     IEnumerator DeathAnim(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        transform.position = startPosition.transform.position;
         myAnimator.SetBool("privoDeath", false);
         isDead = false;
         deathSound = true;
         SetHealth();
-        transform.position = startPosition.transform.position;
         deathScreen.SetActive(false);
     }
 
@@ -128,6 +132,7 @@ public class PlayerStats : UnitStats
     public void SetHealth()
     {
         currentHealth = maxHealth;
+        CalledDeathOnce = false;
     }
 
     public float GetHealth()

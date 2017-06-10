@@ -228,7 +228,7 @@ public class AI_KnightAttack : AI_BaseAttack
             if (damage.gotParry)
             {
                 //Debug.Log("GOT ANIM");
-                if(hitspark != null)
+                if(hitspark == null)
                 {
                     ParrySound.PlayDelayed(0.1f);
                     hitspark.Play();

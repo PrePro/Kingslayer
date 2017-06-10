@@ -5,7 +5,6 @@ using UnityEngine;
 public class WizardAOE : MonoBehaviour
 {
     public int Push;
-    WizardBoss Wizard;
     public int AOEDamage;
     public float ExpandAmount;
     private bool Expand = false;
@@ -22,7 +21,6 @@ public class WizardAOE : MonoBehaviour
     }
     void Start()
     {
-        Wizard = transform.parent.gameObject.GetComponent<WizardBoss>();
     }
 
     void Update()

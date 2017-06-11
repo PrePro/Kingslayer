@@ -6,22 +6,20 @@ public class tutorialHome : MonoBehaviour {
 
     public bool tutorialOver = false;
     public GameObject tutorialImg;
-	// Use this for initialization
-	void Start () {
-        Debug.Log("it starts.");
-        tutorialImg.SetActive(false);
+    public GameObject tutorialImg2;
+    public GameObject tutorialImg3;
 
+	// Use this for initialization
+	void Start ()
+    {
+        tutorialImg.SetActive(false);
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("in this shit.");
-        if (tutorialOver == false)
+        if (tutorialOver == false && other.tag == "Player")
         {
-            tutorialImg.SetActive(true);
-            Debug.Log("tutorialOver = false");
-            Time.timeScale = 0;
-            Debug.Log("zero yo");
+            StartCoroutine("startGame");
             tutorialOver = true;
         }
     }
@@ -30,7 +28,7 @@ public class tutorialHome : MonoBehaviour {
 	void Update () {
 		if(tutorialOver == true)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) || Input.GetAxis("LeftTrigger") == 1)
             {
                 tutorialImg.SetActive(false);
                 if (Time.timeScale != 1)
@@ -40,4 +38,33 @@ public class tutorialHome : MonoBehaviour {
             }
         }
 	}
+
+    IEnumerator fadeIn()
+    {
+        yield return new WaitForSeconds(3f);
+        Time.timeScale = 0;
+    }
+
+    IEnumerator startGame()
+    {
+        yield return new WaitForSeconds(3f);
+        tutorialImg.SetActive(true);
+        StartCoroutine("fadeIn");
+    }
+
+    IEnumerator moralityUI()
+    {
+        tutorialImg2.SetActive(true);
+        tutorialImg.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        StartCoroutine("minimapUI");
+    }
+
+    IEnumerator minimapUI()
+    {
+        tutorialImg2.SetActive(false);
+        tutorialImg3.SetActive(true);
+        yield return new WaitForSeconds(2f);
+
+    }
 }

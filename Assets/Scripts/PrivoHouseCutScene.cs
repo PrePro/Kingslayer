@@ -15,6 +15,7 @@ public class PrivoHouseCutScene : MonoBehaviour
     public GameObject HUD;
     public GameObject lumenIcon;
     public GameObject fire;
+    public GameObject Drums;
 
     // Use this for initialization
     void Start()
@@ -33,6 +34,7 @@ public class PrivoHouseCutScene : MonoBehaviour
         if (houseCutscene.playingCutscene == false && houseCutsceneRunning == false )
         {
             houseCutscene.ActivateCutscene();
+            StartCoroutine(House());
             StartCoroutine(CinematicHouse());
             Debug.Log("cutscene1:" + houseCutscene.playingCutscene);
         }
@@ -64,7 +66,6 @@ public class PrivoHouseCutScene : MonoBehaviour
 
     IEnumerator CinematicHouse()
     {
-        
         yield return new WaitForSecondsRealtime(27f);
         player.SetActive(true);
         CinematicPlayer.SetActive(false);
@@ -75,7 +76,17 @@ public class PrivoHouseCutScene : MonoBehaviour
         HUD.gameObject.SetActive(true);
         lumenIcon.gameObject.SetActive(true);
         fire.gameObject.SetActive(true);
-        houseCutsceneRunning = true;
+      
 
+
+        houseCutsceneRunning = true;
+    }
+    IEnumerator House()
+    {
+        yield return new WaitForSecondsRealtime(19.7f);
+        Drums.SetActive(true);
+
+
+       
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class audiodefualt : MonoBehaviour {
     public AudioSource audioSource;
     public AudioSource combatSource;
+    public float speed;
     // Use this for initialization
     void Start () {
 		
@@ -15,11 +16,11 @@ public class audiodefualt : MonoBehaviour {
 
         if (audioSource.volume <= .5)
         {
-            audioSource.volume += 0.005f;
+            audioSource.volume += speed;
         }
         if (combatSource.volume >= 0)
         {
-            combatSource.volume -= 0.005f;
+            combatSource.volume -= speed;
         }
 
     }

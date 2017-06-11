@@ -6,18 +6,25 @@ public class PlayerPerception : MonoBehaviour
 {
     public GameObject Target;
     [HideInInspector]
-    public List<GameObject> list;
+    public List<GameObject> list = null;
+    [HideInInspector]
+    public List<AI_KnightAttack> KnightAttack = null;
     [HideInInspector]
     public bool LookAtEnemy;
     private float timer;
     private float timer2;
     public float CoolDown;
-    public   int index;
+    public int index;
 
     public Transform theParent;
     //public Vector3 NewPos;
     void Update()
     {
+        if (list.Count != 0)
+        {
+            KnightAttack[index].TurnOnHighlight();
+        }
+
         if (0.5 > timer2)
         {
             timer2 += Time.deltaTime;
@@ -45,6 +52,7 @@ public class PlayerPerception : MonoBehaviour
             if (Player.ControllerState == Player.Controller.KeyBoard)
             {
                 Target.transform.position = list[index].transform.position;
+
             }
             else
             {
@@ -67,6 +75,7 @@ public class PlayerPerception : MonoBehaviour
                 if (index + 1 < list.Count)
                 {
                     index += 1;
+                    KnightAttack[index - 1].TurnOffHighlight();
                 }
 
             }
@@ -76,6 +85,7 @@ public class PlayerPerception : MonoBehaviour
                 if (index - 1 >= 0)
                 {
                     index -= 1;
+                    KnightAttack[index + 1].TurnOffHighlight();
                 }
             }
         }
@@ -121,8 +131,10 @@ public class PlayerPerception : MonoBehaviour
             if (!list.Contains(col.gameObject))
             {
                 list.Add(col.gameObject);
+                KnightAttack.Add(col.gameObject.GetComponentInParent<AI_KnightAttack>());
             }
         }
+       
     }
 
     void OnTriggerExit(Collider col)
@@ -132,7 +144,15 @@ public class PlayerPerception : MonoBehaviour
             if (list.Contains(col.gameObject))
             {
                 list.Remove(col.gameObject);
-                if (index > list.Count)
+
+                if(col.gameObject.GetComponentInParent<AI_KnightAttack>().Highlight.activeSelf)
+                {
+                    col.GetComponentInParent<AI_KnightAttack>().TurnOffHighlight();
+                }
+
+                KnightAttack.Remove(col.gameObject.GetComponentInParent<AI_KnightAttack>());
+
+                if (index + 1 > list.Count)
                 {
                     index -= 1;
                 }

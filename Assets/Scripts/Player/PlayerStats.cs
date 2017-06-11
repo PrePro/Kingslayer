@@ -21,6 +21,7 @@ public class PlayerStats : UnitStats
     Movement movement;
     public bool deathSound = true;
     public AudioSource PlayerDamaged;
+    public AudioSource Playerhurt;
     public ParticleSystem privoHurt;
     private GameObject deathScreen;
     private bool CalledDeathOnce = false;
@@ -114,7 +115,14 @@ public class PlayerStats : UnitStats
 
     public override void ReceiveDamage(float damage)
     {
-        PlayerDamaged.PlayDelayed(0.01f);
+        if (PlayerDamaged.isPlaying != true)
+        {
+            PlayerDamaged.PlayDelayed(0.1f);
+        }
+        if (Playerhurt.isPlaying != true)
+        {
+            Playerhurt.PlayDelayed(0.1f);
+        }
         myAnimator.SetTrigger("privoHurt");
         currentHealth -= damage;
         privoHurt.Play();

@@ -267,7 +267,7 @@ Prefab:
         type: 2}
       propertyPath: YouDied
       value: 
-      objectReference: {fileID: 8300000, guid: 9cdff064e4440b440b7873a8098d3476, type: 3}
+      objectReference: {fileID: 8300000, guid: 99c5a610e6a699444b7aa6b833f361af, type: 3}
     - target: {fileID: 114711849223845478, guid: 5c380116f18d9cd49875ec3dc6008800,
         type: 2}
       propertyPath: deathSound
@@ -307,7 +307,7 @@ Prefab:
         type: 2}
       propertyPath: DashSound
       value: 
-      objectReference: {fileID: 1332518033}
+      objectReference: {fileID: 686011676}
     - target: {fileID: 114845531282194188, guid: 5c380116f18d9cd49875ec3dc6008800,
         type: 2}
       propertyPath: m_Enabled
@@ -328,6 +328,16 @@ Prefab:
       propertyPath: colorCorrectionSelectiveShader
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114711849223845478, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: Playerhurt
+      value: 
+      objectReference: {fileID: 247003837}
+    - target: {fileID: 114635787318804704, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: Yell
+      value: 
+      objectReference: {fileID: 1332518033}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
   m_IsPrefabParent: 0
@@ -787,6 +797,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4000012961768668, guid: a3768c8a9d1b90d4bb0eb0e4bdbe730c,
     type: 2}
   m_PrefabInternal: {fileID: 537746655}
+--- !u!82 &686011676 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82825326899094184, guid: 70929bbc54b6fcb4f92fa649b233465d,
+    type: 2}
+  m_PrefabInternal: {fileID: 917256730}
 --- !u!1 &690853711 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1050639950477372, guid: 5c380116f18d9cd49875ec3dc6008800,

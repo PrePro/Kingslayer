@@ -22,6 +22,11 @@ public class Traps : MonoBehaviour
     public float DamageWaitTime;
     bool canDamagePlayer;
 
+    public int PhaseOneDamage;
+    public int PhaseTwoDamage;
+    public int PhaseThreeDamage;
+
+
     float waitTime;
 
     void OnTriggerEnter(Collider col)
@@ -57,7 +62,23 @@ public class Traps : MonoBehaviour
         {
             if(canDamagePlayer)
             {
-                playerstats.ReceiveDamage(5 * Time.deltaTime);
+                switch (Wizard.CurrentPhase)
+                {
+                    case WizardBoss.Phase.Phase1:
+                        playerstats.ReceiveDamage(PhaseOneDamage * Time.deltaTime);
+                        break;
+                    case WizardBoss.Phase.Phase2:
+                        playerstats.ReceiveDamage(PhaseTwoDamage * Time.deltaTime);
+                        break;
+                    case WizardBoss.Phase.Phase3:
+                        playerstats.ReceiveDamage(PhaseThreeDamage * Time.deltaTime);
+                        break;
+                    case WizardBoss.Phase.Killed:
+                        playerstats.ReceiveDamage(0);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }

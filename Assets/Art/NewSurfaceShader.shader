@@ -1,61 +1,137 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-Shader "Custom/NewSurfaceShader"  {
-	Properties{
-		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
-	_Color("Left Color", Color) = (1,1,1,1)
-		_Color2("Right Color", Color) = (1,1,1,1)
-		_Scale("Scale", Float) = 1
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-		// these six unused properties are required when a shader
-		// is used in the UI system, or you get a warning.
-		// look to UI-Default.shader to see these.
-		_StencilComp("Stencil Comparison", Float) = 8
-		_Stencil("Stencil ID", Float) = 0
-		_StencilOp("Stencil Operation", Float) = 0
-		_StencilWriteMask("Stencil Write Mask", Float) = 255
-		_StencilReadMask("Stencil Read Mask", Float) = 255
-		_ColorMask("Color Mask", Float) = 15
-
+Shader "Outlined/Silhouette Only"
+{
+	Properties
+	{
+		_OutlineColor("Outline Color", Color) = (0,0,0,1)
+		_Outline("Outline width", Range(0.0, 0.09)) = .005
 	}
 
-		SubShader{
-		Tags{ "Queue" = "Background"  "IgnoreProjector" = "True" }
-		LOD 100
-
-		ZWrite On
-
-		Pass{
-		CGPROGRAM
-#pragma vertex vert  
-#pragma fragment frag
+		CGINCLUDE
 #include "UnityCG.cginc"
 
-		fixed4 _Color;
-	fixed4 _Color2;
-	fixed  _Scale;
-
-	struct v2f {
-		float4 pos : SV_POSITION;
-		fixed4 col : COLOR;
+		struct appdata
+	{
+		float4 vertex : POSITION;
+		float3 normal : NORMAL;
 	};
 
-	v2f vert(appdata_full v)
+	struct v2f
+	{
+		float4 pos : POSITION;
+		float4 color : COLOR;
+	};
+
+	uniform float _Outline;
+	uniform float4 _OutlineColor;
+
+	v2f vert(appdata v)
 	{
 		v2f o;
 		o.pos = UnityObjectToClipPos(v.vertex);
-		o.col = lerp(_Color,_Color2, v.texcoord.x);
-		//            o.col = half4( v.vertex.y, 0, 0, 1);
+		float3 norm = normalize(mul((float3x3)UNITY_MATRIX_IT_MV, v.normal));
+		float2 offset = TransformViewToProjection(norm.xy);
+
+		o.pos.xy += offset * o.pos.z * _Outline;
+		o.color = _OutlineColor;
+
+		return o;
+	}
+	ENDCG
+
+		SubShader
+	{
+		Tags{ "Queue" = "Transparent" }
+
+		Pass
+	{
+		Name "BASE"
+		CULL OFF
+		ZTEST ALWAYS
+		ZWRITE OFF
+		Blend ONE ONE
+
+		Stencil
+	{
+		REF 2
+		COMP ALWAYS
+		PASS REPLACE
+		ZFAIL REPLACE
+	}
+
+		CGPROGRAM
+#pragma vertex vert
+#pragma fragment frag
+
+		half4 frag(v2f i) :COLOR
+	{
+		return half4(0,0,0,0);
+	}
+		ENDCG
+	}
+
+		Pass
+	{
+		Name "INNER"
+		CULL OFF
+		ZTEST ALWAYS
+		ZWRITE OFF
+		Blend One One
+
+		Stencil
+	{
+		REF 1
+		COMP ALWAYS
+		PASS REPLACE
+		ZFAIL REPLACE
+	}
+
+		CGPROGRAM
+#pragma vertex vert2
+#pragma fragment frag
+		v2f vert2(appdata v)
+	{
+		v2f o;
+		o.pos = UnityObjectToClipPos(v.vertex);
+		o.color = _OutlineColor;
 		return o;
 	}
 
+	half4 frag(v2f i) :COLOR
+	{
+		return half4(0,0,0,0);
+	}
+		ENDCG
+	}
 
-	float4 frag(v2f i) : COLOR{
-		float4 c = i.col;
-		c.a = 1;
-		return c;
+		Pass
+	{
+		Name "OUTLINE"
+		CULL OFF
+		ZTEST LEqual
+		ZWRITE OFF
+		BLEND ONE ONEMINUSDSTCOLOR
+
+		Stencil
+	{
+		REF 2
+		COMP EQUAL
+		PASS REPLACE
+		ZFAIL KEEP
+	}
+
+		CGPROGRAM
+#pragma vertex vert 
+#pragma fragment frag
+		half4 frag(v2f i) :COLOR
+	{
+		return i.color;
 	}
 		ENDCG
 	}
 	}
+		Fallback "Diffuse"
 }

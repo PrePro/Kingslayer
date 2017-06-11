@@ -16,7 +16,6 @@ public class AI_Death : AI_BaseAttack
     public GameObject Ragdoll;
     private Color goodColor = new Color32(73, 214,217,255);
     private Color evilColor = new Color32(233, 108, 33, 255);
-    private float percent;
     bool mDeath;
 
 

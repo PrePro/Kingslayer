@@ -5,7 +5,6 @@ using UnityEngine;
 public class AI_DeathBox : MonoBehaviour
 {
 
-    public AudioClip execute;
     public Animator PrivoAnimator;
     public AudioSource Execution;
     public AudioSource ExecutionHuh;

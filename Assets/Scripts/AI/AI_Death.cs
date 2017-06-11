@@ -14,7 +14,7 @@ public class AI_Death : AI_BaseAttack
     public Image executeBar;
     public GameObject executeIcon;
     public GameObject Ragdoll;
-    private Color goodColor = new Color32(73, 214,217,255);
+    private Color goodColor = new Color32(73, 214,217,200);
     private Color evilColor = new Color32(233, 108, 33, 255);
     bool mDeath;
 

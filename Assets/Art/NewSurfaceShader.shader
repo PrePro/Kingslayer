@@ -2,7 +2,7 @@
 
 // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-Shader "Outlined/Silhouette Only"
+Shader "Outlined/Silhouette Only v02"
 {
 	Properties
 	{

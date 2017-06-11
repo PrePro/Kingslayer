@@ -201,7 +201,10 @@ public class NPC : NPCBase
             while (audioSource.volume >= 0)
             {
                 audioSource.volume -= i * Time.deltaTime / 1;
+            if (combatSource.volume <= .5f)
+            {
                 combatSource.volume += i * Time.deltaTime / 1;
+            }
                 yield return null;
             }
             StopCoroutine("FadeOut");

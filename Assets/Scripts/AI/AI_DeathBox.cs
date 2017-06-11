@@ -8,6 +8,7 @@ public class AI_DeathBox : MonoBehaviour
     public AudioClip execute;
     public Animator PrivoAnimator;
     public AudioSource Execution;
+    public AudioSource ExecutionHuh;
     NPC npc;
     PlayerStats stats;
     bool PlayerInTrigger;
@@ -29,6 +30,7 @@ public class AI_DeathBox : MonoBehaviour
             if (Input.GetKey(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton5) && !Called)
             {
                 Execution.PlayDelayed(0.5f);
+                ExecutionHuh.PlayDelayed(0.5f);
                 PrivoAnimator.SetTrigger("Execute");
                 stats.Morality += MoralityForKilling;
                 StartCoroutine("Death", 0.1f);

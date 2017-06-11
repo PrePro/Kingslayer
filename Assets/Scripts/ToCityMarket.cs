@@ -4,17 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ToCityMarket : MonoBehaviour {
-
+    public GameObject transScreen;
+    public Movement movement; 
     // Use this for initialization
     void Start()
     {
+        transScreen.SetActive(false);
 
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            Debug.Log("help");
+            transScreen.SetActive(true);
+            StartCoroutine(movement.StopMovement(2f));
             SceneManager.LoadScene("CityNight");
         }
     }

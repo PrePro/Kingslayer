@@ -230,8 +230,15 @@ public class AI_KnightAttack : AI_BaseAttack
                 //Debug.Log("GOT ANIM");
                 if(hitspark != null)
                 {
-                    ParrySound.PlayDelayed(0.1f);
-                    hitspark.Play();
+                    if (ParrySound.isPlaying != true)
+                    {
+                        ParrySound.PlayDelayed(0.1f);
+                    }
+                    
+                    if (hitspark.isPlaying != true)
+                    {
+                        hitspark.Play();
+                    }
                 }
                 npc.SetAnimation(NPCBase.AnimationState.ParryStagger);
                 damage.gotParry = false;

@@ -22,6 +22,11 @@ public class Traps : MonoBehaviour
     public float DamageWaitTime;
     bool canDamagePlayer;
 
+    public int PhaseOneDamage;
+    public int PhaseTwoDamage;
+    public int PhaseThreeDamage;
+
+
     float waitTime;
 
     void OnTriggerEnter(Collider col)
@@ -57,7 +62,23 @@ public class Traps : MonoBehaviour
         {
             if(canDamagePlayer)
             {
-                playerstats.ReceiveDamage(5 * Time.deltaTime);
+                switch (Wizard.CurrentPhase)
+                {
+                    case WizardBoss.Phase.Phase1:
+                        playerstats.ReceiveDamage(PhaseOneDamage * Time.deltaTime);
+                        break;
+                    case WizardBoss.Phase.Phase2:
+                        playerstats.ReceiveDamage(PhaseTwoDamage * Time.deltaTime);
+                        break;
+                    case WizardBoss.Phase.Phase3:
+                        playerstats.ReceiveDamage(PhaseThreeDamage * Time.deltaTime);
+                        break;
+                    case WizardBoss.Phase.Killed:
+                        playerstats.ReceiveDamage(0);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -113,11 +134,11 @@ public class Traps : MonoBehaviour
     void NewTarget()
     {
 
-        float myX = gameObject.transform.position.x;
-        float myZ = gameObject.transform.position.z;
+        float minX = gameObject.transform.position.x;
+        float minZ = gameObject.transform.position.z;
 
-        float xPos = myX + Random.Range(myX - 1, myX + 1);
-        float zPos = myZ + Random.Range(myZ - 1, myZ + 1);
+        minX += (Random.Range(-20, 20));
+        minZ += (Random.Range(-20, 20));
 
         NavMeshPath path = new NavMeshPath();
         nav.CalculatePath(target, path);
@@ -129,7 +150,7 @@ public class Traps : MonoBehaviour
         }
         else
         {
-            target = new Vector3(xPos, transform.position.y, zPos);
+            target = new Vector3(minX, transform.position.y, minZ);
         }
     }
 

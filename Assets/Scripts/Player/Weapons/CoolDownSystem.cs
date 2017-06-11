@@ -30,6 +30,7 @@ public class CoolDownSystem : MonoBehaviour
     public AudioSource stab;
     public AudioSource Sheathe;
     public AudioSource DashSound;
+    public AudioSource Yell;
 
 
 
@@ -315,9 +316,14 @@ public class CoolDownSystem : MonoBehaviour
                     Debug.Log("Stab");
                     if (swordInHand.activeSelf)
                     {
+
                         StartCoroutine(movement.StopMovement(.5f));
                         swing = true;
-                        stab.PlayDelayed(0.01f);
+                        if (stab.isPlaying != true)
+                        {
+                            stab.PlayDelayed(0.1f);
+                        }
+                        
                         myAnimator.SetTrigger("privoStab");
 
                     }
@@ -403,11 +409,20 @@ public class CoolDownSystem : MonoBehaviour
                     {
                         swing = true;
                         psSlash.Play();
-                        slash.PlayDelayed(0.2f);
+                        if (slash.isPlaying != true)
+                        {
+                            slash.PlayDelayed(0.2f);
+                        }
+                        if (Yell.isPlaying != true)
+                        {
+                            Yell.PlayDelayed(0.1f);
+                        }
+                        
                         //GameObject.Find("Player").GetComponent<Movement>().enabled = false;
                         //Debug.Log("Slash in here/");
                         //StartCoroutine(movement.StopMovement(.3f));
                         myAnimator.SetTrigger("privoSlash");
+                        
                         //audio.PlayOneShot(slash, 5F);
                     }
                     skills[2].currentcooldown = 0;

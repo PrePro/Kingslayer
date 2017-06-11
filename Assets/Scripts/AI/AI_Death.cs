@@ -13,7 +13,9 @@ public class AI_Death : AI_BaseAttack
     public float DeathTimer;
     public Image executeBar;
     public GameObject executeIcon;
-
+    public GameObject Ragdoll;
+    private Color goodColor = new Color32(73, 214,217,255);
+    private Color evilColor = new Color32(233, 108, 33, 255);
     bool mDeath;
 
 
@@ -26,6 +28,7 @@ public class AI_Death : AI_BaseAttack
         DeathBox.SetActive(true);
         StartCoroutine("Death", DeathTimer);
         executeIcon.SetActive(true);
+
     }
     public override void Exit()
     {
@@ -37,6 +40,7 @@ public class AI_Death : AI_BaseAttack
         while (time > 0)
         {
             executeBar.fillAmount = time / DeathTimer;
+            executeBar.color = Color.Lerp(goodColor, evilColor, (time / DeathTimer));
             time -= .1f;
             //Debug.Log(time);
             yield return new WaitForSeconds(.1f);
@@ -60,6 +64,7 @@ public class AI_Death : AI_BaseAttack
 
             if (Vector3.Distance(transform.position, agent.destination) <= 3f)
             {
+                
                 Destroy(this.gameObject);
             }
         }

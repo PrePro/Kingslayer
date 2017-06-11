@@ -28,6 +28,7 @@ public class WizardBoss : MonoBehaviour
     public float particleAdj;
     private Animator myAnimator;
     public AudioSource AOESound;
+    public ParticleSystem psTele;
 
     [Tooltip("Phase 1 time before the trap destroys")]
     public float P1Timer;
@@ -99,6 +100,7 @@ public class WizardBoss : MonoBehaviour
         else if (mHitCounter == Random.Range(Tmin, Tmax)) // TP
         {
             transform.position = TelportPoints[0].transform.position;
+            psTele.Play();
             mHitCounter = 0;
         }
     }

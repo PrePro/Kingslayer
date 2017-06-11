@@ -340,7 +340,7 @@ public class CoolDownSystem : MonoBehaviour
                 if (skills[0].currentcooldown >= skills[0].cooldown)
                 {
                     Debug.Log("Dash");
-                    //myAnimator.SetBool("privoDash", true);
+                    myAnimator.SetBool("privoDash", true);
                     if (Player.ControllerState == Player.Controller.Xbox_One_Controller)
                     {
                         dashDirection = DashDirection.Controller;
@@ -385,6 +385,10 @@ public class CoolDownSystem : MonoBehaviour
                         StartCoroutine("Dashtime", dashTimeForward);
                         skills[0].currentcooldown = 0;
                     }
+                }
+                else
+                {
+                    myAnimator.SetBool("privoDash", false);
                 }
             }
         }

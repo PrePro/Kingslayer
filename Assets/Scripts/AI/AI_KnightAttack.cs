@@ -23,6 +23,7 @@ public class AI_KnightAttack : AI_BaseAttack
     protected float attackSpeed;
     public bool MultiAnim;
     public ParticleSystem hitspark;
+    public GameObject Highlight;
 
     void Start()
     {
@@ -32,6 +33,16 @@ public class AI_KnightAttack : AI_BaseAttack
             Debug.Log("NULL");
         }
 
+    }
+
+    public void TurnOnHighlight()
+    {
+        Highlight.SetActive(true);
+    }
+
+    public void TurnOffHighlight()
+    {
+        Highlight.SetActive(false);
     }
 
     public override void Run()

@@ -30,6 +30,7 @@ public class CoolDownSystem : MonoBehaviour
     public AudioSource stab;
     public AudioSource Sheathe;
     public AudioSource DashSound;
+    public AudioSource Yell;
 
 
 
@@ -404,6 +405,7 @@ public class CoolDownSystem : MonoBehaviour
                         swing = true;
                         psSlash.Play();
                         slash.PlayDelayed(0.2f);
+                        Yell.PlayDelayed(0.1f);
                         //GameObject.Find("Player").GetComponent<Movement>().enabled = false;
                         //Debug.Log("Slash in here/");
                         //StartCoroutine(movement.StopMovement(.3f));

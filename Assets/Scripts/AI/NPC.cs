@@ -14,6 +14,10 @@ public class NPC : NPCBase
     public GameObject searchingImage;
     private bool playerDead;
     public float KnockBackAOE;
+    public AudioSource audioSource;
+    public AudioSource combatSource;
+    public float startVolume;
+    public bool music;
 
     void Update()
     {
@@ -41,6 +45,7 @@ public class NPC : NPCBase
         {
             HandleDebuff();
         }
+     
     }
 
     public override void SetState(State newState)
@@ -53,6 +58,11 @@ public class NPC : NPCBase
         {
             case State.Idle:
                 {
+                    music = true;
+                    StopCoroutine("FadeOut");
+                    startVolume = audioSource.volume;
+                    StartCoroutine("FadeIn", startVolume);
+                    StartCoroutine("Fade", startVolume);
                     agent.isStopped = true;
                     SetAnimation(AnimationState.Idle);
                     foundImage.SetActive(false);//put a yellow one. For Yash.
@@ -61,6 +71,7 @@ public class NPC : NPCBase
                 break;
             case State.Attacking:
                 {
+                   
                     switch (unitClass)
                     {
                         case UnitClass.Knight:
@@ -84,6 +95,14 @@ public class NPC : NPCBase
                 break;
             case State.Chasing:
                 {
+                    StopCoroutine("FadeIn");
+                    music = false;
+                    startVolume = audioSource.volume;
+                    StartCoroutine("FadeOut", startVolume);
+                    StartCoroutine("Fade", startVolume);
+                    //Music.SetActive(false);
+                    //MusicOut.SetActive(true);
+                    //combatIn.SetActive(true);
                     SetAnimation(AnimationState.Walking);
                     if (unitClass != UnitClass.Archer)
                     {
@@ -97,12 +116,18 @@ public class NPC : NPCBase
                 break;
             case State.Patrolling:
                 {
+                    music = true;
+                    StopCoroutine("FadeOut");
+                    startVolume = audioSource.volume;
+                    StartCoroutine("FadeIn", startVolume);
+                    StartCoroutine("Fade", startVolume);
                     Patroler.Enter();
                     SetAnimation(AnimationState.Walking);
                 }
                 break;
             case State.Searching:
                 {
+
                     SetAnimation(AnimationState.Walking);
                     agent.isStopped = false;
                     if (dominantBehavior == Behavior.IdleDefencive || dominantBehavior == Behavior.IdleAggressive)
@@ -128,6 +153,11 @@ public class NPC : NPCBase
                 break;
             case State.Dead:
                 {
+                    
+                    StopCoroutine("FadeOut");
+                    startVolume = audioSource.volume;
+                    StartCoroutine("FadeIn", startVolume);
+                    StartCoroutine("Fade", startVolume);
                     SetAnimation(AnimationState.Dead);
                     AI_mDeath.Enter();
                 }
@@ -136,7 +166,50 @@ public class NPC : NPCBase
         previousState = currentState;
         currentState = newState;
     }
+    public IEnumerator Fade(float i)
+    {
+        while (audioSource.volume <= .5)
+        {
+            Debug.Log("FadingIn");
+            audioSource.volume += i * Time.deltaTime / 10;
+            combatSource.volume -= i * Time.deltaTime / 10;
+            yield return null;
+        }
+        StopCoroutine("FadeIn");
+    }
 
+    public IEnumerator FadeIn(float i)
+    {
+      
+           
+            while (audioSource.volume <= .5)
+            {
+                Debug.Log("FadingIn");
+                audioSource.volume += i * Time.deltaTime / 1;
+                combatSource.volume -= i * Time.deltaTime / 1;
+                yield return null;
+            }
+            StopCoroutine("FadeIn");
+       
+
+    }
+
+    public IEnumerator FadeOut(float i)
+    {
+        
+            Debug.Log(audioSource.volume);
+            while (audioSource.volume >= 0)
+            {
+                audioSource.volume -= i * Time.deltaTime / 1;
+            if (combatSource.volume <= .5f)
+            {
+                combatSource.volume += i * Time.deltaTime / 1;
+            }
+                yield return null;
+            }
+            StopCoroutine("FadeOut");
+        
+    }
 
     public IEnumerator RootAI(float time)
     {

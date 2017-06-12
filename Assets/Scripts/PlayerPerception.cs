@@ -9,6 +9,7 @@ public class PlayerPerception : MonoBehaviour
     public List<GameObject> list = null;
     [HideInInspector]
     public List<AI_KnightAttack> KnightAttack = null;
+    private AI_KnightAttack selectedKnight;
     [HideInInspector]
     public bool LookAtEnemy;
     private float timer;
@@ -52,7 +53,6 @@ public class PlayerPerception : MonoBehaviour
             if (Player.ControllerState == Player.Controller.KeyBoard)
             {
                 Target.transform.position = list[index].transform.position;
-
             }
             else
             {
@@ -113,9 +113,9 @@ public class PlayerPerception : MonoBehaviour
             {
                 if (timer2 >= 0.2)
                 {
-                    if (index - 1 >= 0)
+                    if (index - 1 > 0)
                     {
-                        index -= 1;
+                        index = 0;
                         timer2 = 0;
                     }
                 }
@@ -132,6 +132,7 @@ public class PlayerPerception : MonoBehaviour
             {
                 list.Add(col.gameObject);
                 KnightAttack.Add(col.gameObject.GetComponentInParent<AI_KnightAttack>());
+
             }
         }
        
@@ -154,7 +155,7 @@ public class PlayerPerception : MonoBehaviour
 
                 if (index + 1 > list.Count)
                 {
-                    index -= 1;
+                    index = 1;
                 }
             }
         }

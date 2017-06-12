@@ -123,7 +123,10 @@ public class PlayerStats : UnitStats
         {
             Playerhurt.PlayDelayed(0.1f);
         }
-        myAnimator.SetTrigger("privoHurt");
+        if (!myAnimator.GetBool("privoKnockBack"))
+        {
+            myAnimator.SetTrigger("privoHurt");
+        }
         currentHealth -= damage;
         privoHurt.Play();
     }

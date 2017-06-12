@@ -90,6 +90,7 @@ public class AI_KnightAttack : AI_BaseAttack
 
     void checkAnimation()
     {
+       
         if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("sword_and_shield_slash"))
         {
             agent.isStopped = true;
@@ -143,10 +144,13 @@ public class AI_KnightAttack : AI_BaseAttack
             Debug.Log("Else");
             canTurn = true;
         }
+      
+
     }
 
     public override void Enter()
     {
+        
         npc.SetAnimation(NPCBase.AnimationState.Attacking);
         agent.isStopped = true;
         slash.Play();
@@ -224,6 +228,7 @@ public class AI_KnightAttack : AI_BaseAttack
             {
                 int RandomAnimation = randomAnim1[UnityEngine.Random.Range(0, randomAnim1.Length)];
                 npc.SetAnimation((NPCBase.AnimationState)RandomAnimation);
+                
             }
             else
             {

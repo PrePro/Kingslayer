@@ -13,7 +13,6 @@ public class AI_KnightAttack : AI_BaseAttack
     public int TurnSpeed;
     int[] randomAnim1 = new int[] { 2, 9, 10, 11 };
     public AudioSource ParrySound;
-    public AudioSource swingsound;
     float timer;
 
     [SerializeField]
@@ -91,6 +90,7 @@ public class AI_KnightAttack : AI_BaseAttack
 
     void checkAnimation()
     {
+       
         if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("sword_and_shield_slash"))
         {
             agent.isStopped = true;
@@ -144,11 +144,13 @@ public class AI_KnightAttack : AI_BaseAttack
             Debug.Log("Else");
             canTurn = true;
         }
-        swingsound.PlayDelayed(0.1f);
+      
+
     }
 
     public override void Enter()
     {
+        
         npc.SetAnimation(NPCBase.AnimationState.Attacking);
         agent.isStopped = true;
         slash.Play();
@@ -226,6 +228,7 @@ public class AI_KnightAttack : AI_BaseAttack
             {
                 int RandomAnimation = randomAnim1[UnityEngine.Random.Range(0, randomAnim1.Length)];
                 npc.SetAnimation((NPCBase.AnimationState)RandomAnimation);
+                
             }
             else
             {

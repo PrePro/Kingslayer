@@ -10,8 +10,8 @@ public class BossTrigger : MonoBehaviour {
     public AudioSource BossFightMusic;
     public GameObject Music;
     public GameObject Music2;
-    public GameObject burn;
-    public GameObject start;
+    //public GameObject burn;
+    //public GameObject start;
     public GameObject camera1;
     public GameObject bossHealthBar;
     public GameObject bossName;
@@ -51,8 +51,8 @@ public class BossTrigger : MonoBehaviour {
         yield return new WaitForSeconds(2f);
         Music.SetActive(false);
         Music2.SetActive(false);
-        burn.SetActive(true);
-        start.SetActive(true);
+        //burn.SetActive(true);
+        //start.SetActive(true);
         bossName.SetActive(true);
         bossHealthBar.SetActive(true);
         //wiz.turnOnWizard = true;

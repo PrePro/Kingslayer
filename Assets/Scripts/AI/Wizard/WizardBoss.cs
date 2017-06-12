@@ -31,6 +31,9 @@ public class WizardBoss : MonoBehaviour
     private Animator myAnimator;
     public AudioSource AOESound;
     public ParticleSystem psTele;
+    public AudioSource trapstart;
+    public GameObject traploop;
+    public AudioSource traplooper;
 
     [Tooltip("Phase 1 time before the trap destroys")]
     public float P1Timer;
@@ -77,6 +80,9 @@ public class WizardBoss : MonoBehaviour
         Vector3 position = new Vector3(minX, transform.position.y, minZ);
         Instantiate(mTraps, position, Quaternion.identity);
         myAnimator.SetTrigger("WizardTrap");
+        trapstart.PlayDelayed(0.6f);
+        traploop.SetActive(true);
+        traplooper.PlayDelayed(3f);
     }
 
 

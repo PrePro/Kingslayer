@@ -13,6 +13,7 @@ public class AI_KnightAttack : AI_BaseAttack
     public int TurnSpeed;
     int[] randomAnim1 = new int[] { 2, 9, 10, 11 };
     public AudioSource ParrySound;
+    public AudioSource swingsound;
     float timer;
 
     [SerializeField]
@@ -143,6 +144,7 @@ public class AI_KnightAttack : AI_BaseAttack
             Debug.Log("Else");
             canTurn = true;
         }
+        swingsound.PlayDelayed(0.1f);
     }
 
     public override void Enter()

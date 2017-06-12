@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WizardBoss : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class WizardBoss : MonoBehaviour
     WizardAOE AOE;
     public float mCurrentHealth;
     public float MaxHealth;
+    public Image healthBar;
     public ParticleSystem psImpact;
     public ParticleSystem psDeath;
     public ParticleSystem psAOE;
@@ -29,6 +31,9 @@ public class WizardBoss : MonoBehaviour
     private Animator myAnimator;
     public AudioSource AOESound;
     public ParticleSystem psTele;
+    public AudioSource trapstart;
+    public GameObject traploop;
+    public AudioSource traplooper;
 
     [Tooltip("Phase 1 time before the trap destroys")]
     public float P1Timer;
@@ -63,7 +68,6 @@ public class WizardBoss : MonoBehaviour
         mHitAOE++; 
         myAnimator.SetTrigger("WizardHit");
         psImpact.Play();
-
     }
     void SpawnTraps()
     {
@@ -76,6 +80,9 @@ public class WizardBoss : MonoBehaviour
         Vector3 position = new Vector3(minX, transform.position.y, minZ);
         Instantiate(mTraps, position, Quaternion.identity);
         myAnimator.SetTrigger("WizardTrap");
+        trapstart.PlayDelayed(0.6f);
+        traploop.SetActive(true);
+        traplooper.PlayDelayed(3f);
     }
 
 
@@ -125,7 +132,7 @@ public class WizardBoss : MonoBehaviour
                     myAnimator.SetTrigger("WizardDeath");
                     psDeath.Play();
                     spawnerdone = true;
-                    Debug.Log("Wizard is Dead");
+                    gameObject.SetActive(false);
                     break;
                 default:
                     break;
@@ -139,7 +146,9 @@ public class WizardBoss : MonoBehaviour
                 spawnerdone = true;
             }
         }
-       
+        healthBar.fillAmount = mCurrentHealth / MaxHealth;
+        Debug.Log(healthBar.fillAmount);
+
     }
 
     IEnumerator ParticleTimer(float waitTime)

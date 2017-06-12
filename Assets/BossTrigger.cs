@@ -11,11 +11,13 @@ public class BossTrigger : MonoBehaviour {
     public GameObject Music;
     public GameObject camera1;
     public GameObject bossHealthBar;
+    public GameObject bossName;
     //WizardBoss wiz;
 	// Use this for initialization
 	void Start () {
         respawnPoint = GameObject.FindGameObjectWithTag("StartPoint");
         camera1.SetActive(false);
+        bossName.SetActive(false);
         bossHealthBar.SetActive(false);
 	}
 	
@@ -45,6 +47,7 @@ public class BossTrigger : MonoBehaviour {
         camera1.SetActive(true);
         yield return new WaitForSeconds(2f);
         Music.SetActive(false);
+        bossName.SetActive(true);
         bossHealthBar.SetActive(true);
         //wiz.turnOnWizard = true;
         respawnPoint.transform.position = newSpawn.transform.position;

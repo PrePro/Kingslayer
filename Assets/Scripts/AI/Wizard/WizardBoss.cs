@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WizardBoss : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class WizardBoss : MonoBehaviour
     WizardAOE AOE;
     public float mCurrentHealth;
     public float MaxHealth;
+    public Image healthBar;
     public ParticleSystem psImpact;
     public ParticleSystem psDeath;
     public ParticleSystem psAOE;
@@ -63,7 +65,6 @@ public class WizardBoss : MonoBehaviour
         mHitAOE++; 
         myAnimator.SetTrigger("WizardHit");
         psImpact.Play();
-
     }
     void SpawnTraps()
     {
@@ -125,7 +126,7 @@ public class WizardBoss : MonoBehaviour
                     myAnimator.SetTrigger("WizardDeath");
                     psDeath.Play();
                     spawnerdone = true;
-                    Debug.Log("Wizard is Dead");
+                    gameObject.SetActive(false);
                     break;
                 default:
                     break;
@@ -139,7 +140,9 @@ public class WizardBoss : MonoBehaviour
                 spawnerdone = true;
             }
         }
-       
+        healthBar.fillAmount = mCurrentHealth / MaxHealth;
+        Debug.Log(healthBar.fillAmount);
+
     }
 
     IEnumerator ParticleTimer(float waitTime)

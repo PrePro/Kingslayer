@@ -13,6 +13,8 @@ public class tutorialHome : MonoBehaviour {
 	void Start ()
     {
         tutorialImg.SetActive(false);
+        tutorialImg2.SetActive(false);
+        tutorialImg3.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
@@ -20,7 +22,7 @@ public class tutorialHome : MonoBehaviour {
         if (tutorialOver == false && other.tag == "Player")
         {
             StartCoroutine("startGame");
-            tutorialOver = true;
+            //tutorialOver = true;
         }
     }
  
@@ -31,6 +33,8 @@ public class tutorialHome : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.R) || Input.GetAxis("LeftTrigger") == 1)
             {
                 tutorialImg.SetActive(false);
+                tutorialImg2.SetActive(false);
+                tutorialImg3.SetActive(false);
                 if (Time.timeScale != 1)
                 {
                     Time.timeScale = 1;
@@ -41,30 +45,30 @@ public class tutorialHome : MonoBehaviour {
 
     IEnumerator fadeIn()
     {
-        yield return new WaitForSeconds(3f);
-        Time.timeScale = 0;
+        tutorialImg.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        StartCoroutine("moralityUI");
     }
 
     IEnumerator startGame()
     {
-        yield return new WaitForSeconds(3f);
-        tutorialImg.SetActive(true);
+        yield return new WaitForSeconds(4f);
+        
         StartCoroutine("fadeIn");
     }
 
     IEnumerator moralityUI()
     {
         tutorialImg2.SetActive(true);
-        tutorialImg.SetActive(false);
-        yield return new WaitForSeconds(2f);
+        //tutorialImg.SetActive(false);
+        yield return new WaitForSeconds(1f);
         StartCoroutine("minimapUI");
     }
 
     IEnumerator minimapUI()
     {
-        tutorialImg2.SetActive(false);
+        yield return new WaitForSeconds(1f);
         tutorialImg3.SetActive(true);
-        yield return new WaitForSeconds(2f);
-
+        tutorialOver = true;
     }
 }

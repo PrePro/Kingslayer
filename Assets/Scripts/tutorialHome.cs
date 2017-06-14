@@ -46,7 +46,7 @@ public class tutorialHome : MonoBehaviour {
     IEnumerator fadeIn()
     {
         tutorialImg.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         StartCoroutine("moralityUI");
     }
 

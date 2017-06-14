@@ -14,12 +14,16 @@ public class AI_DeathBox : MonoBehaviour
     [Header("Death")]
     [Tooltip("How much morality the player gets for killing the enemy\nShould be negative")]
     public int MoralityForKilling;
+    public int MoralityForSaving;
     private bool Called = false;
     public GameObject Doll;
     public GameObject Ragdoll;
+    private AI_Death AIDeath;
+
     void Start()
     {
         npc = GetComponentInParent<NPC>();
+        AIDeath = GetComponentInParent<AI_Death>();
     }
 
     void Update()
@@ -35,9 +39,15 @@ public class AI_DeathBox : MonoBehaviour
                 StartCoroutine("Death", 0.1f);
                 Called = true;
 
-
                 //Destroy(transform.parent.gameObject);
 
+            }
+            if (Input.GetKeyDown(KeyCode.JoystickButton4)&& !Called)
+            {
+                Debug.Log("1");
+                stats.Morality += MoralityForSaving;
+                AIDeath.mDeath = true;
+                Called = true;
             }
         }
     }

@@ -15,8 +15,8 @@ public class AoeAbility : MonoBehaviour
 
     void Update()
     {
-        cdsystem = GameObject.Find("Player").GetComponent<CoolDownSystem>();
-        stats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        cdsystem = GetComponentInParent<CoolDownSystem>();
+        stats = GetComponentInParent<PlayerStats>();
     }
 
     //IEnumerator PushBack(float waitTime, Vector3 dir)
@@ -47,8 +47,8 @@ public class AoeAbility : MonoBehaviour
             {
                 npc = col.GetComponentInParent<NPC>();
             }
-
             npcstats = col.GetComponent<NPStats>();
+
             if (npcstats == null)
             {
                 npcstats = col.GetComponentInParent<NPStats>();
@@ -72,9 +72,9 @@ public class AoeAbility : MonoBehaviour
             {
                 Debug.Log("Steal");
 
-                npcstats.HitAoe = true;
+                //npcstats.HitAoe = true;
                 npcstats.ReceiveDamage(damage);
-                stats.RecieveHealing(5);
+                stats.RecieveHealing(10);
             }
         }
     }

@@ -16,7 +16,7 @@ public class AI_Death : AI_BaseAttack
     public GameObject Ragdoll;
     private Color goodColor = new Color32(73, 214,217,200);
     private Color evilColor = new Color32(233, 108, 33, 255);
-    bool mDeath;
+    public bool mDeath;
 
 
     public override void Run()
@@ -47,9 +47,10 @@ public class AI_Death : AI_BaseAttack
         }
         executeIcon.gameObject.SetActive(false);
         DeathBox.SetActive(false);
-        //stats.Morality += MoralityForSaving;
-        mDeath = true;
-
+        if (!mDeath)
+        {
+            mDeath = true;
+        }
     }
 
     public void Death()

@@ -518,17 +518,17 @@ public class CoolDownSystem : MonoBehaviour
                     //StartCoroutine("AOEWait", aoewaitTime);
 
                     AoeState = AoeMorality.Nothin;
-                    if (stats.Morality < -66) //Stun
-                    {
-                        AoeState = AoeMorality.Stun;
-                        skills[5].currentcooldown = 0;
-                    }
-                    else if (stats.Morality >= -67 && stats.Morality <= 65) //Knock Back + Damage
+                    //if (stats.Morality < -66) //Stun
+                    //{
+                    //    AoeState = AoeMorality.Stun;
+                    //    skills[5].currentcooldown = 0;
+                    //}
+                    if (stats.Morality >= 0 ) //Knock Back + Damage
                     {
                         AoeState = AoeMorality.KnockBack;
                         skills[5].currentcooldown = 0;
                     }
-                    if (stats.Morality >= 66) // Heal Steal
+                    if (stats.Morality <= -1) // Heal Steal
                     {
                         AoeState = AoeMorality.Steal;
                         skills[5].currentcooldown = 0;

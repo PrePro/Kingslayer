@@ -83,7 +83,7 @@ public class PrivoHouseCutScene : MonoBehaviour
     }
     IEnumerator House()
     {
-        yield return new WaitForSecondsRealtime(19.7f);
+        yield return new WaitForSecondsRealtime(19.55f);
         Drums.SetActive(true);
 
 

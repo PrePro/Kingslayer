@@ -15,13 +15,14 @@ public class BossTrigger : MonoBehaviour {
     public GameObject camera1;
     public GameObject bossHealthBar;
     public GameObject bossName;
-    //WizardBoss wiz;
+    public WizardBoss wiz;
 	// Use this for initialization
 	void Start () {
         respawnPoint = GameObject.FindGameObjectWithTag("StartPoint");
         camera1.SetActive(false);
         bossName.SetActive(false);
         bossHealthBar.SetActive(false);
+
 	}
 	
 	// Update is called once per frame
@@ -55,7 +56,7 @@ public class BossTrigger : MonoBehaviour {
         //start.SetActive(true);
         bossName.SetActive(true);
         bossHealthBar.SetActive(true);
-        //wiz.turnOnWizard = true;
+        wiz.turnOnWizard = true;
         respawnPoint.transform.position = newSpawn.transform.position;
         itsDone = true;
     }

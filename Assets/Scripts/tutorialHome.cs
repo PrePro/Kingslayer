@@ -30,6 +30,7 @@ public class tutorialHome : MonoBehaviour {
 	void Update () {
 		if(tutorialOver == true)
         {
+            Debug.Log("Use R or LeftTrigger bitch");
             if (Input.GetKeyDown(KeyCode.R) || Input.GetAxis("LeftTrigger") == 1)
             {
                 tutorialImg.SetActive(false);

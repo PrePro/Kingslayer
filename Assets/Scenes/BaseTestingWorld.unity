@@ -708,7 +708,63 @@ Prefab:
       propertyPath: Highlight
       value: 
       objectReference: {fileID: 1544290244}
-    m_RemovedComponents: []
+    - target: {fileID: 1488231322505736, guid: f9baeb92dc32bc94aafdae1d44e2bcfb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114567816306323000, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
+        type: 2}
+      propertyPath: MoralityForSaving
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114104906742053082, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
+        type: 2}
+      propertyPath: DamageSound
+      value: 
+      objectReference: {fileID: 2017226134}
+    - target: {fileID: 114444432734339470, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
+        type: 2}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1577936584}
+    - target: {fileID: 114444432734339470, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
+        type: 2}
+      propertyPath: combatSource
+      value: 
+      objectReference: {fileID: 1701557742}
+    - target: {fileID: 114444432734339470, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
+        type: 2}
+      propertyPath: music
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114567816306323000, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
+        type: 2}
+      propertyPath: Doll
+      value: 
+      objectReference: {fileID: 1262702833}
+    - target: {fileID: 114567816306323000, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
+        type: 2}
+      propertyPath: Ragdoll
+      value: 
+      objectReference: {fileID: 1783193800818362, guid: d7c0acb14de02b140bac730fe008a474,
+        type: 2}
+    - target: {fileID: 114567816306323000, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
+        type: 2}
+      propertyPath: Execution
+      value: 
+      objectReference: {fileID: 1577936584}
+    - target: {fileID: 114567816306323000, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
+        type: 2}
+      propertyPath: ExecutionHuh
+      value: 
+      objectReference: {fileID: 1939036668}
+    - target: {fileID: 114444432734339470, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
+        type: 2}
+      propertyPath: KnockBackAOE
+      value: 500
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114362525312259466, guid: f9baeb92dc32bc94aafdae1d44e2bcfb, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f9baeb92dc32bc94aafdae1d44e2bcfb, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &172535092 stripped
@@ -2056,6 +2112,9 @@ MonoBehaviour:
   Push: 5
   AOEDamage: 10
   ExpandAmount: 0
+  player: {fileID: 0}
+  movement: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!23 &329317732
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2610,7 +2669,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1777626911282252, guid: f9baeb92dc32bc94aafdae1d44e2bcfb, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114334453270984558, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
         type: 2}
@@ -2635,7 +2694,8 @@ Prefab:
       propertyPath: m_Name
       value: Final Royal Guard (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114362525312259466, guid: f9baeb92dc32bc94aafdae1d44e2bcfb, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f9baeb92dc32bc94aafdae1d44e2bcfb, type: 2}
   m_IsPrefabParent: 0
 --- !u!82 &413088368 stripped
@@ -4134,7 +4194,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1777626911282252, guid: f9baeb92dc32bc94aafdae1d44e2bcfb, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114334453270984558, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
         type: 2}
@@ -5231,6 +5291,21 @@ Prefab:
       propertyPath: YouDied
       value: 
       objectReference: {fileID: 8300000, guid: 72c97a14c5395144883bb891903a3da5, type: 3}
+    - target: {fileID: 114635787318804704, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: Yell
+      value: 
+      objectReference: {fileID: 984277873}
+    - target: {fileID: 114711849223845478, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: Playerhurt
+      value: 
+      objectReference: {fileID: 1477644366}
+    - target: {fileID: 114711849223845478, guid: 5c380116f18d9cd49875ec3dc6008800,
+        type: 2}
+      propertyPath: Morality
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 81469465846731152, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
     - {fileID: 114464211593257734, guid: 5c380116f18d9cd49875ec3dc6008800, type: 2}
@@ -7617,6 +7692,7 @@ MonoBehaviour:
   TelportPoints: []
   mCurrentHealth: 100
   MaxHealth: 100
+  healthBar: {fileID: 0}
   psImpact: {fileID: 0}
   psDeath: {fileID: 0}
   psAOE: {fileID: 0}
@@ -7629,6 +7705,10 @@ MonoBehaviour:
   turnOnWizard: 0
   particleAdj: 0
   AOESound: {fileID: 0}
+  psTele: {fileID: 0}
+  trapstart: {fileID: 0}
+  traploop: {fileID: 0}
+  traplooper: {fileID: 0}
   P1Timer: 2
   P2Timer: 5
   P3Timer: 8
@@ -7882,6 +7962,11 @@ Transform:
   m_Father: {fileID: 1665647995}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1262702833 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1756486402335662, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
+    type: 2}
+  m_PrefabInternal: {fileID: 171581965}
 --- !u!1001 &1264074235
 Prefab:
   m_ObjectHideFlags: 0
@@ -9305,6 +9390,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4102260c7134c15468f9d2f67a0ce3dc, type: 2}
   m_IsPrefabParent: 0
+--- !u!82 &1477644366 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82103535367543272, guid: 70929bbc54b6fcb4f92fa649b233465d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2049150810}
 --- !u!4 &1478071483 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4879106492860158, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
@@ -9538,6 +9628,7 @@ MonoBehaviour:
   executeBar: {fileID: 0}
   executeIcon: {fileID: 0}
   Ragdoll: {fileID: 0}
+  mDeath: 0
 --- !u!1 &1495488082
 GameObject:
   m_ObjectHideFlags: 0
@@ -10354,6 +10445,11 @@ Transform:
   m_Father: {fileID: 595930251}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1577936584 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82995365452559166, guid: 70929bbc54b6fcb4f92fa649b233465d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2049150810}
 --- !u!4 &1601135254 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4101932755950626, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
@@ -10623,6 +10719,7 @@ MonoBehaviour:
   executeBar: {fileID: 0}
   executeIcon: {fileID: 0}
   Ragdoll: {fileID: 0}
+  mDeath: 0
 --- !u!4 &1656839435 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4584580390857048, guid: f9baeb92dc32bc94aafdae1d44e2bcfb,
@@ -12067,6 +12164,7 @@ MonoBehaviour:
   executeBar: {fileID: 0}
   executeIcon: {fileID: 0}
   Ragdoll: {fileID: 0}
+  mDeath: 0
 --- !u!114 &1834012989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12188,6 +12286,7 @@ MonoBehaviour:
   executeBar: {fileID: 0}
   executeIcon: {fileID: 0}
   Ragdoll: {fileID: 0}
+  mDeath: 0
 --- !u!114 &1848353113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13014,6 +13113,11 @@ MonoBehaviour:
   opaqueValue: 1
   fadeSpeed: 0.95
   obstacles: []
+--- !u!82 &1939036668 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82519056426851286, guid: 70929bbc54b6fcb4f92fa649b233465d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2049150810}
 --- !u!1 &1939361595
 GameObject:
   m_ObjectHideFlags: 0

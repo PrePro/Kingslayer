@@ -10,6 +10,7 @@ public class FinalBossCutscene : MonoBehaviour {
     public QuickCutsceneController qcc4;
     public QuickCutsceneController qcc5;
     public QuickCutsceneController qcc6;
+    public QuickCutsceneController qcc7;
     public GameObject playerRun;
     public GameObject player2;
     public GameObject wiz;
@@ -136,7 +137,8 @@ public class FinalBossCutscene : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         check = false;
         yield return new WaitForSeconds(6f);
-        fifthScene = true;
+        fifthScene = false;
+        sixthCutscene();
     }
 
     public void secondCutscene()
@@ -175,6 +177,9 @@ public class FinalBossCutscene : MonoBehaviour {
     {
         StopCoroutine("tauntingMan");
         qcc6.EndCutscene();
+        wiz.GetComponent<Animator>().SetInteger("NextAction", 4);
+        player2.GetComponent<Animator>().SetInteger("StopPoint", 3);
+        qcc7.ActivateCutscene();
     }
 
     IEnumerator pointingMan()

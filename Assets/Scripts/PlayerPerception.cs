@@ -26,7 +26,7 @@ public class PlayerPerception : MonoBehaviour
             KnightAttack[index].TurnOnHighlight();
         }
 
-        if (0.5 > timer2)
+        if (timer2 < 0.5)
         {
             timer2 += Time.deltaTime;
         }
@@ -56,7 +56,6 @@ public class PlayerPerception : MonoBehaviour
             }
             else
             {
-                Debug.Log("Controller loook at");
                 Vector3 lookPos = list[index].transform.position - transform.position;
                 lookPos.y = 0;
                 Quaternion rotation = Quaternion.LookRotation(lookPos);
@@ -97,6 +96,11 @@ public class PlayerPerception : MonoBehaviour
         //Debug.Log(x);
         if (list.Capacity != 0)
         {
+            if (x == 0)
+            {
+                timer2 = 0.2f;
+            }
+
             if (x >= 0.5)
             {
                 if (timer2 >= 0.2)
@@ -104,22 +108,24 @@ public class PlayerPerception : MonoBehaviour
                     if (index + 1 < list.Count)
                     {
                         index += 1;
+                        KnightAttack[index - 1].TurnOffHighlight();
                         timer2 = 0;
                     }
                 }
             }
-
-            else if (x <= -0.5)
+            if (x <= -0.5)
             {
                 if (timer2 >= 0.2)
                 {
-                    if (index - 1 > 0)
+                    if (index - 1 >= 0)
                     {
-                        index = 0;
+                        index -= 1;
+                        KnightAttack[index + 1].TurnOffHighlight();
                         timer2 = 0;
                     }
                 }
             }
+           
         }
     }
 

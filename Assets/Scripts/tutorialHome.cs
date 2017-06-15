@@ -8,6 +8,8 @@ public class tutorialHome : MonoBehaviour {
     public GameObject tutorialImg;
     public GameObject tutorialImg2;
     public GameObject tutorialImg3;
+    public GameObject startPos;
+    public GameObject respawnPoint;
 
 	// Use this for initialization
 	void Start ()
@@ -21,6 +23,7 @@ public class tutorialHome : MonoBehaviour {
     {
         if (tutorialOver == false && other.tag == "Player")
         {
+            startPos.transform.position = respawnPoint.transform.position;
             StartCoroutine("startGame");
             //tutorialOver = true;
         }

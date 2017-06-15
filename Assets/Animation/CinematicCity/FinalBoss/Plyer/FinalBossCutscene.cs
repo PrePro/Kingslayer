@@ -11,6 +11,11 @@ public class FinalBossCutscene : MonoBehaviour {
     public QuickCutsceneController qcc5;
     public QuickCutsceneController qcc6;
     public QuickCutsceneController qcc7;
+    public GameObject dialogue1;
+    public GameObject dialogue2;
+    public GameObject dialogue3;
+    public GameObject dialogue4;
+    public GameObject dialogue5;
     public GameObject playerRun;
     public GameObject player2;
     public GameObject wiz;
@@ -24,6 +29,8 @@ public class FinalBossCutscene : MonoBehaviour {
     private bool doOnce1 = false;
     private bool doOnce2 = false;
     private bool check = false;
+    public ParticleSystem psExplosion;
+    public GameObject endScreen;
     //public Camera cam1;
     // Use this for initialization
     void Start ()
@@ -34,6 +41,12 @@ public class FinalBossCutscene : MonoBehaviour {
         StartCoroutine("startingMan");
         //StartCoroutine("talkingMan");
         StartCoroutine("pointingMan");
+        dialogue1.SetActive(false);
+        dialogue2.SetActive(false);
+        dialogue3.SetActive(false);
+        dialogue4.SetActive(false);
+        dialogue5.SetActive(false);
+        endScreen.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -91,6 +104,7 @@ public class FinalBossCutscene : MonoBehaviour {
     {
         yield return new WaitForSeconds(6.8f);
         qcc.EndCutscene();
+        dialogue1.SetActive(true);
         qcc2.ActivateCutscene();
         StartCoroutine("talkingMan");
     }
@@ -127,7 +141,7 @@ public class FinalBossCutscene : MonoBehaviour {
         fourthScene = true;
         yield return new WaitForSeconds(1f);
         check = false;
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(8f);
         fourthScene = false;
         fifthCutscene();
     }
@@ -136,52 +150,69 @@ public class FinalBossCutscene : MonoBehaviour {
         fifthScene = true;
         yield return new WaitForSeconds(1f);
         check = false;
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(7f);
         fifthScene = false;
         sixthCutscene();
     }
 
     public void secondCutscene()
     {
+        dialogue1.SetActive(false);
         StopCoroutine("talkingMan");
         qcc2.EndCutscene();
         player2.SetActive(true);
+        dialogue2.SetActive(true);
         qcc3.ActivateCutscene();
         StartCoroutine("accusingMan");
     }
     public void thirdCutscene()
     {
+        dialogue2.SetActive(false);
         StopCoroutine("accusingMan");
         qcc3.EndCutscene();
         qcc4.ActivateCutscene();
+        dialogue3.SetActive(true);
         wiz.GetComponent<Animator>().SetInteger("NextAction", 2);
         StartCoroutine("laughingMan");
     }
     public void fourthCutscene()
     {
+        dialogue3.SetActive(false);
         StopCoroutine("laughingMan");
         qcc4.EndCutscene();
         qcc5.ActivateCutscene();
+        dialogue4.SetActive(true);
         player2.GetComponent<Animator>().SetInteger("StopPoint", 1);
         StartCoroutine("cryingMan");
     }
     public void fifthCutscene()
     {
+        dialogue4.SetActive(false);
         StopCoroutine("cryingMan");
         qcc5.EndCutscene();
         qcc6.ActivateCutscene();
+        dialogue5.SetActive(true);
         wiz.GetComponent<Animator>().SetInteger("NextAction", 3);
         StartCoroutine("tauntingMan");
     }
     public void sixthCutscene()
     {
+        dialogue5.SetActive(false);
         StopCoroutine("tauntingMan");
         qcc6.EndCutscene();
         wiz.GetComponent<Animator>().SetInteger("NextAction", 4);
         player2.GetComponent<Animator>().SetInteger("StopPoint", 3);
         qcc7.ActivateCutscene();
+        StartCoroutine("explode");
     }
+    IEnumerator explode()
+    {
+        yield return new WaitForSeconds(8.5f);
+        psExplosion.Play();
+        yield return new WaitForSeconds(8.5f);
+        endScreen.SetActive(true);
 
+    }
     IEnumerator pointingMan()
     {
         yield return new WaitForSeconds(8.5f);

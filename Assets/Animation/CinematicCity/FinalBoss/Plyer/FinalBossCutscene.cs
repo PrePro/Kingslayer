@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinalBossCutscene : MonoBehaviour {
     //public GameObject player1;
@@ -211,6 +212,8 @@ public class FinalBossCutscene : MonoBehaviour {
         psExplosion.Play();
         yield return new WaitForSeconds(8.5f);
         endScreen.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        SceneManager.LoadScene("Forge");
 
     }
     IEnumerator pointingMan()

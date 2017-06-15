@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
 public class PlayerStats : UnitStats
 {
@@ -25,9 +26,11 @@ public class PlayerStats : UnitStats
     public ParticleSystem privoHurt;
     private GameObject deathScreen;
     private bool CalledDeathOnce = false;
+    private NavMeshAgent agent;
 
     void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
         movement = GetComponent<Movement>();
         //startPosition.transform.position = transform.position;
         deathScreen = GameObject.FindGameObjectWithTag("DeathScreen");
@@ -102,9 +105,11 @@ public class PlayerStats : UnitStats
 
     IEnumerator DeathAnim(float waitTime)
     {
+        agent.enabled = false;
         yield return new WaitForSeconds(waitTime);
         transform.position = startPosition.transform.position;
         myAnimator.SetBool("privoDeath", false);
+        agent.enabled = true;
         isDead = false;
         deathSound = true;
         SetHealth();

@@ -33,7 +33,7 @@ public class wizDeath : MonoBehaviour {
     IEnumerator firstOne()
     {
         yield return new WaitForSeconds(2f);
-        cam1.SetActive(true);
+        cam1.SetActive(false);
         gate.SetActive(false);
         gate2.SetActive(false);
         gate3.SetActive(false);

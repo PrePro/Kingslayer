@@ -26,6 +26,10 @@ public class AI_KnightAttack : AI_BaseAttack
     public ParticleSystem hitspark;
     public GameObject Highlight;
 
+    void update()
+    {
+      
+    }
     void Start()
     {
         damage = GetComponentInChildren<EnemyDamage>();
@@ -168,6 +172,7 @@ public class AI_KnightAttack : AI_BaseAttack
     {
         if (stats.Death)
         {
+            
             return;
         }
 

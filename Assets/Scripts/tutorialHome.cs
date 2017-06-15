@@ -35,10 +35,10 @@ public class tutorialHome : MonoBehaviour {
 
         if (tutorialOver == true)
         {
-            move.stopMovement = false;
             Debug.Log("Use R or LeftTrigger bitch");
             if (Input.GetKeyDown(KeyCode.R) || Input.GetAxis("LeftTrigger") == 1)
             {
+                move.stopMovement = false;
                 tutorialImg.SetActive(false);
                 tutorialImg2.SetActive(false);
                 tutorialImg3.SetActive(false);

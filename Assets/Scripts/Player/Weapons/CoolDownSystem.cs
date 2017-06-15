@@ -31,6 +31,7 @@ public class CoolDownSystem : MonoBehaviour
     public AudioSource Sheathe;
     public AudioSource DashSound;
     public AudioSource Yell;
+    public AudioSource AOESound;
 
 
 
@@ -222,6 +223,10 @@ public class CoolDownSystem : MonoBehaviour
         //Debug.Log("Fuck");
         yield return new WaitForSeconds(0.6f);
         AoeSphere.SetActive(true);
+        if (AOESound.isPlaying != true)
+        {
+            AOESound.PlayDelayed(0.1f);
+        }
         ps.Play();
         StartCoroutine("AoeTime", 0.6f);
         

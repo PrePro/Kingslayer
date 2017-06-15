@@ -34,6 +34,11 @@ public class WizardBoss : MonoBehaviour
     public AudioSource trapstart;
     public GameObject traploop;
     public AudioSource traplooper;
+    public AudioSource Grunt;
+    public AudioSource Grunt1;
+    public AudioSource Grunt2;
+    public AudioSource blood;
+    public int randomNumber;
 
     [Tooltip("Phase 1 time before the trap destroys")]
     public float P1Timer;
@@ -62,6 +67,27 @@ public class WizardBoss : MonoBehaviour
 
     public void ReceiveDamage(float damage)
     {
+        if (Grunt.isPlaying != true && Grunt1.isPlaying != true && Grunt2.isPlaying != true)
+        {
+            randomNumber = Random.Range(1, 3);
+
+            if (randomNumber == 1)
+            {
+                Grunt.PlayDelayed(0.1f);
+            }
+            else if (randomNumber == 2)
+            {
+                Grunt1.PlayDelayed(0.1f);
+            }
+            else if (randomNumber == 3)
+            {
+                Grunt2.PlayDelayed(0.1f);
+            }
+            blood.PlayDelayed(0.1f);
+        }
+
+
+
         Debug.Log("Taken Damage");
         mCurrentHealth -= damage;
         mHitCounter++;

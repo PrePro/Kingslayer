@@ -269,7 +269,14 @@ public class Movement : MonoBehaviour
 
                 if (isRunning == false && isCrouching == false)
                 {
-                    currentSpeed = speed;
+                    if (coolDownSystem.currentAnimState == CoolDownSystem.PlayerState.SwordInHand)
+                    {
+                        currentSpeed = runningSpeed;
+                    }
+                    else
+                    {
+                        currentSpeed = speed;
+                    }
                 }
 
                 else
@@ -463,7 +470,14 @@ public class Movement : MonoBehaviour
         {
             if (isRunning == false && isCrouching == false)
             {
-                currentSpeed = speed;
+                if(coolDownSystem.currentAnimState == CoolDownSystem.PlayerState.SwordInHand)
+                {
+                    currentSpeed = runningSpeed;
+                }
+                else
+                {
+                    currentSpeed = speed;
+                }
             }
             else
             {

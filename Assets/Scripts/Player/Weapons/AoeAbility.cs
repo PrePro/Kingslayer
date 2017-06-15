@@ -74,7 +74,7 @@ public class AoeAbility : MonoBehaviour
 
                 //npcstats.HitAoe = true;
                 npcstats.ReceiveDamage(damage);
-                stats.RecieveHealing(10);
+                stats.RecieveHealing(20);
             }
         }
     }

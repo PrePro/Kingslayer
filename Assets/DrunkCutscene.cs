@@ -10,6 +10,8 @@ public class DrunkCutscene : MonoBehaviour {
     private GameObject cineDelete;
     public GameObject realDrunk;
     public GameObject gate;
+    public Movement move;
+    private bool m;
 
     // Use this for initialization
     void Start()
@@ -17,11 +19,17 @@ public class DrunkCutscene : MonoBehaviour {
         gameUI.SetActive(false);
         realDrunk.SetActive(false);
         gate.SetActive(false);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (m == true)
+        {
+            move.stopMovement = true;
+        }
+        
         if (drunkCutscene.playingCutscene == false && drunkCutsceneRunning == false)
         {
             drunkCutscene.ActivateCutscene();
@@ -46,5 +54,7 @@ public class DrunkCutscene : MonoBehaviour {
         gameUI.SetActive(true);
         realDrunk.SetActive(true);
         gate.SetActive(true);
+        m = false;
+        move.stopMovement = false;
     }
 }

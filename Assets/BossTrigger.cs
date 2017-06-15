@@ -50,6 +50,7 @@ public class BossTrigger : MonoBehaviour {
     {
         if(other.tag == "Player" && itsDone == false)
         {
+            gameUI.SetActive(false);
             move.stopMovement = true;
             respawnPoint.transform.position = newSpawn.transform.position;
             BossFightMusic.PlayDelayed(0.1f);

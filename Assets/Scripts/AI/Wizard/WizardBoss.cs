@@ -93,7 +93,7 @@ public class WizardBoss : MonoBehaviour
         T max = 
         amountspawn = how many traps are spawned
     */
-    void RunPhase(int Amin, int Amax, int Tmin, int Tmax, int amountspawn)
+    void RunPhase(int Amin, int Amax, int Tmin, int Tmax, int amountspawn, int phaseIndex)
     {
         amountToBeSpawned = amountspawn;
         if (mHitAOE == Random.Range(Amin, Amax)) // AOE
@@ -106,7 +106,7 @@ public class WizardBoss : MonoBehaviour
         }
         else if (mHitCounter == Random.Range(Tmin, Tmax)) // TP
         {
-            transform.position = TelportPoints[0].transform.position;
+            transform.position = TelportPoints[phaseIndex].transform.position;
             psTele.Play();
             mHitCounter = 0;
         }
@@ -120,13 +120,13 @@ public class WizardBoss : MonoBehaviour
             switch (CurrentPhase)
             {
                 case Phase.Phase1:
-                    RunPhase(5,6, 9,10, 5);
+                    RunPhase(5,6, 9,10, 5, 1);
                         break;
                 case Phase.Phase2:
-                    RunPhase(5, 6, 9, 10, 10); 
+                    RunPhase(5, 6, 9, 10, 10, 2); 
                         break;
                 case Phase.Phase3:
-                    RunPhase(5, 6, 9, 10, 15);
+                    RunPhase(5, 6, 9, 10, 15, 3);
                         break;
                 case Phase.Killed:
                     myAnimator.SetTrigger("WizardDeath");

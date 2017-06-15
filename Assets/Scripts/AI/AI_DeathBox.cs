@@ -44,9 +44,9 @@ public class AI_DeathBox : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.JoystickButton4)&& !Called)
             {
-                Debug.Log("1");
+                PrivoAnimator.SetTrigger("Spare");
                 stats.Morality += MoralityForSaving;
-                AIDeath.mDeath = true;
+                StartCoroutine("Spare");
                 Called = true;
             }
         }
@@ -54,14 +54,18 @@ public class AI_DeathBox : MonoBehaviour
 
     IEnumerator Death(float waitTime)
     {
-        Debug.Log("a");
         npc.SetAnimation(NPCBase.AnimationState.Execute);
         yield return new WaitForSeconds(waitTime);
         //Ragdoll.SetActive(true);
         Instantiate(Ragdoll, transform.position + transform.forward, transform.rotation);
         //Doll.SetActive(false);
         Destroy(transform.parent.gameObject);
+    }
 
+    IEnumerator Spare()
+    {
+        yield return new WaitForSeconds(1.5f);
+        AIDeath.mDeath = true;
     }
 
     void OnTriggerEnter(Collider col)

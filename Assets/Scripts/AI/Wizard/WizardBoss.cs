@@ -158,7 +158,7 @@ public class WizardBoss : MonoBehaviour
                     myAnimator.SetTrigger("WizardDeath");
                     psDeath.Play();
                     spawnerdone = true;
-                    gameObject.SetActive(false);
+
                     break;
                 default:
                     break;
@@ -208,4 +208,11 @@ public class WizardBoss : MonoBehaviour
         }
 
     }
+
+    IEnumerator wizDeath()
+    {
+        yield return new WaitForSeconds(3.5f);
+        gameObject.SetActive(false);
+    }
+
 }

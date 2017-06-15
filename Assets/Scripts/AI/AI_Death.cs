@@ -58,6 +58,8 @@ public class AI_Death : AI_BaseAttack
         if (mDeath == true)
         {
             agent.isStopped = false;
+            executeIcon.gameObject.SetActive(false);
+            DeathBox.SetActive(false);
             npc.SetAnimation(NPCBase.AnimationState.Walking);
             // SetAnimation(AnimationState.Walking);
 

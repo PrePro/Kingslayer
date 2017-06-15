@@ -10,6 +10,7 @@ public class tutorialHome : MonoBehaviour {
     public GameObject tutorialImg3;
     public GameObject startPos;
     public GameObject respawnPoint;
+    public Movement move;
 
 	// Use this for initialization
 	void Start ()
@@ -31,8 +32,10 @@ public class tutorialHome : MonoBehaviour {
  
 	// Update is called once per frame
 	void Update () {
-		if(tutorialOver == true)
+
+        if (tutorialOver == true)
         {
+            move.stopMovement = false;
             Debug.Log("Use R or LeftTrigger bitch");
             if (Input.GetKeyDown(KeyCode.R) || Input.GetAxis("LeftTrigger") == 1)
             {
@@ -44,6 +47,10 @@ public class tutorialHome : MonoBehaviour {
                     Time.timeScale = 1;
                 }
             }
+        }
+        else
+        {
+            move.stopMovement = true;
         }
 	}
 

@@ -160,6 +160,7 @@ public class FinalBossCutscene : MonoBehaviour {
         StopCoroutine("laughingMan");
         qcc4.EndCutscene();
         qcc5.ActivateCutscene();
+        player2.GetComponent<Animator>().SetInteger("StopPoint", 1);
         StartCoroutine("cryingMan");
     }
     public void fifthCutscene()
@@ -167,6 +168,7 @@ public class FinalBossCutscene : MonoBehaviour {
         StopCoroutine("cryingMan");
         qcc5.EndCutscene();
         qcc6.ActivateCutscene();
+        wiz.GetComponent<Animator>().SetInteger("NextAction", 3);
         StartCoroutine("tauntingMan");
     }
     public void sixthCutscene()

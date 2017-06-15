@@ -58,6 +58,7 @@ public class Movement : MonoBehaviour
 
     public GameObject PlayerHead;
     public PlayerPerception playerperception;
+    public GameObject swordInHand;
     //private Rigidbody rigidbody;
 
     #endregion
@@ -275,7 +276,15 @@ public class Movement : MonoBehaviour
                     }
                     else
                     {
-                        currentSpeed = speed;
+                        if (swordInHand.activeSelf)
+                        {
+                            currentSpeed = runningSpeed;
+                        }
+                        else
+                        {
+                            currentSpeed = speed;
+                        }
+                        
                     }
                 }
 
@@ -301,7 +310,14 @@ public class Movement : MonoBehaviour
                 // Debug.Log("RIGHT");
                 if (isRunning == false && isCrouching == false)
                 {
-                    currentSpeed = speed;
+                       if (swordInHand.activeSelf)
+                        {
+                            currentSpeed = runningSpeed;
+                        }
+                        else
+                        {
+                            currentSpeed = speed;
+                        }
                 }
 
                 else
@@ -326,7 +342,14 @@ public class Movement : MonoBehaviour
 
                 if (isRunning == false && isCrouching == false)
                 {
-                    currentSpeed = speed;
+                    if (swordInHand.activeSelf)
+                    {
+                        currentSpeed = runningSpeed;
+                    }
+                    else
+                    {
+                        currentSpeed = speed;
+                    }
                 }
 
                 else
@@ -348,7 +371,14 @@ public class Movement : MonoBehaviour
             {
                 if (isRunning == false && isCrouching == false)
                 {
-                    currentSpeed = speed;
+                    if (swordInHand.activeSelf)
+                    {
+                        currentSpeed = runningSpeed;
+                    }
+                    else
+                    {
+                        currentSpeed = speed;
+                    }
                 }
 
                 else
@@ -375,7 +405,14 @@ public class Movement : MonoBehaviour
 
             if (isRunning == false && isCrouching == false)
             {
-                currentSpeed = speed;
+                if (swordInHand.activeSelf)
+                {
+                    currentSpeed = runningSpeed;
+                }
+                else
+                {
+                    currentSpeed = speed;
+                }
             }
 
             else

@@ -31,7 +31,7 @@ public class PuzzleWall : MonoBehaviour
             moveDownDistance += 1;
         }
 
-        if (goBackUp == true && moveUpDistance < 150)
+        if (goBackUp == true && moveUpDistance < 250)
         {
             transform.position += moveUp;
             moveUpDistance += 1;

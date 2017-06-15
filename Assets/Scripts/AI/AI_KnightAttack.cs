@@ -13,6 +13,7 @@ public class AI_KnightAttack : AI_BaseAttack
     public int TurnSpeed;
     int[] randomAnim1 = new int[] { 2, 9, 10, 11 };
     public AudioSource ParrySound;
+    public AudioSource SwingSound;
     float timer;
 
     [SerializeField]
@@ -127,7 +128,7 @@ public class AI_KnightAttack : AI_BaseAttack
             agent.isStopped = true;
             canTurn = false;
         }
-        else  if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("Spin Slash"))
+        else if (npc.animator.GetCurrentAnimatorStateInfo(0).IsName("Spin Slash"))
         {
             Debug.Log("Spin Slash");
             agent.isStopped = true;
@@ -144,13 +145,13 @@ public class AI_KnightAttack : AI_BaseAttack
             Debug.Log("Else");
             canTurn = true;
         }
-      
+
 
     }
 
     public override void Enter()
     {
-        
+
         npc.SetAnimation(NPCBase.AnimationState.Attacking);
         agent.isStopped = true;
         slash.Play();
@@ -163,7 +164,6 @@ public class AI_KnightAttack : AI_BaseAttack
     {
         Debug.Log("Exit");
     }
-
     public void KAttackTarget()
     {
         if (stats.Death)
@@ -193,6 +193,7 @@ public class AI_KnightAttack : AI_BaseAttack
             else
             {
                 isReady = true;
+         
             }
         }
         else // Is not facing
@@ -224,17 +225,22 @@ public class AI_KnightAttack : AI_BaseAttack
 
         if (timer >= attackSpeed && isReady)
         {
+            
             if (MultiAnim)
             {
+                
                 int RandomAnimation = randomAnim1[UnityEngine.Random.Range(0, randomAnim1.Length)];
                 npc.SetAnimation((NPCBase.AnimationState)RandomAnimation);
                 
+
             }
             else
             {
+               
                 npc.SetAnimation(NPCBase.AnimationState.Attacking);
-            }
 
+            }
+          
             timer = 0;
             isReady = false;
         }
@@ -244,13 +250,13 @@ public class AI_KnightAttack : AI_BaseAttack
             if (damage.gotParry)
             {
                 //Debug.Log("GOT ANIM");
-                if(hitspark != null)
+                if (hitspark != null)
                 {
                     if (ParrySound.isPlaying != true)
                     {
                         ParrySound.PlayDelayed(0.1f);
                     }
-                    
+
                     if (hitspark.isPlaying != true)
                     {
                         hitspark.Play();
@@ -267,7 +273,7 @@ public class AI_KnightAttack : AI_BaseAttack
             }
             else
             {
-                if(agent.isStopped)
+                if (agent.isStopped)
                 {
                     npc.SetAnimation(NPCBase.AnimationState.Idle);
                 }

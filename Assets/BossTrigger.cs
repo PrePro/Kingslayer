@@ -35,7 +35,7 @@ public class BossTrigger : MonoBehaviour {
         bossHealthBar.SetActive(false);
         wiz.SetActive(false);
         wiz2.SetActive(false);
-        gameUI.SetActive(false);
+        gameUI.SetActive(true);
 	}
 	
 	// Update is called once per frame

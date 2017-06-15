@@ -225,7 +225,7 @@ public class CoolDownSystem : MonoBehaviour
         AoeSphere.SetActive(true);
         if (AOESound.isPlaying != true)
         {
-            AOESound.PlayDelayed(0.1f);
+            AOESound.PlayDelayed(0.0001f);
         }
         ps.Play();
         StartCoroutine("AoeTime", 0.6f);

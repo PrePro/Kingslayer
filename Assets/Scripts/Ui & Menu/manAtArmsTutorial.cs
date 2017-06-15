@@ -19,7 +19,7 @@ public class manAtArmsTutorial : MonoBehaviour {
         if(tutorialDone == true)
         {
             Debug.Log("Use R or LeftTrigger bitch");
-            if (Input.GetKeyDown(KeyCode.R) || Input.GetAxis("LeftTrigger") == 1)
+            if (Input.GetKeyDown(KeyCode.R) || (Input.GetKeyDown("joystick button 3")))
             {
                 manAtArmsTut.SetActive(false);
                 if(Time.timeScale != 1)

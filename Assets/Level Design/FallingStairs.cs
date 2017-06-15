@@ -6,6 +6,8 @@ public class FallingStairs : MonoBehaviour {
     public Rigidbody rb;
     public Collider coll;
     public GameObject block;
+    public GameObject startPoint;
+    public GameObject newRespawn;
     void Start()
     {
         block.SetActive(false);
@@ -16,6 +18,7 @@ public class FallingStairs : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
+            startPoint.transform.position = newRespawn.transform.position;
             rb.isKinematic = false;
             rb.useGravity = true;
             block.SetActive(true);

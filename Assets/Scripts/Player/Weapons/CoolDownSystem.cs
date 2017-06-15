@@ -220,10 +220,11 @@ public class CoolDownSystem : MonoBehaviour
     {
         fake = true;
         //Debug.Log("Fuck");
-        yield return new WaitForSeconds(myAnimator.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(0.6f);
         AoeSphere.SetActive(true);
-        StartCoroutine("AoeTime", 0.5f);
         ps.Play();
+        StartCoroutine("AoeTime", 0.6f);
+        
         //Debug.Log("Duck");
         fake = false;
     }

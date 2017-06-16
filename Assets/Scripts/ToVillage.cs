@@ -8,6 +8,7 @@ public class ToVillage : MonoBehaviour
     public GameObject transScreen;
     public GameObject gate;
     private GameObject gateGuard;
+    private UnityEngine.AI.NavMeshAgent agent;
     public Movement movement;
     // Use this for initialization
     void Start ()

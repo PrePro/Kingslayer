@@ -212,6 +212,7 @@ public class WizardBoss : MonoBehaviour
     IEnumerator wizDeath()
     {
         yield return new WaitForSeconds(3.5f);
+        psDeath.Stop();
         gameObject.SetActive(false);
     }
 

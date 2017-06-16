@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class tofinalboss : MonoBehaviour {
     public GameObject transScreen;
     public Movement movement;
+    private bool done = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -18,11 +19,18 @@ public class tofinalboss : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && done == false)
         {
             transScreen.SetActive(true);
-            StartCoroutine(movement.StopMovement(2f));
-            SceneManager.LoadScene("CityNight");
+            done = true;
+            StartCoroutine("waitup");
         }
+    }
+
+    IEnumerator waitup()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("FinalBossCinematic");
+
     }
 }

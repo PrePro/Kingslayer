@@ -18,13 +18,14 @@ public class tutorialHome : MonoBehaviour {
         tutorialImg.SetActive(false);
         tutorialImg2.SetActive(false);
         tutorialImg3.SetActive(false);
+        startPos.transform.position = respawnPoint.transform.position;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (tutorialOver == false && other.tag == "Player")
         {
-            startPos.transform.position = respawnPoint.transform.position;
+           
             StartCoroutine("startGame");
             //tutorialOver = true;
         }

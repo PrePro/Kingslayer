@@ -34,10 +34,10 @@ public class wizDeath : MonoBehaviour {
     {
         yield return new WaitForSeconds(1.5f);
         cam1.SetActive(true);
-        yield return new WaitForSeconds(3f);
         gate.SetActive(false);
         gate2.SetActive(false);
         gate3.SetActive(false);
+        yield return new WaitForSeconds(3f);
         cam1.SetActive(false);
     }
 }

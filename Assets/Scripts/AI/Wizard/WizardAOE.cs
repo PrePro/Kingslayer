@@ -35,6 +35,7 @@ public class WizardAOE : MonoBehaviour
         if(Expand)
         {
             transform.localScale += new Vector3(ExpandAmount, ExpandAmount, ExpandAmount);
+            StartCoroutine("ExpandTime", 4f);
         }
         if(mayBe == true)
         {
@@ -46,10 +47,12 @@ public class WizardAOE : MonoBehaviour
 
     public IEnumerator ExpandTime(float waitTime)
     {
-        Expand = true;
+        //Expand = true;
         yield return new WaitForSeconds(waitTime);
         Expand = false;
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
+        player.GetComponent<Movement>().enabled = true;
+
     }
     IEnumerator knockUp(Collider c)
     {
